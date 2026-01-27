@@ -7,6 +7,7 @@
     <title>Balance – Finanze personali, semplificate.</title>
     <meta name="description"
         content="Balance è un'app open source per monitorare il tuo patrimonio. Gratuita, privata, sempre in evoluzione.">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Font Inter from Google Fonts -->
@@ -92,6 +93,10 @@
             <p class="section-text highlight-text">
                 Balance centralizza tutto in un unico punto di controllo.
             </p>
+            <div class="hero-buttons center-content mt-40">
+                <a href="#" class="btn btn-primary"><i class="fa-brands fa-apple"></i> App Store</a>
+                <a href="#" class="btn btn-secondary"><i class="fa-brands fa-google-play"></i> Google Play</a>
+            </div>
         </div>
     </section>
 
@@ -99,7 +104,7 @@
     <section class="section-split">
         <div class="container split-container reveal">
             <div class="split-content">
-                <h2 class="section-title">Il tuo cruscotto privato e sempre disponibile</h2>
+                <h2 class="section-title">Il tuo cruscotto privato sempre disponibile</h2>
                 <p class="section-text">
                     Non una semplice app di spese: uno strumento per tenere traccia del tuo patrimonio e monitorarne
                     l'evoluzione nel tempo.
@@ -184,35 +189,27 @@
             <h2 class="section-title center-text">Gratis per iniziare. Pro per crescere.</h2>
             <div class="pricing-grid">
                 <div class="glass-card pricing-card">
-                    <h3>Free</h3>
+                    <h3>Balance</h3>
+                    <div class="pricing-price">€0 <span class="price-suffix">per iniziare</span></div>
                     <ul class="pricing-list">
                         <li>Fino a 3 wallet</li>
                         <li>Snapshot base</li>
                         <li>Dashboard essenziale</li>
                     </ul>
+                    <button class="btn btn-secondary full-width open-modal">Scarica gratis</button>
                 </div>
                 <div class="glass-card pricing-card pro">
-                    <div class="badge">Pro</div>
-                    <h3>Pro</h3>
+                    <div class="badge">Prezzo lancio fino al 31/03/2026</div>
+                    <h3>Balance Pro</h3>
+                    <div class="pricing-price">€3.99 <span class="price-suffix">una tantum</span></div>
                     <ul class="pricing-list">
                         <li>Wallet illimitati</li>
                         <li>Snapshot avanzati</li>
                         <li>Storico completo</li>
                     </ul>
-                    <a href="#download" class="btn btn-primary full-width">Scopri Balance Pro</a>
+                    <button class="btn btn-primary full-width open-modal">Scopri di più</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Philosophy -->
-    <section class="section-text-center">
-        <div class="container reveal">
-            <h2 class="section-title">Meno rumore. Più chiarezza.</h2>
-            <p class="section-text medium-text">
-                Balance non dà consigli. Ti mostra i dati, in modo semplice e trasparente.
-            </p>
-            <p class="section-text bold-text">Le decisioni restano tue.</p>
         </div>
     </section>
 
@@ -220,9 +217,9 @@
     <section id="download" class="section-cta">
         <div class="container reveal">
             <div class="cta-box">
-                <h2 class="section-title">Scarica gratis</h2>
-                <p>Disponibile su App Store e Google Play. Inizia subito.</p>
-                <div class="hero-buttons">
+                <h2 class="section-title">Scarica Balance</h2>
+                <p class="mb-40">Disponibile su App Store e Google Play. Inizia subito.</p>
+                <div class="hero-buttons center-content">
                     <a href="#" class="btn btn-primary"><i class="fa-brands fa-apple"></i> App Store</a>
                     <a href="#" class="btn btn-secondary"><i class="fa-brands fa-google-play"></i> Google Play</a>
                 </div>
@@ -254,6 +251,17 @@
         </div>
     </section>
 
+    <!-- Philosophy -->
+    <section class="section-text-center">
+        <div class="container reveal">
+            <h2 class="section-title">Meno rumore. Più chiarezza.</h2>
+            <p class="section-text medium-text">
+                Balance non dà consigli. Ti mostra i dati, in modo semplice e trasparente.
+            </p>
+            <p class="section-text bold-text">Le decisioni restano tue.</p>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container footer-container">
@@ -268,6 +276,22 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- Download Modal -->
+    <div id="download-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="glass-card modal-content reveal active">
+                <button class="modal-close" id="modal-close">&times;</button>
+                <h2 class="section-title center-text">Scarica Balance</h2>
+                <p class="center-text mb-32">Scegli la tua piattaforma per iniziare.</p>
+                <div class="hero-buttons center-content">
+                    <a href="#" class="btn btn-primary"><i class="fa-brands fa-apple"></i> App Store</a>
+                    <a href="#" class="btn btn-secondary"><i class="fa-brands fa-google-play"></i> Google Play</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

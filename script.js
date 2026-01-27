@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hero Carousel Logic
     initHeroCarousel();
+
+    // Initialize Modal
+    initModal();
 });
 
 function initHeroCarousel() {
@@ -182,3 +185,35 @@ function renderLeaderboard(contributors) {
         listContainer.appendChild(row);
     });
 }
+
+// Modal Logic
+function initModal() {
+    const modal = document.getElementById('download-modal');
+    const openBtns = document.querySelectorAll('.open-modal');
+    const closeBtn = document.getElementById('modal-close');
+    const overlay = modal.querySelector('.modal-overlay');
+
+    if (!modal || !openBtns.length) return;
+
+    const openModal = () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+    };
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scroll
+    };
+
+    openBtns.forEach(btn => btn.addEventListener('click', openModal));
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (overlay) overlay.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
