@@ -9,6 +9,7 @@
     /* Very subtle */
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-highlight: rgba(255, 255, 255, 0.15);
+    --success-color: #68af7d;
 
     /* Spacing & Sizes */
     --container-width: 1080px;
@@ -88,21 +89,47 @@ body {
 .btn-primary {
     background: #FFFFFF;
     color: #000000;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 15px rgba(255, 255, 255, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .btn-secondary {
     background: rgba(255, 255, 255, 0.1);
     color: #FFFFFF;
     backdrop-filter: blur(10px);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 15px rgba(0, 0, 0, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .btn-sm {
@@ -111,8 +138,20 @@ body {
 }
 
 .btn-white {
-    background: #fff;
-    color: #000;
+    background: #FFFFFF;
+    color: #000000;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 15px rgba(255, 255, 255, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Glass Components */
@@ -437,6 +476,10 @@ section {
     border-radius: 99px;
     display: inline-block;
     margin-bottom: 16px;
+}
+
+.badge-green {
+    background: var(--success-color);
 }
 
 .full-width {

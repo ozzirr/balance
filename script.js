@@ -119,9 +119,9 @@ async function fetchContributors() {
     const listContainer = document.getElementById('leaderboard-list');
     if (!listContainer) return;
 
-    const CACHE_KEY = 'balance_contributors';
-    const CACHE_TTL = 6 * 60 * 60 * 1000; // 6 hours
-    const REPO = 'ozzirr/balance';
+    const CACHE_KEY = 'balance_contributors_v1_0_1';
+    const CACHE_TTL = 1 * 60 * 60 * 1000; // 1 hour
+    const REPO = 'ozzirr/balance-app-v1';
 
     // Check Cache
     const cached = localStorage.getItem(CACHE_KEY);
@@ -134,7 +134,7 @@ async function fetchContributors() {
     }
 
     try {
-        const response = await fetch(`https://api.github.com/repos/${REPO}/contributors?per_page=10`);
+        const response = await fetch(`https://api.github.com/repos/${REPO}/contributors?per_page=20&t=${Date.now()}`);
         if (!response.ok) throw new Error('API Error');
 
         const data = await response.json();
