@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contributorsList = document.getElementById('contributors-list');
     if (contributorsList) {
         const repoOwner = 'ozzirr';
-        const repoName = 'balance-app-v1';
+        const repoName = 'balance';
 
         (async () => {
             try {
@@ -89,20 +89,17 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
 
-            // Descend & Zoom Animation
-            // Move down (translateY) and Scale up (scale)
-            // Factor 0.3 for slower descend than scroll (parallax stickiness)
-            // Factor 0.0005 for subtle zoom
-            const moveDown = scrollY * 0.4;
-            const scale = 1 + (scrollY * 0.0005);
-            // Limit tilt logic
-            const tilt = Math.min(scrollY * 0.05, 10);
+            // Revised Animation Logic
+            // Scale: much more subtle (max 1.1)
+            // Translate: slower pace
+            const moveDown = scrollY * 0.2; // Slower descent
+            const scale = Math.min(1 + (scrollY * 0.0002), 1.15); // Cap at 1.15x
+            const tilt = Math.min(scrollY * 0.02, 5); // Tilted layout
 
             iphoneMockup.style.transform = `translateY(${moveDown}px) scale(${scale}) perspective(1000px) rotateX(${tilt}deg)`;
 
             // Screenshot Cycling
-            // Cycle images based on scroll position (every 150px)
-            const step = 150;
+            const step = 200; // Slower change
             const index = Math.floor(scrollY / step) % screenshots.length;
 
             screenshots.forEach((img, i) => {
@@ -114,4 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Spotlight Effect for Glass Cards
+    const cards = document.querySelectorAll('.glass-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
 });
