@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti – Balance</title>
+    <meta name="description" content="Mettiti in contatto con il team di Balance.">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
+    <link rel="shortcut icon" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="glass-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/icon.png" alt="Balance Logo" class="logo-icon">
+                Balance
+            </a>
+            <div class="nav-links">
+                <a href="index.html#problem">Perché Balance</a>
+                <a href="index.html#features">Funzionalità</a>
+                <a href="index.html#pricing">Piani e prezzi</a>
+                <a href="index.html#leaderboard">Contributori</a>
+                <a href="index.html#download" class="btn btn-sm btn-white">Download</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="container reveal">
+            <h1 class="section-title center-text">Contattaci</h1>
+            <p class="section-text center-text">Hai domande, feedback o proposte? Scrivici direttamente.</p>
+
+            <div class="contact-container">
+                <div class="glass-card">
+                    <form id="contact-form" class="contact-form">
+                        <!-- Honeypot anti-bot -->
+                        <div class="hidden-field">
+                            <label for="honeypot">Non compilare se sei umano</label>
+                            <input type="text" id="honeypot" name="honeypot">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Il tuo nome"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="la-tua@email.it" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Messaggio</label>
+                            <textarea id="message" name="message" class="form-control"
+                                placeholder="Come possiamo aiutarti?" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary full-width">Invia messaggio</button>
+                    </form>
+                    <div id="success-message" class="success-message">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <p>Grazie! Il tuo messaggio è stato inviato correttamente.</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-link" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://github.com/ozzirr/balance-app-v1" target="_blank" class="social-link"
+                        title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-cta reveal">
+            <h2 class="section-title">Scarica Balance</h2>
+            <p class="mb-40">Disponibile su App Store e Google Play. Inizia subito.</p>
+            <div class="hero-buttons center-content mb-40">
+                <a href="#" class="btn btn-primary"><i class="fa-brands fa-apple"></i> App Store</a>
+                <a href="#" class="btn btn-secondary"><i class="fa-brands fa-google-play"></i> Google Play</a>
+            </div>
+        </div>
+        <div class="container footer-container">
+            <p class="copyright">© Balance App. Tutti i diritti riservati.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Termini e Condizioni</a>
+                <a href="contacts.html">Contatti</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

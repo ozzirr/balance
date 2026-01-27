@@ -497,6 +497,13 @@ footer {
     color: var(--text-secondary);
 }
 
+.footer-cta {
+    text-align: center;
+    padding-bottom: 80px;
+    border-bottom: 1px solid var(--glass-border);
+    margin-bottom: 80px;
+}
+
 .footer-container {
     display: flex;
     justify-content: space-between;
@@ -889,4 +896,85 @@ footer {
 
 .modal-close:hover {
     color: var(--text-primary);
+}
+
+/* Contact Form */
+.contact-container {
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition-fast);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.hidden-field {
+    display: none;
+}
+
+.social-links {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.social-link {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    transition: color 0.2s;
+}
+
+.social-link:hover {
+    color: var(--accent-color);
+}
+
+.success-message {
+    display: none;
+    background: rgba(104, 175, 125, 0.1);
+    color: var(--success-color);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--success-color);
+    text-align: center;
+    margin-top: 20px;
 }

@@ -53,6 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Modal
     initModal();
+
+    // Initialize Contact Form
+    initContactForm();
 });
 
 function initHeroCarousel() {
@@ -214,6 +217,36 @@ function initModal() {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeModal();
         }
+    });
+}
+
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('success-message');
+
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Anti-bot check (Honeypot)
+        const honeypot = form.querySelector('#honeypot').value;
+        if (honeypot) {
+            console.warn('Bot detected!');
+            return;
+        }
+
+        // Simulate submission
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerText;
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Invio in corso...';
+
+        setTimeout(() => {
+            form.style.display = 'none';
+            successMsg.style.display = 'block';
+            console.log('Message sent:', new FormData(form));
+        }, 1500);
     });
 }
 
