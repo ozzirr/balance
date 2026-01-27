@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance App - Le tue finanze, sotto controllo</title>
+    <meta name="description"
+        content="Balance è l’app per il controllo completo delle tue finanze personali. Privacy first, offline, semplice.">
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <!-- Font Awesome for Icons (Optional, or use SVGs) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="container header-container">
+        <a href="#" class="logo">
+            <img src="assets/icon.png" alt="Balance Logo" style="height: 32px;"> Balance App
+        </a>
+        <button class="mobile-menu-btn" aria-label="Open Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="nav-links">
+            <a href="#features">Funzionalità</a>
+            <a href="#privacy">Privacy</a>
+            <a href="#contributors">Contributors</a>
+            <a href="#download" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;">Download</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="text-gradient">Le tue finanze,<br>sotto controllo.</h1>
+            <p>Monitora liquidità, investimenti e patrimonio in modo semplice e ordinato. Nessuna connessione bancaria,
+                massima privacy.</p>
+
+            <div class="hero-actions" id="download">
+                <a href="#" class="btn btn-primary"><i class="fa-brands fa-apple"></i> App Store</a>
+                <a href="#" class="btn btn-secondary"><i class="fa-brands fa-google-play"></i> Play Store</a>
+            </div>
+
+            <!-- iPhone Mockup -->
+            <div class="iphone-mockup">
+                <div class="iphone-frame">
+                    <div class="iphone-notch">
+                        <div class="camera"></div>
+                        <div class="speaker"></div>
+                    </div>
+                    <div class="iphone-screen">
+                        <img src="assets/screenshots/1.png" class="screenshot active" alt="Screenshot 1">
+                        <img src="assets/screenshots/2.png" class="screenshot" alt="Screenshot 2">
+                        <img src="assets/screenshots/3.png" class="screenshot" alt="Screenshot 3">
+                        <img src="assets/screenshots/4.png" class="screenshot" alt="Screenshot 4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <span class="section-tag">Funzionalità</span>
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Tutto ciò che ti serve</h2>
+
+            <div class="features-grid">
+                <div class="glass-card">
+                    <img src="assets/onboarding-1.png" alt="Dashboard"
+                        style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>Dashboard Immediata</h3>
+                    <p style="margin-top: 10px;">Uno sguardo rapido al tuo stato finanziario. Tutto ciò che conta, in
+                        una sola schermata.</p>
+                </div>
+
+                <div class="glass-card">
+                    <img src="assets/onboarding-2.png" alt="Snapshots"
+                        style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>Snapshot Mensili</h3>
+                    <p style="margin-top: 10px;">Fotografa il tuo patrimonio mese per mese per analizzare l'andamento
+                        nel tempo.</p>
+                </div>
+
+                <div class="glass-card">
+                    <img src="assets/onboarding-3.png" alt="Gestione"
+                        style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>Gestione Completa</h3>
+                    <p style="margin-top: 10px;">Conti, contanti, investimenti. Traccia ogni movimento e categorizza le
+                        spese.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy">
+        <div class="container">
+            <div class="split-section">
+                <div>
+                    <span class="section-tag">Privacy &amp; Sicurezza</span>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 24px;">I tuoi dati restano tuoi.</h2>
+                    <p style="margin-bottom: 20px;">Balance è progettata per funzionare completamente
+                        <strong>offline</strong>. Non inviamo mai le tue informazioni a server esterni.
+                    </p>
+                    <ul style="list-style: none; color: var(--text-secondary);">
+                        <li style="margin-bottom: 12px;"><i class="fa-solid fa-check"
+                                style="color: var(--accent-color); margin-right: 10px;"></i> Nessuna connessione
+                            bancaria</li>
+                        <li style="margin-bottom: 12px;"><i class="fa-solid fa-check"
+                                style="color: var(--accent-color); margin-right: 10px;"></i> Dati salvati solo sul
+                            dispositivo</li>
+                        <li style="margin-bottom: 12px;"><i class="fa-solid fa-check"
+                                style="color: var(--accent-color); margin-right: 10px;"></i> Zero pubblicità</li>
+                    </ul>
+                </div>
+                <div class="glass-card"
+                    style="height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 100px; color: var(--glass-border);"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contributors Section -->
+    <section id="contributors" style="text-align: center;">
+        <div class="container">
+            <span class="section-tag">Open Source</span>
+            <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Costruito dalla community</h2>
+            <p>Un ringraziamento speciale a chi contribuisce allo sviluppo di Balance.</p>
+
+            <div id="contributors-list" class="contributors-grid">
+                <!-- Contributors will be loaded here via JS -->
+                <div class="skeleton-loader" style="display: flex; gap: 15px; justify-content: center; width: 100%;">
+                    <div
+                        style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); animation: pulse 1.5s infinite;">
+                    </div>
+                    <div
+                        style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); animation: pulse 1.5s infinite; animation-delay: 0.2s;">
+                    </div>
+                    <div
+                        style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); animation: pulse 1.5s infinite; animation-delay: 0.4s;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="logo" style="font-size: 1.2rem;">Balance</div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Termini di Servizio</a>
+                <a href="mailto:support@balanceapp.it">Contatti</a>
+            </div>
+            <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                &copy; 2024 - 2026 Balance App
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
