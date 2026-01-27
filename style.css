@@ -265,6 +265,7 @@ body {
     letter-spacing: -0.02em;
     background: linear-gradient(180deg, #fff 0%, #aaa 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -300,6 +301,8 @@ body {
     border-radius: 40px;
     /* iPhone like */
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    max-width: 320px;
+    margin: 0 auto;
 }
 
 .app-screenshot {
@@ -586,6 +589,7 @@ footer {
     margin-bottom: 8px;
     background: linear-gradient(180deg, #fff 0%, #aaa 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
