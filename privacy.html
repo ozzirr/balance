@@ -4,88 +4,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Balance App</title>
+    <title>Privacy Policy - Balance</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            padding-top: 100px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-        }
-
-        p,
-        li {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .legal-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding-bottom: 100px;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Header (simplified) -->
-    <header>
-        <div class="container header-container">
+
+    <header class="glass-nav">
+        <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="assets/icon.png" alt="Balance Logo" style="height: 32px;"> Balance App
+                <img src="assets/icon.png" alt="Balance Logo" class="logo-icon">
+                Balance
             </a>
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-            </nav>
+            <div class="nav-links">
+                <a href="index.html" class="btn btn-sm btn-secondary"><i class="fa-solid fa-arrow-left"></i> Torna alla
+                    Home</a>
+            </div>
         </div>
     </header>
 
-    <div class="container legal-content">
-        <h1>Privacy Policy</h1>
-        <p>Ultimo aggiornamento: 2024</p>
+    <main class="container page-content">
+        <div class="glass-panel legal-content">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Ultimo aggiornamento: [AUTO-TODAY-DATE]</p>
 
-        <h2>1. Introduzione</h2>
-        <p>La tua privacy è la nostra priorità assoluta. Balance App è stata costruita con il principio "Privacy First".
-            Questa informativa spiega come trattiamo i tuoi dati.</p>
+            <section>
+                <h2>1. Titolare del Trattamento</h2>
+                <p>Il titolare del trattamento dei dati è Balance App ("noi", "ci" o "nostro").<br>
+                    Per qualsiasi domanda relativa alla privacy, puoi contattarci all'indirizzo: [Inserire email di
+                    contatto].</p>
+            </section>
 
-        <h2>2. Dati che raccogliamo</h2>
-        <p>In breve: <strong>Nessuno</strong> sui nostri server.</p>
-        <p>Tutti i dati finanziari (transazioni, saldi, account) inseriti in Balance App vengono salvati esclusivamente
-            in locale sul tuo dispositivo. Non abbiamo accesso ai tuoi dati, non li vendiamo e non li analizziamo.</p>
+            <section>
+                <h2>2. Dati Raccolti</h2>
+                <p>Raccogliamo ed elaboriamo le seguenti tipologie di dati:</p>
+                <ul>
+                    <li><strong>Dati forniti dall'utente:</strong> informazioni inserite volontariamente
+                        nell'applicazione, come conti, transazioni e saldi, che vengono salvate localmente sul
+                        dispositivo o sul cloud privato dell'utente (se abilitato).</li>
+                    <li><strong>Dati tecnici:</strong> informazioni raccolte automaticamente come il tipo di
+                        dispositivo, il sistema operativo e dati anonimi di utilizzo per migliorare le prestazioni
+                        dell'app.</li>
+                </ul>
+            </section>
 
-        <h2>3. Permessi del dispositivo</h2>
-        <p>L'applicazione potrebbe richiedere l'accesso a:</p>
-        <ul>
-            <li><strong>Archiviazione locale</strong>: per salvare il database criptato dei tuoi dati.</li>
-            <li><strong>Notifiche</strong>: (opzionale) per promemoria di inserimento spese.</li>
-        </ul>
+            <section>
+                <h2>3. Finalità del Trattamento</h2>
+                <p>Utilizziamo i dati raccolti per:</p>
+                <ul>
+                    <li>Fornire e mantenere le funzionalità dell'applicazione.</li>
+                    <li>Migliorare l'esperienza utente e risolvere eventuali problemi tecnici.</li>
+                    <li>Garantire la sicurezza del servizio.</li>
+                </ul>
+            </section>
 
-        <h2>4. Contatti</h2>
-        <p>Per qualsiasi domanda riguardante la privacy, puoi contattarci tramite i canali ufficiali o aprire una issue
-            su GitHub.</p>
-    </div>
+            <section>
+                <h2>4. Base Giuridica</h2>
+                <p>Il trattamento dei dati si basa sul consenso dell'utente, sulla necessità di eseguire il contratto
+                    (utilizzo dell'app) e sul legittimo interesse del titolare per migliorare il servizio.</p>
+            </section>
 
-    <!-- Footer -->
+            <section>
+                <h2>5. Conservazione dei Dati</h2>
+                <p>I dati vengono conservati per il tempo necessario a fornire il servizio. L'utente può richiedere la
+                    cancellazione dei propri dati in qualsiasi momento contattando il supporto o utilizzando le funzioni
+                    integrate nell'app.</p>
+            </section>
+
+            <section>
+                <h2>6. Condivisione dei Dati</h2>
+                <p>Non vendiamo né affittiamo i tuoi dati personali a terze parti. I dati possono essere condivisi con
+                    fornitori di servizi tecnici (es. hosting) solo per quanto strettamente necessario al funzionamento
+                    dell'app e sotto vincoli di riservatezza.</p>
+            </section>
+
+            <section>
+                <h2>7. Sicurezza</h2>
+                <p>Adottiamo misure di sicurezza tecniche e organizzative adeguate per proteggere i dati da accessi non
+                    autorizzati, perdita o alterazione.</p>
+            </section>
+
+            <section>
+                <h2>8. Diritti dell'Utente</h2>
+                <p>In conformità con il GDPR e altre leggi applicabili, hai il diritto di:</p>
+                <ul>
+                    <li>Accedere ai tuoi dati.</li>
+                    <li>Chiedere la rettifica o la cancellazione.</li>
+                    <li>Opporri al trattamento o chiederne la limitazione.</li>
+                    <li>Richiedere la portabilità dei dati.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>9. Contatti</h2>
+                <p>Per esercitare i tuoi diritti o per domande su questa Privacy Policy, contattaci a: [Inserire email
+                    di contatto].</p>
+            </section>
+        </div>
+    </main>
+
     <footer>
-        <div class="container footer-content">
-            <div class="logo" style="font-size: 1.2rem;">Balance App</div>
-            <div style="color: var(--text-secondary); font-size: 0.9rem;">
-                &copy; 2024 - 2026 Balance App
-            </div>
+        <div class="container footer-container">
+            <div class="footer-logo">Balance</div>
+            <p class="copyright">© Balance App. Tutti i diritti riservati.</p>
         </div>
     </footer>
+
+    <script>
+        // Auto-update date
+        const dateEl = document.querySelector('.last-updated');
+        if (dateEl) {
+            const today = new Date().toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+            dateEl.textContent = dateEl.textContent.replace('[AUTO-TODAY-DATE]', today);
+        }
+    </script>
 </body>
 
 </html>

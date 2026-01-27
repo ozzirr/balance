@@ -1,127 +1,184 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Header Scroll Effect
-    const header = document.querySelector('header');
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(5, 5, 5, 0.95)';
-            } else {
-                header.style.background = 'rgba(5, 5, 5, 0.8)';
+    // Scroll Animation Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
             }
         });
-    }
+    }, observerOptions);
 
-    // Mobile Menu Toggle
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+
+    // Navbar Glass Effect on Scroll (Enhancement)
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            header.style.background = 'rgba(0, 0, 0, 0.8)';
+            header.style.borderBottomColor = 'rgba(255, 255, 255, 0.1)';
+        } else {
+            header.style.background = 'rgba(0, 0, 0, 0.6)';
+            header.style.borderBottomColor = 'rgba(255, 255, 255, 0.05)';
+        }
+    });
+
+    // Mobile Menu Toggle (Simple)
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links a');
 
-    if (menuBtn && navLinks) {
+    // Note: To fully implement mobile menu, we'd need extra CSS for the 'active' state of nav-links usually.
+    // For this V2, we kept nav-links 'display: none' on mobile. 
+    // Let's add a basic toggle if needed, or leave for refinement.
+    if (menuBtn) {
         menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Close menu on link click
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = menuBtn.querySelector('i');
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            });
+            // Placeholder for mobile menu logic
+            // In a real app we'd toggle a class to show the menu overlay.
+            alert('Mobile menu to interact with standard navigation.');
         });
     }
 
-    // Contributors (Real GitHub Fetch)
-    const contributorsList = document.getElementById('contributors-list');
-    if (contributorsList) {
-        const repoOwner = 'ozzirr';
-        const repoName = 'balance';
+    // Leaderboard Fetch
+    fetchContributors();
 
-        (async () => {
-            try {
-                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contributors`);
+    // Hero Carousel Logic
+    initHeroCarousel();
+});
 
-                if (!response.ok) throw new Error('Repo not found or API limit');
+function initHeroCarousel() {
+    const container = document.getElementById('hero-carousel');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.indicator');
 
-                const data = await response.json();
-                contributorsList.innerHTML = '';
+    if (!container || slides.length === 0) return;
 
-                if (data.length === 0) {
-                    contributorsList.innerHTML = '<p style="color: var(--text-secondary)">Nessun contributor trovato ancora.</p>';
-                    return;
-                }
+    let currentIndex = 0;
+    let interval;
+    const duration = 4000; // 4 seconds
 
-                data.forEach(c => {
-                    const a = document.createElement('a');
-                    a.href = c.html_url;
-                    a.target = '_blank';
-                    a.className = 'contributor-item';
-                    a.innerHTML = `<img src="${c.avatar_url}" alt="${c.login}" title="${c.login}">`;
-                    contributorsList.appendChild(a);
-                });
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(ind => ind.classList.remove('active'));
 
-            } catch (error) {
-                console.error('Contributors fetch error:', error);
-                contributorsList.innerHTML = `
-                    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%;">
-                        <p style="color: var(--text-secondary)">Impossibile caricare i contributors.</p>
-                        <a href="https://github.com/${repoOwner}/${repoName}" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem;">Vedi su GitHub</a>
-                    </div>
-                `;
-            }
-        })();
+        slides[index].classList.add('active');
+        indicators[index].classList.add('active');
+        currentIndex = index;
     }
 
-    // iPhone Scroll Animation
-    const iphoneMockup = document.querySelector('.iphone-mockup');
-    const screenshots = document.querySelectorAll('.screenshot');
-
-    if (iphoneMockup && screenshots.length > 0) {
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-
-            // Revised Animation Logic
-            // Scale: much more subtle (max 1.1)
-            // Translate: slower pace
-            const moveDown = scrollY * 0.2; // Slower descent
-            const scale = Math.min(1 + (scrollY * 0.0002), 1.15); // Cap at 1.15x
-            const tilt = Math.min(scrollY * 0.02, 5); // Tilted layout
-
-            iphoneMockup.style.transform = `translateY(${moveDown}px) scale(${scale}) perspective(1000px) rotateX(${tilt}deg)`;
-
-            // Screenshot Cycling
-            const step = 200; // Slower change
-            const index = Math.floor(scrollY / step) % screenshots.length;
-
-            screenshots.forEach((img, i) => {
-                if (i === index) {
-                    img.classList.add('active');
-                } else {
-                    img.classList.remove('active');
-                }
-            });
-        });
+    function nextSlide() {
+        let next = (currentIndex + 1) % slides.length;
+        showSlide(next);
     }
 
-    // Spotlight Effect for Glass Cards
-    const cards = document.querySelectorAll('.glass-card');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+    function startInterval() {
+        stopInterval();
+        interval = setInterval(nextSlide, duration);
+    }
 
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
+    function stopInterval() {
+        if (interval) clearInterval(interval);
+    }
+
+    // Manual controls
+    indicators.forEach(indicator => {
+        indicator.addEventListener('click', () => {
+            const index = parseInt(indicator.getAttribute('data-index'));
+            showSlide(index);
+            startInterval(); // Reset interval on manual click
         });
     });
-});
+
+    // Intersection Observer to pause when offscreen
+    const carouselObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startInterval();
+            } else {
+                stopInterval();
+            }
+        });
+    }, { threshold: 0.2 });
+
+    carouselObserver.observe(container);
+
+    // Initial start
+    startInterval();
+}
+
+async function fetchContributors() {
+    const listContainer = document.getElementById('leaderboard-list');
+    if (!listContainer) return;
+
+    const CACHE_KEY = 'balance_contributors';
+    const CACHE_TTL = 6 * 60 * 60 * 1000; // 6 hours
+    const REPO = 'ozzirr/balance';
+
+    // Check Cache
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+        const { timestamp, data } = JSON.parse(cached);
+        if (Date.now() - timestamp < CACHE_TTL) {
+            renderLeaderboard(data);
+            return;
+        }
+    }
+
+    try {
+        const response = await fetch(`https://api.github.com/repos/${REPO}/contributors?per_page=10`);
+        if (!response.ok) throw new Error('API Error');
+
+        const data = await response.json();
+
+        // Cache Result
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+            timestamp: Date.now(),
+            data: data
+        }));
+
+        renderLeaderboard(data);
+    } catch (error) {
+        console.error('Leaderboard error:', error);
+        listContainer.innerHTML = `
+            <div style="padding: 20px; text-align: center; color: var(--text-secondary);">
+                <p>Impossibile caricare i contributors.</p>
+            </div>
+        `;
+    }
+}
+
+function renderLeaderboard(contributors) {
+    const listContainer = document.getElementById('leaderboard-list');
+    listContainer.innerHTML = ''; // Clear skeleton
+
+    if (!contributors || contributors.length === 0) {
+        listContainer.innerHTML = '<p style="padding:20px; text-align:center">Nessun contributor trovato.</p>';
+        return;
+    }
+
+    contributors.forEach((user, index) => {
+        const rank = index + 1;
+        const isTop3 = rank <= 3 ? 'top-3' : '';
+
+        const row = document.createElement('a');
+        row.href = user.html_url;
+        row.target = '_blank';
+        row.className = 'leaderboard-row';
+        row.innerHTML = `
+            <div class="leaderboard-rank ${isTop3}">#${rank}</div>
+            <img src="${user.avatar_url}" alt="${user.login}" class="leaderboard-avatar">
+            <div class="leaderboard-info">
+                <span class="leaderboard-name">${user.login}</span>
+                <span class="leaderboard-contributions">${user.contributions} contributi</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8rem; opacity: 0.5;"></i>
+        `;
+        listContainer.appendChild(row);
+    });
+}
