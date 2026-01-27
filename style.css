@@ -380,6 +380,15 @@ section {
     align-items: center;
 }
 
+.split-reverse .split-content {
+    grid-column: 2;
+}
+
+.split-reverse .split-visual {
+    grid-column: 1;
+    grid-row: 1;
+}
+
 .visual-card img {
     width: 100%;
     border-radius: var(--radius-md);
