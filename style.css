@@ -350,7 +350,13 @@ body {
 
 /* Sections */
 section {
-    padding: 100px 0;
+    padding: 80px 0;
+    /* Reduced from 100px */
+}
+
+.section-split {
+    padding: 60px 0;
+    /* Even more compact for content sections */
 }
 
 .section-title {
@@ -376,7 +382,8 @@ section {
 .split-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 60px;
+    /* Reduced from 80px */
     align-items: center;
 }
 
@@ -391,6 +398,9 @@ section {
 
 .visual-card img {
     width: 100%;
+    max-height: 480px;
+    /* Limit height to save space on ultra-wide screens */
+    object-fit: contain;
     border-radius: var(--radius-md);
 }
 
