@@ -42,7 +42,8 @@
     <main class="page-content">
         <section class="container reveal">
             <h1 class="section-title center-text">Contattaci</h1>
-            <p class="section-text center-text">Hai domande, feedback o proposte? Scrivici direttamente.</p>
+            <p class="section-text center-text">Hai domande, feedback o una segnalazione da farci? Scrivici
+                direttamente.</p>
 
             <div class="contact-container">
                 <div class="glass-card">
@@ -51,6 +52,16 @@
                         <div class="hidden-field">
                             <label for="honeypot">Non compilare se sei umano</label>
                             <input type="text" id="honeypot" name="honeypot">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reason">Motivo del contatto</label>
+                            <select id="reason" name="reason" class="form-control">
+                                <option value="feedback">Domande o Feedback</option>
+                                <option value="bug">Segnalazione di un bug</option>
+                                <option value="feature">Proposta nuova funzionalità</option>
+                                <option value="other">Altro</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -68,7 +79,7 @@
                         <div class="form-group">
                             <label for="message">Messaggio</label>
                             <textarea id="message" name="message" class="form-control"
-                                placeholder="Come possiamo aiutarti?" required></textarea>
+                                placeholder="Descrivi qui la tua richiesta o segnalazione..." required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary full-width">Invia messaggio</button>

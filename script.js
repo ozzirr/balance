@@ -264,7 +264,7 @@ function initIPhone3D() {
 
     phones.forEach(phone => {
         const wrap = phone;
-        const parent = wrap.closest('.split-visual');
+        const parent = wrap.closest('.split-visual, .hero-visual');
         const mascots = parent ? parent.querySelectorAll('.mascot-decoration, .mascot-large') : [];
 
         if (!parent) return;
