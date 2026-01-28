@@ -48,33 +48,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Leaderboard Fetch
     fetchContributors();
 
-    // Hero Carousel Logic
-    initHeroCarousel();
+    // Initialize Carousels
+    initCarousel('hero-carousel');
+    initCarousel('wallet-carousel', { duration: 3000 });
 
     // Initialize Modal
     initModal();
 
     // Initialize Contact Form
     initContactForm();
+
+    // Initialize 3D iPhone interaction
+    initIPhone3D();
 });
 
-function initHeroCarousel() {
-    const container = document.getElementById('hero-carousel');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const indicators = document.querySelectorAll('.indicator');
+function initCarousel(containerId, options = {}) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-    if (!container || slides.length === 0) return;
+    const slides = container.querySelectorAll('.carousel-slide');
+    const indicators = container.querySelectorAll('.indicator');
+    if (slides.length === 0) return;
 
     let currentIndex = 0;
     let interval;
-    const duration = 4000; // 4 seconds
+    const duration = options.duration || 4000;
 
     function showSlide(index) {
         slides.forEach(slide => slide.classList.remove('active'));
         indicators.forEach(ind => ind.classList.remove('active'));
 
         slides[index].classList.add('active');
-        indicators[index].classList.add('active');
+        if (indicators[index]) indicators[index].classList.add('active');
         currentIndex = index;
     }
 
@@ -97,24 +102,18 @@ function initHeroCarousel() {
         indicator.addEventListener('click', () => {
             const index = parseInt(indicator.getAttribute('data-index'));
             showSlide(index);
-            startInterval(); // Reset interval on manual click
+            startInterval();
         });
     });
 
-    // Intersection Observer to pause when offscreen
     const carouselObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                startInterval();
-            } else {
-                stopInterval();
-            }
+            if (entry.isIntersecting) startInterval();
+            else stopInterval();
         });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.1 });
 
     carouselObserver.observe(container);
-
-    // Initial start
     startInterval();
 }
 
@@ -247,6 +246,36 @@ function initContactForm() {
             successMsg.style.display = 'block';
             console.log('Message sent:', new FormData(form));
         }, 1500);
+    });
+}
+
+function initIPhone3D() {
+    const phones = document.querySelectorAll('[data-iphone]');
+
+    phones.forEach(phone => {
+        const wrap = phone;
+        const parent = wrap.closest('.split-visual');
+
+        if (!parent) return;
+
+        parent.addEventListener('mousemove', (e) => {
+            const rect = parent.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Subtle rotation for a premium feel
+            const rotateX = (centerY - y) / 15;
+            const rotateY = (x - centerX) / 15;
+
+            wrap.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        parent.addEventListener('mouseleave', () => {
+            wrap.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
     });
 }
 
