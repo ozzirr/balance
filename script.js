@@ -30,18 +30,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Mobile Menu Toggle (Simple)
+    // Mobile Menu Toggle
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
 
-    // Note: To fully implement mobile menu, we'd need extra CSS for the 'active' state of nav-links usually.
-    // For this V2, we kept nav-links 'display: none' on mobile. 
-    // Let's add a basic toggle if needed, or leave for refinement.
-    if (menuBtn) {
+    if (menuBtn && navLinks) {
         menuBtn.addEventListener('click', () => {
-            // Placeholder for mobile menu logic
-            // In a real app we'd toggle a class to show the menu overlay.
-            alert('Mobile menu to interact with standard navigation.');
+            navLinks.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                icon.classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+            });
         });
     }
 
@@ -51,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Carousels
     initCarousel('hero-carousel');
     initCarousel('wallet-carousel', { duration: 3000 });
+    initCarousel('charts-carousel', { duration: 3500 });
 
     // Initialize Modal
     initModal();
@@ -255,6 +265,7 @@ function initIPhone3D() {
     phones.forEach(phone => {
         const wrap = phone;
         const parent = wrap.closest('.split-visual');
+        const mascots = parent ? parent.querySelectorAll('.mascot-decoration, .mascot-large') : [];
 
         if (!parent) return;
 
@@ -271,10 +282,23 @@ function initIPhone3D() {
             const rotateY = (x - centerX) / 15;
 
             wrap.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+            // Parallax for mascots
+            mascots.forEach(mascot => {
+                const moveX = (centerX - x) / 20;
+                const moveY = (centerY - y) / 20;
+                // Preserve existing scaleX if it's mascot-pos-2
+                const scaleX = mascot.classList.contains('mascot-pos-2') ? -1 : 1;
+                mascot.style.transform = `translate(${moveX}px, ${moveY}px) scaleX(${scaleX})`;
+            });
         });
 
         parent.addEventListener('mouseleave', () => {
             wrap.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            mascots.forEach(mascot => {
+                const scaleX = mascot.classList.contains('mascot-pos-2') ? -1 : 1;
+                mascot.style.transform = `translate(0, 0) scaleX(${scaleX})`;
+            });
         });
     });
 }

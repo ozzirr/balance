@@ -470,22 +470,24 @@ section {
 /* Floating Mascot Decoration */
 .mascot-decoration {
     position: absolute;
-    width: 120px;
+    width: 280px;
     height: auto;
     z-index: -1;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
     animation: float-mascot 6s ease-in-out infinite;
     pointer-events: none;
+    transition: transform 0.2s ease-out;
+    /* For parallax sync */
 }
 
 .mascot-pos-1 {
-    top: -20px;
-    right: -40px;
+    top: -50px;
+    right: -100px;
 }
 
 .mascot-pos-2 {
-    bottom: 20px;
-    left: -60px;
+    bottom: -50px;
+    left: -120px;
     transform: scaleX(-1);
 }
 
@@ -503,12 +505,39 @@ section {
 
 @media (max-width: 900px) {
     .iphone-3d-wrap {
-        width: 180px;
-        height: 380px;
+        width: 160px;
+        /* Slightly smaller for mobile */
+        height: 330px;
+        /* Fix height to prevent enormous gaps */
+        margin: 0 auto;
     }
 
     .mascot-decoration {
-        width: 80px;
+        width: 140px;
+        opacity: 0.6;
+        /* Softer on mobile */
+    }
+
+    .mascot-pos-1 {
+        top: -60px;
+        right: 10px;
+        /* Bring inside viewport */
+    }
+
+    .mascot-pos-2 {
+        bottom: -60px;
+        left: 10px;
+        /* Bring inside viewport */
+    }
+
+    .hero-subtitle {
+        color: var(--text-primary);
+        /* Better contrast on mobile */
+    }
+
+    .section-split {
+        padding: 40px 0;
+        /* Reduce massive vertical gaps */
     }
 }
 
@@ -765,14 +794,14 @@ footer::before {
 /* Responsive */
 @media (max-width: 900px) {
     .container {
-        padding: 0 20px;
+        padding: 0 24px;
     }
 
     .hero-container,
     .split-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 40px;
+        gap: 32px;
     }
 
     .split-reverse .split-content,
@@ -786,18 +815,38 @@ footer::before {
     }
 
     .visual-card img {
-        max-height: 320px;
+        max-height: 280px;
     }
 
     .hero-buttons {
         justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
     }
 
     .nav-links {
         display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 40px;
+        gap: 24px;
+        border-bottom: 1px solid var(--glass-border);
+        z-index: 999;
     }
 
-    /* Simplified mobile for now */
+    .nav-links.active {
+        display: flex;
+    }
+
     .mobile-menu-btn {
         display: block;
     }
@@ -807,7 +856,12 @@ footer::before {
     }
 
     .hero {
-        padding-top: 100px;
+        padding-top: 120px;
+        padding-bottom: 40px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
     }
 }
 
