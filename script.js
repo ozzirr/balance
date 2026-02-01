@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 20) {
-            header.style.background = 'rgba(0, 0, 0, 0.8)';
-            header.style.borderBottomColor = 'rgba(255, 255, 255, 0.1)';
+            header.style.background = 'rgba(10, 12, 17, 0.9)';
+            header.style.borderBottomColor = 'rgba(255, 255, 255, 0.12)';
         } else {
-            header.style.background = 'rgba(0, 0, 0, 0.6)';
-            header.style.borderBottomColor = 'rgba(255, 255, 255, 0.05)';
+            header.style.background = 'rgba(10, 12, 17, 0.75)';
+            header.style.borderBottomColor = 'rgba(255, 255, 255, 0.08)';
         }
     });
 
@@ -302,4 +302,3 @@ function initIPhone3D() {
         });
     });
 }
-
