@@ -68,6 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Contact Form
     initContactForm();
 
+    // Initialize Waitlist Form
+    initWaitlistForm();
+
     // Initialize 3D iPhone interaction
     initIPhone3D();
 });
@@ -256,6 +259,114 @@ function initContactForm() {
             successMsg.style.display = 'block';
             console.log('Message sent:', new FormData(form));
         }, 1500);
+    });
+}
+
+function parseQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        src: params.get('src') || '',
+        screen: params.get('screen') || '',
+        variant: params.get('variant') || '',
+        platform: params.get('platform') || '',
+        locale: params.get('locale') || ''
+    };
+}
+
+function initWaitlistForm() {
+    const form = document.getElementById('waitlist-form');
+    if (!form) return;
+
+    const message = document.getElementById('waitlistMessage');
+    const submitBtn = document.getElementById('waitlistSubmit');
+    const emailInput = document.getElementById('waitlistEmail');
+    const consentInput = document.getElementById('waitlistConsent');
+    const honeypotInput = document.getElementById('waitlistCompany');
+
+    const SUCCESS_TEXT = 'Sei in lista. Ti avviserò quando Balance Pro sarà disponibile.';
+    const ERROR_TEXT = 'Qualcosa è andato storto. Riprova.';
+    const ENDPOINT_URL = 'https://YOUR_N8N_DOMAIN/webhook/waitlist';
+
+    if (!window.__waitlistT0) {
+        window.__waitlistT0 = Date.now();
+    }
+
+    const queryParams = parseQueryParams();
+
+    const setMessage = (text, type) => {
+        if (!message) return;
+        message.textContent = text || '';
+        message.classList.remove('success', 'error', 'loading');
+        if (type) {
+            message.classList.add(type);
+        }
+    };
+
+    const setLoading = (isLoading) => {
+        if (!submitBtn) return;
+        submitBtn.disabled = isLoading;
+        submitBtn.classList.toggle('loading', isLoading);
+        submitBtn.textContent = isLoading ? 'Invio...' : 'Iscrivimi';
+    };
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = emailInput ? emailInput.value.trim() : '';
+        const consent = consentInput ? consentInput.checked : false;
+        const hp = honeypotInput ? honeypotInput.value.trim() : '';
+
+        if (hp) {
+            setMessage(ERROR_TEXT, 'error');
+            return;
+        }
+
+        if (!email || !consent) {
+            setMessage(ERROR_TEXT, 'error');
+            return;
+        }
+
+        const payload = {
+            email: email,
+            consent: true,
+            hp: hp,
+            elapsedMs: Date.now() - window.__waitlistT0,
+            meta: {
+                src: queryParams.src,
+                screen: queryParams.screen,
+                variant: queryParams.variant,
+                platform: queryParams.platform,
+                locale: queryParams.locale,
+                referrer: document.referrer || '',
+                userAgent: navigator.userAgent || '',
+                pageUrl: window.location.href || ''
+            }
+        };
+
+        setLoading(true);
+        setMessage('', '');
+
+        try {
+            const response = await fetch(ENDPOINT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error('Waitlist request failed');
+            }
+
+            form.style.display = 'none';
+            setMessage(SUCCESS_TEXT, 'success');
+        } catch (error) {
+            console.error('Waitlist error:', error);
+            setMessage(ERROR_TEXT, 'error');
+        } finally {
+            setLoading(false);
+        }
     });
 }
 

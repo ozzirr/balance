@@ -1344,6 +1344,60 @@ textarea.form-control {
     min-height: 120px;
 }
 
+.hp-field {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.consent-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.consent-row input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent-color);
+}
+
+.consent-row a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.consent-row a:hover {
+    text-decoration: underline;
+}
+
+.microcopy {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.waitlist-message {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    min-height: 1.4em;
+    color: var(--text-secondary);
+}
+
+.waitlist-message.success {
+    color: var(--success-color);
+}
+
+.waitlist-message.error {
+    color: var(--danger-color);
+}
+
 select.form-control {
     cursor: pointer;
     appearance: none;
