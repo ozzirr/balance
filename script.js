@@ -1,4 +1,7 @@
+const WAITLIST_WEBHOOK_URL = 'https://n8n.2erre.online/webhook-test/waitlist';
+
 document.addEventListener('DOMContentLoaded', () => {
+    window.__waitlistT0 = Date.now();
     // Scroll Animation Observer
     const observerOptions = {
         root: null,
@@ -285,11 +288,9 @@ function initWaitlistForm() {
 
     const SUCCESS_TEXT = 'Sei in lista. Ti avviserò quando Balance Pro sarà disponibile.';
     const ERROR_TEXT = 'Qualcosa è andato storto. Riprova.';
-    const ENDPOINT_URL = 'https://YOUR_N8N_DOMAIN/webhook/waitlist';
+    const ENDPOINT_URL = WAITLIST_WEBHOOK_URL;
 
-    if (!window.__waitlistT0) {
-        window.__waitlistT0 = Date.now();
-    }
+    const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
     const queryParams = parseQueryParams();
 
@@ -321,7 +322,7 @@ function initWaitlistForm() {
             return;
         }
 
-        if (!email || !consent) {
+        if (!email || !isValidEmail(email) || !consent) {
             setMessage(ERROR_TEXT, 'error');
             return;
         }
