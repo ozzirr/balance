@@ -604,6 +604,28 @@ section {
     transform: scaleX(-1);
 }
 
+.mascot-primary {
+    position: relative;
+    width: 360px;
+    max-width: 100%;
+    height: auto;
+    z-index: 1;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.35));
+    animation: float-mascot 6s ease-in-out infinite;
+}
+
+.mascot-primary.mascot-pos-1,
+.mascot-primary.mascot-pos-2 {
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+}
+
+.mascot-primary.mascot-pos-2 {
+    transform: scaleX(-1);
+}
+
 @keyframes float-mascot {
 
     0%,
@@ -628,6 +650,10 @@ section {
     .mascot-decoration {
         width: 140px;
         /* Removed opacity per user request */
+    }
+
+    .mascot-primary {
+        width: 220px;
     }
 
     .mascot-pos-1 {
@@ -739,12 +765,24 @@ section {
     margin-top: 40px;
 }
 
+.styled-list.centered-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+}
+
 .styled-list li {
     font-size: 1.25rem;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 16px;
+}
+
+.styled-list.centered-list li {
+    justify-content: center;
+    text-align: center;
 }
 
 .styled-list i {
