@@ -281,20 +281,30 @@ function initWaitlistForm() {
     const form = document.getElementById('waitlistForm');
     if (!form) return;
 
-    const message = document.getElementById('waitlistMessage');
+    const message = document.getElementById('form-status') || document.getElementById('waitlistMessage');
     const submitBtn = document.getElementById('waitlistSubmit');
     const emailInput = document.getElementById('waitlistEmail');
     const consentInput = document.getElementById('waitlistConsent');
     const honeypotInput = document.getElementById('waitlistHp');
+    const turnstileContainer = document.getElementById('turnstile-container');
 
-    const SUCCESS_TEXT = 'Sei in lista…';
+    const SUCCESS_TEXT = 'Iscrizione completata. Ti avviseremo al lancio.';
+    const LOADING_TEXT = 'Invio in corso…';
     const ERROR_TEXT = 'Qualcosa è andato storto. Riprova.';
     const ENDPOINT_URL = WAITLIST_WEBHOOK_URL;
     const defaultSubmitText = submitBtn ? submitBtn.textContent : 'Avvisami al lancio';
+    const TURNSTILE_SITE_KEY = '0x4AAAAAACWvRx6pVs6jea25';
+    const DEBUG_WAITLIST = false;
+
+    let turnstileToken = '';
+    let turnstileWidgetId = null;
 
     const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-    const queryParams = parseQueryParams();
+    const setDebugLog = (...args) => {
+        if (!DEBUG_WAITLIST) return;
+        console.debug(...args);
+    };
 
     const setMessage = (text, type) => {
         if (!message) return;
@@ -309,7 +319,60 @@ function initWaitlistForm() {
         if (!submitBtn) return;
         submitBtn.disabled = isLoading;
         submitBtn.classList.toggle('loading', isLoading);
-        submitBtn.textContent = isLoading ? 'Invio in corso…' : defaultSubmitText;
+        submitBtn.textContent = isLoading ? LOADING_TEXT : defaultSubmitText;
+    };
+
+    const resetTurnstile = () => {
+        if (window.turnstile && typeof window.turnstile.reset === 'function' && turnstileWidgetId !== null) {
+            window.turnstile.reset(turnstileWidgetId);
+        }
+        turnstileToken = '';
+    };
+
+    const renderTurnstile = () => {
+        if (!turnstileContainer || !window.turnstile || turnstileWidgetId !== null) return false;
+        turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+            sitekey: TURNSTILE_SITE_KEY,
+            callback: (token) => {
+                turnstileToken = token || '';
+            },
+            'expired-callback': () => {
+                turnstileToken = '';
+            },
+            'error-callback': () => {
+                turnstileToken = '';
+            }
+        });
+        return true;
+    };
+
+    const ensureTurnstile = () => {
+        if (!turnstileContainer) return;
+        if (window.turnstile) {
+            renderTurnstile();
+            return;
+        }
+        let tries = 0;
+        const maxTries = 60;
+        const interval = setInterval(() => {
+            tries += 1;
+            if (window.turnstile && renderTurnstile()) {
+                clearInterval(interval);
+            } else if (tries >= maxTries) {
+                clearInterval(interval);
+            }
+        }, 200);
+    };
+
+    ensureTurnstile();
+
+    const ERROR_MESSAGES = {
+        invalid_email: 'Inserisci un’email valida.',
+        missing_consent: 'Devi accettare la Privacy Policy.',
+        bot_detected: 'Verifica anti-bot non riuscita. Riprova.',
+        too_fast: 'Troppo veloce. Riprova tra un attimo.',
+        turnstile_failed: 'Verifica anti-bot non riuscita. Riprova.',
+        generic_error: ERROR_TEXT
     };
 
     form.addEventListener('submit', async (e) => {
@@ -320,26 +383,38 @@ function initWaitlistForm() {
         const hp = honeypotInput ? honeypotInput.value.trim() : '';
 
         if (hp) {
-            setMessage(ERROR_TEXT, 'error');
+            setMessage(ERROR_MESSAGES.bot_detected, 'error');
             return;
         }
 
-        if (!email || !isValidEmail(email) || !consent) {
-            setMessage(ERROR_TEXT, 'error');
+        if (!email || !isValidEmail(email)) {
+            setMessage(ERROR_MESSAGES.invalid_email, 'error');
+            return;
+        }
+
+        if (!consent) {
+            setMessage(ERROR_MESSAGES.missing_consent, 'error');
+            return;
+        }
+
+        if (!turnstileToken) {
+            setMessage('Completa la verifica anti-bot.', 'error');
+            ensureTurnstile();
             return;
         }
 
         const payload = {
             email: email,
-            consent: true,
+            consent: consent,
             hp: hp,
-            elapsedMs: Date.now() - window.__waitlistT0,
+            elapsedMs: Date.now() - (window.__waitlistT0 || Date.now()),
+            turnstileToken: turnstileToken,
             meta: {
-                src: queryParams.src,
-                screen: queryParams.screen,
-                variant: queryParams.variant,
-                platform: queryParams.platform,
-                locale: queryParams.locale,
+                src: 'pro-waitlist',
+                screen: 'waitlist',
+                variant: 'pro',
+                platform: navigator.platform || '',
+                locale: navigator.language || '',
                 referrer: document.referrer || '',
                 userAgent: navigator.userAgent || '',
                 pageUrl: window.location.href || ''
@@ -347,10 +422,10 @@ function initWaitlistForm() {
         };
 
         setLoading(true);
-        setMessage('', '');
+        setMessage(LOADING_TEXT, 'loading');
 
         try {
-            console.debug('Waitlist submit: fetch start');
+            setDebugLog('Waitlist submit: fetch start');
             const response = await fetch(ENDPOINT_URL, {
                 method: 'POST',
                 headers: {
@@ -359,7 +434,7 @@ function initWaitlistForm() {
                 body: JSON.stringify(payload)
             });
 
-            console.debug('Waitlist submit: response status', response.status);
+            setDebugLog('Waitlist submit: response status', response.status);
             let responseData = null;
             try {
                 responseData = await response.json();
@@ -368,15 +443,18 @@ function initWaitlistForm() {
             }
 
             if (!response.ok) {
-                const apiMessage = responseData && typeof responseData === 'object' ? responseData.message : '';
-                throw new Error(apiMessage || 'Waitlist request failed');
+                const apiError = responseData && typeof responseData === 'object' ? responseData.error : '';
+                throw new Error(apiError || 'generic_error');
             }
 
-            form.style.display = 'none';
             setMessage(SUCCESS_TEXT, 'success');
+            if (emailInput) emailInput.value = '';
+            if (consentInput) consentInput.checked = false;
+            resetTurnstile();
         } catch (error) {
-            console.error('Waitlist error:', error);
-            setMessage(ERROR_TEXT, 'error');
+            const errorKey = error && error.message ? error.message : 'generic_error';
+            setMessage(ERROR_MESSAGES[errorKey] || ERROR_MESSAGES.generic_error, 'error');
+            resetTurnstile();
         } finally {
             setLoading(false);
         }

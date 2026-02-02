@@ -47,9 +47,9 @@
             <div class="contact-container">
                 <div class="glass-card">
                     <form id="waitlistForm" class="contact-form" novalidate>
-                        <div class="hp-field">
+                        <div class="hp-field" aria-hidden="true">
                             <label for="waitlistHp">Company</label>
-                            <input type="text" id="waitlistHp" name="hp" autocomplete="off">
+                            <input type="text" id="waitlistHp" name="hp" autocomplete="off" tabindex="-1" aria-hidden="true">
                         </div>
 
                         <div class="form-group">
@@ -66,10 +66,13 @@
 
                         <p class="microcopy">Niente spam. Ti scriveremo solo al lancio.</p>
 
+                        <div id="turnstile-container" class="turnstile"></div>
+
                         <button type="submit" class="btn btn-primary full-width" id="waitlistSubmit">Avvisami al lancio</button>
+                        <div id="form-status" class="waitlist-message" role="status" aria-live="polite"></div>
                     </form>
 
-                    <div id="waitlistMessage" class="waitlist-message" role="status" aria-live="polite"></div>
+                    <div id="waitlistMessage" class="waitlist-message" aria-hidden="true" style="display: none;"></div>
                 </div>
             </div>
         </section>
@@ -96,6 +99,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 
 </html>
