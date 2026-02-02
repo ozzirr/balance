@@ -1,4 +1,4 @@
-const WAITLIST_WEBHOOK_URL = 'https://n8n.2erre.online/webhook-test/waitlist';
+const WAITLIST_WEBHOOK_URL = 'https://n8n.2erre.online/webhook/waitlist';
 
 document.addEventListener('DOMContentLoaded', () => {
     window.__waitlistT0 = Date.now();
@@ -209,9 +209,10 @@ function initModal() {
     const modal = document.getElementById('download-modal');
     const openBtns = document.querySelectorAll('.open-modal');
     const closeBtn = document.getElementById('modal-close');
-    const overlay = modal.querySelector('.modal-overlay');
 
     if (!modal || !openBtns.length) return;
+
+    const overlay = modal.querySelector('.modal-overlay');
 
     const openModal = () => {
         modal.classList.add('active');
@@ -277,18 +278,19 @@ function parseQueryParams() {
 }
 
 function initWaitlistForm() {
-    const form = document.getElementById('waitlist-form');
+    const form = document.getElementById('waitlistForm');
     if (!form) return;
 
     const message = document.getElementById('waitlistMessage');
     const submitBtn = document.getElementById('waitlistSubmit');
     const emailInput = document.getElementById('waitlistEmail');
     const consentInput = document.getElementById('waitlistConsent');
-    const honeypotInput = document.getElementById('waitlistCompany');
+    const honeypotInput = document.getElementById('waitlistHp');
 
-    const SUCCESS_TEXT = 'Sei in lista. Ti avviserò quando Balance Pro sarà disponibile.';
+    const SUCCESS_TEXT = 'Sei in lista…';
     const ERROR_TEXT = 'Qualcosa è andato storto. Riprova.';
     const ENDPOINT_URL = WAITLIST_WEBHOOK_URL;
+    const defaultSubmitText = submitBtn ? submitBtn.textContent : 'Avvisami al lancio';
 
     const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
@@ -307,7 +309,7 @@ function initWaitlistForm() {
         if (!submitBtn) return;
         submitBtn.disabled = isLoading;
         submitBtn.classList.toggle('loading', isLoading);
-        submitBtn.textContent = isLoading ? 'Invio...' : 'Iscrivimi';
+        submitBtn.textContent = isLoading ? 'Invio in corso…' : defaultSubmitText;
     };
 
     form.addEventListener('submit', async (e) => {
@@ -348,6 +350,7 @@ function initWaitlistForm() {
         setMessage('', '');
 
         try {
+            console.debug('Waitlist submit: fetch start');
             const response = await fetch(ENDPOINT_URL, {
                 method: 'POST',
                 headers: {
@@ -356,8 +359,17 @@ function initWaitlistForm() {
                 body: JSON.stringify(payload)
             });
 
+            console.debug('Waitlist submit: response status', response.status);
+            let responseData = null;
+            try {
+                responseData = await response.json();
+            } catch (parseError) {
+                responseData = null;
+            }
+
             if (!response.ok) {
-                throw new Error('Waitlist request failed');
+                const apiMessage = responseData && typeof responseData === 'object' ? responseData.message : '';
+                throw new Error(apiMessage || 'Waitlist request failed');
             }
 
             form.style.display = 'none';
