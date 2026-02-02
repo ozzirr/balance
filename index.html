@@ -30,7 +30,6 @@
             <div class="nav-links">
                 <a href="#overview">Panoramica</a>
                 <a href="#features">Funzionalità</a>
-                <a href="#principles">Principi</a>
                 <a href="roadmap.html">Roadmap</a>
                 <a href="#pricing">Piani</a>
                 <a href="#download" class="btn btn-sm btn-white open-modal">Download</a>
@@ -42,7 +41,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="overview">
+    <section class="hero scene" id="overview">
         <div class="container hero-container">
             <div class="hero-content reveal">
                 <div class="hero-badge">
@@ -62,33 +61,45 @@
             </div>
 
             <div class="hero-visual reveal delayed">
-                <div class="iphone-3d-wrap" data-iphone style="transform: rotateY(-15deg) rotateX(10deg);">
-                    <div class="iphone-3d">
-                        <div class="iphone-screen">
-                            <div class="carousel-container" id="hero-carousel">
-                                <div class="carousel-wrapper" id="carousel-wrapper">
-                                    <div class="carousel-slide active">
-                                        <img src="assets/screenshots/1.png" alt="Balance Trend">
+                <div class="device-stage">
+                    <div class="device-ring"></div>
+                    <div class="hud hud-a">
+                        <span class="hud-dot" aria-hidden="true"></span>
+                        <span class="hud-bar" aria-hidden="true"></span>
+                        <span class="hud-bar short" aria-hidden="true"></span>
+                    </div>
+                    <div class="hud hud-b">
+                        <span class="hud-bar" aria-hidden="true"></span>
+                        <span class="hud-line" aria-hidden="true"></span>
+                    </div>
+                    <div class="iphone-3d-wrap" data-iphone style="transform: rotateY(-15deg) rotateX(10deg);">
+                        <div class="iphone-3d">
+                            <div class="iphone-screen">
+                                <div class="carousel-container" id="hero-carousel">
+                                    <div class="carousel-wrapper" id="carousel-wrapper">
+                                        <div class="carousel-slide active">
+                                            <img src="assets/screenshots/1.png" alt="Balance Trend">
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="assets/screenshots/2.png" alt="Balance Charts">
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="assets/screenshots/3.png" alt="Balance Snapshot">
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="assets/screenshots/4.png" alt="Balance Wallet">
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img src="assets/screenshots/5.png" alt="Balance Investimenti">
+                                        </div>
                                     </div>
-                                    <div class="carousel-slide">
-                                        <img src="assets/screenshots/2.png" alt="Balance Charts">
+                                    <div class="carousel-indicators" id="carousel-indicators">
+                                        <button class="indicator active" data-index="0" aria-label="Slide 1"></button>
+                                        <button class="indicator" data-index="1" aria-label="Slide 2"></button>
+                                        <button class="indicator" data-index="2" aria-label="Slide 3"></button>
+                                        <button class="indicator" data-index="3" aria-label="Slide 4"></button>
+                                        <button class="indicator" data-index="4" aria-label="Slide 5"></button>
                                     </div>
-                                    <div class="carousel-slide">
-                                        <img src="assets/screenshots/3.png" alt="Balance Snapshot">
-                                    </div>
-                                    <div class="carousel-slide">
-                                        <img src="assets/screenshots/4.png" alt="Balance Wallet">
-                                    </div>
-                                    <div class="carousel-slide">
-                                        <img src="assets/screenshots/5.png" alt="Balance Investimenti">
-                                    </div>
-                                </div>
-                                <div class="carousel-indicators" id="carousel-indicators">
-                                    <button class="indicator active" data-index="0" aria-label="Slide 1"></button>
-                                    <button class="indicator" data-index="1" aria-label="Slide 2"></button>
-                                    <button class="indicator" data-index="2" aria-label="Slide 3"></button>
-                                    <button class="indicator" data-index="3" aria-label="Slide 4"></button>
-                                    <button class="indicator" data-index="4" aria-label="Slide 5"></button>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +110,7 @@
     </section>
 
     <!-- Context / Problem -->
-    <section id="problem" class="section-split">
+    <section id="problem" class="section-split scene">
         <div class="container split-container split-reverse reveal">
             <div class="split-content">
                 <h2 class="section-title">Conti, broker, crypto · tutto separato</h2>
@@ -113,14 +124,41 @@
                     senza collegamenti automatici e senza compromessi sulla privacy.
                 </p>
             </div>
-            <div class="split-visual">
-                <img src="assets/onboarding-3.png" alt="Mascot" class="mascot-primary mascot-pos-1">
+            <div class="split-visual visual-left">
+                <svg class="orbit orbit-left" viewBox="0 0 420 420" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="orbitGradientLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#7B5CFF" stop-opacity="0.1" />
+                            <stop offset="45%" stop-color="#44D2FF" stop-opacity="0.9" />
+                            <stop offset="100%" stop-color="#59F3A2" stop-opacity="0.2" />
+                        </linearGradient>
+                        <filter id="orbitGlowLeft" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="6" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <circle cx="210" cy="210" r="140" fill="none" stroke="url(#orbitGradientLeft)" stroke-width="3" filter="url(#orbitGlowLeft)" />
+                    <circle cx="210" cy="210" r="170" fill="none" stroke="url(#orbitGradientLeft)" stroke-width="1.5" opacity="0.7" />
+                </svg>
+                <div class="visual-stack">
+                    <div class="iphone-3d-wrap phone-visual" data-iphone style="transform: rotateY(-14deg) rotateX(8deg);">
+                        <div class="iphone-3d">
+                            <div class="iphone-screen">
+                                <img src="assets/screenshots/4.png" alt="Wallet Liquidità">
+                            </div>
+                        </div>
+                    </div>
+                    <img src="assets/onboarding-3.png" alt="Mascot" class="mascot-primary mascot-pos-1">
+                </div>
             </div>
         </div>
     </section>
 
     <!-- What it is -->
-    <section class="section-split">
+    <section class="section-split scene">
         <div class="container split-container reveal">
             <div class="split-content">
                 <h2 class="section-title">Snapshot e trend · per capire l’evoluzione</h2>
@@ -134,31 +172,41 @@
                     cosa ha inciso, senza dipendere da integrazioni esterne.
                 </p>
             </div>
-            <div class="split-visual">
-                <img src="assets/onboarding-1.png" alt="Mascot" class="mascot-primary mascot-pos-2">
+            <div class="split-visual visual-right">
+                <svg class="orbit orbit-right" viewBox="0 0 420 420" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="orbitGradientRight" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#44D2FF" stop-opacity="0.2" />
+                            <stop offset="55%" stop-color="#7B5CFF" stop-opacity="0.9" />
+                            <stop offset="100%" stop-color="#59F3A2" stop-opacity="0.2" />
+                        </linearGradient>
+                        <filter id="orbitGlowRight" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="6" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <circle cx="210" cy="210" r="135" fill="none" stroke="url(#orbitGradientRight)" stroke-width="3" filter="url(#orbitGlowRight)" />
+                    <circle cx="210" cy="210" r="175" fill="none" stroke="url(#orbitGradientRight)" stroke-width="1.5" opacity="0.7" />
+                </svg>
+                <div class="visual-stack">
+                    <div class="iphone-3d-wrap phone-visual" data-iphone style="transform: rotateY(14deg) rotateX(8deg);">
+                        <div class="iphone-3d">
+                            <div class="iphone-screen">
+                                <img src="assets/screenshots/1.png" alt="Andamento">
+                            </div>
+                        </div>
+                    </div>
+                    <img src="assets/onboarding-1.png" alt="Mascot" class="mascot-primary mascot-pos-2">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Principles -->
-    <section id="principles" class="section-split">
-        <div class="container reveal center-text">
-            <h2 class="section-title">Principi · prima di tutto</h2>
-            <p class="section-text">
-                Un’app finanziaria richiede fiducia. Per questo Balance è progettata con una linea chiara.
-            </p>
-
-            <ul class="styled-list centered-list">
-                <li><i class="fa-solid fa-check"></i> Local-first . i dati restano sul dispositivo</li>
-                <li><i class="fa-solid fa-check"></i> Nessun collegamento bancario . nessun accesso ai conti</li>
-                <li><i class="fa-solid fa-check"></i> Nessun tracciamento . nessun profilo utente</li>
-                <li><i class="fa-solid fa-check"></i> Open source . codice ispezionabile e roadmap pubblica</li>
-            </ul>
-        </div>
-    </section>
-
     <!-- Features Section -->
-    <section id="features" class="section-grid">
+    <section id="features" class="section-grid scene">
         <div class="container">
             <h2 class="section-title center-text reveal">Funzionalità</h2>
             <div class="features-grid">
@@ -199,7 +247,7 @@
     </section>
 
     <!-- Free vs Pro -->
-    <section id="pricing" class="section-pricing">
+    <section id="pricing" class="section-pricing scene">
         <div class="container reveal">
             <h2 class="section-title center-text">Piani</h2>
             <div class="pricing-grid">
@@ -230,7 +278,7 @@
     </section>
 
     <!-- Leaderboard Section -->
-    <section id="leaderboard" class="section-leaderboard">
+    <section id="leaderboard" class="section-leaderboard scene">
         <div class="container reveal">
             <h2 class="section-title center-text">Top Contributors</h2>
             <p class="section-text center-text">Il progetto migliora grazie a issue, feedback e contributi al codice.
@@ -254,7 +302,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="download">
+    <footer id="download" class="scene footer-scene">
         <div class="container footer-cta reveal">
             <h2 class="section-title">Download</h2>
             <p class="mb-40">Disponibile su iOS e Android.</p>
