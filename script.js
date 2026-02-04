@@ -138,8 +138,6 @@ function initFeatureDetail() {
     const cards = Array.from(document.querySelectorAll('.feature-card[data-feature]'));
     if (!detail || cards.length === 0) return;
 
-    const detailIcon = detail.querySelector('.feature-detail-icon i');
-    const detailTitle = detail.querySelector('.feature-detail-title');
     const detailText = detail.querySelector('.feature-detail-text');
     const detailList = detail.querySelector('.feature-detail-list');
     const desktopQuery = window.matchMedia('(min-width: 901px)');
@@ -200,6 +198,7 @@ function initFeatureDetail() {
     };
 
     const setActiveCard = (card) => {
+        if (!desktopQuery.matches) return;
         const key = card.dataset.feature;
         const info = detailMap[key];
         if (!info) return;
@@ -213,8 +212,6 @@ function initFeatureDetail() {
         });
 
         detail.dataset.feature = key;
-        if (detailIcon) detailIcon.className = `fa-solid ${info.icon}`;
-        if (detailTitle) detailTitle.textContent = info.title;
         if (detailText) detailText.textContent = info.text;
 
         if (detailList) {
@@ -228,8 +225,38 @@ function initFeatureDetail() {
         }
 
         detail.classList.remove('is-animating');
-        void detail.offsetWidth;
-        detail.classList.add('is-animating');
+        requestAnimationFrame(() => {
+            detail.classList.add('is-animating');
+        });
+    };
+
+    const buildCardBacks = () => {
+        cards.forEach(card => {
+            const back = card.querySelector('.feature-back');
+            const key = card.dataset.feature;
+            const info = detailMap[key];
+            if (!back || !info) return;
+
+            back.innerHTML = `
+                <p class="feature-detail-text">${info.text}</p>
+                <ul class="feature-detail-list">
+                    ${info.bullets.map((bullet, index) => `<li style="--i:${index}">${bullet}</li>`).join('')}
+                </ul>
+            `;
+        });
+    };
+
+    const setupMobileFlip = () => {
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (desktopQuery.matches) return;
+                const willFlip = !card.classList.contains('is-flipped');
+                cards.forEach(item => item.classList.remove('is-flipped'));
+                if (willFlip) {
+                    card.classList.add('is-flipped');
+                }
+            });
+        });
     };
 
     const setupScrollSync = () => {
@@ -267,6 +294,8 @@ function initFeatureDetail() {
     const initialCard = cards.find(card => card.classList.contains('is-active')) || cards[0];
     if (initialCard) setActiveCard(initialCard);
 
+    buildCardBacks();
+    setupMobileFlip();
     setupScrollSync();
     desktopQuery.addEventListener('change', () => {
         if (desktopQuery.matches) {
