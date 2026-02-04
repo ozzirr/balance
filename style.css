@@ -1839,6 +1839,10 @@ footer::before {
         transform: none;
         margin-left: 0;
     }
+
+    .footer-cta {
+        padding: 52px 24px 48px;
+    }
 }
 
 /* Legal Pages */
