@@ -466,6 +466,10 @@ function initIPhone3D() {
 
     phones.forEach(phone => {
         const wrap = phone;
+        const baseTransform = wrap.getAttribute('data-base-transform') || wrap.style.transform || '';
+        if (baseTransform) {
+            wrap.dataset.baseTransform = baseTransform;
+        }
         const parent = wrap.closest('.split-visual, .hero-visual');
         const mascots = parent ? parent.querySelectorAll('.mascot-decoration, .mascot-large') : [];
 
@@ -483,7 +487,8 @@ function initIPhone3D() {
             const rotateX = (centerY - y) / 15;
             const rotateY = (x - centerX) / 15;
 
-            wrap.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            const tilt = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            wrap.style.transform = baseTransform ? `${baseTransform} ${tilt}` : tilt;
 
             // Parallax for mascots
             mascots.forEach(mascot => {
@@ -496,7 +501,7 @@ function initIPhone3D() {
         });
 
         parent.addEventListener('mouseleave', () => {
-            wrap.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            wrap.style.transform = baseTransform || '';
             mascots.forEach(mascot => {
                 const scaleX = mascot.classList.contains('mascot-pos-2') ? -1 : 1;
                 mascot.style.transform = `translate(0, 0) scaleX(${scaleX})`;

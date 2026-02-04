@@ -1,15 +1,15 @@
 /* Reset & Base */
 :root {
     /* Colors */
-    --bg0: #05060D;
-    --bg1: #0B1020;
-    --bg2: #0F162C;
+    --bg0: #06060F;
+    --bg1: #0A0C18;
+    --bg2: #10152B;
     --ink: #EEF3FF;
-    --muted: #9AA9C7;
-    --accent1: #8B5CFF;
-    --accent2: #44D2FF;
-    --accent3: #59F3A2;
-    --accent4: #57A6FF;
+    --muted: #AEBAD4;
+    --accent1: #8F5BFF;
+    --accent2: #3FD5FF;
+    --accent3: #47F1AE;
+    --accent4: #63AFFF;
     --bg-color: var(--bg0);
     --bg-elev-1: var(--bg1);
     --bg-elev-2: var(--bg2);
@@ -40,6 +40,8 @@
     --radius-lg: 24px;
     --radius-md: 16px;
     --radius-sm: 12px;
+    --phone-width: 220px;
+    --phone-height: 460px;
 
     /* Shadow */
     --shadow-strong: 0 40px 120px rgba(4, 6, 16, 0.7);
@@ -64,10 +66,10 @@ html {
 body {
     font-family: var(--font-body);
     background:
-        radial-gradient(circle at 18% 12%, rgba(139, 92, 255, 0.45), transparent 40%),
-        radial-gradient(circle at 82% 8%, rgba(68, 210, 255, 0.35), transparent 45%),
-        radial-gradient(circle at 70% 70%, rgba(89, 243, 162, 0.22), transparent 45%),
-        radial-gradient(circle at 35% 88%, rgba(87, 166, 255, 0.22), transparent 45%),
+        radial-gradient(circle at 14% 16%, rgba(142, 91, 255, 0.55), transparent 45%),
+        radial-gradient(circle at 86% 18%, rgba(72, 230, 176, 0.35), transparent 48%),
+        radial-gradient(circle at 72% 68%, rgba(68, 190, 255, 0.22), transparent 50%),
+        radial-gradient(circle at 28% 84%, rgba(120, 90, 255, 0.28), transparent 50%),
         linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 45%, #05070F 100%);
     color: var(--text-primary);
     line-height: 1.6;
@@ -94,26 +96,26 @@ body::after {
 
 body::before {
     background-image:
-        radial-gradient(ellipse at center, rgba(4, 6, 14, 0) 40%, rgba(2, 3, 8, 0.75) 100%),
+        radial-gradient(ellipse at center, rgba(4, 6, 14, 0) 38%, rgba(2, 3, 8, 0.78) 100%),
         repeating-radial-gradient(circle at 0 0,
-            rgba(255, 255, 255, 0.06) 0px,
-            rgba(255, 255, 255, 0.06) 1px,
+            rgba(255, 255, 255, 0.07) 0px,
+            rgba(255, 255, 255, 0.07) 1px,
             transparent 1px,
             transparent 3px);
-    opacity: 0.4;
+    opacity: 0.45;
     mix-blend-mode: normal;
 }
 
 body::after {
     background-image:
-        radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.35) 0, transparent 60%),
-        radial-gradient(1px 1px at 30% 70%, rgba(130, 200, 255, 0.4) 0, transparent 60%),
-        radial-gradient(1px 1px at 60% 40%, rgba(255, 255, 255, 0.3) 0, transparent 60%),
-        radial-gradient(1px 1px at 85% 15%, rgba(180, 210, 255, 0.28) 0, transparent 60%),
-        radial-gradient(1px 1px at 75% 85%, rgba(120, 255, 220, 0.25) 0, transparent 60%);
-    background-size: 280px 280px, 320px 320px, 240px 240px, 300px 300px, 360px 360px;
-    opacity: 0.28;
-    filter: blur(0.2px);
+        radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.45) 0, transparent 60%),
+        radial-gradient(1px 1px at 32% 72%, rgba(130, 200, 255, 0.45) 0, transparent 60%),
+        radial-gradient(1px 1px at 62% 38%, rgba(255, 255, 255, 0.38) 0, transparent 60%),
+        radial-gradient(1px 1px at 82% 18%, rgba(180, 210, 255, 0.32) 0, transparent 60%),
+        radial-gradient(1px 1px at 72% 82%, rgba(120, 255, 220, 0.3) 0, transparent 60%);
+    background-size: 240px 240px, 300px 300px, 220px 220px, 280px 280px, 320px 320px;
+    opacity: 0.32;
+    filter: blur(0.15px);
     mix-blend-mode: screen;
 }
 
@@ -264,19 +266,19 @@ body::after {
     left: 0;
     width: 100%;
     height: var(--header-height);
-    background: linear-gradient(90deg, rgba(10, 14, 28, 0.85), rgba(8, 10, 20, 0.6));
+    background: linear-gradient(90deg, rgba(8, 10, 18, 0.88), rgba(9, 12, 22, 0.58));
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(24px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(120, 200, 255, 0.16);
-    box-shadow: 0 10px 30px rgba(2, 4, 10, 0.65), 0 0 24px rgba(139, 92, 255, 0.15);
+    border-bottom: 1px solid rgba(120, 150, 220, 0.12);
+    box-shadow: 0 10px 30px rgba(2, 4, 10, 0.7), 0 0 28px rgba(143, 91, 255, 0.18);
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.06);
+    background: linear-gradient(160deg, rgba(24, 28, 48, 0.72), rgba(12, 16, 30, 0.62));
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(26px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(120, 180, 255, 0.16);
     border-radius: var(--radius-lg);
     padding: 32px;
     transition: var(--transition-smooth);
@@ -294,7 +296,7 @@ body::after {
     inset: 0;
     padding: 1px;
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(68, 210, 255, 0.2), rgba(139, 92, 255, 0.25));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(68, 210, 255, 0.18), rgba(143, 91, 255, 0.28));
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -307,7 +309,7 @@ body::after {
     position: absolute;
     inset: 0;
     border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 55%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 60%);
     opacity: 0.5;
     pointer-events: none;
 }
@@ -380,22 +382,30 @@ body::after {
 
 /* Hero */
 .hero {
-    padding-top: 160px;
-    padding-bottom: 100px;
+    padding-top: calc(var(--header-height) + 16px);
+    padding-bottom: clamp(48px, 10vh, 120px);
     position: relative;
     overflow: hidden;
     background: transparent;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
 }
 
 .hero::before {
     content: '';
     position: absolute;
-    inset: -60px;
+    inset: -80px;
     background-image:
-        radial-gradient(circle at 18% 8%, rgba(139, 92, 255, 0.5), transparent 45%),
-        radial-gradient(circle at 82% 5%, rgba(68, 210, 255, 0.38), transparent 45%),
-        radial-gradient(circle at 60% 80%, rgba(89, 243, 162, 0.22), transparent 45%);
-    filter: blur(18px);
+        radial-gradient(circle at 18% 12%, rgba(143, 91, 255, 0.55), transparent 50%),
+        radial-gradient(circle at 82% 12%, rgba(72, 230, 176, 0.38), transparent 52%),
+        radial-gradient(circle at 70% 70%, rgba(68, 190, 255, 0.22), transparent 55%),
+        url("assets/hero-bg.png");
+    background-size: auto, auto, auto, cover;
+    background-position: center, center, center, center;
+    filter: none;
+    opacity: 0.95;
     z-index: 0;
 }
 
@@ -404,8 +414,8 @@ body::after {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(6, 10, 20, 0.15) 0%, rgba(6, 10, 20, 0.9) 100%),
-        radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.05), transparent 55%);
+        radial-gradient(circle at 72% 30%, rgba(90, 255, 210, 0.12), transparent 55%),
+        linear-gradient(180deg, rgba(6, 10, 20, 0.1) 0%, rgba(6, 10, 20, 0.82) 100%);
     z-index: 0;
 }
 
@@ -416,6 +426,7 @@ body::after {
     grid-template-columns: 1.2fr 0.8fr;
     gap: 60px;
     align-items: center;
+    width: 100%;
 }
 
 .hero-badge {
@@ -441,12 +452,12 @@ body::after {
 
 .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(3.2rem, 7vw, 5.2rem);
+    font-size: clamp(2rem, 6vw, 4rem);
     line-height: 1.02;
     font-weight: 700;
     margin-bottom: 20px;
     letter-spacing: -0.03em;
-    background: linear-gradient(140deg, #FFFFFF 0%, #D6E6FF 40%, #A17BFF 100%);
+    background: linear-gradient(140deg, #FFFFFF 0%, #E3E9FF 40%, #B08CFF 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -479,6 +490,9 @@ body::after {
 .hero-visual {
     perspective: 1200px;
     position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .device-stage {
@@ -486,15 +500,36 @@ body::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 520px;
+    min-height: calc(var(--phone-height) + 180px);
+    width: calc(var(--phone-width) + 340px);
+    margin-left: auto;
+    transform: translateX(18px);
+}
+
+.device-stage::before {
+    content: "";
+    position: absolute;
+    width: calc(var(--phone-width) + 220px);
+    height: calc(var(--phone-width) + 220px);
+    left: 50%;
+    top: 46%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(143, 91, 255, 0.38), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(72, 230, 176, 0.28), transparent 62%);
+    filter: blur(8px);
+    opacity: 0.85;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .device-ring {
     position: absolute;
-    width: 360px;
+    width: calc(var(--phone-width) + 200px);
     height: 120px;
     left: 50%;
-    bottom: 50px;
+    bottom: 30px;
     transform: translateX(-50%);
     border-radius: 50%;
     border: 1px solid rgba(68, 210, 255, 0.45);
@@ -504,6 +539,8 @@ body::after {
     background: radial-gradient(circle at 50% 50%, rgba(68, 210, 255, 0.18) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
+    opacity: 0.35;
+    animation: ring-pulse 6s ease-in-out infinite;
 }
 
 .device-ring::after {
@@ -512,7 +549,87 @@ body::after {
     inset: 10px;
     border-radius: 50%;
     border: 1px dashed rgba(139, 92, 255, 0.35);
-    opacity: 0.8;
+    opacity: 0.45;
+}
+
+.hero-base {
+    position: absolute;
+    width: calc(var(--phone-width) + 360px);
+    height: auto;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.7;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 20px 40px rgba(68, 210, 255, 0.25));
+    animation: base-float 8s ease-in-out infinite;
+}
+
+.device-stage .iphone-3d-wrap {
+    z-index: 4;
+    width: var(--phone-width);
+    height: var(--phone-height);
+    filter: drop-shadow(0 40px 90px rgba(6, 10, 20, 0.65)) drop-shadow(0 0 70px rgba(68, 210, 255, 0.35));
+}
+
+.device-stage .iphone-3d-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -26px;
+    background: radial-gradient(circle at 45% 30%, rgba(139, 92, 255, 0.28), transparent 62%);
+    opacity: 0.55;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.device-stage .iphone-3d-wrap::after {
+    content: "";
+    position: absolute;
+    inset: -60px -30px -30px;
+    background: radial-gradient(circle at 55% 70%, rgba(68, 210, 255, 0.3), transparent 70%);
+    opacity: 0.4;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.hero-card {
+    position: absolute;
+    width: clamp(200px, 18vw, 280px);
+    height: auto;
+    z-index: 5;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 20px 40px rgba(6, 10, 20, 0.55)) drop-shadow(0 0 24px rgba(68, 210, 255, 0.35));
+    opacity: 0.95;
+    --card-rot: 4deg;
+    --card-rise: 36px;
+    --card-drift: 10px;
+    animation: card-rise 9s ease-in-out infinite;
+}
+
+.hero-card-1 {
+    left: 10px;
+    top: 230px;
+    --card-rot: -6deg;
+    animation-delay: 0s;
+}
+
+.hero-card-2 {
+    right: -20px;
+    top: 260px;
+    --card-rot: 6deg;
+    animation-delay: 1.2s;
+}
+
+.hero-card-3 {
+    right: 40px;
+    bottom: 140px;
+    --card-rot: 2deg;
+    --card-rise: 28px;
+    --card-drift: -8px;
+    animation-delay: 2.4s;
 }
 
 .hud {
@@ -578,17 +695,6 @@ body::after {
     content: none;
 }
 
-.hero-card {
-    padding: 0;
-    /* Image covers card */
-    position: relative;
-    border-radius: 40px;
-    /* iPhone like */
-    box-shadow: 0 40px 90px rgba(6, 10, 20, 0.7), 0 0 50px rgba(68, 210, 255, 0.2);
-    max-width: 320px;
-    margin: 0 auto;
-}
-
 .app-screenshot {
     width: 100%;
     display: block;
@@ -608,6 +714,47 @@ body::after {
 
     50% {
         transform: translateY(-20px);
+    }
+}
+
+@keyframes card-rise {
+    0% {
+        opacity: 0;
+        transform: translate(0, 44px) rotate(var(--card-rot));
+    }
+    20% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(var(--card-rot));
+    }
+    70% {
+        opacity: 1;
+        transform: translate(var(--card-drift), calc(-1 * var(--card-rise))) rotate(var(--card-rot));
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--card-drift), calc(-1 * (var(--card-rise) + 40px))) rotate(var(--card-rot));
+    }
+}
+
+@keyframes ring-pulse {
+    0%,
+    100% {
+        opacity: 0.32;
+        transform: translateX(-50%) scale(0.98);
+    }
+    50% {
+        opacity: 0.55;
+        transform: translateX(-50%) scale(1.02);
+    }
+}
+
+@keyframes base-float {
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, -10px);
     }
 }
 
@@ -667,10 +814,10 @@ section::after {
     position: absolute;
     inset: -20px;
     background:
-        radial-gradient(circle at 20% 20%, rgba(139, 92, 255, 0.22), transparent 45%),
-        radial-gradient(circle at 80% 30%, rgba(68, 210, 255, 0.18), transparent 45%),
-        radial-gradient(circle at 60% 80%, rgba(89, 243, 162, 0.15), transparent 45%);
-    opacity: 0.8;
+        radial-gradient(circle at 18% 20%, rgba(143, 91, 255, 0.25), transparent 45%),
+        radial-gradient(circle at 82% 28%, rgba(68, 210, 255, 0.18), transparent 45%),
+        radial-gradient(circle at 60% 80%, rgba(72, 230, 176, 0.14), transparent 45%);
+    opacity: 0.85;
     filter: blur(16px);
     z-index: 0;
     pointer-events: none;
@@ -797,8 +944,8 @@ section::after {
 }
 
 .phone-visual {
-    width: 220px;
-    height: 460px;
+    width: var(--phone-width);
+    height: var(--phone-height);
 }
 
 .visual-stack .iphone-3d-wrap {
@@ -879,8 +1026,8 @@ section::after {
 /* 3D iPhone container */
 .iphone-3d-wrap {
     position: relative;
-    width: 260px;
-    height: 540px;
+    width: var(--phone-width);
+    height: var(--phone-height);
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
     /* Smooth JS-driven rotation */
@@ -897,14 +1044,15 @@ section::after {
 .iphone-3d {
     width: 100%;
     height: 100%;
-    background: #0D0F16;
+    background: linear-gradient(160deg, #151B2B 0%, #0C101B 100%);
     border-radius: 44px;
     position: relative;
     transform-style: preserve-3d;
     box-shadow:
-        0 30px 70px rgba(6, 10, 20, 0.7),
-        0 0 40px rgba(68, 210, 255, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+        0 35px 80px rgba(6, 10, 20, 0.75),
+        0 0 60px rgba(68, 210, 255, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* Screen */
@@ -918,7 +1066,9 @@ section::after {
     border-radius: 36px;
     overflow: hidden;
     transform: translateZ(2px);
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 .iphone-screen img {
@@ -1001,10 +1151,15 @@ section::after {
 }
 
 @media (max-width: 900px) {
+    :root {
+        --phone-width: 200px;
+        --phone-height: 420px;
+    }
+
     .iphone-3d-wrap {
-        width: 160px;
+        width: var(--phone-width);
         /* Slightly smaller for mobile */
-        height: 330px;
+        height: var(--phone-height);
         /* Fix height to prevent enormous gaps */
         margin: 0 auto;
     }
@@ -1025,13 +1180,44 @@ section::after {
     }
 
     .device-stage {
-        min-height: 420px;
+        min-height: calc(var(--phone-height) + 160px);
+        width: 100%;
     }
 
     .device-ring {
-        width: 260px;
-        height: 90px;
-        bottom: 40px;
+        width: calc(var(--phone-width) + 160px);
+        height: 80px;
+        bottom: 30px;
+    }
+
+    .device-stage .iphone-3d-wrap {
+        width: var(--phone-width);
+        height: var(--phone-height);
+    }
+
+    .hero-base {
+        width: calc(var(--phone-width) + 280px);
+        bottom: -10px;
+    }
+
+    .hero-card {
+        width: 180px;
+    }
+
+    .hero-card-1 {
+        left: -10px;
+        top: 70px;
+    }
+
+    .hero-card-2 {
+        right: -40px;
+        top: 140px;
+    }
+
+    .hero-card-3 {
+        right: 10px;
+        bottom: 80px;
+        display: block;
     }
 
     .hud {
@@ -1436,8 +1622,8 @@ footer::before {
     }
 
     .hero {
-        padding-top: 120px;
-        padding-bottom: 40px;
+        padding-top: calc(var(--header-height) + 12px);
+        padding-bottom: 32px;
     }
 
     .hero-title {
@@ -1537,6 +1723,7 @@ footer::before {
     overflow: hidden;
     border-radius: 38px;
     /* Match inner radius */
+    height: 100%;
 }
 
 .carousel-slide {
@@ -1544,6 +1731,7 @@ footer::before {
     position: relative;
     /* Reset absolute */
     width: 100%;
+    height: 100%;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
     z-index: 1;
@@ -1599,9 +1787,11 @@ footer::before {
 .carousel-slide img {
     width: 100%;
     display: block;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     border-radius: 38px;
     box-shadow: 0 0 30px rgba(68, 210, 255, 0.18);
+    filter: saturate(1.05) brightness(1.05);
 }
 
 /* Leaderboard */

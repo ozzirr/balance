@@ -63,16 +63,11 @@
             <div class="hero-visual reveal delayed">
                 <div class="device-stage">
                     <div class="device-ring"></div>
-                    <div class="hud hud-a">
-                        <span class="hud-dot" aria-hidden="true"></span>
-                        <span class="hud-bar" aria-hidden="true"></span>
-                        <span class="hud-bar short" aria-hidden="true"></span>
-                    </div>
-                    <div class="hud hud-b">
-                        <span class="hud-bar" aria-hidden="true"></span>
-                        <span class="hud-line" aria-hidden="true"></span>
-                    </div>
-                    <div class="iphone-3d-wrap" data-iphone style="transform: rotateY(-15deg) rotateX(10deg);">
+                    <img src="assets/hero/base.png" alt="" class="hero-base" aria-hidden="true">
+                    <img src="assets/hero/card1.png" alt="" class="hero-card hero-card-1" aria-hidden="true">
+                    <img src="assets/hero/card2.png" alt="" class="hero-card hero-card-2" aria-hidden="true">
+                    <img src="assets/hero/card3.png" alt="" class="hero-card hero-card-3" aria-hidden="true">
+                    <div class="iphone-3d-wrap" data-iphone data-base-transform="rotateY(-6deg) rotateX(2deg) translateY(-6px)" style="transform: rotateY(-6deg) rotateX(2deg) translateY(-6px);">
                         <div class="iphone-3d">
                             <div class="iphone-screen">
                                 <div class="carousel-container" id="hero-carousel">
@@ -144,7 +139,7 @@
                     <circle cx="210" cy="210" r="170" fill="none" stroke="url(#orbitGradientLeft)" stroke-width="1.5" opacity="0.7" />
                 </svg>
                 <div class="visual-stack">
-                    <div class="iphone-3d-wrap phone-visual" data-iphone style="transform: rotateY(-14deg) rotateX(8deg);">
+                    <div class="iphone-3d-wrap phone-visual" data-iphone data-base-transform="rotateY(-14deg) rotateX(8deg)" style="transform: rotateY(-14deg) rotateX(8deg);">
                         <div class="iphone-3d">
                             <div class="iphone-screen">
                                 <img src="assets/screenshots/4.png" alt="Wallet Liquidità">
@@ -192,7 +187,7 @@
                     <circle cx="210" cy="210" r="175" fill="none" stroke="url(#orbitGradientRight)" stroke-width="1.5" opacity="0.7" />
                 </svg>
                 <div class="visual-stack">
-                    <div class="iphone-3d-wrap phone-visual" data-iphone style="transform: rotateY(14deg) rotateX(8deg);">
+                    <div class="iphone-3d-wrap phone-visual" data-iphone data-base-transform="rotateY(14deg) rotateX(8deg)" style="transform: rotateY(14deg) rotateX(8deg);">
                         <div class="iphone-3d">
                             <div class="iphone-screen">
                                 <img src="assets/screenshots/1.png" alt="Andamento">
@@ -254,7 +249,7 @@
                 <div class="glass-card pricing-card">
                     <div class="badge badge-green">Versione base</div>
                     <h3>Balance</h3>
-                    <div class="pricing-price">€0 <span class="price-suffix">gratis</span></div>
+                    <div class="pricing-price">Gratis</div>
                     <ul class="pricing-list">
                         <li>Fino a 3 wallet totali</li>
                         <li>Dashboard completa</li>
@@ -263,7 +258,7 @@
                     <button class="btn btn-secondary full-width open-modal">Download</button>
                 </div>
                 <div class="glass-card pricing-card pro">
-                    <div class="badge">Offerta lancio fino al 31/12/2026</div>
+                    <div class="badge">Balance Pro è in arrivo</div>
                     <h3>Balance Pro</h3>
                     <div class="pricing-price">€3.99 <span class="price-suffix">pagamento unico</span></div>
                     <ul class="pricing-list">
@@ -271,7 +266,7 @@
                         <li>Snapshot avanzati</li>
                         <li>Storico completo senza limiti</li>
                     </ul>
-                    <button class="btn btn-primary full-width open-modal">Download</button>
+                    <a href="pro-waitlist.html" class="btn btn-primary full-width">Entra in lista</a>
                 </div>
             </div>
         </div>
