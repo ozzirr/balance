@@ -948,6 +948,10 @@ section {
     animation: float 7s ease-in-out infinite;
 }
 
+.visual-stack .split-card-3 {
+    animation: float-mascot 6s ease-in-out infinite;
+}
+
 .visual-left .split-card-1 {
     left: -50px;
     top: 70px;
@@ -976,17 +980,39 @@ section {
 }
 
 .visual-right .visual-stack.swap-sides .split-card-2 {
-    left: -40px;
-    right: auto;
+    right: -40px;
+    left: auto;
     top: 50px;
-    transform: rotate(-6deg);
+    transform: rotate(6deg);
 }
 
 .visual-right .visual-stack.swap-sides .split-card-3 {
-    left: -10px;
-    right: auto;
+    right: -10px;
+    left: auto;
     bottom: 30px;
-    transform: rotate(-2deg) scale(0.85);
+    transform: rotate(2deg) scale(0.85);
+}
+
+.visual-left .visual-stack.swap-sides .split-card-2 {
+    right: -40px;
+    left: auto;
+    top: 50px;
+    transform: rotate(6deg);
+}
+
+.visual-left .visual-stack.swap-sides .split-card-3 {
+    right: -10px;
+    left: auto;
+    bottom: 30px;
+    transform: rotate(2deg) scale(0.85);
+    animation-delay: 1.2s;
+}
+
+.visual-right .visual-stack.swap-sides .split-card-1 {
+    left: -50px;
+    right: auto;
+    top: 70px;
+    transform: rotate(-6deg);
 }
 
 .visual-left .visual-stack .mascot-primary {
@@ -1349,17 +1375,39 @@ section {
     }
 
     .visual-right .visual-stack.swap-sides .split-card-2 {
-        left: -20px;
-        right: auto;
+        right: -20px;
+        left: auto;
         top: 40px;
-        transform: rotate(-6deg);
+        transform: rotate(6deg);
     }
 
     .visual-right .visual-stack.swap-sides .split-card-3 {
-        left: -6px;
-        right: auto;
+        right: -6px;
+        left: auto;
         bottom: 16px;
-        transform: rotate(-2deg) scale(0.8);
+        transform: rotate(2deg) scale(0.8);
+    }
+
+    .visual-left .visual-stack.swap-sides .split-card-2 {
+        right: -20px;
+        left: auto;
+        top: 40px;
+        transform: rotate(6deg);
+    }
+
+    .visual-left .visual-stack.swap-sides .split-card-3 {
+        right: -6px;
+        left: auto;
+        bottom: 16px;
+        transform: rotate(2deg) scale(0.8);
+        animation-delay: 1.2s;
+    }
+
+    .visual-right .visual-stack.swap-sides .split-card-1 {
+        left: -20px;
+        right: auto;
+        top: 50px;
+        transform: rotate(-6deg);
     }
 
     .mascot-primary {
@@ -1767,6 +1815,10 @@ footer::before {
     }
 
     .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .plans-grid {
         grid-template-columns: 1fr;
     }
 
