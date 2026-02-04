@@ -589,7 +589,7 @@ body::after {
     --card-rot: 4deg;
     --card-rise: 36px;
     --card-drift: 10px;
-    animation: card-rise 9s ease-in-out infinite;
+    animation: card-rise 9s linear infinite;
 }
 
 .hero-card-1 {
@@ -603,7 +603,7 @@ body::after {
     right: -10px;
     top: 220px;
     --card-rot: 6deg;
-    animation-delay: 1.2s;
+    animation-delay: 3s;
 }
 
 .hero-card-3 {
@@ -612,7 +612,7 @@ body::after {
     --card-rot: 2deg;
     --card-rise: 28px;
     --card-drift: -8px;
-    animation-delay: 2.4s;
+    animation-delay: 6s;
 }
 
 .hud {
@@ -703,15 +703,17 @@ body::after {
 @keyframes card-rise {
     0% {
         opacity: 0;
-        transform: translate(0, 44px) rotate(var(--card-rot));
+        transform: translate(var(--card-drift), 60px) rotate(var(--card-rot));
     }
-    50% {
+    10% {
         opacity: 1;
-        transform: translate(var(--card-drift), calc(-0.5 * var(--card-rise))) rotate(var(--card-rot));
+    }
+    90% {
+        opacity: 1;
     }
     100% {
         opacity: 0;
-        transform: translate(var(--card-drift), calc(-1 * (var(--card-rise) + 40px))) rotate(var(--card-rot));
+        transform: translate(var(--card-drift), calc(-1 * (var(--card-rise) + 60px))) rotate(var(--card-rot));
     }
 }
 
@@ -1638,6 +1640,15 @@ footer::before {
 
     .hero-title {
         font-size: 2.5rem;
+    }
+
+    .hero-visual {
+        justify-content: center;
+    }
+
+    .device-stage {
+        transform: none;
+        margin-left: 0;
     }
 }
 
