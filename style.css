@@ -589,21 +589,25 @@ body::after {
     --card-rot: 4deg;
     --card-rise: 36px;
     --card-drift: 10px;
-    animation: card-rise 9s linear infinite;
+    --card-scale: 1;
+    opacity: 0;
+    animation: card-rise 7s linear infinite;
+    animation-delay: calc(var(--card-delay, 0s) + 2s);
+    animation-fill-mode: both;
 }
 
 .hero-card-1 {
     left: 10px;
     top: 210px;
     --card-rot: -6deg;
-    animation-delay: 0s;
+    --card-delay: 0s;
 }
 
 .hero-card-2 {
     right: -10px;
     top: 220px;
     --card-rot: 6deg;
-    animation-delay: 3s;
+    --card-delay: 2.3s;
 }
 
 .hero-card-3 {
@@ -612,7 +616,8 @@ body::after {
     --card-rot: 2deg;
     --card-rise: 28px;
     --card-drift: -8px;
-    animation-delay: 6s;
+    --card-scale: 0.7;
+    --card-delay: 4.6s;
 }
 
 .hud {
@@ -703,7 +708,7 @@ body::after {
 @keyframes card-rise {
     0% {
         opacity: 0;
-        transform: translate(var(--card-drift), 60px) rotate(var(--card-rot));
+        transform: translate(var(--card-drift), 140px) rotate(var(--card-rot)) scale(var(--card-scale, 1));
     }
     10% {
         opacity: 1;
@@ -713,7 +718,7 @@ body::after {
     }
     100% {
         opacity: 0;
-        transform: translate(var(--card-drift), calc(-1 * (var(--card-rise) + 60px))) rotate(var(--card-rot));
+        transform: translate(var(--card-drift), calc(-1 * (var(--card-rise) + 140px))) rotate(var(--card-rot)) scale(var(--card-scale, 1));
     }
 }
 
@@ -932,6 +937,58 @@ section {
     z-index: 2;
 }
 
+.visual-stack .split-card {
+    position: absolute;
+    width: clamp(140px, 22vw, 220px);
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.95;
+    filter: drop-shadow(0 18px 36px rgba(6, 10, 20, 0.5)) drop-shadow(0 0 22px rgba(68, 210, 255, 0.3));
+    animation: float 7s ease-in-out infinite;
+}
+
+.visual-left .split-card-1 {
+    left: -50px;
+    top: 70px;
+    transform: rotate(-6deg);
+}
+
+.visual-right .split-card-2 {
+    right: -40px;
+    top: 50px;
+    transform: rotate(6deg);
+}
+
+.visual-right .split-card-3 {
+    right: -10px;
+    bottom: 30px;
+    transform: rotate(2deg) scale(0.85);
+    opacity: 0.9;
+    animation-delay: 1.2s;
+}
+
+.visual-left .visual-stack.swap-sides .split-card-1 {
+    right: -40px;
+    left: auto;
+    top: 50px;
+    transform: rotate(6deg);
+}
+
+.visual-right .visual-stack.swap-sides .split-card-2 {
+    left: -40px;
+    right: auto;
+    top: 50px;
+    transform: rotate(-6deg);
+}
+
+.visual-right .visual-stack.swap-sides .split-card-3 {
+    left: -10px;
+    right: auto;
+    bottom: 30px;
+    transform: rotate(-2deg) scale(0.85);
+}
+
 .visual-left .visual-stack .mascot-primary {
     right: -40px;
     top: -10px;
@@ -940,6 +997,20 @@ section {
 .visual-right .visual-stack .mascot-primary {
     left: -40px;
     bottom: -10px;
+}
+
+.visual-left .visual-stack.swap-sides .mascot-primary {
+    left: -40px;
+    right: auto;
+    bottom: -10px;
+    top: auto;
+}
+
+.visual-right .visual-stack.swap-sides .mascot-primary {
+    right: -40px;
+    left: auto;
+    top: -10px;
+    bottom: auto;
 }
 
 .orbit-left {
@@ -1151,6 +1222,17 @@ section {
         height: 260px;
     }
 
+    .visual-left,
+    .visual-right {
+        justify-content: center;
+    }
+
+    .visual-left .iphone-3d-wrap,
+    .visual-right .iphone-3d-wrap {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     .device-stage {
         min-height: calc(var(--phone-height) + 160px);
         width: 100%;
@@ -1173,22 +1255,25 @@ section {
     }
 
     .hero-card {
-        width: 180px;
+        width: 150px;
     }
 
     .hero-card-1 {
-        left: -10px;
-        top: 70px;
+        left: calc(50% - 175px);
+        right: auto;
+        top: 150px;
     }
 
     .hero-card-2 {
-        right: -40px;
-        top: 140px;
+        left: calc(50% + 25px);
+        right: auto;
+        top: 260px;
     }
 
     .hero-card-3 {
-        right: 10px;
-        bottom: 80px;
+        left: calc(50% + 60px);
+        right: auto;
+        top: 70px;
         display: block;
     }
 
@@ -1204,6 +1289,7 @@ section {
     .visual-stack {
         width: 260px;
         height: 320px;
+        margin: 0 auto;
     }
 
     .phone-visual {
@@ -1223,6 +1309,57 @@ section {
     .visual-right .visual-stack .mascot-primary {
         left: -20px;
         bottom: -10px;
+    }
+
+    .visual-left .visual-stack.swap-sides .mascot-primary {
+        left: -20px;
+        right: auto;
+        bottom: -10px;
+        top: auto;
+    }
+
+    .visual-right .visual-stack.swap-sides .mascot-primary {
+        right: -20px;
+        left: auto;
+        top: -10px;
+        bottom: auto;
+    }
+
+    .visual-left .split-card-1 {
+        left: -20px;
+        top: 50px;
+    }
+
+    .visual-right .split-card-2 {
+        right: -20px;
+        top: 40px;
+    }
+
+    .visual-right .split-card-3 {
+        right: -6px;
+        bottom: 16px;
+        transform: rotate(2deg) scale(0.8);
+    }
+
+    .visual-left .visual-stack.swap-sides .split-card-1 {
+        right: -20px;
+        left: auto;
+        top: 40px;
+        transform: rotate(6deg);
+    }
+
+    .visual-right .visual-stack.swap-sides .split-card-2 {
+        left: -20px;
+        right: auto;
+        top: 40px;
+        transform: rotate(-6deg);
+    }
+
+    .visual-right .visual-stack.swap-sides .split-card-3 {
+        left: -6px;
+        right: auto;
+        bottom: 16px;
+        transform: rotate(-2deg) scale(0.8);
     }
 
     .mascot-primary {
