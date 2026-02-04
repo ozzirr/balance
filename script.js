@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initCarousel('wallet-carousel', { duration: 3000 });
     initCarousel('charts-carousel', { duration: 3500 });
 
-    // Initialize Modal
-    initModal();
+    // Feature Detail Switcher
+    initFeatureDetail();
 
     // Initialize Contact Form
     initContactForm();
@@ -131,6 +131,150 @@ function initCarousel(containerId, options = {}) {
 
     carouselObserver.observe(container);
     startInterval();
+}
+
+function initFeatureDetail() {
+    const detail = document.getElementById('feature-detail');
+    const cards = Array.from(document.querySelectorAll('.feature-card[data-feature]'));
+    if (!detail || cards.length === 0) return;
+
+    const detailIcon = detail.querySelector('.feature-detail-icon i');
+    const detailTitle = detail.querySelector('.feature-detail-title');
+    const detailText = detail.querySelector('.feature-detail-text');
+    const detailList = detail.querySelector('.feature-detail-list');
+    const desktopQuery = window.matchMedia('(min-width: 901px)');
+    let activeKey = null;
+    let observer = null;
+
+    const detailMap = {
+        snapshot: {
+            icon: 'fa-camera',
+            title: 'Snapshot patrimoniali',
+            text: 'Salvi il patrimonio in pochi secondi e lo rivedi nel tempo, con una vista pulita e leggibile.',
+            bullets: [
+                'Snapshot manuali, zero sincronizzazioni esterne.',
+                'Storico con trend chiari e confronti rapidi.',
+                'Evoluzione del patrimonio senza rumore.'
+            ]
+        },
+        wallet: {
+            icon: 'fa-wallet',
+            title: 'Wallet per tipologia',
+            text: 'Separi liquidità, investimenti e contanti in wallet chiari, ognuno con la propria logica.',
+            bullets: [
+                'Colori e label personalizzati per ogni wallet.',
+                'Totali aggregati per categoria e tipologia.',
+                'Struttura coerente con la tua realtà.'
+            ]
+        },
+        dashboard: {
+            icon: 'fa-chart-line',
+            title: 'Dashboard sintetica',
+            text: 'Una vista unica, pulita e immediata per capire come sta andando il tuo patrimonio.',
+            bullets: [
+                'Netto, liquidità e investimenti in un colpo d\'occhio.',
+                'Trend essenziali senza sovraccarico visivo.',
+                'Indicatori chiave sempre accessibili.'
+            ]
+        },
+        privacy: {
+            icon: 'fa-shield-halved',
+            title: 'Privacy e controllo',
+            text: 'Dati locali, nessun collegamento bancario e zero tracciamenti. Sempre.',
+            bullets: [
+                'Nessun login o account obbligatorio.',
+                'Zero server esterni o sync automatici.',
+                'Controllo totale dei tuoi dati.'
+            ]
+        },
+        speed: {
+            icon: 'fa-bolt',
+            title: 'Esperienza veloce',
+            text: 'Aggiorni i dati in pochi tocchi e passi subito all\'azione successiva.',
+            bullets: [
+                'Flow essenziale senza passaggi inutili.',
+                'Interazioni rapide pensate per il mobile.',
+                'UI pulita e immediata.'
+            ]
+        }
+    };
+
+    const setActiveCard = (card) => {
+        const key = card.dataset.feature;
+        const info = detailMap[key];
+        if (!info) return;
+        if (key === activeKey) return;
+        activeKey = key;
+
+        cards.forEach(item => {
+            const isActive = item === card;
+            item.classList.toggle('is-active', isActive);
+            item.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+
+        detail.dataset.feature = key;
+        if (detailIcon) detailIcon.className = `fa-solid ${info.icon}`;
+        if (detailTitle) detailTitle.textContent = info.title;
+        if (detailText) detailText.textContent = info.text;
+
+        if (detailList) {
+            detailList.innerHTML = '';
+            info.bullets.forEach((bullet, index) => {
+                const li = document.createElement('li');
+                li.textContent = bullet;
+                li.style.setProperty('--i', index);
+                detailList.appendChild(li);
+            });
+        }
+
+        detail.classList.remove('is-animating');
+        void detail.offsetWidth;
+        detail.classList.add('is-animating');
+    };
+
+    const setupScrollSync = () => {
+        if (!desktopQuery.matches) return;
+        if (observer) observer.disconnect();
+
+        observer = new IntersectionObserver((entries) => {
+            const intersecting = entries.filter(entry => entry.isIntersecting);
+            if (intersecting.length === 0) return;
+
+            const centerY = window.innerHeight / 2;
+            intersecting.sort((a, b) => {
+                const aCenter = a.boundingClientRect.top + (a.boundingClientRect.height / 2);
+                const bCenter = b.boundingClientRect.top + (b.boundingClientRect.height / 2);
+                return Math.abs(aCenter - centerY) - Math.abs(bCenter - centerY);
+            });
+
+            setActiveCard(intersecting[0].target);
+        }, {
+            root: null,
+            rootMargin: '-45% 0px -45% 0px',
+            threshold: 0
+        });
+
+        cards.forEach(card => observer.observe(card));
+    };
+
+    const teardownScrollSync = () => {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+    };
+
+    const initialCard = cards.find(card => card.classList.contains('is-active')) || cards[0];
+    if (initialCard) setActiveCard(initialCard);
+
+    setupScrollSync();
+    desktopQuery.addEventListener('change', () => {
+        if (desktopQuery.matches) {
+            setupScrollSync();
+        } else {
+            teardownScrollSync();
+        }
+    });
 }
 
 async function fetchContributors() {
@@ -201,38 +345,6 @@ function renderLeaderboard(contributors) {
             <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8rem; opacity: 0.5;"></i>
         `;
         listContainer.appendChild(row);
-    });
-}
-
-// Modal Logic
-function initModal() {
-    const modal = document.getElementById('download-modal');
-    const openBtns = document.querySelectorAll('.open-modal');
-    const closeBtn = document.getElementById('modal-close');
-
-    if (!modal || !openBtns.length) return;
-
-    const overlay = modal.querySelector('.modal-overlay');
-
-    const openModal = () => {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scroll
-    };
-
-    const closeModal = () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = ''; // Restore scroll
-    };
-
-    openBtns.forEach(btn => btn.addEventListener('click', openModal));
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (overlay) overlay.addEventListener('click', closeModal);
-
-    // Close on Escape key
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
-        }
     });
 }
 

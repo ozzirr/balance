@@ -32,7 +32,7 @@
                 <a href="#features">Funzionalità</a>
                 <a href="#pricing">Piani</a>
                 <a href="roadmap.html">Roadmap</a>
-                <a href="#download" class="btn btn-sm btn-white open-modal">Download</a>
+                <a href="#download" class="btn btn-sm btn-white">Download</a>
             </div>
             <button class="mobile-menu-btn" aria-label="Menu">
                 <i class="fa-solid fa-bars"></i>
@@ -41,7 +41,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero scene" id="overview">
+    <section class="hero scene" id="hero">
         <div class="container hero-container">
             <div class="hero-content reveal">
                 <h1 class="hero-title">Il controllo delle tue finanze, finalmente.</h1>
@@ -51,8 +51,8 @@
                     Nessun tracciamento.</p>
 
                 <div class="hero-buttons">
-                    <a href="#download" class="btn btn-primary open-modal"><i class="fa-brands fa-apple"></i> App Store</a>
-                    <a href="#download" class="btn btn-secondary open-modal"><i class="fa-brands fa-google-play"></i> Google Play</a>
+                    <a href="#download" class="btn btn-primary"><i class="fa-brands fa-apple"></i> App Store</a>
+                    <a href="#download" class="btn btn-secondary"><i class="fa-brands fa-google-play"></i> Google Play</a>
                 </div>
             </div>
 
@@ -101,14 +101,14 @@
     </section>
 
     <!-- Context / Problem -->
-    <section id="problem" class="section-split scene">
+    <section id="overview" class="section-split scene">
         <div class="container split-container split-reverse">
             <div class="split-content">
                 <div class="hero-badge">
                     <i class="fa-solid fa-shield-halved"></i>
                     Privacy-first · Offline · Open source
                 </div>
-                <h2 class="section-title">Conti, broker, crypto · tutto separato</h2>
+                <h2 class="section-title">Banche, Conti, Broker, Crypto sono in posti diversi</h2>
                 <p class="section-text">
                     Nella pratica il patrimonio è distribuito. Conto principale, risparmi, investimenti, crypto e
                     contanti vivono in luoghi diversi.
@@ -157,7 +157,7 @@
     <section class="section-split scene">
         <div class="container split-container">
             <div class="split-content">
-                <h2 class="section-title">Snapshot e trend · per capire l’evoluzione</h2>
+                <h2 class="section-title">Conoscere le proprie finanze è importante</h2>
                 <p class="section-text">
                     Balance privilegia la leggibilità. Grafici essenziali, numeri chiave e confronti diretti tra
                     periodi.
@@ -207,39 +207,55 @@
     <section id="features" class="section-grid scene">
         <div class="container">
             <h2 class="section-title center-text reveal">Funzionalità</h2>
-            <div class="features-grid">
-                <div class="glass-card feature-card reveal">
-                    <div class="icon-box"><i class="fa-solid fa-camera"></i></div>
-                    <h3>Snapshot patrimoniali</h3>
-                    <p>Registra il patrimonio in un momento specifico. Confronta lo storico e osserva la variazione nel
-                        tempo.</p>
+            <div class="features-layout">
+                <div class="features-grid">
+                    <div class="glass-card feature-card reveal is-active" data-feature="snapshot">
+                        <div class="icon-box"><i class="fa-solid fa-camera"></i></div>
+                        <h3>Snapshot patrimoniali</h3>
+                        <p>Registra il patrimonio in un momento specifico. Confronta lo storico e osserva la variazione nel
+                            tempo.</p>
+                    </div>
+
+                    <div class="glass-card feature-card reveal delayed-1" data-feature="wallet">
+                        <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
+                        <h3>Wallet per tipologia</h3>
+                        <p>Separi liquidità e investimenti. Ogni wallet può avere colore e struttura coerente con la tua
+                            realtà.</p>
+                    </div>
+
+                    <div class="glass-card feature-card reveal delayed-2" data-feature="dashboard">
+                        <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3>Dashboard sintetica</h3>
+                        <p>Patrimonio netto, liquidità e investimenti in una vista unica. Distribuzioni e trend, senza
+                            overload.</p>
+                    </div>
+
+                    <div class="glass-card feature-card reveal" data-feature="privacy">
+                        <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3>Privacy e controllo</h3>
+                        <p>Non richiede login. Non invia dati. Funziona senza server esterni.</p>
+                    </div>
+
+                    <div class="glass-card feature-card reveal delayed-1" data-feature="speed">
+                        <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                        <h3>Esperienza veloce</h3>
+                        <p>Azioni ridotte e UI pulita. Aggiorni i valori in pochi secondi e prosegui.</p>
+                    </div>
                 </div>
 
-                <div class="glass-card feature-card reveal delayed-1">
-                    <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
-                    <h3>Wallet per tipologia</h3>
-                    <p>Separi liquidità e investimenti. Ogni wallet può avere colore e struttura coerente con la tua
-                        realtà.</p>
-                </div>
-
-                <div class="glass-card feature-card reveal delayed-2">
-                    <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3>Dashboard sintetica</h3>
-                    <p>Patrimonio netto, liquidità e investimenti in una vista unica. Distribuzioni e trend, senza
-                        overload.</p>
-                </div>
-
-                <div class="glass-card feature-card reveal">
-                    <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3>Privacy e controllo</h3>
-                    <p>Non richiede login. Non invia dati. Funziona senza server esterni.</p>
-                </div>
-
-                <div class="glass-card feature-card reveal delayed-1">
-                    <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>Esperienza veloce</h3>
-                    <p>Azioni ridotte e UI pulita. Aggiorni i valori in pochi secondi e prosegui.</p>
-                </div>
+                <aside class="glass-card feature-detail reveal" id="feature-detail" data-feature="snapshot" aria-live="polite">
+                    <div class="feature-detail-inner">
+                        <span class="feature-detail-eyebrow">Dettaglio</span>
+                        <div class="icon-box feature-detail-icon"><i class="fa-solid fa-camera"></i></div>
+                        <h3 class="feature-detail-title">Snapshot patrimoniali</h3>
+                        <p class="feature-detail-text">Salvi il patrimonio in pochi secondi e lo rivedi nel tempo, con una vista pulita e leggibile.</p>
+                        <ul class="feature-detail-list">
+                            <li style="--i: 0;">Snapshot manuali, zero sincronizzazioni esterne.</li>
+                            <li style="--i: 1;">Storico con trend chiari e confronti rapidi.</li>
+                            <li style="--i: 2;">Evoluzione del patrimonio senza rumore.</li>
+                        </ul>
+                    </div>
+                </aside>
             </div>
         </div>
     </section>
@@ -259,7 +275,7 @@
                             <li>Dashboard completa</li>
                             <li>Snapshot essenziali</li>
                         </ul>
-                        <button class="btn btn-secondary full-width open-modal">Download</button>
+                        <a href="#download" class="btn btn-secondary full-width">Download</a>
                     </div>
                     <div class="glass-card pricing-card pro">
                         <div class="badge">Presto dispobile</div>
@@ -301,8 +317,8 @@
             <h2 class="section-title">Download</h2>
             <p class="mb-40">Disponibile su iOS e Android.</p>
             <div class="hero-buttons center-content mb-40">
-                <a href="#download" class="btn btn-primary open-modal"><i class="fa-brands fa-apple"></i> App Store</a>
-                <a href="#download" class="btn btn-secondary open-modal"><i class="fa-brands fa-google-play"></i> Google Play</a>
+                <a href="#download" class="btn btn-primary"><i class="fa-brands fa-apple"></i> App Store</a>
+                <a href="#download" class="btn btn-secondary"><i class="fa-brands fa-google-play"></i> Google Play</a>
             </div>
         </div>
     </section>
@@ -321,21 +337,6 @@
 
     <script src="script.js"></script>
 
-    <!-- Download Modal -->
-    <div id="download-modal" class="modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-container">
-            <div class="glass-card modal-content reveal active">
-                <button class="modal-close" id="modal-close">&times;</button>
-                <h2 class="section-title center-text">Scarica Balance</h2>
-                <p class="center-text mb-32">Scegli la piattaforma.</p>
-                <div class="hero-buttons center-content">
-                    <a href="#download" class="btn btn-primary open-modal"><i class="fa-brands fa-apple"></i> App Store</a>
-                    <a href="#download" class="btn btn-secondary open-modal"><i class="fa-brands fa-google-play"></i> Google Play</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
