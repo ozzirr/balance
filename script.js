@@ -297,10 +297,22 @@ function initFeatureDetail() {
         });
     };
 
-    const setupMobileFlip = () => {
+    const scrollCardToActivation = (card) => {
+        const activationY = window.innerHeight * ACTIVATION_RATIO;
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.top + (rect.height / 2);
+        const targetScroll = window.scrollY + (cardCenter - activationY);
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    };
+
+    const setupCardInteraction = () => {
         cards.forEach(card => {
             card.addEventListener('click', () => {
-                if (desktopQuery.matches) return;
+                if (desktopQuery.matches) {
+                    setActiveCard(card);
+                    scrollCardToActivation(card);
+                    return;
+                }
                 const willFlip = !card.classList.contains('is-flipped');
                 cards.forEach(item => item.classList.remove('is-flipped'));
                 if (willFlip) {
@@ -365,7 +377,7 @@ function initFeatureDetail() {
     if (initialCard) setActiveCard(initialCard, false);
 
     buildCardBacks();
-    setupMobileFlip();
+    setupCardInteraction();
     setupScrollSync();
     desktopQuery.addEventListener('change', () => {
         if (desktopQuery.matches) {
