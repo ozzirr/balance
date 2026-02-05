@@ -1523,6 +1523,8 @@ section {
     padding: 0;
     perspective: 1200px;
     cursor: default;
+    opacity: 1;
+    transition: opacity 220ms ease-out, transform 220ms ease-out, box-shadow 260ms ease-out, border-color 220ms ease-out;
 }
 
 .feature-card-inner {
@@ -1585,8 +1587,9 @@ section {
 .feature-card.is-active {
     border-color: rgba(150, 210, 255, 0.45);
     box-shadow: var(--shadow-strong), 0 0 80px rgba(139, 92, 255, 0.28);
-    transform: translateY(-8px);
-    animation: feature-pop 0.6s var(--transition-smooth);
+    transform: scale(1.02);
+    opacity: 1;
+    animation: feature-pop 0.45s ease-out;
 }
 
 .feature-card.is-active .icon-box {
@@ -1621,8 +1624,13 @@ section {
 .feature-detail {
     position: sticky;
     top: calc(var(--header-height) + 24px);
-    padding: 36px;
+    padding: 48px;
     overflow: hidden;
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    border-color: rgba(120, 180, 255, 0.22);
+    box-shadow: var(--shadow-strong), 0 0 70px rgba(68, 210, 255, 0.22);
 }
 
 .feature-detail::after {
@@ -1642,19 +1650,70 @@ section {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+    width: 100%;
 }
 
 .feature-detail-eyebrow {
     font-size: 0.7rem;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
     color: var(--text-secondary);
 }
 
+.feature-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: opacity 260ms ease-out, transform 260ms ease-out;
+    will-change: opacity, transform;
+}
+
 .feature-detail-title {
     font-family: var(--font-display);
-    font-size: 1.6rem;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.feature-detail-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.feature-detail-step {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.feature-detail-rail {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.feature-detail-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(120, 200, 255, 0.3);
+    box-shadow: 0 0 8px rgba(68, 210, 255, 0.2);
+    transition: transform 200ms ease-out, background 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.feature-detail-dot.is-active {
+    background: var(--accent-secondary);
+    transform: scale(1.4);
+    box-shadow: 0 0 12px rgba(68, 210, 255, 0.55);
+}
+
+.feature-detail-divider {
+    height: 1px;
+    width: 100%;
+    background: rgba(120, 200, 255, 0.18);
 }
 
 .feature-detail-text {
@@ -1673,6 +1732,10 @@ section {
     position: relative;
     padding-left: 22px;
     color: var(--text-secondary);
+    transition: opacity 240ms ease-out, transform 240ms ease-out;
+    transition-delay: calc(var(--i) * 0.06s);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .feature-detail-list li::before {
@@ -1687,21 +1750,42 @@ section {
     box-shadow: 0 0 10px rgba(68, 210, 255, 0.55);
 }
 
-.feature-detail.is-animating .feature-detail-inner {
-    animation: detail-pop 0.6s var(--transition-smooth);
+.feature-detail.is-animating .feature-detail-content {
+    opacity: 0;
+    transform: translateY(10px);
 }
 
 .feature-detail.is-animating .feature-detail-list li {
-    animation: detail-stagger 0.45s ease both;
-    animation-delay: calc(var(--i) * 0.08s);
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+@media (min-width: 901px) {
+    .feature-card {
+        opacity: 0.55;
+    }
+
+    .feature-card.is-active {
+        opacity: 1;
+    }
+
+    .feature-card:hover {
+        opacity: 0.75;
+        transform: scale(1.01);
+        box-shadow: var(--shadow-soft), 0 0 50px rgba(68, 210, 255, 0.22);
+    }
+
+    .feature-card:hover.is-active {
+        opacity: 1;
+    }
 }
 
 @keyframes feature-pop {
     0% {
-        transform: translateY(0) scale(0.98);
+        transform: scale(0.98);
     }
     100% {
-        transform: translateY(-8px) scale(1);
+        transform: scale(1.02);
     }
 }
 
@@ -2078,6 +2162,12 @@ footer::before {
     .feature-card.is-flipped {
         transform: scale(1.04);
         max-height: 620px;
+    }
+
+    .feature-card.is-active {
+        transform: none;
+        animation: none;
+        opacity: 1;
     }
 
     .feature-card.is-flipped .feature-back {

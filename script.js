@@ -138,11 +138,18 @@ function initFeatureDetail() {
     const cards = Array.from(document.querySelectorAll('.feature-card[data-feature]'));
     if (!detail || cards.length === 0) return;
 
+    const detailTitle = detail.querySelector('.feature-detail-title');
     const detailText = detail.querySelector('.feature-detail-text');
     const detailList = detail.querySelector('.feature-detail-list');
+    const detailStep = detail.querySelector('.feature-detail-step');
+    const detailRail = detail.querySelector('.feature-detail-rail');
     const desktopQuery = window.matchMedia('(min-width: 901px)');
     let activeKey = null;
     let observer = null;
+    let animTimer = null;
+    const SWAP_DELAY = 140;
+    const HYSTERESIS_PX = 28;
+    const ACTIVATION_RATIO = 0.45;
 
     const detailMap = {
         snapshot: {
@@ -197,7 +204,26 @@ function initFeatureDetail() {
         }
     };
 
-    const setActiveCard = (card) => {
+    const steps = cards.map((card, index) => ({
+        key: card.dataset.feature,
+        index
+    }));
+    const stepMap = new Map(steps.map(step => [step.key, step.index]));
+    const totalSteps = steps.length;
+    const railDots = [];
+
+    if (detailRail) {
+        detailRail.innerHTML = '';
+        steps.forEach((step, index) => {
+            const dot = document.createElement('span');
+            dot.className = 'feature-detail-dot';
+            dot.dataset.index = index;
+            detailRail.appendChild(dot);
+            railDots.push(dot);
+        });
+    }
+
+    const setActiveCard = (card, animate = true) => {
         if (!desktopQuery.matches) return;
         const key = card.dataset.feature;
         const info = detailMap[key];
@@ -211,23 +237,48 @@ function initFeatureDetail() {
             item.setAttribute('aria-current', isActive ? 'true' : 'false');
         });
 
-        detail.dataset.feature = key;
-        if (detailText) detailText.textContent = info.text;
+        const updateContent = () => {
+            detail.dataset.feature = key;
+            if (detailTitle) detailTitle.textContent = info.title;
+            if (detailText) detailText.textContent = info.text;
 
-        if (detailList) {
-            detailList.innerHTML = '';
-            info.bullets.forEach((bullet, index) => {
-                const li = document.createElement('li');
-                li.textContent = bullet;
-                li.style.setProperty('--i', index);
-                detailList.appendChild(li);
-            });
+            if (detailList) {
+                detailList.innerHTML = '';
+                info.bullets.forEach((bullet, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = bullet;
+                    li.style.setProperty('--i', index);
+                    detailList.appendChild(li);
+                });
+            }
+
+            const stepIndex = (stepMap.get(key) ?? 0) + 1;
+            if (detailStep) {
+                const current = String(stepIndex).padStart(2, '0');
+                const total = String(totalSteps).padStart(2, '0');
+                detailStep.textContent = `${current} / ${total}`;
+            }
+
+            if (railDots.length > 0) {
+                railDots.forEach((dot, index) => {
+                    dot.classList.toggle('is-active', index === stepIndex - 1);
+                });
+            }
+        };
+
+        if (!animate) {
+            updateContent();
+            detail.classList.remove('is-animating');
+            return;
         }
 
-        detail.classList.remove('is-animating');
-        requestAnimationFrame(() => {
-            detail.classList.add('is-animating');
-        });
+        detail.classList.add('is-animating');
+        if (animTimer) window.clearTimeout(animTimer);
+
+        animTimer = window.setTimeout(() => {
+            updateContent();
+            detail.classList.remove('is-animating');
+        }, SWAP_DELAY);
     };
 
     const buildCardBacks = () => {
@@ -267,17 +318,36 @@ function initFeatureDetail() {
             const intersecting = entries.filter(entry => entry.isIntersecting);
             if (intersecting.length === 0) return;
 
-            const centerY = window.innerHeight / 2;
-            intersecting.sort((a, b) => {
-                const aCenter = a.boundingClientRect.top + (a.boundingClientRect.height / 2);
-                const bCenter = b.boundingClientRect.top + (b.boundingClientRect.height / 2);
-                return Math.abs(aCenter - centerY) - Math.abs(bCenter - centerY);
-            });
+            const activationY = window.innerHeight * ACTIVATION_RATIO;
+            const getCenterY = (card) => {
+                const rect = card.getBoundingClientRect();
+                return rect.top + (rect.height / 2);
+            };
+            const getDistance = (card) => Math.abs(getCenterY(card) - activationY);
 
-            setActiveCard(intersecting[0].target);
+            const candidate = intersecting
+                .map(entry => entry.target)
+                .sort((a, b) => getDistance(a) - getDistance(b))[0];
+
+            const currentCard = cards.find(card => card.dataset.feature === activeKey);
+            if (!currentCard) {
+                setActiveCard(candidate);
+                return;
+            }
+
+            if (candidate === currentCard) return;
+
+            const candidateDist = getDistance(candidate);
+            const currentDist = getDistance(currentCard);
+            const currentRect = currentCard.getBoundingClientRect();
+            const currentVisible = currentRect.bottom > 0 && currentRect.top < window.innerHeight;
+
+            if (!currentVisible || candidateDist + HYSTERESIS_PX < currentDist) {
+                setActiveCard(candidate);
+            }
         }, {
             root: null,
-            rootMargin: '-45% 0px -45% 0px',
+            rootMargin: '-35% 0px -55% 0px',
             threshold: 0
         });
 
@@ -292,7 +362,7 @@ function initFeatureDetail() {
     };
 
     const initialCard = cards.find(card => card.classList.contains('is-active')) || cards[0];
-    if (initialCard) setActiveCard(initialCard);
+    if (initialCard) setActiveCard(initialCard, false);
 
     buildCardBacks();
     setupMobileFlip();
