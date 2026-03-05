@@ -2235,6 +2235,19 @@ footer::before {
     margin-bottom: 4px;
 }
 
+.trust-icon .fa-stack {
+    font-size: 1.1em;
+}
+
+.trust-icon-stack .fa-wifi {
+    color: var(--accent2);
+}
+
+.trust-ban-icon {
+    color: rgba(139, 92, 255, 0.9);
+    opacity: 0.9;
+}
+
 .trust-label {
     font-size: 0.9rem;
     font-weight: 700;
