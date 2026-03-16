@@ -2329,7 +2329,7 @@ footer::before {
     .hero-visual {
         justify-content: center;
         z-index: 3;
-        margin-top: -96px;
+        margin-top: -72px;
         pointer-events: none;
     }
 
@@ -2337,6 +2337,19 @@ footer::before {
         transform: translateY(-10px);
         margin-left: 0;
         min-height: calc(var(--phone-height) + 80px);
+    }
+
+    .device-stage .iphone-3d-wrap {
+        width: 176px;
+        height: 370px;
+    }
+
+    .hero-card {
+        width: 126px;
+    }
+
+    .hero-base {
+        width: 410px;
     }
 
     .footer-cta {
