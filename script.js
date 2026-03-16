@@ -142,7 +142,7 @@ function initFeatureDetail() {
     const HYSTERESIS_PX = 28;
     const ACTIVATION_RATIO = 0.45;
 
-    const detailMap = {
+    const defaultDetailMap = {
         snapshot: {
             icon: 'fa-camera',
             title: 'Snapshot patrimoniali',
@@ -194,6 +194,7 @@ function initFeatureDetail() {
             ]
         }
     };
+    const detailMap = window.BalanceI18n?.getFeatureDetailMap?.() || defaultDetailMap;
 
     const steps = cards.map((card, index) => ({
         key: card.dataset.feature,
@@ -385,6 +386,11 @@ function initContactForm() {
 
     if (!form) return;
 
+    const contactCopy = window.BalanceI18n?.getContactFormCopy?.() || {
+        submit: 'Invia messaggio',
+        sending: 'Invio in corso...'
+    };
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -399,12 +405,13 @@ function initContactForm() {
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerText;
         submitBtn.disabled = true;
-        submitBtn.innerText = 'Invio in corso...';
+        submitBtn.innerText = contactCopy.sending;
 
         setTimeout(() => {
             form.style.display = 'none';
             successMsg.style.display = 'block';
             console.log('Message sent:', new FormData(form));
+            submitBtn.innerText = originalText || contactCopy.submit;
         }, 1500);
     });
 }

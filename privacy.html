@@ -72,8 +72,8 @@
             </a>
             <div class="nav-links">
                 <a href="index.html#overview">Panoramica</a>
-                <a href="index.html#features">Funzionalità</a>
                 <a href="index.html#pricing">Piani</a>
+                <a href="index.html#features">Funzionalità</a>
                 <a href="roadmap.html">Roadmap</a>
                 <a href="index.html#download" class="btn btn-sm btn-white">Download</a>
             </div>
@@ -204,14 +204,8 @@
         </div>
     </footer>
 
-    <script>
-        // Auto-update date
-        const dateEl = document.querySelector('.last-updated');
-        if (dateEl) {
-            const today = new Date().toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-            dateEl.textContent = dateEl.textContent.replace('[AUTO-TODAY-DATE]', today);
-        }
-    </script>
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

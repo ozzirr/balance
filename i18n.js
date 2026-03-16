@@ -1,0 +1,1890 @@
+(function () {
+    const SUPPORTED_LANGS = ['it', 'en', 'pt'];
+    const DEFAULT_LANG = 'it';
+    const LANG_STORAGE_KEY = 'balance-lang';
+
+    const LANG_META = {
+        it: { locale: 'it-IT', ogLocale: 'it_IT' },
+        en: { locale: 'en-US', ogLocale: 'en_US' },
+        pt: { locale: 'pt-BR', ogLocale: 'pt_BR' }
+    };
+
+    const COPY = {
+        it: {
+            global: {
+                nav: {
+                    overview: 'Panoramica',
+                    pricing: 'Piani',
+                    features: 'Funzionalità',
+                    roadmap: 'Roadmap',
+                    download: 'Download'
+                },
+                footer: {
+                    privacy: 'Privacy Policy',
+                    terms: 'Termini e Condizioni',
+                    contacts: 'Contatti',
+                    copyright: '© Balance App. Tutti i diritti riservati.'
+                },
+                ui: {
+                    menu: 'Menu',
+                    appStore: 'App Store',
+                    googlePlay: 'Google Play',
+                    comingSoon: 'Coming soon'
+                }
+            },
+            home: {
+                meta: {
+                    title: 'Balance · Finanze personali con controllo totale',
+                    description: 'Balance è l’app privacy-first, offline e open source per gestire liquidità, investimenti e patrimonio con controllo totale.',
+                    ogTitle: 'Balance. Finanze personali con controllo totale'
+                },
+                hero: {
+                    badge: 'Privacy-first · Offline · Open source',
+                    title: 'Il controllo delle tue finanze, finalmente.',
+                    subtitle: 'Balance unifica liquidità, investimenti e spese ricorrenti in un’unica vista pulita. Tutto è progettato per essere chiaro, veloce e sotto il tuo controllo.'
+                },
+                trust: [
+                    { labelHtml: '100%<br>offline', sub: 'Funziona senza internet' },
+                    { label: 'Nessun server', sub: 'Dati sul tuo dispositivo' },
+                    { label: 'Open source', sub: 'Codice verificabile' },
+                    { label: 'iOS & Android', sub: 'Disponibile ovunque' }
+                ],
+                context: {
+                    title: 'Le tue banche, broker, crypto sono in posti diversi',
+                    text: 'Nella pratica il patrimonio è distribuito. Conto principale, risparmi, investimenti, crypto e contanti vivono in luoghi diversi. Tenere una visione aggiornata diventa difficile.',
+                    highlight: 'Balance nasce per questo. Una dashboard unica e una struttura a wallet che replica la tua realtà, senza collegamenti automatici e senza compromessi sulla privacy.'
+                },
+                clarity: {
+                    title: 'Conoscere le proprie finanze è importante',
+                    text: 'Balance privilegia la leggibilità. Grafici essenziali, numeri chiave e confronti diretti tra periodi. L’obiettivo è ridurre il rumore, non aggiungerlo.',
+                    highlight: 'Gli snapshot servono a costruire uno storico affidabile. Vedi come cambia il patrimonio nel tempo e cosa ha inciso, senza dipendere da integrazioni esterne.'
+                },
+                pricing: {
+                    title: 'Piani disponibili',
+                    free: {
+                        badge: 'Per iniziare',
+                        description: "La versione gratuita per tenere d'occhio i wallet essenziali.",
+                        list: [
+                            'Fino a 3 wallet per partire subito',
+                            'Dashboard completa del patrimonio',
+                            "Snapshot essenziali per seguire l'andamento"
+                        ],
+                        cta: 'Download'
+                    },
+                    pro: {
+                        badge: 'Offerta lancio',
+                        description: 'Per chi vuole usare Balance come archivio finanziario personale, senza limiti.',
+                        priceHtml: '2,99 €<span class="price-suffix">al mese</span>',
+                        altPrice: "19,99 € l'anno invece di 35,88 €",
+                        note: 'Primo mese gratuito attivando un abbonamento mensile o annuale.',
+                        list: [
+                            'Wallet illimitati',
+                            'Snapshot avanzati per analisi più precise',
+                            "Storico completo per confrontare l'evoluzione nel tempo"
+                        ],
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Scarica e attiva Pro'
+                    }
+                },
+                features: {
+                    title: 'Funzionalità',
+                    detailEyebrow: 'Dettaglio',
+                    cards: {
+                        snapshot: {
+                            title: 'Snapshot patrimoniali',
+                            text: 'Registra il patrimonio in un momento specifico. Confronta lo storico e osserva la variazione nel tempo.'
+                        },
+                        wallet: {
+                            title: 'Wallet per tipologia',
+                            text: 'Separi liquidità e investimenti. Ogni wallet può avere colore e struttura coerente con la tua realtà.'
+                        },
+                        dashboard: {
+                            title: 'Dashboard sintetica',
+                            text: 'Patrimonio netto, liquidità e investimenti in una vista unica. Distribuzioni e trend, senza overload.'
+                        },
+                        privacy: {
+                            title: 'Privacy e controllo',
+                            text: 'Non richiede login. Non invia dati. Funziona senza server esterni.'
+                        },
+                        speed: {
+                            title: 'Esperienza veloce',
+                            text: 'Azioni ridotte e UI pulita. Aggiorni i valori in pochi secondi e prosegui.'
+                        }
+                    },
+                    detailMap: {
+                        snapshot: {
+                            title: 'Snapshot patrimoniali',
+                            text: 'Salvi il patrimonio in pochi secondi e lo rivedi nel tempo, con una vista pulita e leggibile.',
+                            bullets: [
+                                'Snapshot manuali, zero sincronizzazioni esterne.',
+                                'Storico con trend chiari e confronti rapidi.',
+                                'Evoluzione del patrimonio senza rumore.'
+                            ]
+                        },
+                        wallet: {
+                            title: 'Wallet per tipologia',
+                            text: 'Separi liquidità, investimenti e contanti in wallet chiari, ognuno con la propria logica.',
+                            bullets: [
+                                'Colori e label personalizzati per ogni wallet.',
+                                'Totali aggregati per categoria e tipologia.',
+                                'Struttura coerente con la tua realtà.'
+                            ]
+                        },
+                        dashboard: {
+                            title: 'Dashboard sintetica',
+                            text: 'Una vista unica, pulita e immediata per capire come sta andando il tuo patrimonio.',
+                            bullets: [
+                                "Netto, liquidità e investimenti in un colpo d'occhio.",
+                                'Trend essenziali senza sovraccarico visivo.',
+                                'Indicatori chiave sempre accessibili.'
+                            ]
+                        },
+                        privacy: {
+                            title: 'Privacy e controllo',
+                            text: 'Dati locali, nessun collegamento bancario e zero tracciamenti. Sempre.',
+                            bullets: [
+                                'Nessun login o account obbligatorio.',
+                                'Zero server esterni o sync automatici.',
+                                'Controllo totale dei tuoi dati.'
+                            ]
+                        },
+                        speed: {
+                            title: 'Esperienza veloce',
+                            text: "Aggiorni i dati in pochi tocchi e passi subito all'azione successiva.",
+                            bullets: [
+                                'Flow essenziale senza passaggi inutili.',
+                                'Interazioni rapide pensate per il mobile.',
+                                'UI pulita e immediata.'
+                            ]
+                        }
+                    }
+                },
+                faq: {
+                    title: 'Domande frequenti',
+                    items: [
+                        {
+                            q: 'I miei dati sono al sicuro? Chi li vede?',
+                            a: 'Solo tu. Balance è completamente offline: non usa server, non invia dati e non richiede login. Tutto rimane nel tuo dispositivo, protetto da PIN e biometria (Face ID / impronta).'
+                        },
+                        {
+                            q: "Perché non c'è la sincronizzazione bancaria automatica?",
+                            a: 'Per una scelta precisa di privacy. Le integrazioni bancarie richiedono credenziali o token che transitano su server esterni. Balance non vuole nessun punto di vulnerabilità tra te e i tuoi dati finanziari.'
+                        },
+                        {
+                            q: 'Cosa succede se cambio telefono?',
+                            a: "Puoi esportare i tuoi dati in formato JSON e reimportarli sul nuovo dispositivo. La funzione export/import è disponibile nelle impostazioni dell'app."
+                        },
+                        {
+                            q: 'Qual è la differenza tra la versione gratuita e Pro?',
+                            a: "La versione gratuita basta per iniziare: include fino a 3 wallet, dashboard completa e snapshot essenziali. Balance Pro è pensato per chi usa l'app in modo continuativo e vuole uno storico davvero completo: rimuove il limite ai wallet, aggiunge snapshot avanzati e sblocca tutta la cronologia. Costa 2,99 € al mese oppure 19,99 € l'anno."
+                        },
+                        {
+                            q: 'Come funziona la prova gratuita?',
+                            a: 'La promo di lancio include il primo mese gratuito di Balance Pro con attivazione di un abbonamento mensile o annuale. Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato: 2,99 € al mese oppure 19,99 € l’anno.'
+                        },
+                        {
+                            q: 'È disponibile su Android?',
+                            a: 'Balance è disponibile su iOS. La versione Android è in arrivo.'
+                        }
+                    ]
+                },
+                download: {
+                    badge: 'Offerta lancio',
+                    title: 'Download',
+                    copy: 'Scarica e attiva Balance Pro con abbonamento mensile o annuale: il primo mese è gratuito.',
+                    points: ['Privacy-first', 'Offline', 'Open source'],
+                    note: 'Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.'
+                }
+            },
+            balancepro: {
+                meta: {
+                    title: 'Balance Pro · Offerta lancio',
+                    description: "Sblocca Balance Pro con il primo mese gratis, poi 2,99 € al mese oppure 19,99 € l'anno."
+                },
+                heroTitle: 'Balance Pro',
+                heroText: "Sblocca tutte le funzionalità avanzate direttamente nell'app con abbonamento mensile o annuale.",
+                card: {
+                    badge: 'Offerta lancio',
+                    priceHtml: '2,99 €<span class="price-suffix">al mese</span>',
+                    altPrice: "19,99 € l'anno invece di 35,88 €",
+                    note: 'Primo mese gratuito attivando un abbonamento mensile o annuale.',
+                    list: ['Wallet illimitati', 'Snapshot avanzati', 'Storico completo senza limiti'],
+                    microcopy: 'Alla fine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato direttamente in app.',
+                    primaryCtaHtml: '<i class="fa-brands fa-apple"></i> App Store',
+                    secondaryCta: 'Vedi i piani'
+                }
+            },
+            roadmap: {
+                meta: {
+                    title: 'Roadmap · Balance',
+                    description: "Roadmap di Balance: prossime funzionalità per l’app privacy-first, offline e open source.",
+                    ogTitle: 'Roadmap. Balance'
+                },
+                hero: {
+                    title: 'Roadmap di Balance',
+                    subtitle: 'Un progetto in evoluzione. Trasparente, open source e guidato dalla community.',
+                    value: 'Scopri cosa stiamo costruendo e come puoi contribuire.',
+                    repoCtaHtml: '<i class="fa-brands fa-github"></i> Repository GitHub',
+                    featureCtaHtml: '<i class="fa-solid fa-lightbulb"></i> Proponi una feature'
+                },
+                status: {
+                    version: 'Versione Attuale: 1.0',
+                    date: 'Gennaio 2026',
+                    title: 'Stato del Progetto',
+                    text: 'Balance è attualmente in fase di lancio pubblico. La versione 1.0 include le funzionalità core per gestire liquidità e investimenti con un approccio privacy-first.'
+                },
+                timelineTitle: 'Timeline di Sviluppo',
+                timeline: [
+                    {
+                        title: 'Q1 2026 · Lancio Pubblico',
+                        status: 'Completato',
+                        items: [
+                            'Dashboard patrimoniale con grafici essenziali',
+                            'Sistema wallet per liquidità e investimenti',
+                            'Snapshot manuali con storico',
+                            'Archiviazione locale dei dati',
+                            'Versione iOS e Android',
+                            'Repository open source pubblico'
+                        ]
+                    },
+                    {
+                        title: 'Q2 2026 · Miglioramenti UX',
+                        status: 'In Sviluppo',
+                        items: [
+                            'Widget home screen per iOS e Android',
+                            'Grafici interattivi avanzati',
+                            'Export dati in CSV/JSON',
+                            'Temi personalizzabili (dark/light)',
+                            'Notifiche promemoria snapshot',
+                            'Onboarding migliorato'
+                        ]
+                    },
+                    {
+                        title: 'Q3 2026 · Funzionalità Avanzate',
+                        status: 'Pianificato',
+                        items: [
+                            'Backup e sincronizzazione cloud opzionale (E2E encrypted)',
+                            'Obiettivi finanziari personalizzati',
+                            'Categorie personalizzate per wallet',
+                            'Comparazione multi-periodo avanzata',
+                            'Supporto multi-valuta',
+                            'API per integrazioni esterne'
+                        ]
+                    },
+                    {
+                        title: 'Q4 2026 · Espansione Ecosistema',
+                        status: 'Futuro',
+                        items: [
+                            'Versione web app (PWA)',
+                            'Integrazione con portfolio tracker crypto',
+                            'Report automatici mensili/annuali',
+                            'Collaborazione multi-utente (famiglia)',
+                            'Plugin system per estensioni community'
+                        ]
+                    },
+                    {
+                        title: '2027+ · Visione a Lungo Termine',
+                        status: 'Visione',
+                        items: [
+                            'AI insights per analisi patrimoniale',
+                            'Marketplace per template e configurazioni',
+                            'Integrazione con DeFi protocols',
+                            'Community features e social sharing opzionale'
+                        ]
+                    }
+                ],
+                principles: {
+                    title: 'Principi di Sviluppo',
+                    cards: [
+                        {
+                            title: 'Privacy First',
+                            text: 'Ogni feature deve rispettare il principio di privacy locale. Nessun dato sensibile lascia il dispositivo senza consenso esplicito.'
+                        },
+                        {
+                            title: 'Open Source',
+                            text: 'Codice pubblico, roadmap trasparente e decisioni condivise con la community. Ogni contributo è benvenuto.'
+                        },
+                        {
+                            title: 'Semplicità',
+                            text: 'Interfaccia pulita e azioni essenziali. Nessuna feature bloat, solo ciò che serve davvero.'
+                        },
+                        {
+                            title: 'Community Driven',
+                            text: 'Le priorità vengono definite ascoltando feedback, issue e proposte della community.'
+                        }
+                    ]
+                },
+                contribute: {
+                    title: 'Contribuisci al Progetto',
+                    text: 'Balance è un progetto open source. Ci sono molti modi per contribuire, anche senza scrivere codice.',
+                    cards: [
+                        {
+                            title: 'Segnala Bug',
+                            text: 'Hai trovato un problema? Apri una issue su GitHub con dettagli e screenshot.',
+                            cta: 'Segnala Bug'
+                        },
+                        {
+                            title: 'Proponi Feature',
+                            text: "Hai un'idea per migliorare Balance? Condividila con la community.",
+                            cta: 'Proponi Feature'
+                        },
+                        {
+                            title: 'Contribuisci al Codice',
+                            text: 'Sviluppatore? Fai un fork, implementa una feature e apri una pull request.',
+                            cta: 'Guida Contributi'
+                        },
+                        {
+                            title: 'Supporta il Progetto',
+                            text: 'Lascia una stella su GitHub, condividi Balance e aiutaci a crescere.',
+                            ctaHtml: '<i class="fa-brands fa-github"></i> Star su GitHub'
+                        }
+                    ]
+                }
+            },
+            privacy: {
+                meta: {
+                    title: 'Privacy Policy · Balance',
+                    description: 'Informativa Privacy di Balance, app privacy-first, offline e open source per gestire liquidità, investimenti e patrimonio con controllo totale.',
+                    ogTitle: 'Privacy Policy. Balance'
+                },
+                pageTitle: 'Privacy Policy',
+                lastUpdated: 'Ultimo aggiornamento',
+                html: `
+                    <h1>Privacy Policy</h1>
+                    <p class="last-updated">Ultimo aggiornamento: {{date}}</p>
+                    <section>
+                        <h2>La nostra filosofia: Privacy First</h2>
+                        <p><strong>Balance è progettato per proteggere completamente la tua privacy finanziaria.</strong> L'app non raccoglie, non trasmette e non conserva i tuoi dati finanziari sui nostri server.</p>
+                        <p>Quando usi il sito web, possiamo trattare solo i dati che decidi di inviarci volontariamente, ad esempio tramite il modulo contatti.</p>
+                    </section>
+                    <section>
+                        <h2>1. Dati che NON raccogliamo nell'app</h2>
+                        <p>L'app Balance <strong>non raccoglie</strong> alcuna delle seguenti informazioni:</p>
+                        <ul>
+                            <li><strong>Dati finanziari:</strong> conti bancari, saldi, transazioni, investimenti, crypto wallet</li>
+                            <li><strong>Dati di utilizzo:</strong> analytics, statistiche, comportamento nell'app</li>
+                            <li><strong>Dati tecnici:</strong> indirizzo IP, tipo di dispositivo, sistema operativo</li>
+                            <li><strong>Dati di localizzazione:</strong> GPS, posizione geografica</li>
+                            <li><strong>Identificatori:</strong> cookie, advertising ID, device ID</li>
+                        </ul>
+                        <p><strong>Non utilizziamo tracker, analytics o strumenti pubblicitari all'interno dell'app.</strong></p>
+                    </section>
+                    <section>
+                        <h2>2. Dati che raccogliamo solo se ce li invii tu dal sito</h2>
+                        <p>Il sito può raccogliere alcuni dati personali <strong>solo quando li inserisci volontariamente</strong> in un form.</p>
+                        <ul>
+                            <li><strong>Modulo contatti:</strong> nome, email e contenuto del messaggio che scegli di inviarci</li>
+                            <li><strong>Finalità:</strong> rispondere ai messaggi che scegli di inviarci dal sito</li>
+                            <li><strong>Nessuna profilazione:</strong> questi dati non vengono usati per advertising, tracking cross-site o analisi comportamentale</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>3. Come funziona Balance</h2>
+                        <p>Balance è un'applicazione <strong>completamente offline</strong> per quanto riguarda i dati finanziari:</p>
+                        <ul>
+                            <li>Tutti i dati che inserisci nell'app vengono salvati <strong>localmente sul tuo dispositivo</strong></li>
+                            <li>L'app funziona senza connessione internet</li>
+                            <li>Non ci colleghiamo a banche o servizi finanziari esterni</li>
+                            <li>Il sito web e i suoi form sono separati dai dati finanziari presenti nell'app</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>4. Sincronizzazione iCloud (funzionalità opzionale)</h2>
+                        <p>Se e quando attivi la sincronizzazione iCloud (funzionalità opzionale):</p>
+                        <ul>
+                            <li>I tuoi dati vengono sincronizzati tramite <strong>iCloud privato di Apple</strong></li>
+                            <li>I dati sono criptati end-to-end da Apple</li>
+                            <li>Noi non abbiamo accesso ai tuoi dati su iCloud</li>
+                            <li>Puoi disattivare la sincronizzazione in qualsiasi momento</li>
+                        </ul>
+                        <p>Per maggiori informazioni sulla privacy di iCloud, consulta la <a href="https://www.apple.com/legal/privacy/" target="_blank" style="color: var(--accent-color);">Privacy Policy di Apple</a>.</p>
+                    </section>
+                    <section>
+                        <h2>5. Condivisione dei dati</h2>
+                        <p>I dati finanziari dell'app <strong>non vengono condivisi con terze parti</strong> perché restano sul tuo dispositivo.</p>
+                        <p>I dati inviati volontariamente dal sito possono invece essere trattati da fornitori tecnici strettamente necessari al servizio, ad esempio:</p>
+                        <ul>
+                            <li><strong>Provider di invio form o email:</strong> solo se usati per consegnare i messaggi o inviare comunicazioni richieste</li>
+                        </ul>
+                        <p>Non vendiamo né cediamo i tuoi dati a inserzionisti o partner commerciali.</p>
+                    </section>
+                    <section>
+                        <h2>6. Sicurezza</h2>
+                        <p>La sicurezza dei tuoi dati è garantita da:</p>
+                        <ul>
+                            <li><strong>Archiviazione locale:</strong> i dati non lasciano mai il tuo dispositivo</li>
+                            <li><strong>Servizi separati:</strong> le eventuali email del sito vengono archiviate in un database dedicato, separato dai dati dell'app</li>
+                            <li><strong>Crittografia iOS:</strong> i dati beneficiano della crittografia nativa del sistema operativo</li>
+                            <li><strong>Face ID/Touch ID:</strong> puoi proteggere l'accesso all'app con autenticazione biometrica</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>7. I tuoi diritti</h2>
+                        <p>Hai il controllo sia sui dati locali dell'app sia sui dati che ci invii dal sito:</p>
+                        <ul>
+                            <li><strong>Controllo totale:</strong> hai il pieno controllo dei tuoi dati, che risiedono solo sul tuo dispositivo</li>
+                            <li><strong>Cancellazione:</strong> puoi eliminare tutti i dati disinstallando l'app</li>
+                            <li><strong>Portabilità:</strong> puoi esportare i tuoi dati in qualsiasi momento dall'app</li>
+                            <li><strong>Dati del sito:</strong> puoi chiederci la cancellazione dei dati inviati tramite contatti scrivendoci dalla pagina Contatti</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>8. Open Source</h2>
+                        <p>Balance è <strong>completamente open source</strong>. Puoi verificare personalmente che non raccogliamo dati ispezionando il codice sorgente su <a href="https://github.com/ozzirr/balance-app-v1" target="_blank" style="color: var(--accent-color);">GitHub</a>.</p>
+                        <p>La trasparenza è parte fondamentale del nostro impegno per la privacy.</p>
+                    </section>
+                    <section>
+                        <h2>9. Modifiche a questa Privacy Policy</h2>
+                        <p>Eventuali modifiche a questa Privacy Policy saranno pubblicate su questa pagina e comunicate tramite aggiornamento dell'app.</p>
+                        <p>L'uso continuato dell'app dopo le modifiche costituisce accettazione della nuova Privacy Policy.</p>
+                    </section>
+                `
+            },
+            terms: {
+                meta: {
+                    title: 'Termini e Condizioni · Balance',
+                    description: 'Termini e condizioni di Balance, app privacy-first, offline e open source per gestire liquidità, investimenti e patrimonio con controllo totale.',
+                    ogTitle: 'Termini e Condizioni. Balance'
+                },
+                html: `
+                    <h1>Termini e Condizioni</h1>
+                    <p class="last-updated">Ultimo aggiornamento: {{date}}</p>
+                    <section>
+                        <h2>1. Accettazione dei Termini</h2>
+                        <p>Scaricando, installando o utilizzando l'applicazione Balance ("Servizio"), l'utente accetta di essere vincolato dai presenti Termini e Condizioni. Se non si accettano questi termini, si prega di non utilizzare l'app.</p>
+                    </section>
+                    <section>
+                        <h2>2. Descrizione del Servizio</h2>
+                        <p>Balance è un'applicazione di finanza personale che permette agli utenti di monitorare manualmente il proprio patrimonio, registrare spese e visualizzare statistiche. Il servizio è fornito "così com'è" e può essere soggetto a modifiche.</p>
+                    </section>
+                    <section>
+                        <h2>3. Account e Responsabilità dell'Utente</h2>
+                        <p>L'utente è responsabile della riservatezza delle proprie credenziali (se applicabile) e di tutte le attività svolte tramite il proprio dispositivo. L'utente si impegna a fornire informazioni veritiere e ad utilizzare l'app in conformità con le leggi vigenti.</p>
+                    </section>
+                    <section>
+                        <h2>4. Licenza e Utilizzo dell'App</h2>
+                        <p>Concediamo all'utente una licenza limitata, non esclusiva e non trasferibile per utilizzare l'app per scopi personali e non commerciali. È vietato copiare, modificare, distribuire o vendere qualsiasi parte del Servizio senza autorizzazione.</p>
+                    </section>
+                    <section>
+                        <h2>5. Limitazioni di Responsabilità</h2>
+                        <p>Balance non fornisce consulenza finanziaria. Le informazioni fornite dall'app sono a scopo puramente informativo. Non siamo responsabili per eventuali decisioni finanziarie prese dall'utente, né per danni diretti o indiretti derivanti dall'uso o dall'impossibilità di utilizzare l'app.</p>
+                    </section>
+                    <section>
+                        <h2>6. Modifiche al Servizio</h2>
+                        <p>Ci riserviamo il diritto di modificare o interrompere, temporaneamente o permanentemente, il Servizio con o senza preavviso. Non saremo responsabili verso l'utente o terzi per qualsiasi modifica, sospensione o interruzione del Servizio.</p>
+                    </section>
+                    <section>
+                        <h2>7. Interruzioni e Disponibilità</h2>
+                        <p>Non garantiamo che il Servizio sarà sempre disponibile, ininterrotto o privo di errori. Potrebbero verificarsi interruzioni per manutenzione o problemi tecnici.</p>
+                    </section>
+                    <section>
+                        <h2>8. Proprietà Intellettuale</h2>
+                        <p>Tutti i diritti di proprietà intellettuale relativi al Servizio (inclusi design, logo, codice e contenuti) sono di proprietà esclusiva di Balance App.</p>
+                    </section>
+                    <section>
+                        <h2>9. Legge Applicabile e Foro</h2>
+                        <p>I presenti Termini sono governati dalla legge italiana. Per qualsiasi controversia sarà competente il foro esclusivo di [Città/Foro Competente], salvo diverse disposizioni di legge inderogabili a tutela del consumatore.</p>
+                    </section>
+                    <section>
+                        <h2>10. Contatti</h2>
+                        <p>Per domande sui presenti Termini, contattaci a: [Inserire email di contatto].</p>
+                    </section>
+                `
+            },
+            contacts: {
+                meta: {
+                    title: 'Contatti · Balance',
+                    description: "Contatti Balance: scrivici per supporto o feedback sull’app privacy-first, offline e open source.",
+                    ogTitle: 'Contatti. Balance'
+                },
+                title: 'Contattaci',
+                subtitle: 'Hai domande, feedback o una segnalazione da farci? Scrivici direttamente.',
+                form: {
+                    honeypot: 'Non compilare se sei umano',
+                    reason: 'Motivo del contatto',
+                    reasonOptions: ['Domande o Feedback', 'Segnalazione di un bug', 'Proposta nuova funzionalità', 'Altro'],
+                    name: 'Nome',
+                    namePlaceholder: 'Il tuo nome',
+                    email: 'Email',
+                    emailPlaceholder: 'la-tua@email.it',
+                    message: 'Messaggio',
+                    messagePlaceholder: 'Descrivi qui la tua richiesta o segnalazione...',
+                    submit: 'Invia messaggio',
+                    sending: 'Invio in corso...',
+                    disclaimer: 'Il messaggio viene consegnato tramite un servizio di terze parti solo per l’invio. Nessun tracciamento o utilizzo marketing.',
+                    success: 'Grazie! Il tuo messaggio è stato inviato correttamente.'
+                }
+            }
+        },
+        en: {
+            global: {
+                nav: {
+                    overview: 'Overview',
+                    pricing: 'Plans',
+                    features: 'Features',
+                    roadmap: 'Roadmap',
+                    download: 'Download'
+                },
+                footer: {
+                    privacy: 'Privacy Policy',
+                    terms: 'Terms and Conditions',
+                    contacts: 'Contact',
+                    copyright: '© Balance App. All rights reserved.'
+                },
+                ui: {
+                    menu: 'Menu',
+                    appStore: 'App Store',
+                    googlePlay: 'Google Play',
+                    comingSoon: 'Coming soon'
+                }
+            },
+            home: {
+                meta: {
+                    title: 'Balance · Personal finance with full control',
+                    description: 'Balance is the privacy-first, offline and open source app to manage cash, investments and net worth with full control.',
+                    ogTitle: 'Balance. Personal finance with full control'
+                },
+                hero: {
+                    badge: 'Privacy-first · Offline · Open source',
+                    title: 'Your finances under control, at last.',
+                    subtitle: 'Balance brings together cash, investments and recurring expenses in one clean view. Everything is designed to stay clear, fast and fully under your control.'
+                },
+                trust: [
+                    { labelHtml: '100%<br>offline', sub: 'Works without internet' },
+                    { label: 'No servers', sub: 'Data stays on your device' },
+                    { label: 'Open source', sub: 'Code you can verify' },
+                    { label: 'iOS & Android', sub: 'Available everywhere' }
+                ],
+                context: {
+                    title: 'Your banks, brokers and crypto are in different places',
+                    text: 'In reality, your wealth is spread out. Main account, savings, investments, crypto and cash all live in different places. Keeping an up-to-date view becomes difficult.',
+                    highlight: 'Balance is built for exactly this. One dashboard and a wallet structure that mirrors your reality, without automatic connections and without privacy compromises.'
+                },
+                clarity: {
+                    title: 'Understanding your finances matters',
+                    text: 'Balance prioritizes readability. Essential charts, key numbers and direct comparisons across periods. The goal is to reduce noise, not add more.',
+                    highlight: 'Snapshots help you build a reliable history. See how your net worth changes over time and what actually moved it, without relying on external integrations.'
+                },
+                pricing: {
+                    title: 'Available plans',
+                    free: {
+                        badge: 'To get started',
+                        description: 'The free version to keep an eye on your essential wallets.',
+                        list: [
+                            'Up to 3 wallets to get started quickly',
+                            'Complete net worth dashboard',
+                            'Essential snapshots to track performance'
+                        ],
+                        cta: 'Download'
+                    },
+                    pro: {
+                        badge: 'Launch offer',
+                        description: 'For anyone who wants to use Balance as a personal financial archive, without limits.',
+                        priceHtml: '2.99 €<span class="price-suffix">/ month</span>',
+                        altPrice: '19.99 € / year instead of 35.88 €',
+                        note: 'First month free when you start a monthly or yearly subscription.',
+                        list: [
+                            'Unlimited wallets',
+                            'Advanced snapshots for deeper analysis',
+                            'Complete history to compare your evolution over time'
+                        ],
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download and unlock Pro'
+                    }
+                },
+                features: {
+                    title: 'Features',
+                    detailEyebrow: 'Detail',
+                    cards: {
+                        snapshot: {
+                            title: 'Net worth snapshots',
+                            text: 'Record your net worth at a specific moment. Compare history and track changes over time.'
+                        },
+                        wallet: {
+                            title: 'Wallet categories',
+                            text: 'Separate cash and investments. Each wallet can have its own color and structure to match your setup.'
+                        },
+                        dashboard: {
+                            title: 'Clear dashboard',
+                            text: 'Net worth, cash and investments in one view. Distributions and trends, without overload.'
+                        },
+                        privacy: {
+                            title: 'Privacy and control',
+                            text: 'No login required. No data sent. Works without external servers.'
+                        },
+                        speed: {
+                            title: 'Fast experience',
+                            text: 'Fewer actions, cleaner UI. Update values in seconds and move on.'
+                        }
+                    },
+                    detailMap: {
+                        snapshot: {
+                            title: 'Net worth snapshots',
+                            text: 'Save your net worth in seconds and revisit it over time through a clean, readable view.',
+                            bullets: [
+                                'Manual snapshots, zero external sync.',
+                                'Clear history with quick comparisons.',
+                                'Net worth evolution without noise.'
+                            ]
+                        },
+                        wallet: {
+                            title: 'Wallet categories',
+                            text: 'Separate cash, investments and cash on hand into clear wallets, each with its own logic.',
+                            bullets: [
+                                'Custom colors and labels for every wallet.',
+                                'Aggregated totals by category and type.',
+                                'A structure that fits your real setup.'
+                            ]
+                        },
+                        dashboard: {
+                            title: 'Clear dashboard',
+                            text: 'One clean, immediate view to understand how your finances are doing.',
+                            bullets: [
+                                'Net worth, cash and investments at a glance.',
+                                'Essential trends without visual overload.',
+                                'Key indicators always accessible.'
+                            ]
+                        },
+                        privacy: {
+                            title: 'Privacy and control',
+                            text: 'Local data, no bank connections and zero tracking. Always.',
+                            bullets: [
+                                'No login or account required.',
+                                'No external servers or automatic sync.',
+                                'Full control over your data.'
+                            ]
+                        },
+                        speed: {
+                            title: 'Fast experience',
+                            text: 'Update your data in just a few taps and move straight to the next action.',
+                            bullets: [
+                                'Lean flows with no wasted steps.',
+                                'Fast interactions designed for mobile.',
+                                'A clean and immediate UI.'
+                            ]
+                        }
+                    }
+                },
+                faq: {
+                    title: 'Frequently asked questions',
+                    items: [
+                        {
+                            q: 'Are my data safe? Who can see them?',
+                            a: 'Only you. Balance is fully offline: it uses no servers, sends no data and requires no login. Everything stays on your device, protected by PIN and biometrics (Face ID / fingerprint).'
+                        },
+                        {
+                            q: "Why isn't there automatic bank sync?",
+                            a: 'Because of a deliberate privacy choice. Bank integrations require credentials or tokens to pass through external servers. Balance avoids any vulnerability point between you and your financial data.'
+                        },
+                        {
+                            q: 'What happens if I change phone?',
+                            a: "You can export your data in JSON format and import them again on the new device. Export/import is available in the app settings."
+                        },
+                        {
+                            q: 'What is the difference between the free version and Pro?',
+                            a: 'The free version is enough to get started: it includes up to 3 wallets, the full dashboard and essential snapshots. Balance Pro is built for people who use the app continuously and want a truly complete history: it removes the wallet limit, adds advanced snapshots and unlocks full history. It costs 2.99 € per month or 19.99 € per year.'
+                        },
+                        {
+                            q: 'How does the free trial work?',
+                            a: 'The launch offer includes the first month of Balance Pro for free when you start a monthly or yearly subscription. At the end of the trial, unless cancelled, renewal follows the selected plan: 2.99 € per month or 19.99 € per year.'
+                        },
+                        {
+                            q: 'Is it available on Android?',
+                            a: 'Balance is available on iOS. The Android version is on the way.'
+                        }
+                    ]
+                },
+                download: {
+                    badge: 'Launch offer',
+                    title: 'Download',
+                    copy: 'Download Balance and unlock Pro with a monthly or yearly subscription: the first month is free.',
+                    points: ['Privacy-first', 'Offline', 'Open source'],
+                    note: 'At the end of the free trial, unless cancelled, renewal follows the selected plan.'
+                }
+            },
+            balancepro: {
+                meta: {
+                    title: 'Balance Pro · Launch offer',
+                    description: 'Unlock Balance Pro with the first month free, then 2.99 € per month or 19.99 € per year.'
+                },
+                heroTitle: 'Balance Pro',
+                heroText: 'Unlock all advanced features directly in the app with a monthly or yearly subscription.',
+                card: {
+                    badge: 'Launch offer',
+                    priceHtml: '2.99 €<span class="price-suffix">/ month</span>',
+                    altPrice: '19.99 € / year instead of 35.88 €',
+                    note: 'First month free when you start a monthly or yearly subscription.',
+                    list: ['Unlimited wallets', 'Advanced snapshots', 'Full history with no limits'],
+                    microcopy: 'At the end of the free trial, unless cancelled, renewal follows the selected plan directly in the app.',
+                    primaryCtaHtml: '<i class="fa-brands fa-apple"></i> App Store',
+                    secondaryCta: 'See plans'
+                }
+            },
+            roadmap: {
+                meta: {
+                    title: 'Roadmap · Balance',
+                    description: 'Balance roadmap: upcoming features for the privacy-first, offline and open source app.',
+                    ogTitle: 'Roadmap. Balance'
+                },
+                hero: {
+                    title: 'Balance roadmap',
+                    subtitle: 'A project in motion. Transparent, open source and community-driven.',
+                    value: "See what we're building and how you can contribute.",
+                    repoCtaHtml: '<i class="fa-brands fa-github"></i> GitHub repository',
+                    featureCtaHtml: '<i class="fa-solid fa-lightbulb"></i> Suggest a feature'
+                },
+                status: {
+                    version: 'Current version: 1.0',
+                    date: 'January 2026',
+                    title: 'Project status',
+                    text: 'Balance is currently in public launch. Version 1.0 includes the core features to manage cash and investments with a privacy-first approach.'
+                },
+                timelineTitle: 'Development timeline',
+                timeline: [
+                    {
+                        title: 'Q1 2026 · Public launch',
+                        status: 'Completed',
+                        items: [
+                            'Net worth dashboard with essential charts',
+                            'Wallet system for cash and investments',
+                            'Manual snapshots with history',
+                            'Local data storage',
+                            'iOS and Android version',
+                            'Public open source repository'
+                        ]
+                    },
+                    {
+                        title: 'Q2 2026 · UX improvements',
+                        status: 'In progress',
+                        items: [
+                            'Home screen widgets for iOS and Android',
+                            'Advanced interactive charts',
+                            'CSV/JSON data export',
+                            'Customizable themes (dark/light)',
+                            'Snapshot reminder notifications',
+                            'Improved onboarding'
+                        ]
+                    },
+                    {
+                        title: 'Q3 2026 · Advanced features',
+                        status: 'Planned',
+                        items: [
+                            'Optional cloud backup and sync (E2E encrypted)',
+                            'Custom financial goals',
+                            'Custom wallet categories',
+                            'Advanced multi-period comparison',
+                            'Multi-currency support',
+                            'API for external integrations'
+                        ]
+                    },
+                    {
+                        title: 'Q4 2026 · Ecosystem expansion',
+                        status: 'Future',
+                        items: [
+                            'Web app version (PWA)',
+                            'Integration with crypto portfolio trackers',
+                            'Automatic monthly/yearly reports',
+                            'Multi-user collaboration (family)',
+                            'Plugin system for community extensions'
+                        ]
+                    },
+                    {
+                        title: '2027+ · Long-term vision',
+                        status: 'Vision',
+                        items: [
+                            'AI insights for wealth analysis',
+                            'Marketplace for templates and setups',
+                            'Integration with DeFi protocols',
+                            'Optional community features and social sharing'
+                        ]
+                    }
+                ],
+                principles: {
+                    title: 'Development principles',
+                    cards: [
+                        {
+                            title: 'Privacy First',
+                            text: 'Every feature must respect local privacy by design. No sensitive data leaves the device without explicit consent.'
+                        },
+                        {
+                            title: 'Open Source',
+                            text: 'Public code, transparent roadmap and decisions shared with the community. Every contribution is welcome.'
+                        },
+                        {
+                            title: 'Simplicity',
+                            text: 'Clean interface and essential actions. No feature bloat, only what truly matters.'
+                        },
+                        {
+                            title: 'Community Driven',
+                            text: 'Priorities are shaped by listening to feedback, issues and proposals from the community.'
+                        }
+                    ]
+                },
+                contribute: {
+                    title: 'Contribute to the project',
+                    text: 'Balance is an open source project. There are many ways to contribute, even without writing code.',
+                    cards: [
+                        {
+                            title: 'Report bugs',
+                            text: 'Found an issue? Open a GitHub issue with details and screenshots.',
+                            cta: 'Report bug'
+                        },
+                        {
+                            title: 'Suggest features',
+                            text: 'Do you have an idea to improve Balance? Share it with the community.',
+                            cta: 'Suggest feature'
+                        },
+                        {
+                            title: 'Contribute code',
+                            text: 'Developer? Fork the project, implement a feature and open a pull request.',
+                            cta: 'Contribution guide'
+                        },
+                        {
+                            title: 'Support the project',
+                            text: 'Leave a star on GitHub, share Balance and help us grow.',
+                            ctaHtml: '<i class="fa-brands fa-github"></i> Star on GitHub'
+                        }
+                    ]
+                }
+            },
+            privacy: {
+                meta: {
+                    title: 'Privacy Policy · Balance',
+                    description: 'Balance Privacy Policy, the privacy-first, offline and open source app to manage cash, investments and net worth with full control.',
+                    ogTitle: 'Privacy Policy. Balance'
+                },
+                html: `
+                    <h1>Privacy Policy</h1>
+                    <p class="last-updated">Last updated: {{date}}</p>
+                    <section>
+                        <h2>Our philosophy: Privacy First</h2>
+                        <p><strong>Balance is designed to fully protect your financial privacy.</strong> The app does not collect, transmit or store your financial data on our servers.</p>
+                        <p>When you use the website, we may only process the data you voluntarily choose to send us, for example through the contact form.</p>
+                    </section>
+                    <section>
+                        <h2>1. Data we do NOT collect in the app</h2>
+                        <p>The Balance app <strong>does not collect</strong> any of the following information:</p>
+                        <ul>
+                            <li><strong>Financial data:</strong> bank accounts, balances, transactions, investments, crypto wallets</li>
+                            <li><strong>Usage data:</strong> analytics, statistics, in-app behavior</li>
+                            <li><strong>Technical data:</strong> IP address, device type, operating system</li>
+                            <li><strong>Location data:</strong> GPS, geographic location</li>
+                            <li><strong>Identifiers:</strong> cookies, advertising ID, device ID</li>
+                        </ul>
+                        <p><strong>We do not use trackers, analytics or advertising tools inside the app.</strong></p>
+                    </section>
+                    <section>
+                        <h2>2. Data we collect only if you send them through the website</h2>
+                        <p>The website may collect some personal data <strong>only when you voluntarily enter them</strong> into a form.</p>
+                        <ul>
+                            <li><strong>Contact form:</strong> name, email and message content that you choose to send</li>
+                            <li><strong>Purpose:</strong> to reply to messages you choose to send from the website</li>
+                            <li><strong>No profiling:</strong> these data are not used for advertising, cross-site tracking or behavioral analysis</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>3. How Balance works</h2>
+                        <p>Balance is a <strong>fully offline</strong> application as far as financial data are concerned:</p>
+                        <ul>
+                            <li>All data you enter in the app are stored <strong>locally on your device</strong></li>
+                            <li>The app works without an internet connection</li>
+                            <li>We do not connect to banks or external financial services</li>
+                            <li>The website and its forms are separate from the financial data stored in the app</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>4. iCloud sync (optional feature)</h2>
+                        <p>If and when you enable iCloud sync (optional feature):</p>
+                        <ul>
+                            <li>Your data are synchronized through <strong>Apple's private iCloud</strong></li>
+                            <li>The data are end-to-end encrypted by Apple</li>
+                            <li>We do not have access to your data on iCloud</li>
+                            <li>You can disable sync at any time</li>
+                        </ul>
+                        <p>For more information about iCloud privacy, please refer to <a href="https://www.apple.com/legal/privacy/" target="_blank" style="color: var(--accent-color);">Apple’s Privacy Policy</a>.</p>
+                    </section>
+                    <section>
+                        <h2>5. Data sharing</h2>
+                        <p>The app’s financial data <strong>are not shared with third parties</strong> because they remain on your device.</p>
+                        <p>Data voluntarily sent through the website may instead be processed by technical providers strictly necessary for the service, for example:</p>
+                        <ul>
+                            <li><strong>Form or email delivery providers:</strong> only if used to deliver messages or send requested communications</li>
+                        </ul>
+                        <p>We do not sell or transfer your data to advertisers or commercial partners.</p>
+                    </section>
+                    <section>
+                        <h2>6. Security</h2>
+                        <p>Your data security is supported by:</p>
+                        <ul>
+                            <li><strong>Local storage:</strong> data never leave your device</li>
+                            <li><strong>Separated services:</strong> any website emails are stored in a dedicated database separate from app data</li>
+                            <li><strong>iOS encryption:</strong> data benefit from the operating system’s native encryption</li>
+                            <li><strong>Face ID/Touch ID:</strong> you can protect app access with biometric authentication</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>7. Your rights</h2>
+                        <p>You stay in control of both local app data and any data you send us through the website:</p>
+                        <ul>
+                            <li><strong>Full control:</strong> your data remain only on your device and under your control</li>
+                            <li><strong>Deletion:</strong> you can delete all data by uninstalling the app</li>
+                            <li><strong>Portability:</strong> you can export your data at any time from the app</li>
+                            <li><strong>Website data:</strong> you can ask us to delete data sent through the contact form by writing to us from the Contact page</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>8. Open Source</h2>
+                        <p>Balance is <strong>fully open source</strong>. You can personally verify that we do not collect data by inspecting the source code on <a href="https://github.com/ozzirr/balance-app-v1" target="_blank" style="color: var(--accent-color);">GitHub</a>.</p>
+                        <p>Transparency is a fundamental part of our privacy commitment.</p>
+                    </section>
+                    <section>
+                        <h2>9. Changes to this Privacy Policy</h2>
+                        <p>Any changes to this Privacy Policy will be published on this page and communicated through app updates.</p>
+                        <p>Continued use of the app after such changes constitutes acceptance of the updated Privacy Policy.</p>
+                    </section>
+                `
+            },
+            terms: {
+                meta: {
+                    title: 'Terms and Conditions · Balance',
+                    description: 'Balance terms and conditions for the privacy-first, offline and open source app to manage cash, investments and net worth with full control.',
+                    ogTitle: 'Terms and Conditions. Balance'
+                },
+                html: `
+                    <h1>Terms and Conditions</h1>
+                    <p class="last-updated">Last updated: {{date}}</p>
+                    <section>
+                        <h2>1. Acceptance of the Terms</h2>
+                        <p>By downloading, installing or using the Balance application ("Service"), you agree to be bound by these Terms and Conditions. If you do not accept these terms, please do not use the app.</p>
+                    </section>
+                    <section>
+                        <h2>2. Description of the Service</h2>
+                        <p>Balance is a personal finance application that allows users to manually monitor their net worth, record expenses and view statistics. The service is provided "as is" and may be subject to changes.</p>
+                    </section>
+                    <section>
+                        <h2>3. User Account and Responsibilities</h2>
+                        <p>You are responsible for the confidentiality of your credentials (where applicable) and for all activity performed through your device. You agree to provide truthful information and to use the app in compliance with applicable laws.</p>
+                    </section>
+                    <section>
+                        <h2>4. License and App Use</h2>
+                        <p>We grant you a limited, non-exclusive and non-transferable license to use the app for personal, non-commercial purposes. You may not copy, modify, distribute or sell any part of the Service without authorization.</p>
+                    </section>
+                    <section>
+                        <h2>5. Limitation of Liability</h2>
+                        <p>Balance does not provide financial advice. The information provided by the app is for informational purposes only. We are not responsible for any financial decisions made by the user, nor for any direct or indirect damages arising from the use or inability to use the app.</p>
+                    </section>
+                    <section>
+                        <h2>6. Changes to the Service</h2>
+                        <p>We reserve the right to modify or discontinue, temporarily or permanently, the Service with or without notice. We will not be liable to you or any third party for any modification, suspension or interruption of the Service.</p>
+                    </section>
+                    <section>
+                        <h2>7. Availability and Interruptions</h2>
+                        <p>We do not guarantee that the Service will always be available, uninterrupted or error-free. Interruptions may occur due to maintenance or technical issues.</p>
+                    </section>
+                    <section>
+                        <h2>8. Intellectual Property</h2>
+                        <p>All intellectual property rights related to the Service (including design, logo, code and content) are the exclusive property of Balance App.</p>
+                    </section>
+                    <section>
+                        <h2>9. Governing Law and Jurisdiction</h2>
+                        <p>These Terms are governed by Italian law. Any dispute shall fall under the exclusive jurisdiction of [City/Competent Court], unless mandatory consumer protection rules provide otherwise.</p>
+                    </section>
+                    <section>
+                        <h2>10. Contact</h2>
+                        <p>For questions about these Terms, contact us at: [Insert contact email].</p>
+                    </section>
+                `
+            },
+            contacts: {
+                meta: {
+                    title: 'Contact · Balance',
+                    description: 'Contact Balance: write to us for support or feedback about the privacy-first, offline and open source app.',
+                    ogTitle: 'Contact. Balance'
+                },
+                title: 'Contact us',
+                subtitle: 'Questions, feedback or something to report? Write to us directly.',
+                form: {
+                    honeypot: 'Do not fill this field if you are human',
+                    reason: 'Reason for contact',
+                    reasonOptions: ['Questions or feedback', 'Bug report', 'Feature request', 'Other'],
+                    name: 'Name',
+                    namePlaceholder: 'Your name',
+                    email: 'Email',
+                    emailPlaceholder: 'your@email.com',
+                    message: 'Message',
+                    messagePlaceholder: 'Describe your request or report here...',
+                    submit: 'Send message',
+                    sending: 'Sending...',
+                    disclaimer: 'Your message is delivered through a third-party service used only for delivery. No tracking or marketing usage.',
+                    success: 'Thank you! Your message has been sent successfully.'
+                }
+            }
+        },
+        pt: {
+            global: {
+                nav: {
+                    overview: 'Visão geral',
+                    pricing: 'Planos',
+                    features: 'Funcionalidades',
+                    roadmap: 'Roadmap',
+                    download: 'Download'
+                },
+                footer: {
+                    privacy: 'Política de Privacidade',
+                    terms: 'Termos e Condições',
+                    contacts: 'Contactos',
+                    copyright: '© Balance App. Todos os direitos reservados.'
+                },
+                ui: {
+                    menu: 'Menu',
+                    appStore: 'App Store',
+                    googlePlay: 'Google Play',
+                    comingSoon: 'Em breve'
+                }
+            },
+            home: {
+                meta: {
+                    title: 'Balance · Finanças pessoais com controle total',
+                    description: 'Balance é a app privacy-first, offline e open source para gerir liquidez, investimentos e património com controlo total.',
+                    ogTitle: 'Balance. Finanças pessoais com controle total'
+                },
+                hero: {
+                    badge: 'Privacy-first · Offline · Open source',
+                    title: 'As suas finanças sob controle, finalmente.',
+                    subtitle: 'Balance reúne liquidez, investimentos e despesas recorrentes numa única vista limpa. Tudo foi pensado para ser claro, rápido e totalmente sob o seu controlo.'
+                },
+                trust: [
+                    { labelHtml: '100%<br>offline', sub: 'Funciona sem internet' },
+                    { label: 'Sem servidores', sub: 'Os dados ficam no seu dispositivo' },
+                    { label: 'Open source', sub: 'Código verificável' },
+                    { label: 'iOS & Android', sub: 'Disponível em qualquer lugar' }
+                ],
+                context: {
+                    title: 'Os seus bancos, brokers e cripto estão em lugares diferentes',
+                    text: 'Na prática, o património está distribuído. Conta principal, poupanças, investimentos, cripto e dinheiro vivo ficam em lugares diferentes. Manter uma visão atualizada torna-se difícil.',
+                    highlight: 'Balance nasceu para isso. Um único dashboard e uma estrutura por wallets que replica a sua realidade, sem ligações automáticas e sem compromissos com a privacidade.'
+                },
+                clarity: {
+                    title: 'Conhecer as próprias finanças é importante',
+                    text: 'Balance privilegia a legibilidade. Gráficos essenciais, números-chave e comparações diretas entre períodos. O objetivo é reduzir o ruído, não aumentá-lo.',
+                    highlight: 'Os snapshots ajudam a construir um histórico fiável. Veja como o património evolui ao longo do tempo e o que realmente o alterou, sem depender de integrações externas.'
+                },
+                pricing: {
+                    title: 'Planos disponíveis',
+                    free: {
+                        badge: 'Para começar',
+                        description: 'A versão gratuita para acompanhar as wallets essenciais.',
+                        list: [
+                            'Até 3 wallets para começar rapidamente',
+                            'Dashboard completo do património',
+                            'Snapshots essenciais para acompanhar a evolução'
+                        ],
+                        cta: 'Download'
+                    },
+                    pro: {
+                        badge: 'Oferta de lançamento',
+                        description: 'Para quem quer usar o Balance como arquivo financeiro pessoal, sem limites.',
+                        priceHtml: '2,99 €<span class="price-suffix">por mês</span>',
+                        altPrice: '19,99 € por ano em vez de 35,88 €',
+                        note: 'Primeiro mês grátis ao ativar uma subscrição mensal ou anual.',
+                        list: [
+                            'Wallets ilimitadas',
+                            'Snapshots avançados para análises mais precisas',
+                            'Histórico completo para comparar a evolução ao longo do tempo'
+                        ],
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download e ativar Pro'
+                    }
+                },
+                features: {
+                    title: 'Funcionalidades',
+                    detailEyebrow: 'Detalhe',
+                    cards: {
+                        snapshot: {
+                            title: 'Snapshots patrimoniais',
+                            text: 'Registe o património num momento específico. Compare o histórico e observe a variação ao longo do tempo.'
+                        },
+                        wallet: {
+                            title: 'Wallets por tipologia',
+                            text: 'Separe liquidez e investimentos. Cada wallet pode ter cor e estrutura coerentes com a sua realidade.'
+                        },
+                        dashboard: {
+                            title: 'Dashboard sintético',
+                            text: 'Património líquido, liquidez e investimentos numa única vista. Distribuições e tendências, sem excesso.'
+                        },
+                        privacy: {
+                            title: 'Privacidade e controlo',
+                            text: 'Sem login. Sem envio de dados. Funciona sem servidores externos.'
+                        },
+                        speed: {
+                            title: 'Experiência rápida',
+                            text: 'Menos ações e interface limpa. Atualize os valores em poucos segundos e siga em frente.'
+                        }
+                    },
+                    detailMap: {
+                        snapshot: {
+                            title: 'Snapshots patrimoniais',
+                            text: 'Guarde o património em poucos segundos e reveja-o ao longo do tempo com uma vista limpa e legível.',
+                            bullets: [
+                                'Snapshots manuais, zero sincronizações externas.',
+                                'Histórico claro com comparações rápidas.',
+                                'Evolução do património sem ruído.'
+                            ]
+                        },
+                        wallet: {
+                            title: 'Wallets por tipologia',
+                            text: 'Separe liquidez, investimentos e dinheiro em wallets claras, cada uma com a sua própria lógica.',
+                            bullets: [
+                                'Cores e etiquetas personalizadas para cada wallet.',
+                                'Totais agregados por categoria e tipologia.',
+                                'Estrutura coerente com a sua realidade.'
+                            ]
+                        },
+                        dashboard: {
+                            title: 'Dashboard sintético',
+                            text: 'Uma vista única, limpa e imediata para perceber como estão as suas finanças.',
+                            bullets: [
+                                'Património líquido, liquidez e investimentos num relance.',
+                                'Tendências essenciais sem sobrecarga visual.',
+                                'Indicadores-chave sempre acessíveis.'
+                            ]
+                        },
+                        privacy: {
+                            title: 'Privacidade e controlo',
+                            text: 'Dados locais, sem ligações bancárias e zero rastreamento. Sempre.',
+                            bullets: [
+                                'Sem login ou conta obrigatória.',
+                                'Sem servidores externos ou sync automática.',
+                                'Controlo total sobre os seus dados.'
+                            ]
+                        },
+                        speed: {
+                            title: 'Experiência rápida',
+                            text: 'Atualize os seus dados em poucos toques e siga logo para a próxima ação.',
+                            bullets: [
+                                'Fluxos essenciais sem passos desnecessários.',
+                                'Interações rápidas pensadas para mobile.',
+                                'Interface limpa e imediata.'
+                            ]
+                        }
+                    }
+                },
+                faq: {
+                    title: 'Perguntas frequentes',
+                    items: [
+                        {
+                            q: 'Os meus dados estão seguros? Quem os pode ver?',
+                            a: 'Só você. Balance é totalmente offline: não usa servidores, não envia dados e não exige login. Tudo permanece no seu dispositivo, protegido por PIN e biometria (Face ID / impressão digital).'
+                        },
+                        {
+                            q: 'Porque não existe sincronização bancária automática?',
+                            a: 'Por uma escolha consciente de privacidade. As integrações bancárias exigem credenciais ou tokens que passam por servidores externos. Balance evita qualquer ponto de vulnerabilidade entre si e os seus dados financeiros.'
+                        },
+                        {
+                            q: 'O que acontece se eu trocar de telefone?',
+                            a: 'Pode exportar os seus dados em formato JSON e importá-los novamente no novo dispositivo. A função de exportação/importação está disponível nas definições da app.'
+                        },
+                        {
+                            q: 'Qual é a diferença entre a versão gratuita e a Pro?',
+                            a: 'A versão gratuita é suficiente para começar: inclui até 3 wallets, dashboard completo e snapshots essenciais. Balance Pro foi pensado para quem usa a app de forma contínua e quer um histórico realmente completo: remove o limite de wallets, adiciona snapshots avançados e desbloqueia o histórico completo. Custa 2,99 € por mês ou 19,99 € por ano.'
+                        },
+                        {
+                            q: 'Como funciona o período gratuito?',
+                            a: 'A oferta de lançamento inclui o primeiro mês de Balance Pro grátis ao ativar uma subscrição mensal ou anual. No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado: 2,99 € por mês ou 19,99 € por ano.'
+                        },
+                        {
+                            q: 'Está disponível para Android?',
+                            a: 'Balance está disponível para iOS. A versão Android está a caminho.'
+                        }
+                    ]
+                },
+                download: {
+                    badge: 'Oferta de lançamento',
+                    title: 'Download',
+                    copy: 'Faça download do Balance e ative o Pro com uma subscrição mensal ou anual: o primeiro mês é grátis.',
+                    points: ['Privacy-first', 'Offline', 'Open source'],
+                    note: 'No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado.'
+                }
+            },
+            balancepro: {
+                meta: {
+                    title: 'Balance Pro · Oferta de lançamento',
+                    description: 'Desbloqueie o Balance Pro com o primeiro mês grátis, depois 2,99 € por mês ou 19,99 € por ano.'
+                },
+                heroTitle: 'Balance Pro',
+                heroText: 'Desbloqueie todas as funcionalidades avançadas diretamente na app com subscrição mensal ou anual.',
+                card: {
+                    badge: 'Oferta de lançamento',
+                    priceHtml: '2,99 €<span class="price-suffix">por mês</span>',
+                    altPrice: '19,99 € por ano em vez de 35,88 €',
+                    note: 'Primeiro mês grátis ao ativar uma subscrição mensal ou anual.',
+                    list: ['Wallets ilimitadas', 'Snapshots avançados', 'Histórico completo sem limites'],
+                    microcopy: 'No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado diretamente na app.',
+                    primaryCtaHtml: '<i class="fa-brands fa-apple"></i> App Store',
+                    secondaryCta: 'Ver planos'
+                }
+            },
+            roadmap: {
+                meta: {
+                    title: 'Roadmap · Balance',
+                    description: 'Roadmap do Balance: próximas funcionalidades da app privacy-first, offline e open source.',
+                    ogTitle: 'Roadmap. Balance'
+                },
+                hero: {
+                    title: 'Roadmap do Balance',
+                    subtitle: 'Um projeto em evolução. Transparente, open source e guiado pela comunidade.',
+                    value: 'Descubra o que estamos a construir e como pode contribuir.',
+                    repoCtaHtml: '<i class="fa-brands fa-github"></i> Repositório GitHub',
+                    featureCtaHtml: '<i class="fa-solid fa-lightbulb"></i> Propor uma funcionalidade'
+                },
+                status: {
+                    version: 'Versão atual: 1.0',
+                    date: 'Janeiro 2026',
+                    title: 'Estado do projeto',
+                    text: 'Balance está atualmente em lançamento público. A versão 1.0 inclui as funcionalidades core para gerir liquidez e investimentos com uma abordagem privacy-first.'
+                },
+                timelineTitle: 'Timeline de desenvolvimento',
+                timeline: [
+                    {
+                        title: 'Q1 2026 · Lançamento público',
+                        status: 'Concluído',
+                        items: [
+                            'Dashboard patrimonial com gráficos essenciais',
+                            'Sistema de wallets para liquidez e investimentos',
+                            'Snapshots manuais com histórico',
+                            'Armazenamento local de dados',
+                            'Versão iOS e Android',
+                            'Repositório open source público'
+                        ]
+                    },
+                    {
+                        title: 'Q2 2026 · Melhorias de UX',
+                        status: 'Em desenvolvimento',
+                        items: [
+                            'Widgets no ecrã inicial para iOS e Android',
+                            'Gráficos interativos avançados',
+                            'Exportação de dados em CSV/JSON',
+                            'Temas personalizáveis (dark/light)',
+                            'Notificações de lembrete para snapshots',
+                            'Onboarding melhorado'
+                        ]
+                    },
+                    {
+                        title: 'Q3 2026 · Funcionalidades avançadas',
+                        status: 'Planeado',
+                        items: [
+                            'Backup e sincronização cloud opcionais (E2E encrypted)',
+                            'Objetivos financeiros personalizados',
+                            'Categorias personalizadas para wallets',
+                            'Comparação avançada entre múltiplos períodos',
+                            'Suporte multi-moeda',
+                            'API para integrações externas'
+                        ]
+                    },
+                    {
+                        title: 'Q4 2026 · Expansão do ecossistema',
+                        status: 'Futuro',
+                        items: [
+                            'Versão web app (PWA)',
+                            'Integração com trackers de portfolio cripto',
+                            'Relatórios automáticos mensais/anuais',
+                            'Colaboração multiutilizador (família)',
+                            'Sistema de plugins para extensões da comunidade'
+                        ]
+                    },
+                    {
+                        title: '2027+ · Visão de longo prazo',
+                        status: 'Visão',
+                        items: [
+                            'AI insights para análise patrimonial',
+                            'Marketplace para templates e configurações',
+                            'Integração com protocolos DeFi',
+                            'Funcionalidades de comunidade e partilha social opcional'
+                        ]
+                    }
+                ],
+                principles: {
+                    title: 'Princípios de desenvolvimento',
+                    cards: [
+                        {
+                            title: 'Privacy First',
+                            text: 'Cada funcionalidade deve respeitar a privacidade local por definição. Nenhum dado sensível sai do dispositivo sem consentimento explícito.'
+                        },
+                        {
+                            title: 'Open Source',
+                            text: 'Código público, roadmap transparente e decisões partilhadas com a comunidade. Toda contribuição é bem-vinda.'
+                        },
+                        {
+                            title: 'Simplicidade',
+                            text: 'Interface limpa e ações essenciais. Nada de feature bloat, apenas o que realmente importa.'
+                        },
+                        {
+                            title: 'Driven pela comunidade',
+                            text: 'As prioridades são definidas ouvindo feedback, issues e propostas da comunidade.'
+                        }
+                    ]
+                },
+                contribute: {
+                    title: 'Contribua para o projeto',
+                    text: 'Balance é um projeto open source. Há muitas formas de contribuir, mesmo sem escrever código.',
+                    cards: [
+                        {
+                            title: 'Reportar bugs',
+                            text: 'Encontrou um problema? Abra uma issue no GitHub com detalhes e screenshots.',
+                            cta: 'Reportar bug'
+                        },
+                        {
+                            title: 'Propor funcionalidades',
+                            text: 'Tem uma ideia para melhorar o Balance? Partilhe-a com a comunidade.',
+                            cta: 'Propor funcionalidade'
+                        },
+                        {
+                            title: 'Contribuir com código',
+                            text: 'Programador? Faça um fork, implemente uma funcionalidade e abra uma pull request.',
+                            cta: 'Guia de contribuição'
+                        },
+                        {
+                            title: 'Apoiar o projeto',
+                            text: 'Deixe uma estrela no GitHub, partilhe o Balance e ajude-nos a crescer.',
+                            ctaHtml: '<i class="fa-brands fa-github"></i> Dar estrela no GitHub'
+                        }
+                    ]
+                }
+            },
+            privacy: {
+                meta: {
+                    title: 'Política de Privacidade · Balance',
+                    description: 'Política de Privacidade do Balance, a app privacy-first, offline e open source para gerir liquidez, investimentos e património com controlo total.',
+                    ogTitle: 'Política de Privacidade. Balance'
+                },
+                html: `
+                    <h1>Política de Privacidade</h1>
+                    <p class="last-updated">Última atualização: {{date}}</p>
+                    <section>
+                        <h2>A nossa filosofia: Privacy First</h2>
+                        <p><strong>Balance foi concebido para proteger totalmente a sua privacidade financeira.</strong> A app não recolhe, não transmite e não armazena os seus dados financeiros nos nossos servidores.</p>
+                        <p>Quando utiliza o website, podemos tratar apenas os dados que decide enviar-nos voluntariamente, por exemplo através do formulário de contacto.</p>
+                    </section>
+                    <section>
+                        <h2>1. Dados que NÃO recolhemos na app</h2>
+                        <p>A app Balance <strong>não recolhe</strong> nenhuma das seguintes informações:</p>
+                        <ul>
+                            <li><strong>Dados financeiros:</strong> contas bancárias, saldos, transações, investimentos, wallets cripto</li>
+                            <li><strong>Dados de utilização:</strong> analytics, estatísticas, comportamento na app</li>
+                            <li><strong>Dados técnicos:</strong> endereço IP, tipo de dispositivo, sistema operativo</li>
+                            <li><strong>Dados de localização:</strong> GPS, localização geográfica</li>
+                            <li><strong>Identificadores:</strong> cookies, advertising ID, device ID</li>
+                        </ul>
+                        <p><strong>Não utilizamos trackers, analytics nem ferramentas de publicidade dentro da app.</strong></p>
+                    </section>
+                    <section>
+                        <h2>2. Dados que recolhemos apenas se os enviar pelo site</h2>
+                        <p>O site pode recolher alguns dados pessoais <strong>apenas quando os introduz voluntariamente</strong> num formulário.</p>
+                        <ul>
+                            <li><strong>Formulário de contacto:</strong> nome, email e conteúdo da mensagem que escolher enviar</li>
+                            <li><strong>Finalidade:</strong> responder às mensagens que decidir enviar pelo site</li>
+                            <li><strong>Sem perfilização:</strong> estes dados não são usados para publicidade, tracking cross-site ou análise comportamental</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>3. Como funciona o Balance</h2>
+                        <p>Balance é uma aplicação <strong>totalmente offline</strong> no que diz respeito aos dados financeiros:</p>
+                        <ul>
+                            <li>Todos os dados que introduz na app são guardados <strong>localmente no seu dispositivo</strong></li>
+                            <li>A app funciona sem ligação à internet</li>
+                            <li>Não nos ligamos a bancos ou serviços financeiros externos</li>
+                            <li>O website e os seus formulários estão separados dos dados financeiros guardados na app</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>4. Sincronização iCloud (funcionalidade opcional)</h2>
+                        <p>Se e quando ativar a sincronização iCloud (funcionalidade opcional):</p>
+                        <ul>
+                            <li>Os seus dados são sincronizados através do <strong>iCloud privado da Apple</strong></li>
+                            <li>Os dados são encriptados end-to-end pela Apple</li>
+                            <li>Nós não temos acesso aos seus dados no iCloud</li>
+                            <li>Pode desativar a sincronização em qualquer momento</li>
+                        </ul>
+                        <p>Para mais informações sobre a privacidade do iCloud, consulte a <a href="https://www.apple.com/legal/privacy/" target="_blank" style="color: var(--accent-color);">Política de Privacidade da Apple</a>.</p>
+                    </section>
+                    <section>
+                        <h2>5. Partilha de dados</h2>
+                        <p>Os dados financeiros da app <strong>não são partilhados com terceiros</strong> porque permanecem no seu dispositivo.</p>
+                        <p>Os dados enviados voluntariamente através do website podem, no entanto, ser tratados por fornecedores técnicos estritamente necessários ao serviço, por exemplo:</p>
+                        <ul>
+                            <li><strong>Fornecedores de envio de formulários ou email:</strong> apenas se usados para entregar mensagens ou enviar comunicações solicitadas</li>
+                        </ul>
+                        <p>Não vendemos nem cedemos os seus dados a anunciantes ou parceiros comerciais.</p>
+                    </section>
+                    <section>
+                        <h2>6. Segurança</h2>
+                        <p>A segurança dos seus dados é suportada por:</p>
+                        <ul>
+                            <li><strong>Armazenamento local:</strong> os dados nunca saem do seu dispositivo</li>
+                            <li><strong>Serviços separados:</strong> eventuais emails do site são guardados numa base de dados dedicada, separada dos dados da app</li>
+                            <li><strong>Encriptação iOS:</strong> os dados beneficiam da encriptação nativa do sistema operativo</li>
+                            <li><strong>Face ID/Touch ID:</strong> pode proteger o acesso à app com autenticação biométrica</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>7. Os seus direitos</h2>
+                        <p>Tem controlo sobre os dados locais da app e também sobre os dados que nos envia pelo site:</p>
+                        <ul>
+                            <li><strong>Controlo total:</strong> os seus dados permanecem apenas no seu dispositivo e sob o seu controlo</li>
+                            <li><strong>Eliminação:</strong> pode apagar todos os dados desinstalando a app</li>
+                            <li><strong>Portabilidade:</strong> pode exportar os seus dados em qualquer momento a partir da app</li>
+                            <li><strong>Dados do site:</strong> pode pedir a eliminação dos dados enviados pelo formulário de contacto escrevendo-nos através da página Contactos</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>8. Open Source</h2>
+                        <p>Balance é <strong>totalmente open source</strong>. Pode verificar pessoalmente que não recolhemos dados inspecionando o código-fonte no <a href="https://github.com/ozzirr/balance-app-v1" target="_blank" style="color: var(--accent-color);">GitHub</a>.</p>
+                        <p>A transparência é uma parte fundamental do nosso compromisso com a privacidade.</p>
+                    </section>
+                    <section>
+                        <h2>9. Alterações a esta Política de Privacidade</h2>
+                        <p>Quaisquer alterações a esta Política de Privacidade serão publicadas nesta página e comunicadas através de atualizações da app.</p>
+                        <p>A continuação da utilização da app após essas alterações constitui aceitação da Política de Privacidade atualizada.</p>
+                    </section>
+                `
+            },
+            terms: {
+                meta: {
+                    title: 'Termos e Condições · Balance',
+                    description: 'Termos e condições do Balance para a app privacy-first, offline e open source para gerir liquidez, investimentos e património com controlo total.',
+                    ogTitle: 'Termos e Condições. Balance'
+                },
+                html: `
+                    <h1>Termos e Condições</h1>
+                    <p class="last-updated">Última atualização: {{date}}</p>
+                    <section>
+                        <h2>1. Aceitação dos Termos</h2>
+                        <p>Ao descarregar, instalar ou utilizar a aplicação Balance ("Serviço"), concorda em ficar vinculado por estes Termos e Condições. Se não aceitar estes termos, por favor não utilize a app.</p>
+                    </section>
+                    <section>
+                        <h2>2. Descrição do Serviço</h2>
+                        <p>Balance é uma aplicação de finanças pessoais que permite aos utilizadores acompanhar manualmente o seu património, registar despesas e visualizar estatísticas. O serviço é fornecido "tal como está" e pode estar sujeito a alterações.</p>
+                    </section>
+                    <section>
+                        <h2>3. Conta e Responsabilidades do Utilizador</h2>
+                        <p>O utilizador é responsável pela confidencialidade das suas credenciais (quando aplicável) e por toda a atividade realizada através do seu dispositivo. O utilizador compromete-se a fornecer informações verdadeiras e a utilizar a app em conformidade com a legislação aplicável.</p>
+                    </section>
+                    <section>
+                        <h2>4. Licença e Utilização da App</h2>
+                        <p>Concedemos ao utilizador uma licença limitada, não exclusiva e intransmissível para utilizar a app para fins pessoais e não comerciais. É proibido copiar, modificar, distribuir ou vender qualquer parte do Serviço sem autorização.</p>
+                    </section>
+                    <section>
+                        <h2>5. Limitação de Responsabilidade</h2>
+                        <p>Balance não fornece aconselhamento financeiro. As informações fornecidas pela app têm apenas caráter informativo. Não somos responsáveis por quaisquer decisões financeiras tomadas pelo utilizador, nem por danos diretos ou indiretos resultantes da utilização ou da impossibilidade de utilização da app.</p>
+                    </section>
+                    <section>
+                        <h2>6. Alterações ao Serviço</h2>
+                        <p>Reservamo-nos o direito de modificar ou interromper, temporária ou permanentemente, o Serviço com ou sem aviso prévio. Não seremos responsáveis perante o utilizador ou terceiros por qualquer modificação, suspensão ou interrupção do Serviço.</p>
+                    </section>
+                    <section>
+                        <h2>7. Interrupções e Disponibilidade</h2>
+                        <p>Não garantimos que o Serviço esteja sempre disponível, ininterrupto ou livre de erros. Podem ocorrer interrupções devido a manutenção ou problemas técnicos.</p>
+                    </section>
+                    <section>
+                        <h2>8. Propriedade Intelectual</h2>
+                        <p>Todos os direitos de propriedade intelectual relacionados com o Serviço (incluindo design, logótipo, código e conteúdos) são propriedade exclusiva da Balance App.</p>
+                    </section>
+                    <section>
+                        <h2>9. Lei Aplicável e Foro</h2>
+                        <p>Os presentes Termos são regidos pela legislação italiana. Qualquer litígio ficará sujeito ao foro exclusivo de [Cidade/Tribunal Competente], salvo disposições legais imperativas de proteção do consumidor em contrário.</p>
+                    </section>
+                    <section>
+                        <h2>10. Contacto</h2>
+                        <p>Para questões sobre estes Termos, contacte-nos em: [Inserir email de contacto].</p>
+                    </section>
+                `
+            },
+            contacts: {
+                meta: {
+                    title: 'Contactos · Balance',
+                    description: 'Contacte a Balance: escreva-nos para suporte ou feedback sobre a app privacy-first, offline e open source.',
+                    ogTitle: 'Contactos. Balance'
+                },
+                title: 'Contacte-nos',
+                subtitle: 'Tem perguntas, feedback ou algo para reportar? Escreva-nos diretamente.',
+                form: {
+                    honeypot: 'Não preencha este campo se for humano',
+                    reason: 'Motivo do contacto',
+                    reasonOptions: ['Perguntas ou feedback', 'Reportar bug', 'Propor funcionalidade', 'Outro'],
+                    name: 'Nome',
+                    namePlaceholder: 'O seu nome',
+                    email: 'Email',
+                    emailPlaceholder: 'o-seu@email.com',
+                    message: 'Mensagem',
+                    messagePlaceholder: 'Descreva aqui o seu pedido ou reporte...',
+                    submit: 'Enviar mensagem',
+                    sending: 'A enviar...',
+                    disclaimer: 'A sua mensagem é entregue através de um serviço externo usado apenas para envio. Sem rastreamento nem uso para marketing.',
+                    success: 'Obrigado! A sua mensagem foi enviada com sucesso.'
+                }
+            }
+        }
+    };
+
+    function normalizeLang(lang) {
+        if (!lang) return DEFAULT_LANG;
+        const short = lang.toLowerCase().split('-')[0];
+        return SUPPORTED_LANGS.includes(short) ? short : DEFAULT_LANG;
+    }
+
+    function getPageKey() {
+        const path = window.location.pathname.split('/').pop() || 'index.html';
+        if (path === '' || path === 'index.html') return 'home';
+        if (path === 'balancepro.html') return 'balancepro';
+        if (path === 'roadmap.html') return 'roadmap';
+        if (path === 'privacy.html') return 'privacy';
+        if (path === 'terms.html') return 'terms';
+        if (path === 'contacts.html') return 'contacts';
+        return 'home';
+    }
+
+    function detectLang() {
+        const queryLang = normalizeLang(new URLSearchParams(window.location.search).get('lang'));
+        const hasQuery = new URLSearchParams(window.location.search).has('lang');
+        if (hasQuery) {
+            localStorage.setItem(LANG_STORAGE_KEY, queryLang);
+            return queryLang;
+        }
+
+        const storedRaw = localStorage.getItem(LANG_STORAGE_KEY);
+        if (storedRaw) return normalizeLang(storedRaw);
+
+        const browser = normalizeLang(navigator.language || navigator.userLanguage || DEFAULT_LANG);
+        localStorage.setItem(LANG_STORAGE_KEY, browser);
+        return browser;
+    }
+
+    function setText(selector, value) {
+        const el = document.querySelector(selector);
+        if (el) el.textContent = value;
+    }
+
+    function setHtml(selector, value) {
+        const el = document.querySelector(selector);
+        if (el) el.innerHTML = value;
+    }
+
+    function setAttr(selector, attr, value) {
+        const el = document.querySelector(selector);
+        if (el) el.setAttribute(attr, value);
+    }
+
+    function setTextAll(selector, values) {
+        document.querySelectorAll(selector).forEach((el, index) => {
+            if (values[index] !== undefined) el.textContent = values[index];
+        });
+    }
+
+    function formatDate(lang) {
+        const locale = LANG_META[lang].locale;
+        return new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
+    }
+
+    function applyMeta(pageCopy, lang) {
+        if (!pageCopy || !pageCopy.meta) return;
+        const meta = pageCopy.meta;
+        document.title = meta.title;
+        setAttr('meta[name="description"]', 'content', meta.description);
+        setAttr('meta[property="og:title"]', 'content', meta.ogTitle || meta.title);
+        setAttr('meta[property="og:description"]', 'content', meta.description);
+        setAttr('meta[property="og:locale"]', 'content', LANG_META[lang].ogLocale);
+        setAttr('meta[name="twitter:title"]', 'content', meta.ogTitle || meta.title);
+        setAttr('meta[name="twitter:description"]', 'content', meta.description);
+
+        const jsonLd = document.querySelector('script[type="application/ld+json"]');
+        if (jsonLd) {
+            try {
+                const data = JSON.parse(jsonLd.textContent);
+                if (meta.description) data.description = meta.description;
+                data.inLanguage = LANG_META[lang].locale;
+                jsonLd.textContent = JSON.stringify(data, null, 12);
+            } catch (error) {
+                console.warn('Unable to update JSON-LD language metadata.', error);
+            }
+        }
+    }
+
+    function localizeInternalLinks(lang) {
+        document.querySelectorAll('a[href]').forEach((link) => {
+            const href = link.getAttribute('href');
+            if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) return;
+            if (href.startsWith('javascript:')) return;
+
+            const [pathAndQuery, hash = ''] = href.split('#');
+            const [path, query = ''] = pathAndQuery.split('?');
+            if (!path.endsWith('.html')) return;
+
+            const params = new URLSearchParams(query);
+            if (lang === DEFAULT_LANG) {
+                params.delete('lang');
+            } else {
+                params.set('lang', lang);
+            }
+
+            const nextQuery = params.toString();
+            const nextHref = `${path}${nextQuery ? `?${nextQuery}` : ''}${hash ? `#${hash}` : ''}`;
+            link.setAttribute('href', nextHref);
+        });
+    }
+
+    function applyGlobal(langCopy, lang) {
+        setText('.nav-links a[href*="#overview"]', langCopy.global.nav.overview);
+        setText('.nav-links a[href*="#pricing"]', langCopy.global.nav.pricing);
+        setText('.nav-links a[href*="#features"]', langCopy.global.nav.features);
+        setText('.nav-links a[href*="roadmap.html"]', langCopy.global.nav.roadmap);
+        setText('.nav-links .btn[href*="#download"]', langCopy.global.nav.download);
+        setAttr('.mobile-menu-btn', 'aria-label', langCopy.global.ui.menu);
+
+        setText('.footer-links a[href="privacy.html"]', langCopy.global.footer.privacy);
+        setText('.footer-links a[href="terms.html"]', langCopy.global.footer.terms);
+        setText('.footer-links a[href="contacts.html"]', langCopy.global.footer.contacts);
+        setText('.copyright', langCopy.global.footer.copyright);
+
+        document.documentElement.lang = lang;
+        localizeInternalLinks(lang);
+    }
+
+    function setStoreSoonButton(selector, langCopy) {
+        const button = document.querySelector(selector);
+        if (!button) return;
+        button.innerHTML = `<i class="fa-brands fa-google-play"></i> ${langCopy.global.ui.googlePlay}<span class="soon-badge">${langCopy.global.ui.comingSoon}</span>`;
+    }
+
+    function applyHome(langCopy) {
+        const page = langCopy.home;
+        applyMeta(page, currentLang);
+        setHtml('.hero-badge', `<i class="fa-solid fa-shield-halved"></i>${page.hero.badge}`);
+        setText('.hero-title', page.hero.title);
+        setText('.hero-subtitle', page.hero.subtitle);
+        setHtml('.hero-buttons .btn-primary', `<i class="fa-brands fa-apple"></i> ${langCopy.global.ui.appStore}`);
+        setStoreSoonButton('.hero .btn-store-soon', langCopy);
+
+        const trustItems = document.querySelectorAll('.trust-item');
+        if (trustItems[0]) {
+            trustItems[0].querySelector('.trust-label').innerHTML = page.trust[0].labelHtml;
+            trustItems[0].querySelector('.trust-sub').textContent = page.trust[0].sub;
+        }
+        if (trustItems[1]) {
+            trustItems[1].querySelector('.trust-label').textContent = page.trust[1].label;
+            trustItems[1].querySelector('.trust-sub').textContent = page.trust[1].sub;
+        }
+        if (trustItems[2]) {
+            trustItems[2].querySelector('.trust-label').textContent = page.trust[2].label;
+            trustItems[2].querySelector('.trust-sub').textContent = page.trust[2].sub;
+        }
+        if (trustItems[3]) {
+            trustItems[3].querySelector('.trust-label').textContent = page.trust[3].label;
+            trustItems[3].querySelector('.trust-sub').textContent = page.trust[3].sub;
+        }
+
+        const splitSections = document.querySelectorAll('.section-split .split-content');
+        if (splitSections[0]) {
+            splitSections[0].querySelector('.section-title').textContent = page.context.title;
+            const texts = splitSections[0].querySelectorAll('.section-text');
+            if (texts[0]) texts[0].textContent = page.context.text;
+            if (texts[1]) texts[1].textContent = page.context.highlight;
+        }
+        if (splitSections[1]) {
+            splitSections[1].querySelector('.section-title').textContent = page.clarity.title;
+            const texts = splitSections[1].querySelectorAll('.section-text');
+            if (texts[0]) texts[0].textContent = page.clarity.text;
+            if (texts[1]) texts[1].textContent = page.clarity.highlight;
+        }
+
+        setText('#pricing .section-title', page.pricing.title);
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        if (pricingCards[0]) {
+            pricingCards[0].querySelector('.badge').textContent = page.pricing.free.badge;
+            pricingCards[0].querySelector('.pricing-description').textContent = page.pricing.free.description;
+            pricingCards[0].querySelectorAll('.pricing-list li').forEach((li, index) => {
+                li.textContent = page.pricing.free.list[index];
+            });
+            pricingCards[0].querySelector('.btn').textContent = page.pricing.free.cta;
+        }
+        if (pricingCards[1]) {
+            pricingCards[1].querySelector('.badge').textContent = page.pricing.pro.badge;
+            pricingCards[1].querySelector('.pricing-description').textContent = page.pricing.pro.description;
+            pricingCards[1].querySelector('.pricing-price').innerHTML = page.pricing.pro.priceHtml;
+            pricingCards[1].querySelector('.pricing-alt-price').textContent = page.pricing.pro.altPrice;
+            pricingCards[1].querySelector('.pricing-note').textContent = page.pricing.pro.note;
+            pricingCards[1].querySelectorAll('.pricing-list li').forEach((li, index) => {
+                li.textContent = page.pricing.pro.list[index];
+            });
+            pricingCards[1].querySelector('.btn').innerHTML = page.pricing.pro.ctaHtml;
+        }
+
+        setText('#features .section-title', page.features.title);
+        setText('.feature-detail-eyebrow', page.features.detailEyebrow);
+        const featureOrder = ['snapshot', 'wallet', 'dashboard', 'privacy', 'speed'];
+        featureOrder.forEach((key) => {
+            const card = document.querySelector(`.feature-card[data-feature="${key}"]`);
+            const copy = page.features.cards[key];
+            if (!card || !copy) return;
+            setText(`.feature-card[data-feature="${key}"] .feature-front h3`, copy.title);
+            setText(`.feature-card[data-feature="${key}"] .feature-front p`, copy.text);
+        });
+
+        setText('.section-faq .section-title', page.faq.title);
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach((item, index) => {
+            const copy = page.faq.items[index];
+            if (!copy) return;
+            const summary = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer p');
+            if (summary) summary.textContent = copy.q;
+            if (answer) answer.textContent = copy.a;
+        });
+
+        setText('#download .footer-cta-badge', page.download.badge);
+        setText('#download .section-title', page.download.title);
+        setText('#download .footer-cta-copy', page.download.copy);
+        setTextAll('#download .footer-cta-point', page.download.points);
+        setHtml('#download .footer-cta-actions .btn-primary', `<i class="fa-brands fa-apple"></i> ${langCopy.global.ui.appStore}`);
+        setStoreSoonButton('#download .btn-store-soon', langCopy);
+        setText('#download .footer-cta-note', page.download.note);
+    }
+
+    function applyBalancePro(langCopy) {
+        const page = langCopy.balancepro;
+        applyMeta(page, currentLang);
+        setText('main .section-title', page.heroTitle);
+        setText('main .section-text', page.heroText);
+        const card = document.querySelector('.pro-page-card');
+        if (!card) return;
+        card.querySelector('.badge').textContent = page.card.badge;
+        card.querySelector('.pricing-price').innerHTML = page.card.priceHtml;
+        card.querySelector('.pricing-alt-price').textContent = page.card.altPrice;
+        card.querySelector('.pricing-note').textContent = page.card.note;
+        card.querySelectorAll('.pricing-list li').forEach((li, index) => {
+            li.textContent = page.card.list[index];
+        });
+        card.querySelector('.microcopy').textContent = page.card.microcopy;
+        const buttons = card.querySelectorAll('.hero-buttons .btn');
+        if (buttons[0]) buttons[0].innerHTML = page.card.primaryCtaHtml;
+        if (buttons[1]) buttons[1].textContent = page.card.secondaryCta;
+    }
+
+    function applyRoadmap(langCopy) {
+        const page = langCopy.roadmap;
+        applyMeta(page, currentLang);
+        setText('.roadmap-hero .hero-title', page.hero.title);
+        const heroContent = document.querySelectorAll('.roadmap-hero .hero-content p');
+        if (heroContent[0]) heroContent[0].textContent = page.hero.subtitle;
+        if (heroContent[1]) heroContent[1].textContent = page.hero.value;
+        const heroButtons = document.querySelectorAll('.roadmap-hero .hero-buttons .btn');
+        if (heroButtons[0]) heroButtons[0].innerHTML = page.hero.repoCtaHtml;
+        if (heroButtons[1]) heroButtons[1].innerHTML = page.hero.featureCtaHtml;
+
+        setText('.status-badge span', page.status.version);
+        setText('.status-date', page.status.date);
+        setText('.status-card .section-title', page.status.title);
+        setText('.status-card .section-text', page.status.text);
+
+        setText('.section-timeline .section-title', page.timelineTitle);
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            const copy = page.timeline[index];
+            if (!copy) return;
+            const title = item.querySelector('.timeline-header h3');
+            const status = item.querySelector('.timeline-status');
+            if (title) title.textContent = copy.title;
+            if (status) status.textContent = copy.status;
+            item.querySelectorAll('.timeline-list li').forEach((li, liIndex) => {
+                const textNode = li.childNodes[1];
+                if (textNode) {
+                    textNode.textContent = ` ${copy.items[liIndex]}`;
+                } else {
+                    li.append(copy.items[liIndex]);
+                }
+            });
+        });
+
+        const principleTitle = document.querySelector('.section-split .container > .section-title');
+        if (principleTitle) principleTitle.textContent = page.principles.title;
+        const principleCards = document.querySelectorAll('.principle-card');
+        principleCards.forEach((card, index) => {
+            const copy = page.principles.cards[index];
+            if (!copy) return;
+            const title = card.querySelector('h3');
+            const text = card.querySelector('p');
+            if (title) title.textContent = copy.title;
+            if (text) text.textContent = copy.text;
+        });
+
+        setText('.contribute-card .section-title', page.contribute.title);
+        setText('.contribute-card > .section-text', page.contribute.text);
+        const contributeCards = document.querySelectorAll('.contribute-item');
+        contributeCards.forEach((card, index) => {
+            const copy = page.contribute.cards[index];
+            if (!copy) return;
+            const title = card.querySelector('h4');
+            const text = card.querySelector('p');
+            const button = card.querySelector('.btn');
+            if (title) title.textContent = copy.title;
+            if (text) text.textContent = copy.text;
+            if (button) {
+                if (copy.ctaHtml) button.innerHTML = copy.ctaHtml;
+                else button.textContent = copy.cta;
+            }
+        });
+    }
+
+    function applyLegalPage(pageCopy) {
+        applyMeta(pageCopy, currentLang);
+        const legalContent = document.querySelector('.legal-content');
+        if (!legalContent) return;
+        legalContent.innerHTML = pageCopy.html.replace('{{date}}', formatDate(currentLang));
+    }
+
+    function applyContacts(langCopy) {
+        const page = langCopy.contacts;
+        applyMeta(page, currentLang);
+        setText('main .section-title', page.title);
+        setText('main .section-text', page.subtitle);
+
+        setText('label[for="honeypot"]', page.form.honeypot);
+        setText('label[for="reason"]', page.form.reason);
+        setText('label[for="name"]', page.form.name);
+        setText('label[for="email"]', page.form.email);
+        setText('label[for="message"]', page.form.message);
+        setAttr('#name', 'placeholder', page.form.namePlaceholder);
+        setAttr('#email', 'placeholder', page.form.emailPlaceholder);
+        setAttr('#message', 'placeholder', page.form.messagePlaceholder);
+        setText('#contact-form button[type="submit"]', page.form.submit);
+        setText('.form-disclaimer', page.form.disclaimer);
+        setText('#success-message p', page.form.success);
+
+        const options = document.querySelectorAll('#reason option');
+        options.forEach((option, index) => {
+            if (page.form.reasonOptions[index] !== undefined) option.textContent = page.form.reasonOptions[index];
+        });
+    }
+
+    let currentLang = DEFAULT_LANG;
+
+    function applyTranslations() {
+        currentLang = detectLang();
+        const langCopy = COPY[currentLang] || COPY[DEFAULT_LANG];
+        const pageKey = getPageKey();
+
+        applyGlobal(langCopy, currentLang);
+
+        if (pageKey === 'home') applyHome(langCopy);
+        if (pageKey === 'balancepro') applyBalancePro(langCopy);
+        if (pageKey === 'roadmap') applyRoadmap(langCopy);
+        if (pageKey === 'privacy') applyLegalPage(langCopy.privacy);
+        if (pageKey === 'terms') applyLegalPage(langCopy.terms);
+        if (pageKey === 'contacts') applyContacts(langCopy);
+
+        window.BalanceI18n = {
+            lang: currentLang,
+            getLanguage: () => currentLang,
+            getFeatureDetailMap: () => (COPY[currentLang]?.home?.features?.detailMap || COPY.it.home.features.detailMap),
+            getContactFormCopy: () => (COPY[currentLang]?.contacts?.form || COPY.it.contacts.form)
+        };
+    }
+
+    document.addEventListener('DOMContentLoaded', applyTranslations);
+})();
