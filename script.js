@@ -509,16 +509,6 @@ function initNewsletterForm() {
         const trialUpdatesInput = form.querySelector('#newsletter-trial-updates');
         const originalText = submitBtn.innerText;
 
-        const config = window.BALANCE_NEWSLETTER_CONFIG || {};
-        const supabaseUrl = (config.supabaseUrl || '').replace(/\/+$/, '');
-        const supabaseAnonKey = config.supabaseAnonKey || '';
-        const newsletterTable = config.newsletterTable || 'newsletter_subscribers';
-
-        if (!supabaseUrl || !supabaseAnonKey) {
-            showFormMessage(errorMsg, 'La newsletter non e ancora attiva. Torna a breve.');
-            return;
-        }
-
         if (!emailInput.checkValidity() || !consentInput.checked) {
             form.reportValidity();
             return;
@@ -528,19 +518,17 @@ function initNewsletterForm() {
         submitBtn.innerText = 'Iscrizione in corso...';
 
         try {
-            const response = await fetch(`${supabaseUrl}/rest/v1/${newsletterTable}`, {
+            const response = await fetch('/api/newsletter', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    apikey: supabaseAnonKey,
-                    Authorization: `Bearer ${supabaseAnonKey}`,
-                    Prefer: 'return=representation'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     email: emailInput.value.trim().toLowerCase(),
                     consent: true,
-                    wants_trial_updates: Boolean(trialUpdatesInput && trialUpdatesInput.checked),
-                    source: form.dataset.source || 'website-newsletter'
+                    wantsTrialUpdates: Boolean(trialUpdatesInput && trialUpdatesInput.checked),
+                    source: form.dataset.source || 'website-newsletter',
+                    company: honeypot ? honeypot.value : ''
                 })
             });
 
@@ -552,7 +540,7 @@ function initNewsletterForm() {
             }
 
             if (!response.ok) {
-                if (payload && payload.code === '23505') {
+                if (payload && payload.alreadySubscribed) {
                     form.style.display = 'none';
                     if (successMsg) {
                         successMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i><p>Questa email risulta gia iscritta. Ti terremo aggiornato anche da qui.</p>';
@@ -561,7 +549,16 @@ function initNewsletterForm() {
                     return;
                 }
 
-                throw new Error((payload && payload.message) || 'Errore durante il salvataggio della tua email.');
+                throw new Error((payload && (payload.error || payload.message)) || 'Errore durante il salvataggio della tua email.');
+            }
+
+            if (payload && payload.alreadySubscribed) {
+                form.style.display = 'none';
+                if (successMsg) {
+                    successMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i><p>Questa email risulta gia iscritta. Ti terremo aggiornato anche da qui.</p>';
+                    successMsg.style.display = 'block';
+                }
+                return;
             }
 
             form.reset();

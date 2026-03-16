@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PRISMA_DATABASE_URL")
+}
+
+model NewsletterSubscriber {
+  id                Int      @id @default(autoincrement())
+  email             String   @unique @db.VarChar(320)
+  consent           Boolean  @default(false)
+  wantsTrialUpdates Boolean  @default(true) @map("wants_trial_updates")
+  source            String   @default("website-newsletter") @db.VarChar(64)
+  status            String   @default("subscribed") @db.VarChar(32)
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  @@map("newsletter_subscribers")
+}
