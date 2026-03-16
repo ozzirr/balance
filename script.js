@@ -1,7 +1,4 @@
-const WAITLIST_WEBHOOK_URL = 'https://n8n.2erre.online/webhook/waitlist';
-
 document.addEventListener('DOMContentLoaded', () => {
-    window.__waitlistT0 = Date.now();
     // Scroll Animation Observer
     const observerOptions = {
         root: null,
@@ -70,9 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Contact Form
     initContactForm();
-
-    // Initialize Waitlist Form
-    initWaitlistForm();
+    initNewsletterForm();
 
     // Initialize 3D iPhone interaction
     initIPhone3D();
@@ -489,199 +484,108 @@ function initContactForm() {
     });
 }
 
-function parseQueryParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        src: params.get('src') || '',
-        screen: params.get('screen') || '',
-        variant: params.get('variant') || '',
-        platform: params.get('platform') || '',
-        locale: params.get('locale') || ''
-    };
-}
+function initNewsletterForm() {
+    const form = document.getElementById('newsletter-form');
+    const successMsg = document.getElementById('newsletter-success');
+    const errorMsg = document.getElementById('newsletter-error');
 
-function initWaitlistForm() {
-    const form = document.getElementById('waitlistForm');
     if (!form) return;
-
-    const message = document.getElementById('form-status') || document.getElementById('waitlistMessage');
-    const submitBtn = document.getElementById('waitlistSubmit');
-    const emailInput = document.getElementById('waitlistEmail');
-    const consentInput = document.getElementById('waitlistConsent');
-    const honeypotInput = document.getElementById('waitlistHp');
-    const turnstileContainer = document.getElementById('turnstile-container');
-
-    const SUCCESS_TEXT = 'Iscrizione completata. Ti avviseremo al lancio.';
-    const LOADING_TEXT = 'Invio in corso…';
-    const ERROR_TEXT = 'Qualcosa è andato storto. Riprova.';
-    const ENDPOINT_URL = WAITLIST_WEBHOOK_URL;
-    const defaultSubmitText = submitBtn ? submitBtn.textContent : 'Avvisami al lancio';
-    const TURNSTILE_SITE_KEY = '0x4AAAAAACWvRx6pVs6jea25';
-    const DEBUG_WAITLIST = false;
-
-    let turnstileToken = '';
-    let turnstileWidgetId = null;
-
-    const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-
-    const setDebugLog = (...args) => {
-        if (!DEBUG_WAITLIST) return;
-        console.debug(...args);
-    };
-
-    const setMessage = (text, type) => {
-        if (!message) return;
-        message.textContent = text || '';
-        message.classList.remove('success', 'error', 'loading');
-        if (type) {
-            message.classList.add(type);
-        }
-    };
-
-    const setLoading = (isLoading) => {
-        if (!submitBtn) return;
-        submitBtn.disabled = isLoading;
-        submitBtn.classList.toggle('loading', isLoading);
-        submitBtn.textContent = isLoading ? LOADING_TEXT : defaultSubmitText;
-    };
-
-    const resetTurnstile = () => {
-        if (window.turnstile && typeof window.turnstile.reset === 'function' && turnstileWidgetId !== null) {
-            window.turnstile.reset(turnstileWidgetId);
-        }
-        turnstileToken = '';
-    };
-
-    const renderTurnstile = () => {
-        if (!turnstileContainer || !window.turnstile || turnstileWidgetId !== null) return false;
-        turnstileWidgetId = window.turnstile.render(turnstileContainer, {
-            sitekey: TURNSTILE_SITE_KEY,
-            callback: (token) => {
-                turnstileToken = token || '';
-            },
-            'expired-callback': () => {
-                turnstileToken = '';
-            },
-            'error-callback': () => {
-                turnstileToken = '';
-            }
-        });
-        return true;
-    };
-
-    const ensureTurnstile = () => {
-        if (!turnstileContainer) return;
-        if (window.turnstile) {
-            renderTurnstile();
-            return;
-        }
-        let tries = 0;
-        const maxTries = 60;
-        const interval = setInterval(() => {
-            tries += 1;
-            if (window.turnstile && renderTurnstile()) {
-                clearInterval(interval);
-            } else if (tries >= maxTries) {
-                clearInterval(interval);
-            }
-        }, 200);
-    };
-
-    ensureTurnstile();
-
-    const ERROR_MESSAGES = {
-        invalid_email: 'Inserisci un’email valida.',
-        missing_consent: 'Devi accettare la Privacy Policy.',
-        bot_detected: 'Verifica anti-bot non riuscita. Riprova.',
-        too_fast: 'Troppo veloce. Riprova tra un attimo.',
-        turnstile_failed: 'Verifica anti-bot non riuscita. Riprova.',
-        generic_error: ERROR_TEXT
-    };
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const email = emailInput ? emailInput.value.trim() : '';
-        const consent = consentInput ? consentInput.checked : false;
-        const hp = honeypotInput ? honeypotInput.value.trim() : '';
-
-        if (hp) {
-            setMessage(ERROR_MESSAGES.bot_detected, 'error');
+        const honeypot = form.querySelector('#newsletter-company');
+        if (honeypot && honeypot.value) {
+            console.warn('Bot detected on newsletter form.');
             return;
         }
 
-        if (!email || !isValidEmail(email)) {
-            setMessage(ERROR_MESSAGES.invalid_email, 'error');
+        hideFormMessage(errorMsg);
+        if (successMsg) successMsg.style.display = 'none';
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const emailInput = form.querySelector('#newsletter-email');
+        const consentInput = form.querySelector('#newsletter-consent');
+        const trialUpdatesInput = form.querySelector('#newsletter-trial-updates');
+        const originalText = submitBtn.innerText;
+
+        const config = window.BALANCE_NEWSLETTER_CONFIG || {};
+        const supabaseUrl = (config.supabaseUrl || '').replace(/\/+$/, '');
+        const supabaseAnonKey = config.supabaseAnonKey || '';
+        const newsletterTable = config.newsletterTable || 'newsletter_subscribers';
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+            showFormMessage(errorMsg, 'La newsletter non e ancora attiva. Torna a breve.');
             return;
         }
 
-        if (!consent) {
-            setMessage(ERROR_MESSAGES.missing_consent, 'error');
+        if (!emailInput.checkValidity() || !consentInput.checked) {
+            form.reportValidity();
             return;
         }
 
-        if (!turnstileToken) {
-            setMessage('Completa la verifica anti-bot.', 'error');
-            ensureTurnstile();
-            return;
-        }
-
-        const payload = {
-            email: email,
-            consent: consent,
-            hp: hp,
-            elapsedMs: Date.now() - (window.__waitlistT0 || Date.now()),
-            turnstileToken: turnstileToken,
-            meta: {
-                src: 'pro-waitlist',
-                screen: 'waitlist',
-                variant: 'pro',
-                platform: navigator.platform || '',
-                locale: navigator.language || '',
-                referrer: document.referrer || '',
-                userAgent: navigator.userAgent || '',
-                pageUrl: window.location.href || ''
-            }
-        };
-
-        setLoading(true);
-        setMessage(LOADING_TEXT, 'loading');
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Iscrizione in corso...';
 
         try {
-            setDebugLog('Waitlist submit: fetch start');
-            const response = await fetch(ENDPOINT_URL, {
+            const response = await fetch(`${supabaseUrl}/rest/v1/${newsletterTable}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    apikey: supabaseAnonKey,
+                    Authorization: `Bearer ${supabaseAnonKey}`,
+                    Prefer: 'return=representation'
                 },
-                body: JSON.stringify(payload)
+                body: JSON.stringify({
+                    email: emailInput.value.trim().toLowerCase(),
+                    consent: true,
+                    wants_trial_updates: Boolean(trialUpdatesInput && trialUpdatesInput.checked),
+                    source: form.dataset.source || 'website-newsletter'
+                })
             });
 
-            setDebugLog('Waitlist submit: response status', response.status);
-            let responseData = null;
+            let payload = null;
             try {
-                responseData = await response.json();
-            } catch (parseError) {
-                responseData = null;
+                payload = await response.json();
+            } catch (err) {
+                payload = null;
             }
 
             if (!response.ok) {
-                const apiError = responseData && typeof responseData === 'object' ? responseData.error : '';
-                throw new Error(apiError || 'generic_error');
+                if (payload && payload.code === '23505') {
+                    form.style.display = 'none';
+                    if (successMsg) {
+                        successMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i><p>Questa email risulta gia iscritta. Ti terremo aggiornato anche da qui.</p>';
+                        successMsg.style.display = 'block';
+                    }
+                    return;
+                }
+
+                throw new Error((payload && payload.message) || 'Errore durante il salvataggio della tua email.');
             }
 
-            setMessage(SUCCESS_TEXT, 'success');
-            if (emailInput) emailInput.value = '';
-            if (consentInput) consentInput.checked = false;
-            resetTurnstile();
+            form.reset();
+            form.style.display = 'none';
+            if (successMsg) successMsg.style.display = 'block';
         } catch (error) {
-            const errorKey = error && error.message ? error.message : 'generic_error';
-            setMessage(ERROR_MESSAGES[errorKey] || ERROR_MESSAGES.generic_error, 'error');
-            resetTurnstile();
+            showFormMessage(errorMsg, error.message || 'Errore imprevisto durante l\'iscrizione.');
         } finally {
-            setLoading(false);
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
         }
     });
+}
+
+function showFormMessage(element, message) {
+    if (!element) return;
+    element.textContent = message;
+    element.hidden = false;
+}
+
+function hideFormMessage(element) {
+    if (!element) return;
+    element.hidden = true;
+    element.textContent = '';
 }
 
 function initIPhone3D() {
