@@ -305,11 +305,7 @@ function initFeatureDetail() {
                     scrollCardToActivation(card);
                     return;
                 }
-                const willFlip = !card.classList.contains('is-flipped');
-                cards.forEach(item => item.classList.remove('is-flipped'));
-                if (willFlip) {
-                    card.classList.add('is-flipped');
-                }
+                card.classList.toggle('is-flipped');
             });
         });
     };
