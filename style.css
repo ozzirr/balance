@@ -2053,7 +2053,7 @@ footer::before {
 
 .footer-cta-layout {
     display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(320px, 3fr);
+    grid-template-columns: minmax(0, 6fr) minmax(380px, 4fr);
     gap: 32px;
     align-items: center;
 }
