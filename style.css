@@ -1282,12 +1282,6 @@ section {
         --phone-height: 420px;
     }
 
-    .plans-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        margin-top: 32px;
-    }
-
     .iphone-3d-wrap {
         width: var(--phone-width);
         /* Slightly smaller for mobile */
@@ -1911,21 +1905,12 @@ section {
 }
 
 /* Pricing */
-.plans-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: 32px;
-    align-items: stretch;
-    max-width: 1140px;
-    margin: 50px auto 0;
-}
-
 .pricing-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 28px;
-    max-width: none;
-    margin: 0;
+    gap: 24px;
+    max-width: 920px;
+    margin: 50px auto 0;
     align-items: stretch;
 }
 
@@ -2198,10 +2183,6 @@ footer::before {
     }
 
     .pricing-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .plans-grid {
         grid-template-columns: 1fr;
     }
 
@@ -2651,133 +2632,6 @@ footer::before {
     padding-top: 60px;
     padding-bottom: 120px;
 }
-
-.leaderboard-card {
-    max-width: 600px;
-    margin: 40px auto 0;
-    padding: 0;
-    box-shadow: var(--shadow-soft), 0 0 45px rgba(68, 210, 255, 0.18);
-}
-
-.leaderboard-card--inline {
-    margin: 0;
-    max-width: none;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.leaderboard-header {
-    text-align: left;
-}
-
-.leaderboard-title {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    margin-bottom: 8px;
-}
-
-.leaderboard-subtitle {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.leaderboard-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.leaderboard-card--inline .leaderboard-list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 12px;
-}
-
-.leaderboard-row {
-    display: flex;
-    align-items: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    color: var(--text-primary);
-    transition: background 0.2s ease;
-    border: 1px solid rgba(120, 200, 255, 0.16);
-    border-radius: 14px;
-    background: rgba(14, 18, 32, 0.55);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-}
-
-.leaderboard-row:last-child {
-    border-bottom: 1px solid rgba(120, 200, 255, 0.16);
-}
-
-.leaderboard-row:hover {
-    background: rgba(14, 18, 32, 0.75);
-    border-color: rgba(140, 200, 255, 0.3);
-}
-
-.leaderboard-rank {
-    width: 40px;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    font-weight: 600;
-}
-
-.leaderboard-rank.top-3 {
-    color: var(--accent-secondary);
-    text-shadow: 0 0 10px rgba(68, 210, 255, 0.45);
-}
-
-.leaderboard-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    margin-right: 16px;
-    object-fit: cover;
-    border: 1px solid rgba(120, 200, 255, 0.3);
-    box-shadow: 0 0 12px rgba(68, 210, 255, 0.3);
-}
-
-.leaderboard-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.leaderboard-name {
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.leaderboard-contributions {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-}
-
-.leaderboard-footer {
-    padding: 4px 0 0;
-    text-align: center;
-    border-top: 1px solid rgba(120, 200, 255, 0.12);
-}
-
-.leaderboard-card--inline .leaderboard-footer {
-    margin-top: auto;
-    padding-top: 16px;
-}
-
-/* Leaderboard Skeleton */
-.leaderboard-skeleton {
-    padding: 24px;
-}
-
-.leaderboard-card--inline .leaderboard-skeleton {
-    padding: 0;
-}
-
 
 .skeleton-row {
     height: 48px;

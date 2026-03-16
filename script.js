@@ -54,9 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Leaderboard Fetch
-    fetchContributors();
-
     // Initialize Carousels
     initCarousel('hero-carousel');
     initCarousel('wallet-carousel', { duration: 3000 });
@@ -380,77 +377,6 @@ function initFeatureDetail() {
         } else {
             teardownScrollSync();
         }
-    });
-}
-
-async function fetchContributors() {
-    const listContainer = document.getElementById('leaderboard-list');
-    if (!listContainer) return;
-
-    const CACHE_KEY = 'balance_contributors_v1_0_1';
-    const CACHE_TTL = 1 * 60 * 60 * 1000; // 1 hour
-    const REPO = 'ozzirr/balance-app-v1';
-
-    // Check Cache
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (cached) {
-        const { timestamp, data } = JSON.parse(cached);
-        if (Date.now() - timestamp < CACHE_TTL) {
-            renderLeaderboard(data);
-            return;
-        }
-    }
-
-    try {
-        const response = await fetch(`https://api.github.com/repos/${REPO}/contributors?per_page=20&t=${Date.now()}`);
-        if (!response.ok) throw new Error('API Error');
-
-        const data = await response.json();
-
-        // Cache Result
-        localStorage.setItem(CACHE_KEY, JSON.stringify({
-            timestamp: Date.now(),
-            data: data
-        }));
-
-        renderLeaderboard(data);
-    } catch (error) {
-        console.error('Leaderboard error:', error);
-        listContainer.innerHTML = `
-            <div style="padding: 20px; text-align: center; color: var(--text-secondary);">
-                <p>Impossibile caricare i contributors.</p>
-            </div>
-        `;
-    }
-}
-
-function renderLeaderboard(contributors) {
-    const listContainer = document.getElementById('leaderboard-list');
-    listContainer.innerHTML = ''; // Clear skeleton
-
-    if (!contributors || contributors.length === 0) {
-        listContainer.innerHTML = '<p style="padding:20px; text-align:center">Nessun contributor trovato.</p>';
-        return;
-    }
-
-    contributors.forEach((user, index) => {
-        const rank = index + 1;
-        const isTop3 = rank <= 3 ? 'top-3' : '';
-
-        const row = document.createElement('a');
-        row.href = user.html_url;
-        row.target = '_blank';
-        row.className = 'leaderboard-row';
-        row.innerHTML = `
-            <div class="leaderboard-rank ${isTop3}">#${rank}</div>
-            <img src="${user.avatar_url}" alt="${user.login}" class="leaderboard-avatar">
-            <div class="leaderboard-info">
-                <span class="leaderboard-name">${user.login}</span>
-                <span class="leaderboard-contributions">${user.contributions} contributi</span>
-            </div>
-            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8rem; opacity: 0.5;"></i>
-        `;
-        listContainer.appendChild(row);
     });
 }
 
