@@ -2331,7 +2331,7 @@ footer::before {
     }
 
     .footer-cta {
-        margin: 12px auto 48px;
+        margin: 0 auto 48px;
         padding: 44px 22px 40px;
     }
 
