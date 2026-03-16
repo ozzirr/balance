@@ -2189,6 +2189,44 @@ footer::before {
     text-shadow: 0 0 10px rgba(68, 210, 255, 0.35);
 }
 
+.footer-language {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-language-label {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.footer-language-select {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid rgba(120, 200, 255, 0.18);
+    background: rgba(12, 16, 28, 0.75);
+    color: var(--text-primary);
+    border-radius: 999px;
+    padding: 10px 38px 10px 14px;
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+    background-image:
+        linear-gradient(45deg, transparent 50%, rgba(225, 232, 245, 0.8) 50%),
+        linear-gradient(135deg, rgba(225, 232, 245, 0.8) 50%, transparent 50%);
+    background-position:
+        calc(100% - 18px) calc(50% - 2px),
+        calc(100% - 12px) calc(50% - 2px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}
+
+.footer-language-select:focus {
+    outline: none;
+    border-color: rgba(68, 210, 255, 0.45);
+    box-shadow: 0 0 0 3px rgba(68, 210, 255, 0.14);
+}
+
 /* Animations */
 .reveal {
     opacity: 0;
@@ -2359,6 +2397,21 @@ footer::before {
 
     #download .footer-cta {
         width: calc(100% - 28px);
+    }
+
+    .footer-container {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-language {
+        width: 100%;
+        justify-content: center;
     }
 
 }

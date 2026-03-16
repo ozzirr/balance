@@ -23,13 +23,19 @@
                     privacy: 'Privacy Policy',
                     terms: 'Termini e Condizioni',
                     contacts: 'Contatti',
+                    language: 'Lingua',
                     copyright: '© Balance App. Tutti i diritti riservati.'
                 },
                 ui: {
                     menu: 'Menu',
                     appStore: 'App Store',
                     googlePlay: 'Google Play',
-                    comingSoon: 'Coming soon'
+                    comingSoon: 'Coming soon',
+                    langNames: {
+                        it: 'Italiano',
+                        en: 'English',
+                        pt: 'Português'
+                    }
                 }
             },
             home: {
@@ -528,13 +534,19 @@
                     privacy: 'Privacy Policy',
                     terms: 'Terms and Conditions',
                     contacts: 'Contact',
+                    language: 'Language',
                     copyright: '© Balance App. All rights reserved.'
                 },
                 ui: {
                     menu: 'Menu',
                     appStore: 'App Store',
                     googlePlay: 'Google Play',
-                    comingSoon: 'Coming soon'
+                    comingSoon: 'Coming soon',
+                    langNames: {
+                        it: 'Italian',
+                        en: 'English',
+                        pt: 'Portuguese'
+                    }
                 }
             },
             home: {
@@ -1031,13 +1043,19 @@
                     privacy: 'Política de Privacidade',
                     terms: 'Termos e Condições',
                     contacts: 'Contactos',
+                    language: 'Idioma',
                     copyright: '© Balance App. Todos os direitos reservados.'
                 },
                 ui: {
                     menu: 'Menu',
                     appStore: 'App Store',
                     googlePlay: 'Google Play',
-                    comingSoon: 'Em breve'
+                    comingSoon: 'Em breve',
+                    langNames: {
+                        it: 'Italiano',
+                        en: 'Inglês',
+                        pt: 'Português'
+                    }
                 }
             },
             home: {
@@ -1641,9 +1659,40 @@
         setText('.footer-links a[href="terms.html"]', langCopy.global.footer.terms);
         setText('.footer-links a[href="contacts.html"]', langCopy.global.footer.contacts);
         setText('.copyright', langCopy.global.footer.copyright);
+        setText('.footer-language-label', langCopy.global.footer.language);
+        setAttr('.footer-language-select', 'aria-label', langCopy.global.footer.language);
+
+        const langSelect = document.querySelector('.footer-language-select');
+        if (langSelect) {
+            langSelect.value = lang;
+            langSelect.querySelector('option[value="it"]').textContent = langCopy.global.ui.langNames.it;
+            langSelect.querySelector('option[value="en"]').textContent = langCopy.global.ui.langNames.en;
+            langSelect.querySelector('option[value="pt"]').textContent = langCopy.global.ui.langNames.pt;
+        }
 
         document.documentElement.lang = lang;
         localizeInternalLinks(lang);
+    }
+
+    function initLanguageSwitcher(lang) {
+        const select = document.querySelector('.footer-language-select');
+        if (!select || select.dataset.bound === 'true') return;
+
+        select.dataset.bound = 'true';
+        select.addEventListener('change', (event) => {
+            const nextLang = normalizeLang(event.target.value);
+            localStorage.setItem(LANG_STORAGE_KEY, nextLang);
+
+            const url = new URL(window.location.href);
+            if (nextLang === DEFAULT_LANG) {
+                url.searchParams.delete('lang');
+            } else {
+                url.searchParams.set('lang', nextLang);
+            }
+
+            window.location.href = url.toString();
+        });
+        select.value = lang;
     }
 
     function setStoreSoonButton(selector, langCopy) {
@@ -1877,6 +1926,8 @@
         if (pageKey === 'privacy') applyLegalPage(langCopy.privacy);
         if (pageKey === 'terms') applyLegalPage(langCopy.terms);
         if (pageKey === 'contacts') applyContacts(langCopy);
+
+        initLanguageSwitcher(currentLang);
 
         window.BalanceI18n = {
             lang: currentLang,
