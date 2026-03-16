@@ -501,34 +501,13 @@
     <section id="newsletter" class="scene">
         <div class="container reveal">
             <h2 class="section-title center-text">Newsletter Balance</h2>
-            <p class="section-text center-text">Ti scriviamo solo quando ci sono novita concrete: trial gratuito di Balance Pro, release importanti e disponibilita Android.</p>
+            <p class="section-text center-text newsletter-intro">Lascia la tua email e ti avvisiamo quando ci sono novita rilevanti su Balance.</p>
 
-            <div class="newsletter-layout">
-                <div class="glass-card newsletter-card">
-                    <div class="badge">Aggiornamenti reali</div>
-                    <h2>Ti aggiorniamo quando serve</h2>
-                    <p class="section-text">Niente marketing generico. La newsletter serve per avvisarti quando cambia qualcosa di utile: nuove funzioni, prove gratuite e aggiornamenti di prodotto.</p>
-                    <ul class="newsletter-points">
-                        <li>Avviso quando parte o cambia il periodo di prova gratuito</li>
-                        <li>Novita su Balance Pro, prezzi e funzionalita sbloccate</li>
-                        <li>Release importanti, roadmap e disponibilita Android</li>
-                    </ul>
-                    <div class="newsletter-highlight">
-                        <span class="newsletter-highlight-label">Balance Pro</span>
-                        <strong>2,99 EUR al mese</strong>
-                        <span>oppure 19,99 EUR l'anno</span>
-                    </div>
-                    <p class="microcopy">Zero spam. Solo aggiornamenti utili.</p>
-                    <div class="hero-buttons mt-40">
-                        <a href="https://apps.apple.com/it/app/balance-finanza-personale/id6758206139" class="btn btn-primary" target="_blank" rel="noreferrer"><i class="fa-brands fa-apple"></i> App Store</a>
-                        <a href="#pricing" class="btn btn-secondary">Vedi i piani</a>
-                    </div>
-                </div>
-
-                <div class="glass-card newsletter-card newsletter-card-form">
+            <div class="newsletter-panel">
+                <div class="glass-card newsletter-card newsletter-card-form newsletter-card-centered">
                     <div class="badge badge-green">Newsletter</div>
                     <h2>Iscriviti</h2>
-                    <p class="section-text">Lascia la tua email e ti avvisiamo quando ci sono update rilevanti su Balance.</p>
+                    <p class="section-text">Aggiornamenti di prodotto, release importanti e disponibilita Android. Niente rumore inutile.</p>
 
                     <form id="newsletter-form" class="contact-form" novalidate data-source="website-newsletter">
                         <div class="hidden-field">
@@ -541,11 +520,6 @@
                             <input type="email" id="newsletter-email" name="email" class="form-control" placeholder="la-tua@email.it" autocomplete="email" required>
                         </div>
 
-                        <label class="newsletter-check" for="newsletter-trial-updates">
-                            <input type="checkbox" id="newsletter-trial-updates" name="trial_updates" checked>
-                            <span>Mandami anche gli avvisi sul periodo di prova gratuito di Balance Pro.</span>
-                        </label>
-
                         <label class="newsletter-check" for="newsletter-consent">
                             <input type="checkbox" id="newsletter-consent" name="consent" required>
                             <span>Accetto di ricevere email informative da Balance e ho letto la <a href="privacy.html">Privacy Policy</a>.</span>
@@ -553,8 +527,6 @@
 
                         <button type="submit" class="btn btn-primary full-width">Iscrivimi alla newsletter</button>
                     </form>
-
-                    <p class="microcopy form-disclaimer">L'email viene salvata su Supabase per gestire la newsletter. Nessuna profilazione.</p>
 
                     <div id="newsletter-success" class="success-message">
                         <i class="fa-solid fa-circle-check"></i>

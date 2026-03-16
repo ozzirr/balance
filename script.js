@@ -506,7 +506,6 @@ function initNewsletterForm() {
         const submitBtn = form.querySelector('button[type="submit"]');
         const emailInput = form.querySelector('#newsletter-email');
         const consentInput = form.querySelector('#newsletter-consent');
-        const trialUpdatesInput = form.querySelector('#newsletter-trial-updates');
         const originalText = submitBtn.innerText;
 
         if (!emailInput.checkValidity() || !consentInput.checked) {
@@ -526,7 +525,6 @@ function initNewsletterForm() {
                 body: JSON.stringify({
                     email: emailInput.value.trim().toLowerCase(),
                     consent: true,
-                    wantsTrialUpdates: Boolean(trialUpdatesInput && trialUpdatesInput.checked),
                     source: form.dataset.source || 'website-newsletter',
                     company: honeypot ? honeypot.value : ''
                 })
