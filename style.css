@@ -2219,6 +2219,14 @@ footer::before {
         padding: 0 24px;
     }
 
+    #download {
+        padding-top: 24px;
+    }
+
+    #download .container {
+        padding: 0 28px;
+    }
+
     .hero-container,
     .split-container {
         grid-template-columns: 1fr;
@@ -2331,7 +2339,8 @@ footer::before {
     }
 
     .footer-cta {
-        padding: 52px 24px 48px;
+        margin: 12px auto 48px;
+        padding: 44px 22px 40px;
     }
 
 }
