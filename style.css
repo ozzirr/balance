@@ -2399,6 +2399,10 @@ footer::before {
     font-family: var(--font-display);
 }
 
+.trust-label-stacked {
+    line-height: 1.05;
+}
+
 .trust-sub {
     font-size: 0.78rem;
     color: var(--text-secondary);
