@@ -145,52 +145,52 @@ function initFeatureDetail() {
     const defaultDetailMap = {
         snapshot: {
             icon: 'fa-camera',
-            title: 'Snapshot patrimoniali',
-            text: 'Salvi il patrimonio in pochi secondi e lo rivedi nel tempo, con una vista pulita e leggibile.',
+            title: 'Net worth snapshots',
+            text: 'Save net worth snapshots in seconds and review your financial history over time in one clean view.',
             bullets: [
-                'Snapshot manuali, zero sincronizzazioni esterne.',
-                'Storico con trend chiari e confronti rapidi.',
-                'Evoluzione del patrimonio senza rumore.'
+                'Manual snapshots with no bank sync or external connections.',
+                'A clearer net worth tracker for long-term progress.',
+                'Track assets and investments without spreadsheet noise.'
             ]
         },
         wallet: {
             icon: 'fa-wallet',
-            title: 'Wallet per tipologia',
-            text: 'Separi liquidità, investimenti e contanti in wallet chiari, ognuno con la propria logica.',
+            title: 'Wallet categories',
+            text: 'Organize bank accounts, cash, investments, crypto, and assets in clear, separate wallets.',
             bullets: [
-                'Colori e label personalizzati per ogni wallet.',
-                'Totali aggregati per categoria e tipologia.',
-                'Struttura coerente con la tua realtà.'
+                'Flexible categories for each account or asset.',
+                'Aggregated totals across cash and portfolios.',
+                'A portfolio tracker structure that matches real life.'
             ]
         },
         dashboard: {
             icon: 'fa-chart-line',
-            title: 'Dashboard sintetica',
-            text: 'Una vista unica, pulita e immediata per capire come sta andando il tuo patrimonio.',
+            title: 'Clear dashboard',
+            text: 'See net worth, cash, investments, and asset allocation in one clean dashboard.',
             bullets: [
-                'Netto, liquidità e investimenti in un colpo d\'occhio.',
-                'Trend essenziali senza sovraccarico visivo.',
-                'Indicatori chiave sempre accessibili.'
+                'One personal finance app for your full financial picture.',
+                'Essential trends without visual overload.',
+                'Key indicators always accessible.'
             ]
         },
         privacy: {
             icon: 'fa-shield-halved',
-            title: 'Privacy e controllo',
-            text: 'Dati locali, nessun collegamento bancario e zero tracciamenti. Sempre.',
+            title: 'Privacy and control',
+            text: 'Local data, no bank connections, and zero tracking. Always.',
             bullets: [
-                'Nessun login o account obbligatorio.',
-                'Zero server esterni o sync automatici.',
-                'Controllo totale dei tuoi dati.'
+                'Built as a privacy finance app by design.',
+                'No login, external servers, or automatic sync.',
+                'Full control over your data on your device.'
             ]
         },
         speed: {
             icon: 'fa-bolt',
-            title: 'Esperienza veloce',
-            text: 'Aggiorni i dati in pochi tocchi e passi subito all\'azione successiva.',
+            title: 'Fast updates',
+            text: 'Update your data in just a few taps and keep everything current without friction.',
             bullets: [
-                'Flow essenziale senza passaggi inutili.',
-                'Interazioni rapide pensate per il mobile.',
-                'UI pulita e immediata.'
+                'Lean flows with no wasted steps.',
+                'Fast interactions designed for mobile.',
+                'A clean UI for frequent balance updates.'
             ]
         }
     };

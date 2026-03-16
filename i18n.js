@@ -40,14 +40,16 @@
             },
             home: {
                 meta: {
-                    title: 'Balance · Finanze personali con controllo totale',
-                    description: 'Balance è l’app privacy-first, offline e open source per gestire liquidità, investimenti e patrimonio con controllo totale.',
-                    ogTitle: 'Balance. Finanze personali con controllo totale'
+                    title: 'Balance – App di finanza personale e tracker patrimonio privato',
+                    description: 'Balance è un’app di finanza personale privacy-first per tracciare patrimonio, investimenti, crypto e asset. Offline, sicura e semplice.',
+                    ogTitle: 'Balance – App di finanza personale e tracker patrimonio privato'
                 },
                 hero: {
                     badge: 'Privacy-first · Offline · Open source',
-                    title: 'Il controllo delle tue finanze, finalmente.',
-                    subtitle: 'Balance unifica liquidità, investimenti e spese ricorrenti in un’unica vista pulita. Tutto è progettato per essere chiaro, veloce e sotto il tuo controllo.'
+                    title: 'Controlla le tue finanze in un unico posto',
+                    subtitle: 'Monitora patrimonio, investimenti e liquidità con un’app di finanza personale privata e offline-first.',
+                    description: 'Balance ti aiuta a tracciare conti, investimenti, crypto e asset in una dashboard semplice. Tutto resta sul tuo dispositivo, senza collegamenti bancari e senza condivisione dei dati.',
+                    cta: 'Scarica Balance'
                 },
                 trust: [
                     { labelHtml: '100%<br>offline', sub: 'Funziona senza internet' },
@@ -56,14 +58,14 @@
                     { label: 'iOS & Android', sub: 'Disponibile ovunque' }
                 ],
                 context: {
-                    title: 'Le tue banche, broker, crypto sono in posti diversi',
-                    text: 'Nella pratica il patrimonio è distribuito. Conto principale, risparmi, investimenti, crypto e contanti vivono in luoghi diversi. Tenere una visione aggiornata diventa difficile.',
-                    highlight: 'Balance nasce per questo. Una dashboard unica e una struttura a wallet che replica la tua realtà, senza collegamenti automatici e senza compromessi sulla privacy.'
+                    title: 'Un’app di finanza personale per tutto il tuo patrimonio',
+                    text: 'Conti bancari, broker, crypto, liquidità e altri asset raramente stanno nello stesso posto. Balance ti aiuta a vedere tutto insieme senza sincronizzazioni bancarie né accessi di terze parti.',
+                    highlight: 'Usa Balance come tracker patrimonio, tracker investimenti e portfolio tracker privato, costruito sul modo in cui gestisci davvero il denaro.'
                 },
                 clarity: {
-                    title: 'Conoscere le proprie finanze è importante',
-                    text: 'Balance privilegia la leggibilità. Grafici essenziali, numeri chiave e confronti diretti tra periodi. L’obiettivo è ridurre il rumore, non aggiungerlo.',
-                    highlight: 'Gli snapshot servono a costruire uno storico affidabile. Vedi come cambia il patrimonio nel tempo e cosa ha inciso, senza dipendere da integrazioni esterne.'
+                    title: 'Vedi le tue finanze con chiarezza nel tempo',
+                    text: 'Balance è un’app di finanza personale offline-first pensata per aggiornamenti manuali rapidi, grafici semplici e una dashboard chiara.',
+                    highlight: 'Gli snapshot ti aiutano a seguire patrimonio, investimenti e asset nel tempo, così la tua app finance offline resta utile senza diventare un foglio di calcolo.'
                 },
                 pricing: {
                     title: 'Piani disponibili',
@@ -97,69 +99,69 @@
                     cards: {
                         snapshot: {
                             title: 'Snapshot patrimoniali',
-                            text: 'Registra il patrimonio in un momento specifico. Confronta lo storico e osserva la variazione nel tempo.'
+                            text: 'Salva snapshot del patrimonio e confronta facilmente lo storico nel tempo.'
                         },
                         wallet: {
                             title: 'Wallet per tipologia',
-                            text: 'Separi liquidità e investimenti. Ogni wallet può avere colore e struttura coerente con la tua realtà.'
+                            text: 'Organizza conti, liquidità, investimenti, crypto e altri asset in wallet separati.'
                         },
                         dashboard: {
                             title: 'Dashboard sintetica',
-                            text: 'Patrimonio netto, liquidità e investimenti in una vista unica. Distribuzioni e trend, senza overload.'
+                            text: 'Vedi patrimonio netto, liquidità, investimenti e allocazione in una dashboard semplice.'
                         },
                         privacy: {
                             title: 'Privacy e controllo',
-                            text: 'Non richiede login. Non invia dati. Funziona senza server esterni.'
+                            text: 'Una privacy finance app senza collegamenti bancari, server esterni o condivisione dei dati.'
                         },
                         speed: {
                             title: 'Esperienza veloce',
-                            text: 'Azioni ridotte e UI pulita. Aggiorni i valori in pochi secondi e prosegui.'
+                            text: 'Aggiorna i saldi in pochi tocchi e tieni allineata la tua app finance offline.'
                         }
                     },
                     detailMap: {
                         snapshot: {
                             title: 'Snapshot patrimoniali',
-                            text: 'Salvi il patrimonio in pochi secondi e lo rivedi nel tempo, con una vista pulita e leggibile.',
+                            text: 'Salva snapshot del patrimonio in pochi secondi e rivedi lo storico in una vista pulita.',
                             bullets: [
-                                'Snapshot manuali, zero sincronizzazioni esterne.',
-                                'Storico con trend chiari e confronti rapidi.',
-                                'Evoluzione del patrimonio senza rumore.'
+                                'Snapshot manuali senza collegamenti bancari.',
+                                'Storico chiaro per seguire il patrimonio nel tempo.',
+                                'Asset e investimenti senza rumore da foglio di calcolo.'
                             ]
                         },
                         wallet: {
                             title: 'Wallet per tipologia',
-                            text: 'Separi liquidità, investimenti e contanti in wallet chiari, ognuno con la propria logica.',
+                            text: 'Organizza conti, liquidità, investimenti, crypto e asset con wallet chiari e separati.',
                             bullets: [
-                                'Colori e label personalizzati per ogni wallet.',
-                                'Totali aggregati per categoria e tipologia.',
-                                'Struttura coerente con la tua realtà.'
+                                'Categorie flessibili per ogni conto o asset.',
+                                'Totali aggregati tra liquidità e portafogli.',
+                                'Una struttura che replica la tua realtà.'
                             ]
                         },
                         dashboard: {
                             title: 'Dashboard sintetica',
-                            text: 'Una vista unica, pulita e immediata per capire come sta andando il tuo patrimonio.',
+                            text: 'Controlla patrimonio, liquidità, investimenti e allocazione in una sola dashboard.',
                             bullets: [
-                                "Netto, liquidità e investimenti in un colpo d'occhio.",
-                                'Trend essenziali senza sovraccarico visivo.',
+                                'Una vista unica per il tuo patrimonio complessivo.',
+                                'Trend chiari senza sovraccarico visivo.',
                                 'Indicatori chiave sempre accessibili.'
                             ]
                         },
                         privacy: {
                             title: 'Privacy e controllo',
-                            text: 'Dati locali, nessun collegamento bancario e zero tracciamenti. Sempre.',
+                            text: 'Dati locali, nessun collegamento bancario e zero tracking. Sempre.',
                             bullets: [
-                                'Nessun login o account obbligatorio.',
-                                'Zero server esterni o sync automatici.',
-                                'Controllo totale dei tuoi dati.'
+                                'Un’app di finanza personale privata per definizione.',
+                                'Nessun login, server esterno o sync automatico.',
+                                'Controllo totale dei tuoi dati sul dispositivo.'
                             ]
                         },
                         speed: {
                             title: 'Esperienza veloce',
-                            text: "Aggiorni i dati in pochi tocchi e passi subito all'azione successiva.",
+                            text: 'Aggiorna i dati in pochi tocchi e mantieni tutto attuale senza attrito.',
                             bullets: [
                                 'Flow essenziale senza passaggi inutili.',
                                 'Interazioni rapide pensate per il mobile.',
-                                'UI pulita e immediata.'
+                                'UI pulita per aggiornamenti frequenti.'
                             ]
                         }
                     }
@@ -168,24 +170,24 @@
                     title: 'Domande frequenti',
                     items: [
                         {
-                            q: 'I miei dati sono al sicuro? Chi li vede?',
-                            a: 'Solo tu. Balance è completamente offline: non usa server, non invia dati e non richiede login. Tutto rimane nel tuo dispositivo, protetto da PIN e biometria (Face ID / impronta).'
+                            q: 'Balance è davvero privata?',
+                            a: 'Sì. Balance è un’app di finanza personale privacy-first e offline: i dati restano sul tuo dispositivo, senza server, login o condivisione.'
                         },
                         {
-                            q: "Perché non c'è la sincronizzazione bancaria automatica?",
-                            a: 'Per una scelta precisa di privacy. Le integrazioni bancarie richiedono credenziali o token che transitano su server esterni. Balance non vuole nessun punto di vulnerabilità tra te e i tuoi dati finanziari.'
+                            q: 'Balance si collega a banche o broker?',
+                            a: 'No. Balance è pensata come tracker investimenti e portfolio tracker privato senza collegamenti bancari, quindi le tue credenziali non passano mai da servizi esterni.'
                         },
                         {
-                            q: 'Cosa succede se cambio telefono?',
-                            a: "Puoi esportare i tuoi dati in formato JSON e reimportarli sul nuovo dispositivo. La funzione export/import è disponibile nelle impostazioni dell'app."
+                            q: 'Cosa posso tracciare con Balance?',
+                            a: 'Puoi tracciare conti bancari, investimenti, crypto, liquidità e altri asset in una sola dashboard, usando Balance come tracker patrimonio nella vita quotidiana.'
                         },
                         {
                             q: 'Qual è la differenza tra la versione gratuita e Pro?',
-                            a: "La versione gratuita basta per iniziare: include fino a 3 wallet, dashboard completa e snapshot essenziali. Balance Pro è pensato per chi usa l'app in modo continuativo e vuole uno storico davvero completo: rimuove il limite ai wallet, aggiunge snapshot avanzati e sblocca tutta la cronologia. Costa 2,99 € al mese oppure 19,99 € l'anno."
+                            a: "La versione gratuita include fino a 3 wallet, dashboard completa e snapshot essenziali. Balance Pro rimuove il limite ai wallet, aggiunge snapshot avanzati e sblocca tutta la cronologia per un'esperienza più completa."
                         },
                         {
                             q: 'Come funziona la prova gratuita?',
-                            a: 'La promo di lancio include il primo mese gratuito di Balance Pro con attivazione di un abbonamento mensile o annuale. Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato: 2,99 € al mese oppure 19,99 € l’anno.'
+                            a: 'La promo di lancio include il primo mese gratuito di Balance Pro con attivazione di un abbonamento mensile o annuale. Alla fine della prova, salvo annullamento, il rinnovo segue il piano scelto.'
                         },
                         {
                             q: 'È disponibile su Android?',
@@ -551,14 +553,16 @@
             },
             home: {
                 meta: {
-                    title: 'Balance · Personal finance with full control',
-                    description: 'Balance is the privacy-first, offline and open source app to manage cash, investments and net worth with full control.',
-                    ogTitle: 'Balance. Personal finance with full control'
+                    title: 'Balance – Private Personal Finance & Net Worth Tracker',
+                    description: 'Balance is a privacy-first personal finance app to track net worth, investments, crypto and assets. Offline, secure and simple.',
+                    ogTitle: 'Balance – Private Personal Finance & Net Worth Tracker'
                 },
                 hero: {
                     badge: 'Privacy-first · Offline · Open source',
-                    title: 'Your finances under control, at last.',
-                    subtitle: 'Balance brings together cash, investments and recurring expenses in one clean view. Everything is designed to stay clear, fast and fully under your control.'
+                    title: 'Control your finances in one place',
+                    subtitle: 'Track your net worth, investments, and cash with a private, offline-first personal finance app.',
+                    description: 'Balance helps you track bank accounts, investments, crypto and assets in one simple dashboard. Everything stays on your device, with no bank connections and no data sharing.',
+                    cta: 'Download Balance'
                 },
                 trust: [
                     { labelHtml: '100%<br>offline', sub: 'Works without internet' },
@@ -567,14 +571,14 @@
                     { label: 'iOS & Android', sub: 'Available everywhere' }
                 ],
                 context: {
-                    title: 'Your banks, brokers and crypto are in different places',
-                    text: 'In reality, your wealth is spread out. Main account, savings, investments, crypto and cash all live in different places. Keeping an up-to-date view becomes difficult.',
-                    highlight: 'Balance is built for exactly this. One dashboard and a wallet structure that mirrors your reality, without automatic connections and without privacy compromises.'
+                    title: 'A personal finance app for your full net worth',
+                    text: 'Bank accounts, brokerage accounts, crypto, cash, and other assets rarely live in one place. Balance gives you a clear view across everything without relying on bank sync or third-party data access.',
+                    highlight: 'Use Balance as a private net worth tracker, investment tracker, and portfolio tracker that mirrors how you actually manage money.'
                 },
                 clarity: {
-                    title: 'Understanding your finances matters',
-                    text: 'Balance prioritizes readability. Essential charts, key numbers and direct comparisons across periods. The goal is to reduce noise, not add more.',
-                    highlight: 'Snapshots help you build a reliable history. See how your net worth changes over time and what actually moved it, without relying on external integrations.'
+                    title: 'See your money clearly over time',
+                    text: 'Balance is an offline-first personal finance app built for fast manual updates, simple charts, and a clean dashboard you can trust.',
+                    highlight: 'Snapshots help you track changes in cash, investments, and assets over time, so your offline finance app stays useful without turning into a spreadsheet.'
                 },
                 pricing: {
                     title: 'Available plans',
@@ -608,69 +612,69 @@
                     cards: {
                         snapshot: {
                             title: 'Net worth snapshots',
-                            text: 'Record your net worth at a specific moment. Compare history and track changes over time.'
+                            text: 'Save net worth snapshots and compare your financial history over time.'
                         },
                         wallet: {
                             title: 'Wallet categories',
-                            text: 'Separate cash and investments. Each wallet can have its own color and structure to match your setup.'
+                            text: 'Organize bank accounts, cash, investments, crypto, and other assets in separate wallets.'
                         },
                         dashboard: {
                             title: 'Clear dashboard',
-                            text: 'Net worth, cash and investments in one view. Distributions and trends, without overload.'
+                            text: 'See net worth, cash, investments, and asset allocation in one simple dashboard.'
                         },
                         privacy: {
                             title: 'Privacy and control',
-                            text: 'No login required. No data sent. Works without external servers.'
+                            text: 'A privacy finance app with no bank connections, no servers, and no data sharing.'
                         },
                         speed: {
-                            title: 'Fast experience',
-                            text: 'Fewer actions, cleaner UI. Update values in seconds and move on.'
+                            title: 'Fast updates',
+                            text: 'Update balances in a few taps and keep your offline finance app current in seconds.'
                         }
                     },
                     detailMap: {
                         snapshot: {
                             title: 'Net worth snapshots',
-                            text: 'Save your net worth in seconds and revisit it over time through a clean, readable view.',
+                            text: 'Save net worth snapshots in seconds and review your financial history over time in one clean view.',
                             bullets: [
-                                'Manual snapshots, zero external sync.',
-                                'Clear history with quick comparisons.',
-                                'Net worth evolution without noise.'
+                                'Manual snapshots with no bank sync or external connections.',
+                                'A clearer net worth tracker for long-term progress.',
+                                'Track assets and investments without spreadsheet noise.'
                             ]
                         },
                         wallet: {
                             title: 'Wallet categories',
-                            text: 'Separate cash, investments and cash on hand into clear wallets, each with its own logic.',
+                            text: 'Organize bank accounts, cash, investments, crypto, and assets in clear, separate wallets.',
                             bullets: [
-                                'Custom colors and labels for every wallet.',
-                                'Aggregated totals by category and type.',
-                                'A structure that fits your real setup.'
+                                'Flexible categories for each account or asset.',
+                                'Aggregated totals across cash and portfolios.',
+                                'A portfolio tracker structure that matches real life.'
                             ]
                         },
                         dashboard: {
                             title: 'Clear dashboard',
-                            text: 'One clean, immediate view to understand how your finances are doing.',
+                            text: 'See net worth, cash, investments, and asset allocation in one clean dashboard.',
                             bullets: [
-                                'Net worth, cash and investments at a glance.',
+                                'One personal finance app for your full financial picture.',
                                 'Essential trends without visual overload.',
                                 'Key indicators always accessible.'
                             ]
                         },
                         privacy: {
                             title: 'Privacy and control',
-                            text: 'Local data, no bank connections and zero tracking. Always.',
+                            text: 'Local data, no bank connections, and zero tracking. Always.',
                             bullets: [
-                                'No login or account required.',
-                                'No external servers or automatic sync.',
-                                'Full control over your data.'
+                                'Built as a privacy finance app by design.',
+                                'No login, external servers, or automatic sync.',
+                                'Full control over your data on your device.'
                             ]
                         },
                         speed: {
-                            title: 'Fast experience',
-                            text: 'Update your data in just a few taps and move straight to the next action.',
+                            title: 'Fast updates',
+                            text: 'Update your data in just a few taps and keep everything current without friction.',
                             bullets: [
                                 'Lean flows with no wasted steps.',
                                 'Fast interactions designed for mobile.',
-                                'A clean and immediate UI.'
+                                'A clean UI for frequent balance updates.'
                             ]
                         }
                     }
@@ -679,24 +683,24 @@
                     title: 'Frequently asked questions',
                     items: [
                         {
-                            q: 'Are my data safe? Who can see them?',
-                            a: 'Only you. Balance is fully offline: it uses no servers, sends no data and requires no login. Everything stays on your device, protected by PIN and biometrics (Face ID / fingerprint).'
+                            q: 'Is Balance private?',
+                            a: 'Yes. Balance is a privacy-first personal finance app and offline finance app, so your data stay on your device with no servers, no login, and no data sharing.'
                         },
                         {
-                            q: "Why isn't there automatic bank sync?",
-                            a: 'Because of a deliberate privacy choice. Bank integrations require credentials or tokens to pass through external servers. Balance avoids any vulnerability point between you and your financial data.'
+                            q: 'Does Balance connect to banks or brokerages?',
+                            a: 'No. Balance is designed as a private investment tracker and portfolio tracker without bank connections, so your credentials never pass through third-party services.'
                         },
                         {
-                            q: 'What happens if I change phone?',
-                            a: "You can export your data in JSON format and import them again on the new device. Export/import is available in the app settings."
+                            q: 'What can I track with Balance?',
+                            a: 'You can track bank accounts, investments, crypto, cash, and other assets in one dashboard, making Balance a practical net worth tracker for everyday use.'
                         },
                         {
                             q: 'What is the difference between the free version and Pro?',
-                            a: 'The free version is enough to get started: it includes up to 3 wallets, the full dashboard and essential snapshots. Balance Pro is built for people who use the app continuously and want a truly complete history: it removes the wallet limit, adds advanced snapshots and unlocks full history. It costs 2.99 € per month or 19.99 € per year.'
+                            a: 'The free version is enough to get started: it includes up to 3 wallets, the full dashboard, and essential snapshots. Balance Pro removes the wallet limit, adds advanced snapshots, and unlocks full history for a more complete personal finance app experience.'
                         },
                         {
                             q: 'How does the free trial work?',
-                            a: 'The launch offer includes the first month of Balance Pro for free when you start a monthly or yearly subscription. At the end of the trial, unless cancelled, renewal follows the selected plan: 2.99 € per month or 19.99 € per year.'
+                            a: 'The launch offer includes the first month of Balance Pro for free when you start a monthly or yearly subscription. After the trial, unless cancelled, renewal follows the selected plan.'
                         },
                         {
                             q: 'Is it available on Android?',
@@ -1060,14 +1064,16 @@
             },
             home: {
                 meta: {
-                    title: 'Balance · Finanças pessoais com controle total',
-                    description: 'Balance é a app privacy-first, offline e open source para gerir liquidez, investimentos e património com controlo total.',
-                    ogTitle: 'Balance. Finanças pessoais com controle total'
+                    title: 'Balance – App de finanças pessoais e tracker de património privado',
+                    description: 'Balance é uma app de finanças pessoais privacy-first para acompanhar património, investimentos, cripto e ativos. Offline, segura e simples.',
+                    ogTitle: 'Balance – App de finanças pessoais e tracker de património privado'
                 },
                 hero: {
                     badge: 'Privacy-first · Offline · Open source',
-                    title: 'As suas finanças sob controle, finalmente.',
-                    subtitle: 'Balance reúne liquidez, investimentos e despesas recorrentes numa única vista limpa. Tudo foi pensado para ser claro, rápido e totalmente sob o seu controlo.'
+                    title: 'Controle as suas finanças num só lugar',
+                    subtitle: 'Acompanhe património, investimentos e liquidez com uma app de finanças pessoais privada e offline-first.',
+                    description: 'Balance ajuda-o a acompanhar contas, investimentos, cripto e ativos num dashboard simples. Tudo fica no seu dispositivo, sem ligações bancárias e sem partilha de dados.',
+                    cta: 'Descarregar Balance'
                 },
                 trust: [
                     { labelHtml: '100%<br>offline', sub: 'Funciona sem internet' },
@@ -1076,14 +1082,14 @@
                     { label: 'iOS & Android', sub: 'Disponível em qualquer lugar' }
                 ],
                 context: {
-                    title: 'Os seus bancos, brokers e cripto estão em lugares diferentes',
-                    text: 'Na prática, o património está distribuído. Conta principal, poupanças, investimentos, cripto e dinheiro vivo ficam em lugares diferentes. Manter uma visão atualizada torna-se difícil.',
-                    highlight: 'Balance nasceu para isso. Um único dashboard e uma estrutura por wallets que replica a sua realidade, sem ligações automáticas e sem compromissos com a privacidade.'
+                    title: 'Uma app de finanças pessoais para todo o seu património',
+                    text: 'Contas bancárias, brokers, cripto, liquidez e outros ativos raramente estão no mesmo lugar. Balance dá-lhe uma visão clara de tudo sem sync bancária nem acesso de terceiros.',
+                    highlight: 'Use o Balance como tracker de património, tracker de investimentos e portfolio tracker privado, ajustado à forma como realmente gere o seu dinheiro.'
                 },
                 clarity: {
-                    title: 'Conhecer as próprias finanças é importante',
-                    text: 'Balance privilegia a legibilidade. Gráficos essenciais, números-chave e comparações diretas entre períodos. O objetivo é reduzir o ruído, não aumentá-lo.',
-                    highlight: 'Os snapshots ajudam a construir um histórico fiável. Veja como o património evolui ao longo do tempo e o que realmente o alterou, sem depender de integrações externas.'
+                    title: 'Veja o seu dinheiro com clareza ao longo do tempo',
+                    text: 'Balance é uma app de finanças pessoais offline-first pensada para atualizações manuais rápidas, gráficos simples e um dashboard limpo.',
+                    highlight: 'Os snapshots ajudam-no a acompanhar património, investimentos e ativos ao longo do tempo, para que a sua app financeira offline continue útil sem virar uma folha de cálculo.'
                 },
                 pricing: {
                     title: 'Planos disponíveis',
@@ -1117,49 +1123,49 @@
                     cards: {
                         snapshot: {
                             title: 'Snapshots patrimoniais',
-                            text: 'Registe o património num momento específico. Compare o histórico e observe a variação ao longo do tempo.'
+                            text: 'Guarde snapshots do património e compare o histórico ao longo do tempo.'
                         },
                         wallet: {
                             title: 'Wallets por tipologia',
-                            text: 'Separe liquidez e investimentos. Cada wallet pode ter cor e estrutura coerentes com a sua realidade.'
+                            text: 'Organize contas, liquidez, investimentos, cripto e outros ativos em wallets separadas.'
                         },
                         dashboard: {
                             title: 'Dashboard sintético',
-                            text: 'Património líquido, liquidez e investimentos numa única vista. Distribuições e tendências, sem excesso.'
+                            text: 'Veja património líquido, liquidez, investimentos e alocação num dashboard simples.'
                         },
                         privacy: {
                             title: 'Privacidade e controlo',
-                            text: 'Sem login. Sem envio de dados. Funciona sem servidores externos.'
+                            text: 'Uma privacy finance app sem ligações bancárias, servidores externos ou partilha de dados.'
                         },
                         speed: {
                             title: 'Experiência rápida',
-                            text: 'Menos ações e interface limpa. Atualize os valores em poucos segundos e siga em frente.'
+                            text: 'Atualize saldos em poucos toques e mantenha a sua app financeira offline sempre atualizada.'
                         }
                     },
                     detailMap: {
                         snapshot: {
                             title: 'Snapshots patrimoniais',
-                            text: 'Guarde o património em poucos segundos e reveja-o ao longo do tempo com uma vista limpa e legível.',
+                            text: 'Guarde snapshots do património em segundos e reveja o histórico numa vista limpa.',
                             bullets: [
-                                'Snapshots manuais, zero sincronizações externas.',
-                                'Histórico claro com comparações rápidas.',
-                                'Evolução do património sem ruído.'
+                                'Snapshots manuais sem ligações bancárias.',
+                                'Histórico claro para acompanhar a evolução.',
+                                'Ativos e investimentos sem ruído.'
                             ]
                         },
                         wallet: {
                             title: 'Wallets por tipologia',
-                            text: 'Separe liquidez, investimentos e dinheiro em wallets claras, cada uma com a sua própria lógica.',
+                            text: 'Organize contas, liquidez, investimentos, cripto e ativos em wallets claras e separadas.',
                             bullets: [
-                                'Cores e etiquetas personalizadas para cada wallet.',
-                                'Totais agregados por categoria e tipologia.',
+                                'Categorias flexíveis para cada conta ou ativo.',
+                                'Totais agregados entre liquidez e portfólios.',
                                 'Estrutura coerente com a sua realidade.'
                             ]
                         },
                         dashboard: {
                             title: 'Dashboard sintético',
-                            text: 'Uma vista única, limpa e imediata para perceber como estão as suas finanças.',
+                            text: 'Veja património, liquidez, investimentos e alocação num dashboard limpo.',
                             bullets: [
-                                'Património líquido, liquidez e investimentos num relance.',
+                                'Uma app de finanças pessoais para a visão completa.',
                                 'Tendências essenciais sem sobrecarga visual.',
                                 'Indicadores-chave sempre acessíveis.'
                             ]
@@ -1168,18 +1174,18 @@
                             title: 'Privacidade e controlo',
                             text: 'Dados locais, sem ligações bancárias e zero rastreamento. Sempre.',
                             bullets: [
-                                'Sem login ou conta obrigatória.',
-                                'Sem servidores externos ou sync automática.',
-                                'Controlo total sobre os seus dados.'
+                                'Criada como privacy finance app por definição.',
+                                'Sem login, servidores externos ou sync automática.',
+                                'Controlo total sobre os seus dados no dispositivo.'
                             ]
                         },
                         speed: {
                             title: 'Experiência rápida',
-                            text: 'Atualize os seus dados em poucos toques e siga logo para a próxima ação.',
+                            text: 'Atualize os seus dados em poucos toques e mantenha tudo atual sem fricção.',
                             bullets: [
                                 'Fluxos essenciais sem passos desnecessários.',
                                 'Interações rápidas pensadas para mobile.',
-                                'Interface limpa e imediata.'
+                                'Interface limpa para atualizações frequentes.'
                             ]
                         }
                     }
@@ -1188,24 +1194,24 @@
                     title: 'Perguntas frequentes',
                     items: [
                         {
-                            q: 'Os meus dados estão seguros? Quem os pode ver?',
-                            a: 'Só você. Balance é totalmente offline: não usa servidores, não envia dados e não exige login. Tudo permanece no seu dispositivo, protegido por PIN e biometria (Face ID / impressão digital).'
+                            q: 'O Balance é realmente privado?',
+                            a: 'Sim. Balance é uma app de finanças pessoais privacy-first e offline, por isso os seus dados ficam no dispositivo sem servidores, login ou partilha.'
                         },
                         {
-                            q: 'Porque não existe sincronização bancária automática?',
-                            a: 'Por uma escolha consciente de privacidade. As integrações bancárias exigem credenciais ou tokens que passam por servidores externos. Balance evita qualquer ponto de vulnerabilidade entre si e os seus dados financeiros.'
+                            q: 'O Balance liga-se a bancos ou brokers?',
+                            a: 'Não. Balance foi pensado como tracker de investimentos e portfolio tracker privado sem ligações bancárias, por isso as suas credenciais nunca passam por serviços externos.'
                         },
                         {
-                            q: 'O que acontece se eu trocar de telefone?',
-                            a: 'Pode exportar os seus dados em formato JSON e importá-los novamente no novo dispositivo. A função de exportação/importação está disponível nas definições da app.'
+                            q: 'O que posso acompanhar com o Balance?',
+                            a: 'Pode acompanhar contas bancárias, investimentos, cripto, liquidez e outros ativos num único dashboard, usando o Balance como tracker de património no dia a dia.'
                         },
                         {
                             q: 'Qual é a diferença entre a versão gratuita e a Pro?',
-                            a: 'A versão gratuita é suficiente para começar: inclui até 3 wallets, dashboard completo e snapshots essenciais. Balance Pro foi pensado para quem usa a app de forma contínua e quer um histórico realmente completo: remove o limite de wallets, adiciona snapshots avançados e desbloqueia o histórico completo. Custa 2,99 € por mês ou 19,99 € por ano.'
+                            a: 'A versão gratuita inclui até 3 wallets, dashboard completo e snapshots essenciais. Balance Pro remove o limite de wallets, adiciona snapshots avançados e desbloqueia o histórico completo para uma experiência mais completa.'
                         },
                         {
                             q: 'Como funciona o período gratuito?',
-                            a: 'A oferta de lançamento inclui o primeiro mês de Balance Pro grátis ao ativar uma subscrição mensal ou anual. No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado: 2,99 € por mês ou 19,99 € por ano.'
+                            a: 'A oferta de lançamento inclui o primeiro mês de Balance Pro grátis ao ativar uma subscrição mensal ou anual. No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado.'
                         },
                         {
                             q: 'Está disponível para Android?',
@@ -1707,7 +1713,8 @@
         setHtml('.hero-badge', `<i class="fa-solid fa-shield-halved"></i>${page.hero.badge}`);
         setText('.hero-title', page.hero.title);
         setText('.hero-subtitle', page.hero.subtitle);
-        setHtml('.hero-buttons .btn-primary', `<i class="fa-brands fa-apple"></i> ${langCopy.global.ui.appStore}`);
+        setText('.hero-value-prop', page.hero.description || '');
+        setHtml('.hero-buttons .btn-primary', `<i class="fa-brands fa-apple"></i> ${page.hero.cta || langCopy.global.ui.appStore}`);
         setStoreSoonButton('.hero .btn-store-soon', langCopy);
 
         const trustItems = document.querySelectorAll('.trust-item');
