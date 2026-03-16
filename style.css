@@ -2329,11 +2329,12 @@ footer::before {
     .hero-visual {
         justify-content: center;
         z-index: 3;
-        margin-top: -180px;
+        margin-top: -96px;
+        pointer-events: none;
     }
 
     .device-stage {
-        transform: translateY(-24px);
+        transform: translateY(-10px);
         margin-left: 0;
         min-height: calc(var(--phone-height) + 80px);
     }
