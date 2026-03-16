@@ -2028,7 +2028,6 @@ footer::before {
 }
 
 .footer-cta {
-    text-align: center;
     padding: 42px 48px;
     border: 1px solid rgba(120, 200, 255, 0.2);
     border-radius: 28px;
@@ -2047,6 +2046,26 @@ footer::before {
 
 #download .footer-cta {
     margin-bottom: 0;
+}
+
+.footer-cta-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(320px, 3fr);
+    gap: 28px;
+    align-items: stretch;
+}
+
+.footer-cta-main {
+    text-align: left;
+}
+
+.footer-cta-main .hero-buttons {
+    justify-content: flex-start;
+}
+
+.footer-newsletter {
+    padding: 28px;
+    text-align: left;
 }
 
 .footer-cta::before {
@@ -2241,6 +2260,10 @@ footer::before {
 
     .footer-cta {
         padding: 52px 24px 48px;
+    }
+
+    .footer-cta-layout {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -2661,17 +2684,6 @@ footer::before {
     margin: 40px auto;
 }
 
-.newsletter-intro {
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.newsletter-panel {
-    margin: 40px auto 0;
-    max-width: 640px;
-}
-
 .newsletter-card {
     height: 100%;
 }
@@ -2680,14 +2692,6 @@ footer::before {
     font-family: var(--font-display);
     font-size: 2rem;
     margin-bottom: 18px;
-}
-
-.newsletter-card-form {
-    max-width: 560px;
-}
-
-.newsletter-card-centered {
-    margin: 0 auto;
 }
 
 .contact-form {
@@ -2819,9 +2823,8 @@ select.form-control option {
 }
 
 @media (max-width: 900px) {
-    .newsletter-panel,
-    .newsletter-card-form {
-        max-width: none;
+    .footer-newsletter {
+        padding: 24px;
     }
 }
 
