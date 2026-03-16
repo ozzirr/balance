@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Contact Form
     initContactForm();
-    initNewsletterForm();
 
     // Initialize 3D iPhone interaction
     initIPhone3D();
@@ -408,105 +407,6 @@ function initContactForm() {
             console.log('Message sent:', new FormData(form));
         }, 1500);
     });
-}
-
-function initNewsletterForm() {
-    const form = document.getElementById('newsletter-form');
-    const successMsg = document.getElementById('newsletter-success');
-    const errorMsg = document.getElementById('newsletter-error');
-
-    if (!form) return;
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const honeypot = form.querySelector('#newsletter-company');
-        if (honeypot && honeypot.value) {
-            console.warn('Bot detected on newsletter form.');
-            return;
-        }
-
-        hideFormMessage(errorMsg);
-        if (successMsg) successMsg.style.display = 'none';
-
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const emailInput = form.querySelector('#newsletter-email');
-        const consentInput = form.querySelector('#newsletter-consent');
-        const originalText = submitBtn.innerText;
-
-        if (!emailInput.checkValidity() || !consentInput.checked) {
-            form.reportValidity();
-            return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Iscrizione in corso...';
-
-        try {
-            const response = await fetch('/api/newsletter', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: emailInput.value.trim().toLowerCase(),
-                    consent: true,
-                    source: form.dataset.source || 'website-newsletter',
-                    company: honeypot ? honeypot.value : ''
-                })
-            });
-
-            let payload = null;
-            try {
-                payload = await response.json();
-            } catch (err) {
-                payload = null;
-            }
-
-            if (!response.ok) {
-                if (payload && payload.alreadySubscribed) {
-                    form.style.display = 'none';
-                    if (successMsg) {
-                        successMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i><p>Questa email risulta gia iscritta. Ti terremo aggiornato anche da qui.</p>';
-                        successMsg.style.display = 'block';
-                    }
-                    return;
-                }
-
-                throw new Error((payload && (payload.error || payload.message)) || 'Errore durante il salvataggio della tua email.');
-            }
-
-            if (payload && payload.alreadySubscribed) {
-                form.style.display = 'none';
-                if (successMsg) {
-                    successMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i><p>Questa email risulta gia iscritta. Ti terremo aggiornato anche da qui.</p>';
-                    successMsg.style.display = 'block';
-                }
-                return;
-            }
-
-            form.reset();
-            form.style.display = 'none';
-            if (successMsg) successMsg.style.display = 'block';
-        } catch (error) {
-            showFormMessage(errorMsg, error.message || 'Errore imprevisto durante l\'iscrizione.');
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerText = originalText;
-        }
-    });
-}
-
-function showFormMessage(element, message) {
-    if (!element) return;
-    element.textContent = message;
-    element.hidden = false;
-}
-
-function hideFormMessage(element) {
-    if (!element) return;
-    element.hidden = true;
-    element.textContent = '';
 }
 
 function initIPhone3D() {

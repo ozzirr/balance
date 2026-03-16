@@ -2047,55 +2047,9 @@ footer::before {
     padding-bottom: 0;
 }
 
-#download .footer-cta {
-    margin-bottom: 0;
-}
-
-.footer-cta-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 6fr) minmax(380px, 4fr);
-    gap: 32px;
-    align-items: center;
-}
-
 .footer-cta-main {
-    text-align: left;
-    padding: 12px 2px 12px 6px;
-    min-height: 100%;
-}
-
-.footer-cta-main .hero-buttons {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-
-.footer-newsletter {
-    padding: 30px;
-    text-align: left;
-    border-radius: 30px;
-    border: 1px solid rgba(120, 200, 255, 0.16);
-    background:
-        linear-gradient(180deg, rgba(33, 39, 60, 0.92), rgba(12, 18, 32, 0.92));
-    box-shadow:
-        0 24px 50px rgba(6, 10, 20, 0.45),
-        0 0 40px rgba(68, 210, 255, 0.12);
-    position: relative;
-    overflow: hidden;
-}
-
-.footer-newsletter::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at top right, rgba(68, 210, 255, 0.12), transparent 38%),
-        radial-gradient(circle at bottom left, rgba(139, 92, 255, 0.14), transparent 42%);
-    pointer-events: none;
-}
-
-.footer-newsletter > * {
-    position: relative;
-    z-index: 1;
+    text-align: center;
+    padding: 18px 12px 14px;
 }
 
 .footer-cta-badge {
@@ -2103,10 +2057,12 @@ footer::before {
 }
 
 .footer-cta-copy {
-    max-width: 560px;
+    max-width: 620px;
     margin: 0 0 22px;
     font-size: 1.18rem;
     color: rgba(244, 247, 255, 0.82);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer-cta-points {
@@ -2114,6 +2070,7 @@ footer::before {
     flex-wrap: wrap;
     gap: 12px;
     margin: 0 0 28px;
+    justify-content: center;
 }
 
 .footer-cta-point {
@@ -2130,17 +2087,16 @@ footer::before {
 
 .footer-cta-actions {
     margin-bottom: 18px;
+    justify-content: center;
 }
 
 .footer-cta-note {
-    max-width: 480px;
+    max-width: 520px;
     margin: 0;
     color: var(--text-secondary);
     line-height: 1.65;
-}
-
-.footer-newsletter-copy {
-    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer-cta::before {
@@ -2337,9 +2293,6 @@ footer::before {
         padding: 52px 24px 48px;
     }
 
-    .footer-cta-layout {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* Trust Bar */
@@ -2759,16 +2712,6 @@ footer::before {
     margin: 40px auto;
 }
 
-.newsletter-card {
-    height: 100%;
-}
-
-.newsletter-card h2 {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    margin-bottom: 18px;
-}
-
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -2838,24 +2781,6 @@ select.form-control option {
     display: none;
 }
 
-.newsletter-check {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.newsletter-check input {
-    margin-top: 4px;
-    accent-color: #7b5cff;
-}
-
-.newsletter-check a {
-    color: var(--accent-color);
-}
-
 .social-links {
     margin-top: 40px;
     display: flex;
@@ -2873,35 +2798,7 @@ select.form-control option {
     color: var(--accent-color);
 }
 
-.success-message {
-    display: none;
-    background: rgba(104, 175, 125, 0.1);
-    color: var(--success-color);
-    padding: 20px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--success-color);
-    text-align: center;
-    margin-top: 20px;
-}
-
-.form-status {
-    padding: 16px 18px;
-    border-radius: var(--radius-md);
-    margin-top: 16px;
-    font-size: 0.95rem;
-}
-
-.form-status-error {
-    border: 1px solid rgba(255, 107, 107, 0.45);
-    background: rgba(255, 107, 107, 0.08);
-    color: #ffb3b3;
-}
-
 @media (max-width: 900px) {
-    .footer-newsletter {
-        padding: 24px;
-    }
-
     .footer-cta-main {
         padding: 0;
     }
