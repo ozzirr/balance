@@ -41,88 +41,91 @@
 
     <main class="page-content">
         <section class="container reveal">
-            <h1 class="section-title center-text">Balance Pro sta arrivando</h1>
-            <p class="section-text center-text">La versione potenziata di Balance sarà disponibile venerdì 20 marzo.</p>
+            <h1 class="section-title center-text" data-i18n="proWaitlist.hero.title">Balance Pro sta arrivando</h1>
+            <p class="section-text center-text" data-i18n="proWaitlist.hero.subtitle">La versione potenziata di Balance sarà disponibile venerdì 20 marzo.</p>
 
             <!-- Countdown -->
             <div id="countdown" class="countdown-container">
                 <div class="countdown-item">
                     <span id="days" class="countdown-number">0</span>
-                    <span class="countdown-label">Giorni</span>
+                    <span class="countdown-label" data-i18n="proWaitlist.countdownLabels.days">Giorni</span>
                 </div>
                 <div class="countdown-item">
                     <span id="hours" class="countdown-number">0</span>
-                    <span class="countdown-label">Ore</span>
+                    <span class="countdown-label" data-i18n="proWaitlist.countdownLabels.hours">Ore</span>
                 </div>
                 <div class="countdown-item">
                     <span id="minutes" class="countdown-number">0</span>
-                    <span class="countdown-label">Minuti</span>
+                    <span class="countdown-label" data-i18n="proWaitlist.countdownLabels.minutes">Minuti</span>
                 </div>
                 <div class="countdown-item">
                     <span id="seconds" class="countdown-number">0</span>
-                    <span class="countdown-label">Secondi</span>
+                    <span class="countdown-label" data-i18n="proWaitlist.countdownLabels.seconds">Secondi</span>
                 </div>
             </div>
 
             <!-- Pro Features -->
             <div class="pro-features-container">
-                <h2 class="pro-section-title">Cosa sblocchi con Balance Pro</h2>
+                <h2 class="pro-section-title" data-i18n="proWaitlist.countdown.label">Cosa sblocchi con Balance Pro</h2>
                 
                 <div class="pro-features-grid">
-                    <div class="pro-feature-item">
+                    <div class="pro-feature-item" data-feature-index="0">
                         <div class="pro-feature-icon">
                             <i class="fa-solid fa-wallet"></i>
                         </div>
-                        <h3>Wallet illimitati</h3>
-                        <p>Organizza tutte le tue risorse: conti bancari, investimenti, crypto, cash e altro.</p>
+                        <h3 data-i18n="proWaitlist.features.0.title">Wallet illimitati</h3>
+                        <p data-i18n="proWaitlist.features.0.text">Organizza tutte le tue risorse: conti bancari, investimenti, crypto, cash e altro.</p>
                     </div>
 
-                    <div class="pro-feature-item">
+                    <div class="pro-feature-item" data-feature-index="1">
                         <div class="pro-feature-icon">
                             <i class="fa-solid fa-chart-line"></i>
                         </div>
-                        <h3>Snapshot avanzati</h3>
-                        <p>Salva snapshot illimitati e analizza l'evoluzione del tuo patrimonio nel tempo.</p>
+                        <h3 data-i18n="proWaitlist.features.1.title">Snapshot avanzati</h3>
+                        <p data-i18n="proWaitlist.features.1.text">Salva snapshot illimitati e analizza l'evoluzione del tuo patrimonio nel tempo.</p>
                     </div>
 
-                    <div class="pro-feature-item">
+                    <div class="pro-feature-item" data-feature-index="2">
                         <div class="pro-feature-icon">
                             <i class="fa-solid fa-history"></i>
                         </div>
-                        <h3>Storico completo</h3>
-                        <p>Accedi a tutto il tuo storico finanziario per confrontare e analizzare tendenze.</p>
+                        <h3 data-i18n="proWaitlist.features.2.title">Storico completo</h3>
+                        <p data-i18n="proWaitlist.features.2.text">Accedi a tutto il tuo storico finanziario per confrontare e analizzare tendenze.</p>
                     </div>
 
-                    <div class="pro-feature-item">
+                    <div class="pro-feature-item" data-feature-index="3">
                         <div class="pro-feature-icon">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
-                        <h3>Privacy assoluta</h3>
-                        <p>Tutto rimane sul tuo dispositivo. Nessun server, nessuna condivisione dati.</p>
+                        <h3 data-i18n="proWaitlist.features.3.title">Privacy assoluta</h3>
+                        <p data-i18n="proWaitlist.features.3.text">Tutto rimane sul tuo dispositivo. Nessun server, nessuna condivisione dati.</p>
                     </div>
-                </div>
-
-                <div class="pro-pricing-preview">
-                    <h3>Prezzi di lancio</h3>
-                    <div class="pricing-options">
-                        <div class="pricing-option">
-                            <span class="option-label">Mensile</span>
-                            <span class="option-price">2,99 €</span>
-                            <span class="option-sub">al mese</span>
-                        </div>
-                        <div class="pricing-divider"></div>
-                        <div class="pricing-option">
-                            <span class="option-label">Annuale</span>
-                            <span class="option-price">19,99 €</span>
-                            <span class="option-sub">invece di 35,88 €</span>
-                        </div>
-                    </div>
-                    <p class="pricing-note">Il primo mese è gratis quando attivi un abbonamento. Cancellabile in qualsiasi momento.</p>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
+    <footer class="scene footer-scene">
+        <div class="container footer-container">
+            <p class="copyright">© Balance App. Tutti i diritti riservati.</p>
+            <div class="footer-language">
+                <label for="footer-language" class="footer-language-label">Lingua</label>
+                <select id="footer-language" class="footer-language-select" aria-label="Lingua">
+                    <option value="it">Italiano</option>
+                    <option value="en">English</option>
+                    <option value="pt">Português</option>
+                </select>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Termini e Condizioni</a>
+                <a href="contacts.html">Contatti</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
     <script>
         // Countdown to March 20, 2026
@@ -261,28 +264,7 @@
         }
 
         .pro-pricing-preview {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md);
-            padding: 2rem;
-            text-align: center;
-            max-width: 600px;
-            margin: 3rem auto 0;
-        }
-
-        .pro-pricing-preview h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .pricing-options {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0;
-            margin-bottom: 1.5rem;
+            display: none;
         }
 
         .pricing-option {
@@ -312,19 +294,6 @@
             color: var(--text-secondary);
         }
 
-        .pricing-divider {
-            width: 1px;
-            height: 60px;
-            background: var(--glass-border);
-            margin: 0 1.5rem;
-        }
-
-        .pricing-note {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
         @media (max-width: 768px) {
             .countdown-container {
                 gap: 0.8rem;
@@ -351,19 +320,6 @@
 
             .pro-feature-item {
                 padding: 1.2rem;
-            }
-
-            .pro-pricing-preview {
-                padding: 1.5rem;
-            }
-
-            .pricing-options {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .pricing-divider {
-                display: none;
             }
         }
     </style>
