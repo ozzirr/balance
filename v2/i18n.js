@@ -1,1529 +1,2167 @@
-const BalanceV2I18n = (() => {
-    const translations = {
-        en: {
+const APP_STORE_URL = 'https://apps.apple.com/it/app/balance-finanza-personale/id6758206139';
+const GITHUB_URL = 'https://github.com/ozzirr/balance-app-v1';
+const GITHUB_ISSUES_URL = `${GITHUB_URL}/issues`;
+const GITHUB_BUG_URL = `${GITHUB_URL}/issues/new?template=bug_report.md`;
+const GITHUB_FEATURE_URL = `${GITHUB_URL}/issues/new?template=feature_request.md`;
+const GITHUB_CONTRIBUTING_URL = `${GITHUB_URL}/blob/main/CONTRIBUTING.md`;
+
+const LANGUAGE_STORAGE_KEY = 'balance-v2-language';
+
+const LANGUAGE_META = {
+    it: { htmlLang: 'it', ogLocale: 'it_IT' },
+    en: { htmlLang: 'en', ogLocale: 'en_US' },
+    pt: { htmlLang: 'pt', ogLocale: 'pt_PT' }
+};
+
+const CONTENT = {
+    en: {
+        common: {
+            brand: 'Balance',
+            nav: {
+                overview: 'Overview',
+                features: 'Features',
+                roadmap: 'Roadmap',
+                contribute: 'Contribute',
+                download: 'Download',
+                menu: 'Menu'
+            },
+            footer: {
+                privacy: 'Privacy Policy',
+                terms: 'Terms',
+                contact: 'Contact',
+                github: 'GitHub',
+                language: 'Language',
+                copyright: '© Balance. All rights reserved.'
+            }
+        },
+        home: {
             meta: {
-                home: {
-                    title: 'Balance — Take control of your finances',
-                    description: 'Balance is the private, offline-first website for tracking money, investments, and net worth with clarity.'
+                title: 'Balance — Take control of your finances.',
+                description: 'Private, offline and open-source finance tracking. Track wallets, investments and net worth with clarity, no bank sync and no noise.'
+            },
+            hero: {
+                eyebrow: 'Private · Offline · Open source',
+                title: 'Take control of your finances.',
+                subtitle: 'Private. Offline. Fully yours.',
+                supportHtml: 'Track your money, investments and net worth with clarity.<br>No bank connections. No sync. No noise.',
+                ctaPrimary: 'Download on the App Store',
+                ctaSecondary: 'View roadmap',
+                chipA: 'Monthly snapshots',
+                chipB: 'No bank sync',
+                cardA: {
+                    label: 'Clarity',
+                    value: 'Manual updates. Clear history.'
                 },
-                roadmap: {
-                    title: 'Balance Roadmap',
-                    description: 'Follow the Balance roadmap and see what is shipping next.'
-                },
-                contribute: {
-                    title: 'Contribute to Balance',
-                    description: 'Help shape Balance with roadmap feedback, issues, docs, translations, and code contributions.'
-                },
-                contact: {
-                    title: 'Contact Balance',
-                    description: 'Use Balance contact channels for questions, feedback, roadmap ideas, and bug reports.'
-                },
-                privacy: {
-                    title: 'Balance Privacy Policy',
-                    description: 'Read the privacy principles behind Balance, including offline data storage and no bank sync.'
-                },
-                terms: {
-                    title: 'Balance Terms',
-                    description: 'Review the terms for using Balance, including subscriptions, availability, and responsibilities.'
+                cardB: {
+                    label: 'Control',
+                    value: 'Everything stays on your device.'
                 }
             },
-            common: {
-                brand: 'Balance',
-                nav: {
-                    overview: 'Overview',
-                    features: 'Features',
-                    roadmap: 'Roadmap',
-                    contribute: 'Contribute',
-                    download: 'Download'
+            trust: [
+                {
+                    title: 'Private by design',
+                    text: 'No hidden flows. No data handoff. No account required.'
                 },
-                footer: {
-                    privacy: 'Privacy Policy',
-                    terms: 'Terms',
-                    contact: 'Contact',
-                    github: 'GitHub',
-                    language: 'Language',
-                    copyright: '© Balance. All rights reserved.'
+                {
+                    title: 'Works offline',
+                    text: 'Your numbers stay readable even without a connection.'
                 },
-                cta: {
-                    appStoreHtml: '<i class="fa-brands fa-apple"></i> Download on the App Store',
-                    roadmap: 'View roadmap',
-                    github: 'Contribute on GitHub'
+                {
+                    title: 'No bank sync',
+                    text: 'You choose what enters the app and when it changes.'
+                },
+                {
+                    title: 'Your data stays on your device',
+                    text: 'Balance is built around local control, not remote storage.'
                 }
-            },
-            home: {
-                hero: {
-                    eyebrow: 'Private · Offline · Open source',
-                    brand: 'Balance',
-                    title: 'Take control of your finances.',
-                    subtitle: 'Private. Offline. Fully yours.',
-                    support: 'Track your money, investments and net worth with clarity. No bank connections. No sync. No noise.'
-                },
-                trust: [
-                    { title: 'Private by design', text: 'Local-first, manual, and built to stay readable.' },
-                    { title: 'Works offline', text: 'Your workflow does not depend on any external service.' },
-                    { title: 'No bank sync', text: 'You decide what goes in and when it gets updated.' },
-                    { title: 'Your data stays on your device', text: 'No hidden pipeline between you and your finances.' }
+            ],
+            coreIdea: {
+                title: 'Control changes everything.',
+                paragraphs: [
+                    'Most finance apps try to automate your money. Balance gives you control instead.',
+                    'You decide what to track. You decide when to update. You understand everything.',
+                    'No black boxes. No hidden logic.'
                 ],
-                core: {
-                    title: 'Control changes everything.',
-                    p1: 'Most finance apps try to automate your money. Balance gives you control instead.',
-                    p2: 'You decide what to track. You decide when to update. You understand everything.',
-                    p3: 'No black boxes. No hidden logic.'
-                },
-                value: {
-                    title: 'Everything you need. Nothing you don’t.',
-                    support: 'Simple inputs. Clear outputs.',
-                    items: [
-                        { title: 'All your wallets in one place', text: 'Cash, investments, savings, and anything else you want to keep visible.' },
-                        { title: 'One view of your total net worth', text: 'Track the big picture without losing the details.' },
-                        { title: 'Monthly snapshots', text: 'Capture where things stand and build a clear record over time.' },
-                        { title: 'Progress you can actually read', text: 'Less noise, better context, and a calmer routine.' }
-                    ]
-                },
-                screenshots: {
-                    title: 'See your finances clearly.',
-                    cards: [
-                        { title: 'A calm overview', text: 'A product interface designed to make balances and categories feel immediate.' },
-                        { title: 'Trends over time', text: 'Use snapshots to see direction, not just the latest number.' },
-                        { title: 'Wallet structure', text: 'Keep accounts and assets separated without losing your overall picture.' },
-                        { title: 'Snapshots that matter', text: 'A manual rhythm that stays useful because it stays simple.' }
-                    ]
-                },
-                philosophy: {
-                    title: 'No sync. By choice.',
-                    p1: 'Balance doesn’t connect to your bank.',
-                    p2: 'That’s not a limitation. It’s a decision.',
-                    bullets: [
-                        'Your data stays on your device',
-                        'No external dependencies',
-                        'No broken connections',
-                        'No surprises'
-                    ],
-                    closing: 'You’re always in control.'
-                },
-                how: {
-                    title: 'Simple by design.',
-                    closing: 'It takes seconds. It gives you clarity over time.',
-                    steps: [
-                        { title: 'Add your wallets', text: 'Create the structure that matches how you actually organize your money.' },
-                        { title: 'Insert your balances', text: 'Update manually, quickly, and only when it makes sense.' },
-                        { title: 'Save monthly snapshots', text: 'Keep a clean record of where everything stands.' },
-                        { title: 'Track your growth over time', text: 'See what changed, what improved, and where to focus next.' }
-                    ]
-                },
-                open: {
-                    title: 'Built in the open.',
-                    copy: 'Balance is evolving step by step. Follow the roadmap. Suggest features. Contribute to the project.',
-                    cards: [
-                        { kicker: 'Roadmap', title: 'Transparent priorities', text: 'See what is being refined now, what comes next, and what stays intentionally later.' },
-                        { kicker: 'Feedback', title: 'Ideas shape the product', text: 'Feature requests and product feedback are part of how Balance moves forward.' },
-                        { kicker: 'Code', title: 'Open source by default', text: 'Review the codebase, propose changes, or help improve the product over time.' }
-                    ]
-                },
-                plans: {
-                    title: 'Start simple. Upgrade anytime.',
-                    intro: 'Free stays focused. Pro adds room for deeper control.',
-                    toggle: {
-                        aria: 'Choose Balance Pro billing',
-                        annual: 'Yearly',
-                        monthly: 'Monthly'
-                    },
-                    free: {
-                        badge: 'To get started',
-                        title: 'Balance Free',
-                        description: 'Everything you need to get started.',
-                        priceLabel: 'Free',
-                        list: ['Up to 3 wallets', 'Essential snapshots', 'Full history'],
-                        cta: 'Download free'
-                    },
-                    pro: {
-                        badgeAnnual: 'Launch offer',
-                        badgeMonthly: 'Cancel anytime',
-                        pillAnnual: 'Best value',
-                        pillMonthly: 'Monthly plan',
-                        title: 'Balance Pro',
-                        description: 'Advanced features for deeper control.',
-                        annualCaption: 'Launch yearly offer',
-                        annualPriceHtml: '19.99 €<span class="price-suffix">/ year</span>',
-                        annualChip: 'Save 15.89 €',
-                        annualAlt: 'Equivalent to 1.67 € / month instead of 35.88 € / year',
-                        annualNote: 'Free trial month.',
-                        monthlyCaption: 'Monthly plan',
-                        monthlyPriceHtml: '2.99 €<span class="price-suffix">/ month</span>',
-                        monthlyChip: 'Monthly',
-                        monthlyAlt: 'Monthly renewal at 2.99 €',
-                        monthlyNote: 'Free trial month.',
-                        list: ['Unlimited wallets', 'Advanced snapshots', 'Full history for deeper comparisons'],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download and unlock Pro',
-                        microcopy: 'At the end of the free trial, unless cancelled, renewal follows the selected plan.'
-                    }
-                },
-                faq: {
-                    title: 'Frequently asked questions',
-                    items: [
-                        {
-                            q: 'Is Balance private?',
-                            a: 'Yes. Balance is designed around local storage, manual updates, and no hidden data flow.'
-                        },
-                        {
-                            q: 'Does it connect to banks or brokerages?',
-                            a: 'No. Balance does not sync with banks or brokers. You stay in control of what gets tracked.'
-                        },
-                        {
-                            q: 'What can I track?',
-                            a: 'Wallets, cash, investments, and your total net worth over time.'
-                        },
-                        {
-                            q: 'What’s the difference between Free and Pro?',
-                            a: 'Free covers the essentials. Pro removes limits and adds more advanced depth for long-term tracking.'
-                        },
-                        {
-                            q: 'Is Android available?',
-                            a: 'iOS is available now. Android is on the roadmap.'
-                        }
-                    ]
-                },
-                final: {
-                    title: 'Take control today.',
-                    copy: 'Your finances. Your decisions.'
-                }
-            },
-            roadmap: {
-                hero: {
-                    eyebrow: 'Roadmap',
-                    title: 'Where Balance is heading.',
-                    copy: 'Balance is evolving in the open, with deliberate priorities and a product direction built around control.'
-                },
-                columns: {
-                    now: {
-                        kicker: 'Now',
-                        title: 'What is being refined',
-                        text: 'Focus stays on product clarity, reliability, and faster day-to-day use.',
-                        items: [
-                            'Polish the core dashboard and wallet flow',
-                            'Improve monthly snapshot routines',
-                            'Tighten mobile experience and readability',
-                            'Keep the core product calm and predictable'
-                        ]
-                    },
-                    next: {
-                        kicker: 'Next',
-                        title: 'What comes after',
-                        text: 'The next layer adds depth without turning the product into a noisy finance tool.',
-                        items: [
-                            'Richer charts and comparisons',
-                            'More flexible wallet structure',
-                            'Export options for your own records',
-                            'Better review patterns across time'
-                        ]
-                    },
-                    later: {
-                        kicker: 'Later',
-                        title: 'What stays intentional',
-                        text: 'Future work will be evaluated against the same product principles.',
-                        items: [
-                            'Optional cloud backup without losing local control',
-                            'More customization around views and categories',
-                            'Broader platform coverage',
-                            'Community-driven improvements through open development'
-                        ]
-                    }
-                },
-                principles: {
-                    title: 'How priorities get decided',
-                    items: [
-                        {
-                            title: 'Control first',
-                            text: 'Features only ship if they keep the product understandable and user-controlled.'
-                        },
-                        {
-                            title: 'Private by default',
-                            text: 'The offline model stays central. Convenience never comes at the cost of clarity.'
-                        },
-                        {
-                            title: 'Small, durable steps',
-                            text: 'Balance grows through focused iterations instead of feature sprawl.'
-                        }
-                    ]
-                },
-                cta: {
-                    title: 'Want to help shape what comes next?',
-                    copy: 'Follow the roadmap, suggest improvements, or contribute directly on GitHub.'
-                }
-            },
-            contribute: {
-                hero: {
-                    eyebrow: 'Contribute',
-                    title: 'Help shape Balance.',
-                    copy: 'Balance is built in the open. Ideas, issues, documentation, translations, and code all move the product forward.'
-                },
-                ways: {
-                    title: 'Where to contribute',
-                    items: [
-                        {
-                            title: 'Suggest product improvements',
-                            text: 'Open issues for workflow ideas, missing details, or product direction feedback.',
-                            bullets: ['Feature ideas', 'Copy feedback', 'UX observations']
-                        },
-                        {
-                            title: 'Report bugs clearly',
-                            text: 'Good issue reports help protect the calm, reliable experience the product aims for.',
-                            bullets: ['Repro steps', 'Expected behavior', 'Screenshots when useful']
-                        },
-                        {
-                            title: 'Improve docs and translations',
-                            text: 'The project should stay understandable across product, roadmap, and legal pages.',
-                            bullets: ['Website copy', 'Translations', 'Documentation clarity']
-                        },
-                        {
-                            title: 'Contribute code',
-                            text: 'Open source work is welcome when it supports the product principles and current roadmap.',
-                            bullets: ['Review the roadmap first', 'Keep changes focused', 'Preserve product simplicity']
-                        }
-                    ]
-                },
-                principles: {
-                    title: 'What Balance protects',
-                    items: [
-                        {
-                            title: 'Manual by design',
-                            text: 'Manual input is part of the product philosophy, not a missing feature.'
-                        },
-                        {
-                            title: 'Clarity over automation',
-                            text: 'Anything added should make the product easier to understand, not harder.'
-                        },
-                        {
-                            title: 'Privacy stays central',
-                            text: 'Contributions should respect the local-first, no-bank-sync model.'
-                        }
-                    ]
-                },
-                cta: {
-                    title: 'Start with the roadmap. Then open the repo.',
-                    copy: 'That keeps contributions aligned with the product direction.'
-                }
-            },
-            contact: {
-                hero: {
-                    eyebrow: 'Contact',
-                    title: 'Get in touch.',
-                    copy: 'Questions, feedback, and product ideas all start here. GitHub is the fastest path for roadmap feedback and bug reports.'
-                },
-                cards: [
-                    {
-                        kicker: 'Roadmap feedback',
-                        title: 'Suggest what should improve next',
-                        text: 'Use GitHub issues to share ideas, missing features, or product direction feedback.',
-                        cta: 'Open GitHub issues'
-                    },
-                    {
-                        kicker: 'Bug reports',
-                        title: 'Report something broken clearly',
-                        text: 'The best reports include context, reproduction steps, and what you expected to happen.',
-                        cta: 'Report a bug'
-                    },
-                    {
-                        kicker: 'General contact',
-                        title: 'Reach out directly',
-                        text: 'For broader questions or partnership inquiries, use the email contact for the project.',
-                        cta: 'Email Balance'
-                    }
+                sideLines: [
+                    'Manual by choice.',
+                    'Calm by design.',
+                    'Built for long-term clarity.'
                 ],
-                note: 'If you are reporting a product issue, GitHub usually gives the clearest and fastest path.'
+                ending: 'Balance stays useful because every number still has context.'
             },
-            privacy: {
-                hero: {
-                    eyebrow: 'Privacy Policy',
-                    title: 'Private by design.',
-                    copy: 'Balance is built around local control. This page explains the principles behind that approach.'
-                },
-                sections: [
+            value: {
+                title: 'Everything you need. Nothing you don’t.',
+                intro: 'Simple inputs. Clear outputs.',
+                items: [
                     {
-                        title: '1. Local-first storage',
-                        body: [
-                            'Balance is designed so your financial data stays on your device.',
-                            'The product does not rely on a central server to store your wallets, balances, or snapshots.'
-                        ]
+                        icon: 'WL',
+                        title: 'Track all your wallets in one place',
+                        text: 'Keep cash, brokers, crypto and other assets organized in one clear view.'
                     },
                     {
-                        title: '2. No bank sync',
-                        body: [
-                            'Balance does not connect to your bank or brokerage account.',
-                            'That means your credentials are not routed through third-party sync providers.'
-                        ]
+                        icon: 'NW',
+                        title: 'Monitor investments and total net worth',
+                        text: 'See the bigger picture without turning your finances into a spreadsheet.'
                     },
                     {
-                        title: '3. No hidden data pipeline',
-                        body: [
-                            'The website may use standard hosting infrastructure, but the product philosophy remains the same: no hidden financial data flow.',
-                            'If third-party services are ever used for website forms or app distribution, they are separate from the product’s wallet and snapshot model.'
-                        ]
+                        icon: 'SN',
+                        title: 'Save monthly snapshots',
+                        text: 'Create a clean historical record whenever you want to lock in a month.'
                     },
                     {
-                        title: '4. Open source visibility',
-                        body: [
-                            'Balance is developed openly so the product direction and implementation remain reviewable.',
-                            'Open development helps keep privacy claims grounded in what the product actually does.'
-                        ]
-                    },
-                    {
-                        title: '5. Contact',
-                        body: [
-                            'For privacy questions, contact the project using the contact page or the published support channels.',
-                            'If you use a dedicated project email, update the contact route to reflect it.'
-                        ]
+                        icon: 'TR',
+                        title: 'See progress clearly over time',
+                        text: 'Track direction, not noise, with a rhythm that stays easy to maintain.'
                     }
                 ]
             },
-            terms: {
-                hero: {
-                    eyebrow: 'Terms',
-                    title: 'Terms for using Balance.',
-                    copy: 'These terms describe the basic conditions around access, subscriptions, and general use of the product and website.'
+            showcase: {
+                title: 'See your finances clearly.',
+                intro: 'A product view built around reading, not clutter.',
+                cards: {
+                    dashboard: {
+                        title: 'Dashboard clarity',
+                        text: 'A calmer overview of balances, composition and movement.'
+                    },
+                    trends: {
+                        title: 'Trends over time',
+                        text: 'Snapshots turn updates into a readable history instead of scattered notes.'
+                    },
+                    wallets: {
+                        title: 'Wallet organization',
+                        text: 'Separate accounts and assets without losing the whole picture.'
+                    },
+                    snapshots: {
+                        title: 'Monthly snapshots',
+                        text: 'Every saved point becomes a reference you can actually trust.'
+                    }
+                }
+            },
+            philosophy: {
+                title: 'No sync. By choice.',
+                paragraphs: [
+                    'Balance doesn’t connect to your bank.',
+                    'That’s not a limitation. It’s a decision.'
+                ],
+                points: [
+                    'Your data stays on your device',
+                    'No external dependencies',
+                    'No broken connections',
+                    'No surprises'
+                ],
+                closing: 'You’re always in control.'
+            },
+            steps: {
+                title: 'Simple by design.',
+                closing: 'It takes seconds. It gives you clarity over time.',
+                items: [
+                    {
+                        title: 'Add your wallets',
+                        text: 'Set up the accounts and asset buckets you want to keep an eye on.'
+                    },
+                    {
+                        title: 'Insert your balances',
+                        text: 'Update numbers manually, only when they matter to you.'
+                    },
+                    {
+                        title: 'Save monthly snapshots',
+                        text: 'Capture a clean point in time without extra setup.'
+                    },
+                    {
+                        title: 'Track your growth over time',
+                        text: 'Review progress with context instead of chasing constant automation.'
+                    }
+                ]
+            },
+            openProject: {
+                title: 'Built in the open.',
+                copy: 'Balance is evolving step by step. Follow the roadmap, suggest features and contribute to the project.',
+                cards: [
+                    {
+                        kicker: 'Roadmap',
+                        title: 'Follow what’s next',
+                        text: 'See what is already shipping, what is being refined and what still needs feedback.'
+                    },
+                    {
+                        kicker: 'Feedback',
+                        title: 'Suggest features clearly',
+                        text: 'Good product direction comes from real usage, not guesswork.'
+                    },
+                    {
+                        kicker: 'Open source',
+                        title: 'Contribute in public',
+                        text: 'Code, copy, issues and product thinking all help shape Balance.'
+                    }
+                ],
+                ctaPrimary: 'View roadmap',
+                ctaSecondary: 'Contribute on GitHub'
+            },
+            plans: {
+                title: 'Start simple. Upgrade anytime.',
+                intro: 'Free gives you the essentials. Pro adds deeper control when you need it.',
+                annual: 'Annual',
+                monthly: 'Monthly',
+                free: {
+                    badge: 'Free',
+                    title: 'Balance',
+                    description: 'Everything you need to get started.',
+                    priceHtml: '0 €',
+                    list: [
+                        'Up to 3 wallets',
+                        'Essential snapshots',
+                        'Full history'
+                    ],
+                    cta: 'Download free'
                 },
-                sections: [
+                pro: {
+                    badgeAnnual: 'Launch offer',
+                    badgeMonthly: 'Cancel anytime',
+                    pillAnnual: 'Best value',
+                    pillMonthly: 'Monthly plan',
+                    title: 'Balance Pro',
+                    description: 'Advanced features for deeper control.',
+                    billing: {
+                        annual: {
+                            caption: 'Launch annual pricing',
+                            priceHtml: '19,99 €<span class="price-suffix">per year</span>',
+                            chip: 'Save 15,89 €',
+                            alt: 'Equivalent to 1,67 € per month instead of 35,88 € per year',
+                            note: 'First month free.'
+                        },
+                        monthly: {
+                            caption: 'Monthly pricing',
+                            priceHtml: '2,99 €<span class="price-suffix">per month</span>',
+                            chip: 'Flexible',
+                            alt: 'Renews monthly at 2,99 €',
+                            note: 'First month free.'
+                        }
+                    },
+                    list: [
+                        'Unlimited wallets',
+                        'Advanced snapshots for deeper analysis',
+                        'A more flexible archive for long-term tracking'
+                    ],
+                    cta: 'Download and unlock Pro',
+                    microcopy: 'After the free trial, unless cancelled, renewal follows the selected plan.'
+                }
+            },
+            faq: {
+                title: 'Questions, answered.',
+                items: [
                     {
-                        title: '1. Product scope',
-                        body: [
-                            'Balance is a finance product for manual tracking of wallets, balances, and snapshots.',
-                            'It is not financial advice, brokerage software, or a bank-connected automation service.'
-                        ]
+                        q: 'Is Balance private?',
+                        a: 'Yes. Balance is built so your financial data stays on your device instead of being sent to a central service.'
                     },
                     {
-                        title: '2. Your responsibility',
-                        body: [
-                            'You are responsible for the data you enter and for checking that your records are accurate.',
-                            'Manual updates are part of the product model and remain under your control.'
-                        ]
+                        q: 'Does it connect to banks or brokerages?',
+                        a: 'No. Balance is a manual product by design. There is no bank sync and no brokerage connection layer.'
                     },
                     {
-                        title: '3. Free and Pro access',
-                        body: [
-                            'Balance may offer both free access and paid Pro features.',
-                            'If you subscribe to Pro, billing and renewal follow the terms shown in the app or on the relevant purchase flow.'
-                        ]
+                        q: 'What can I track?',
+                        a: 'Cash, bank accounts, brokers, crypto and other assets that matter to your net worth view.'
                     },
                     {
-                        title: '4. Availability',
-                        body: [
-                            'The product and website may evolve over time and specific features may change.',
-                            'Nothing here guarantees uninterrupted availability across every device or platform.'
-                        ]
+                        q: 'What’s the difference between Free and Pro?',
+                        a: 'Free is enough to start with up to 3 wallets and essential snapshots. Pro removes limits and adds more depth for ongoing tracking.'
                     },
                     {
-                        title: '5. Open project',
-                        body: [
-                            'Open source visibility does not remove the need to use the product responsibly.',
-                            'Project contributions and roadmap feedback do not automatically create support obligations or guaranteed delivery timelines.'
-                        ]
+                        q: 'Is Android available?',
+                        a: 'Yes. Balance is available on both iOS and Android.'
+                    }
+                ]
+            },
+            finalCta: {
+                title: 'Take control today.',
+                copy: 'Your finances. Your decisions.',
+                primary: 'Download on the App Store',
+                secondary: 'View roadmap'
+            }
+        },
+        roadmap: {
+            meta: {
+                title: 'Balance Roadmap',
+                description: 'Follow the Balance roadmap and see how the product evolves around privacy, simplicity and open development.'
+            },
+            hero: {
+                eyebrow: 'Product · Roadmap · Open development',
+                title: 'Roadmap',
+                subtitle: 'Balance is evolving step by step.',
+                support: 'The roadmap follows the same principles as the product: private, simple and clear over time.',
+                primary: 'View GitHub',
+                secondary: 'Suggest a feature'
+            },
+            status: {
+                title: 'Current focus',
+                copy: 'Balance is already live with the core experience: wallets, snapshots, history and a fully local approach.'
+            },
+            cards: [
+                {
+                    kicker: 'Now',
+                    title: 'Current release',
+                    text: 'The core product is about clarity and control, not automation.',
+                    list: [
+                        'Wallets for cash, investments and other assets',
+                        'Manual snapshots with history',
+                        'Private, local-first data handling',
+                        'Open-source project foundation'
+                    ]
+                },
+                {
+                    kicker: 'Next',
+                    title: 'Near-term improvements',
+                    text: 'The next layer focuses on readability, routine and export.',
+                    list: [
+                        'Widgets for faster glanceable updates',
+                        'Better charts and trend reading',
+                        'CSV or JSON export options',
+                        'Snapshot reminders and smoother onboarding'
+                    ]
+                },
+                {
+                    kicker: 'Later',
+                    title: 'Longer-term direction',
+                    text: 'Future work should extend control without compromising the product philosophy.',
+                    list: [
+                        'Optional encrypted backup',
+                        'Multi-currency support',
+                        'More customization for wallet structure',
+                        'Integration surfaces for advanced users'
+                    ]
+                }
+            ],
+            principles: {
+                title: 'How the roadmap is shaped.',
+                items: [
+                    {
+                        kicker: 'Private',
+                        title: 'Privacy stays first',
+                        text: 'New features should not force remote dependencies into a product built around local control.'
                     },
                     {
-                        title: '6. Contact',
-                        body: [
-                            'For questions about these terms, use the contact page or the project support channels.',
-                            'Update the contact details in the site if you use a dedicated legal or support email.'
-                        ]
+                        kicker: 'Simple',
+                        title: 'Complexity needs a reason',
+                        text: 'Balance should stay readable and maintainable, even as the product grows.'
+                    },
+                    {
+                        kicker: 'Open',
+                        title: 'Direction stays visible',
+                        text: 'Feedback, issues and contributions are part of how the roadmap gets better.'
+                    }
+                ]
+            },
+            cta: {
+                title: 'Want to influence what comes next?',
+                copy: 'Issues, feedback and contributions directly shape the roadmap.',
+                primary: 'Contribute on GitHub',
+                secondary: 'Back to download'
+            }
+        },
+        contribute: {
+            meta: {
+                title: 'Contribute to Balance',
+                description: 'Contribute to Balance through code, issues, copy and product feedback.'
+            },
+            hero: {
+                eyebrow: 'Open source · Community · Product',
+                title: 'Contribute',
+                subtitle: 'Balance is built in the open.',
+                support: 'Roadmap feedback, issues, copy and code all help move the product forward.',
+                primary: 'Open the repository',
+                secondary: 'View roadmap'
+            },
+            cards: [
+                {
+                    kicker: 'Bug',
+                    title: 'Report an issue',
+                    text: 'If something is broken, the clearest contribution is a precise, reproducible report.',
+                    cta: 'Report a bug',
+                    href: GITHUB_BUG_URL
+                },
+                {
+                    kicker: 'Feature',
+                    title: 'Suggest an improvement',
+                    text: 'Balance should evolve from real use cases, not vague feature lists.',
+                    cta: 'Suggest a feature',
+                    href: GITHUB_FEATURE_URL
+                },
+                {
+                    kicker: 'Docs',
+                    title: 'Improve the project language',
+                    text: 'Copy, explanation and product framing matter as much as raw implementation.',
+                    cta: 'Read contribution guide',
+                    href: GITHUB_CONTRIBUTING_URL
+                },
+                {
+                    kicker: 'Code',
+                    title: 'Contribute to the codebase',
+                    text: 'If you want to build, refine or clean something up, start from the public repository.',
+                    cta: 'Go to GitHub',
+                    href: GITHUB_URL
+                }
+            ],
+            principles: {
+                title: 'What good contributions look like.',
+                items: [
+                    {
+                        kicker: 'Clear',
+                        title: 'Specific beats broad',
+                        text: 'Issues and proposals should explain the actual user problem, not just an abstract idea.'
+                    },
+                    {
+                        kicker: 'Minimal',
+                        title: 'Keep the product calm',
+                        text: 'Balance should gain clarity as it grows, not extra noise.'
+                    },
+                    {
+                        kicker: 'Aligned',
+                        title: 'Respect the philosophy',
+                        text: 'Privacy, offline control and simplicity are product constraints, not marketing lines.'
+                    }
+                ]
+            },
+            cta: {
+                title: 'Open development is part of the product.',
+                copy: 'If Balance is useful, help make it clearer, simpler and better.',
+                primary: 'Contribute on GitHub',
+                secondary: 'View roadmap'
+            }
+        },
+        contact: {
+            meta: {
+                title: 'Contact Balance',
+                description: 'Find the right public channel to contact the Balance project.'
+            },
+            hero: {
+                eyebrow: 'Public project · Contact · Support',
+                title: 'Contact',
+                subtitle: 'Project communication starts here.',
+                support: 'For now, the clearest way to reach Balance is through the public project channels.',
+                primary: 'Open GitHub issues',
+                secondary: 'View roadmap'
+            },
+            cards: [
+                {
+                    kicker: 'Feedback',
+                    title: 'Questions or product feedback',
+                    text: 'Use the project issue tracker for general questions, product notes or usability feedback.',
+                    cta: 'Open issues',
+                    href: GITHUB_ISSUES_URL
+                },
+                {
+                    kicker: 'Bug',
+                    title: 'Report a bug',
+                    text: 'If something is not working, send a precise report with steps, context and screenshots if helpful.',
+                    cta: 'Bug report template',
+                    href: GITHUB_BUG_URL
+                },
+                {
+                    kicker: 'Feature',
+                    title: 'Request a feature',
+                    text: 'If you want Balance to do something new, start with the problem you are trying to solve.',
+                    cta: 'Feature request template',
+                    href: GITHUB_FEATURE_URL
+                },
+                {
+                    kicker: 'Open source',
+                    title: 'Contribute directly',
+                    text: 'If you want to help with copy, docs or code, the repository is the right entry point.',
+                    cta: 'Contribution guide',
+                    href: GITHUB_CONTRIBUTING_URL
+                }
+            ],
+            principles: {
+                title: 'Why the contact flow is public-first.',
+                items: [
+                    {
+                        kicker: 'Transparent',
+                        title: 'Useful conversations stay visible',
+                        text: 'Public threads make product context easier to follow over time.'
+                    },
+                    {
+                        kicker: 'Actionable',
+                        title: 'Good reports are easier to act on',
+                        text: 'Structured issue templates reduce back-and-forth and keep signals clear.'
+                    },
+                    {
+                        kicker: 'Aligned',
+                        title: 'The project stays open',
+                        text: 'Roadmap, feedback and contribution channels should reinforce each other.'
                     }
                 ]
             }
         },
-        it: {
+        privacy: {
             meta: {
-                home: {
-                    title: 'Balance — Prendi il controllo delle tue finanze',
-                    description: 'Balance è il sito ufficiale, privato e offline-first, per tracciare soldi, investimenti e patrimonio con chiarezza.'
-                },
-                roadmap: {
-                    title: 'Roadmap di Balance',
-                    description: 'Segui la roadmap di Balance e scopri cosa arriverà nelle prossime iterazioni.'
-                },
-                contribute: {
-                    title: 'Contribuisci a Balance',
-                    description: 'Partecipa all’evoluzione di Balance con feedback, issue, documentazione, traduzioni e contributi al codice.'
-                },
-                contact: {
-                    title: 'Contatti Balance',
-                    description: 'Canali di contatto Balance per domande, feedback, idee di roadmap e segnalazioni.'
-                },
-                privacy: {
-                    title: 'Privacy Policy · Balance',
-                    description: 'Leggi i principi di privacy di Balance: dati locali, niente bank sync, nessuna dipendenza inutile.'
-                },
-                terms: {
-                    title: 'Termini · Balance',
-                    description: 'Consulta i termini di utilizzo di Balance, inclusi abbonamenti, disponibilità e responsabilità.'
-                }
+                title: 'Balance Privacy',
+                description: 'Balance privacy summary: local-first financial data, no bank sync and minimal website handling.'
             },
-            common: {
-                brand: 'Balance',
-                nav: {
-                    overview: 'Panoramica',
-                    features: 'Funzionalità',
-                    roadmap: 'Roadmap',
-                    contribute: 'Contribuisci',
-                    download: 'Download'
-                },
-                footer: {
-                    privacy: 'Privacy Policy',
-                    terms: 'Termini',
-                    contact: 'Contatti',
-                    github: 'GitHub',
-                    language: 'Lingua',
-                    copyright: '© Balance. Tutti i diritti riservati.'
-                },
-                cta: {
-                    appStoreHtml: '<i class="fa-brands fa-apple"></i> Scarica su App Store',
-                    roadmap: 'Vedi roadmap',
-                    github: 'Contribuisci su GitHub'
-                }
+            hero: {
+                eyebrow: 'Privacy · Local-first · Open source',
+                title: 'Privacy',
+                subtitle: 'Private by design.',
+                support: 'Balance is built so your financial data stays on your device.'
             },
-            home: {
-                hero: {
-                    eyebrow: 'Private · Offline · Open source',
-                    brand: 'Balance',
-                    title: 'Prendi il controllo delle tue finanze.',
-                    subtitle: 'Privato. Offline. Completamente tuo.',
-                    support: 'Monitora soldi, investimenti e patrimonio con chiarezza. Nessun collegamento bancario. Nessuna sync. Nessun rumore.'
-                },
-                trust: [
-                    { title: 'Privacy by design', text: 'Locale, manuale e progettato per restare leggibile.' },
-                    { title: 'Funziona offline', text: 'Il tuo flusso non dipende da servizi esterni.' },
-                    { title: 'Nessun bank sync', text: 'Decidi tu cosa inserire e quando aggiornarlo.' },
-                    { title: 'I dati restano sul dispositivo', text: 'Nessun passaggio nascosto tra te e le tue finanze.' }
-                ],
-                core: {
-                    title: 'Il controllo cambia tutto.',
-                    p1: 'La maggior parte delle app finance prova ad automatizzare il tuo denaro. Balance ti restituisce il controllo.',
-                    p2: 'Decidi tu cosa tracciare. Decidi tu quando aggiornare. Capisci tutto subito.',
-                    p3: 'Nessuna scatola nera. Nessuna logica nascosta.'
-                },
-                value: {
-                    title: 'Tutto quello che ti serve. Niente di più.',
-                    support: 'Input semplici. Output chiari.',
-                    items: [
-                        { title: 'Tutti i wallet in un unico posto', text: 'Liquidità, investimenti, risparmi e tutto ciò che vuoi tenere visibile.' },
-                        { title: 'Una vista unica del patrimonio', text: 'Controlli il quadro generale senza perdere i dettagli.' },
-                        { title: 'Snapshot mensili', text: 'Salvi lo stato delle cose e costruisci uno storico chiaro nel tempo.' },
-                        { title: 'Progressi leggibili davvero', text: 'Meno rumore, più contesto, una routine più calma.' }
+            sections: [
+                {
+                    title: '1. What Balance is designed to do',
+                    paragraphs: [
+                        'Balance is a manual finance product built around control, simplicity and local ownership of data.',
+                        'The app does not rely on bank connections or an account system to hold your financial history.'
                     ]
                 },
-                screenshots: {
-                    title: 'Vedi le tue finanze con chiarezza.',
-                    cards: [
-                        { title: 'Una panoramica calma', text: 'Un’interfaccia pensata per rendere immediati saldi, categorie e priorità.' },
-                        { title: 'Trend nel tempo', text: 'Gli snapshot servono a vedere la direzione, non solo l’ultimo numero.' },
-                        { title: 'Wallet organizzati', text: 'Conti e asset separati senza perdere la visione d’insieme.' },
-                        { title: 'Snapshot che contano', text: 'Un ritmo manuale che resta utile proprio perché resta semplice.' }
-                    ]
-                },
-                philosophy: {
-                    title: 'Niente sync. Per scelta.',
-                    p1: 'Balance non si collega alla tua banca.',
-                    p2: 'Non è un limite. È una decisione.',
-                    bullets: [
-                        'I dati restano sul tuo dispositivo',
-                        'Nessuna dipendenza esterna',
-                        'Nessuna connessione che si rompe',
-                        'Nessuna sorpresa'
+                {
+                    title: '2. Financial data in the app',
+                    paragraphs: [
+                        'The financial information you enter in Balance is intended to stay on your device.',
+                        'That includes balances, wallets, snapshots, investment values and the historical view you build over time.'
                     ],
-                    closing: 'Hai sempre il controllo.'
-                },
-                how: {
-                    title: 'Semplice by design.',
-                    closing: 'Richiede pochi secondi. Ti dà chiarezza nel tempo.',
-                    steps: [
-                        { title: 'Aggiungi i tuoi wallet', text: 'Costruisci una struttura che rispecchia il modo in cui organizzi davvero i tuoi soldi.' },
-                        { title: 'Inserisci i saldi', text: 'Aggiorni manualmente, velocemente e solo quando ha senso.' },
-                        { title: 'Salva snapshot mensili', text: 'Conservi uno storico pulito di dove si trova tutto.' },
-                        { title: 'Segui la crescita nel tempo', text: 'Vedi cosa è cambiato, cosa è migliorato e dove concentrarti.' }
+                    list: [
+                        'No bank sync layer',
+                        'No central server used to store your personal financial data',
+                        'No need to hand over credentials to third-party providers'
                     ]
                 },
-                open: {
-                    title: 'Costruito in pubblico.',
-                    copy: 'Balance evolve passo dopo passo. Segui la roadmap. Proponi funzionalità. Contribuisci al progetto.',
-                    cards: [
-                        { kicker: 'Roadmap', title: 'Priorità trasparenti', text: 'Scopri cosa stiamo rifinendo ora, cosa arriva dopo e cosa resta intenzionalmente più avanti.' },
-                        { kicker: 'Feedback', title: 'Le idee orientano il prodotto', text: 'Feature request e feedback fanno parte del modo in cui Balance cresce.' },
-                        { kicker: 'Codice', title: 'Open source davvero', text: 'Puoi leggere il codice, proporre cambiamenti o migliorare il prodotto nel tempo.' }
+                {
+                    title: '3. Website and public channels',
+                    paragraphs: [
+                        'If you use public project channels such as GitHub, those services process data according to their own policies.',
+                        'If you buy Balance Pro, payments and subscription management are handled by Apple through the App Store.'
                     ]
                 },
-                plans: {
-                    title: 'Parti semplice. Passa a Pro quando vuoi.',
-                    intro: 'La versione gratis resta essenziale. Pro aggiunge più profondità dove serve.',
-                    toggle: {
-                        aria: 'Scegli la fatturazione di Balance Pro',
-                        annual: 'Annuale',
-                        monthly: 'Mensile'
-                    },
-                    free: {
-                        badge: 'Per iniziare',
-                        title: 'Balance gratis',
-                        description: 'Tutto quello che ti serve per partire.',
-                        priceLabel: 'Gratis',
-                        list: ['Fino a 3 wallet', 'Snapshot essenziali', 'Storico completo'],
-                        cta: 'Scarica gratis'
-                    },
-                    pro: {
-                        badgeAnnual: 'Offerta lancio',
-                        badgeMonthly: 'Annulla quando vuoi',
-                        pillAnnual: 'Miglior valore',
-                        pillMonthly: 'Piano mensile',
-                        title: 'Balance Pro',
-                        description: 'Funzionalità avanzate per un controllo più profondo.',
-                        annualCaption: 'Offerta annuale di lancio',
-                        annualPriceHtml: '19,99 €<span class="price-suffix">l\'anno</span>',
-                        annualChip: 'Risparmi 15,89 €',
-                        annualAlt: 'Equivale a 1,67 € al mese invece di 35,88 € l’anno',
-                        annualNote: 'Primo mese di prova gratuito.',
-                        monthlyCaption: 'Piano mensile',
-                        monthlyPriceHtml: '2,99 €<span class="price-suffix">al mese</span>',
-                        monthlyChip: 'Mensile',
-                        monthlyAlt: 'Rinnovo mensile a 2,99 €',
-                        monthlyNote: 'Primo mese di prova gratuito.',
-                        list: ['Wallet illimitati', 'Snapshot avanzati', 'Storico completo per confronti più profondi'],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Scarica e attiva Pro',
-                        microcopy: 'Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.'
-                    }
-                },
-                faq: {
-                    title: 'Domande frequenti',
-                    items: [
-                        {
-                            q: 'Balance è privata?',
-                            a: 'Sì. Balance è progettata intorno a dati locali, aggiornamenti manuali e nessun flusso nascosto.'
-                        },
-                        {
-                            q: 'Si collega a banche o broker?',
-                            a: 'No. Balance non si sincronizza con banche o broker. Decidi tu cosa tracciare.'
-                        },
-                        {
-                            q: 'Cosa posso monitorare?',
-                            a: 'Wallet, liquidità, investimenti e patrimonio totale nel tempo.'
-                        },
-                        {
-                            q: 'Qual è la differenza tra Gratis e Pro?',
-                            a: 'Gratis copre l’essenziale. Pro rimuove i limiti e aggiunge più profondità per il tracking nel lungo periodo.'
-                        },
-                        {
-                            q: 'Android è disponibile?',
-                            a: 'iOS è disponibile ora. Android è in roadmap.'
-                        }
+                {
+                    title: '4. Control and security',
+                    paragraphs: [
+                        'Local storage keeps control closer to you, and system-level protections on your device continue to matter.',
+                        'You remain responsible for the accuracy of the information you enter and for keeping access to your device secure.'
+                    ],
+                    list: [
+                        'Device-level security still matters',
+                        'Deleting the app removes local app data from your device',
+                        'Open-source code helps make the privacy model inspectable'
                     ]
                 },
-                final: {
-                    title: 'Prendi il controllo oggi.',
-                    copy: 'Le tue finanze. Le tue decisioni.'
+                {
+                    title: '5. Open source and transparency',
+                    paragraphsHtml: [
+                        `Balance is developed in public. You can inspect the repository on <a href="${GITHUB_URL}" target="_blank" rel="noreferrer">GitHub</a> and follow how the product evolves.`,
+                        'Transparency is part of the product approach, not an extra marketing layer.'
+                    ]
+                }
+            ]
+        },
+        terms: {
+            meta: {
+                title: 'Balance Terms',
+                description: 'Balance terms summary for product use, subscriptions and project scope.'
+            },
+            hero: {
+                eyebrow: 'Terms · Product use · App Store',
+                title: 'Terms',
+                subtitle: 'Clear terms for a clear product.',
+                support: 'Balance is a finance tracking tool, not a financial advisory service.'
+            },
+            sections: [
+                {
+                    title: '1. Scope',
+                    paragraphs: [
+                        'These terms describe the general use of the Balance website, app and public project surfaces.',
+                        'By using the product, you agree to use it responsibly and within the limits described here.'
+                    ]
+                },
+                {
+                    title: '2. Product nature',
+                    paragraphs: [
+                        'Balance helps you manually track wallets, balances, snapshots and net worth over time.',
+                        'It does not provide financial advice, investment recommendations or automated portfolio management.'
+                    ]
+                },
+                {
+                    title: '3. Your data and your responsibility',
+                    paragraphs: [
+                        'You are responsible for the information you enter into the app and for the decisions you make based on it.',
+                        'If a value is outdated or incorrect, Balance reflects what was entered manually.'
+                    ]
+                },
+                {
+                    title: '4. Free and Pro plans',
+                    paragraphs: [
+                        'Balance includes a free tier and an optional Pro subscription.',
+                        'If you subscribe through the App Store, billing, renewal and cancellation are handled by Apple under the rules of your Apple account.'
+                    ]
+                },
+                {
+                    title: '5. Availability and changes',
+                    paragraphs: [
+                        'Balance is an evolving product. Features, roadmap priorities and public project materials may change over time.',
+                        'Roadmap items are directional and should not be interpreted as a binding delivery commitment.'
+                    ]
+                },
+                {
+                    title: '6. Open source and external services',
+                    paragraphsHtml: [
+                        `Parts of the project are developed in public on <a href="${GITHUB_URL}" target="_blank" rel="noreferrer">GitHub</a>. Repository usage may also be subject to the terms and policies of GitHub.`,
+                        'Where third-party platforms are involved, their terms apply to the services they provide.'
+                    ]
+                }
+            ]
+        }
+    },
+    it: {
+        common: {
+            brand: 'Balance',
+            nav: {
+                overview: 'Panoramica',
+                features: 'Funzionalità',
+                roadmap: 'Roadmap',
+                contribute: 'Contribuisci',
+                download: 'Download',
+                menu: 'Menu'
+            },
+            footer: {
+                privacy: 'Privacy Policy',
+                terms: 'Termini',
+                contact: 'Contatti',
+                github: 'GitHub',
+                language: 'Lingua',
+                copyright: '© Balance. Tutti i diritti riservati.'
+            }
+        },
+        home: {
+            meta: {
+                title: 'Balance — Prendi il controllo delle tue finanze.',
+                description: 'Tracking finanziario privato, offline e open source. Tieni sotto controllo wallet, investimenti e patrimonio senza bank sync e senza rumore.'
+            },
+            hero: {
+                eyebrow: 'Privato · Offline · Open source',
+                title: 'Prendi il controllo delle tue finanze.',
+                subtitle: 'Privato. Offline. Solo tuo.',
+                supportHtml: 'Tieni sotto controllo denaro, investimenti e patrimonio con chiarezza.<br>Niente collegamenti bancari. Nessuna sincronizzazione. Nessun rumore.',
+                ctaPrimary: 'Scarica su App Store',
+                ctaSecondary: 'Vedi roadmap',
+                chipA: 'Snapshot mensili',
+                chipB: 'Nessun bank sync',
+                cardA: {
+                    label: 'Chiarezza',
+                    value: 'Aggiornamenti manuali. Storico leggibile.'
+                },
+                cardB: {
+                    label: 'Controllo',
+                    value: 'Tutto resta sul tuo dispositivo.'
                 }
             },
-            roadmap: {
-                hero: {
-                    eyebrow: 'Roadmap',
-                    title: 'Dove sta andando Balance.',
-                    copy: 'Balance evolve in pubblico, con priorità deliberate e una direzione prodotto costruita intorno al controllo.'
+            trust: [
+                {
+                    title: 'Privacy by design',
+                    text: 'Nessun flusso nascosto. Nessuna consegna dati. Nessun account richiesto.'
                 },
-                columns: {
-                    now: {
-                        kicker: 'Ora',
-                        title: 'Cosa stiamo rifinendo',
-                        text: 'Il focus resta su chiarezza prodotto, affidabilità e uso quotidiano più veloce.',
-                        items: [
-                            'Pulizia della dashboard e del flusso wallet',
-                            'Routine di snapshot mensili più chiare',
-                            'Esperienza mobile più precisa e leggibile',
-                            'Core product calmo e prevedibile'
-                        ]
-                    },
-                    next: {
-                        kicker: 'Prossimo',
-                        title: 'Cosa arriva dopo',
-                        text: 'Il prossimo livello aggiunge profondità senza trasformare il prodotto in uno strumento rumoroso.',
-                        items: [
-                            'Grafici e confronti più ricchi',
-                            'Struttura wallet più flessibile',
-                            'Export per i tuoi archivi personali',
-                            'Revisioni migliori del percorso nel tempo'
-                        ]
-                    },
-                    later: {
-                        kicker: 'Più avanti',
-                        title: 'Cosa resta intenzionale',
-                        text: 'Il lavoro futuro verrà sempre valutato contro gli stessi principi di prodotto.',
-                        items: [
-                            'Backup cloud opzionale senza perdere il controllo locale',
-                            'Più personalizzazione di viste e categorie',
-                            'Copertura piattaforma più ampia',
-                            'Miglioramenti guidati dalla community'
-                        ]
-                    }
+                {
+                    title: 'Funziona offline',
+                    text: 'I tuoi numeri restano leggibili anche senza connessione.'
                 },
-                principles: {
-                    title: 'Come decidiamo le priorità',
-                    items: [
-                        {
-                            title: 'Controllo prima di tutto',
-                            text: 'Una feature passa solo se mantiene il prodotto comprensibile e sotto il controllo dell’utente.'
-                        },
-                        {
-                            title: 'Privacy di default',
-                            text: 'Il modello offline resta centrale. La comodità non deve ridurre la chiarezza.'
-                        },
-                        {
-                            title: 'Passi piccoli ma solidi',
-                            text: 'Balance cresce per iterazioni focalizzate, non per accumulo di feature.'
-                        }
-                    ]
+                {
+                    title: 'Nessun collegamento bancario',
+                    text: 'Decidi tu cosa entra nell’app e quando cambia.'
                 },
-                cta: {
-                    title: 'Vuoi influenzare quello che arriva dopo?',
-                    copy: 'Segui la roadmap, proponi miglioramenti o contribuisci direttamente su GitHub.'
+                {
+                    title: 'I dati restano sul dispositivo',
+                    text: 'Balance è pensato per il controllo locale, non per lo storage remoto.'
                 }
-            },
-            contribute: {
-                hero: {
-                    eyebrow: 'Contribuisci',
-                    title: 'Aiuta a far crescere Balance.',
-                    copy: 'Balance è costruita in pubblico. Idee, issue, documentazione, traduzioni e codice spostano davvero il prodotto in avanti.'
-                },
-                ways: {
-                    title: 'Dove contribuire',
-                    items: [
-                        {
-                            title: 'Proponi miglioramenti di prodotto',
-                            text: 'Apri issue per idee di workflow, dettagli mancanti o feedback sulla direzione prodotto.',
-                            bullets: ['Nuove funzionalità', 'Feedback sul copy', 'Osservazioni UX']
-                        },
-                        {
-                            title: 'Segnala bug con chiarezza',
-                            text: 'Le issue ben scritte proteggono l’esperienza calma e affidabile che Balance cerca di offrire.',
-                            bullets: ['Passi per riprodurre', 'Comportamento atteso', 'Screenshot quando utili']
-                        },
-                        {
-                            title: 'Migliora documentazione e traduzioni',
-                            text: 'Il progetto deve restare comprensibile tra prodotto, roadmap e pagine informative.',
-                            bullets: ['Copy del sito', 'Traduzioni', 'Documentazione più chiara']
-                        },
-                        {
-                            title: 'Contribuisci al codice',
-                            text: 'I contributi open source sono benvenuti quando rispettano i principi di prodotto e la roadmap corrente.',
-                            bullets: ['Parti dalla roadmap', 'Mantieni le PR focalizzate', 'Preserva la semplicità']
-                        }
-                    ]
-                },
-                principles: {
-                    title: 'Cosa Balance protegge',
-                    items: [
-                        {
-                            title: 'Manuale per scelta',
-                            text: 'L’inserimento manuale fa parte della filosofia prodotto, non è una mancanza.'
-                        },
-                        {
-                            title: 'Chiarezza sopra l’automazione',
-                            text: 'Ogni aggiunta deve rendere il prodotto più comprensibile, non più opaco.'
-                        },
-                        {
-                            title: 'La privacy resta centrale',
-                            text: 'Ogni contributo deve rispettare il modello local-first e senza bank sync.'
-                        }
-                    ]
-                },
-                cta: {
-                    title: 'Parti dalla roadmap. Poi apri il repo.',
-                    copy: 'Così i contributi restano allineati con la direzione del prodotto.'
-                }
-            },
-            contact: {
-                hero: {
-                    eyebrow: 'Contatti',
-                    title: 'Parliamone.',
-                    copy: 'Domande, feedback e idee prodotto partono tutte da qui. Per roadmap e bug, GitHub resta il canale più veloce.'
-                },
-                cards: [
-                    {
-                        kicker: 'Feedback roadmap',
-                        title: 'Suggerisci cosa migliorare dopo',
-                        text: 'Usa GitHub issues per proporre idee, funzionalità mancanti o feedback sulla direzione prodotto.',
-                        cta: 'Apri GitHub issues'
-                    },
-                    {
-                        kicker: 'Bug report',
-                        title: 'Segnala cosa non funziona',
-                        text: 'Le segnalazioni migliori includono contesto, passi per riprodurre e comportamento atteso.',
-                        cta: 'Segnala un bug'
-                    },
-                    {
-                        kicker: 'Contatto diretto',
-                        title: 'Scrivi al progetto',
-                        text: 'Per domande più ampie o contatti generali puoi usare l’email del progetto.',
-                        cta: 'Scrivi a Balance'
-                    }
+            ],
+            coreIdea: {
+                title: 'Il controllo cambia tutto.',
+                paragraphs: [
+                    'Molte app finance cercano di automatizzare i tuoi soldi. Balance ti dà controllo, invece.',
+                    'Decidi tu cosa tracciare. Decidi tu quando aggiornare. Capisci tutto.',
+                    'Nessuna scatola nera. Nessuna logica nascosta.'
                 ],
-                note: 'Se stai segnalando un problema prodotto, GitHub di solito resta il canale più chiaro e veloce.'
+                sideLines: [
+                    'Manuale per scelta.',
+                    'Calma per design.',
+                    'Pensata per la chiarezza nel tempo.'
+                ],
+                ending: 'Balance resta utile perché ogni numero continua ad avere contesto.'
             },
-            privacy: {
-                hero: {
-                    eyebrow: 'Privacy Policy',
-                    title: 'Privata by design.',
-                    copy: 'Balance è costruita intorno al controllo locale. Questa pagina spiega i principi dietro questa scelta.'
-                },
-                sections: [
+            value: {
+                title: 'Tutto quello che ti serve. Niente di più.',
+                intro: 'Input semplici. Output chiari.',
+                items: [
                     {
-                        title: '1. Archiviazione locale',
-                        body: [
-                            'Balance è progettata perché i dati finanziari restino sul dispositivo.',
-                            'Il prodotto non dipende da un server centrale per memorizzare wallet, saldi o snapshot.'
-                        ]
+                        icon: 'WL',
+                        title: 'Tutti i wallet in un solo posto',
+                        text: 'Organizza liquidità, broker, crypto e altri asset in una vista ordinata.'
                     },
                     {
-                        title: '2. Nessun bank sync',
-                        body: [
-                            'Balance non si collega a banche o broker.',
-                            'Questo significa che le tue credenziali non passano da provider esterni di sincronizzazione.'
-                        ]
+                        icon: 'NW',
+                        title: 'Investimenti e patrimonio totale',
+                        text: 'Leggi il quadro complessivo senza trasformare le finanze in un foglio di calcolo.'
                     },
                     {
-                        title: '3. Nessun flusso dati nascosto',
-                        body: [
-                            'Il sito può usare l’infrastruttura standard di hosting, ma la filosofia prodotto resta invariata: nessun flusso nascosto di dati finanziari.',
-                            'Se in futuro usi servizi terzi per form o distribuzione dell’app, restano separati dal modello wallet e snapshot.'
-                        ]
+                        icon: 'SN',
+                        title: 'Snapshot mensili',
+                        text: 'Salva un punto pulito nel tempo quando vuoi chiudere un mese.'
                     },
                     {
-                        title: '4. Open source e verificabilità',
-                        body: [
-                            'Balance viene sviluppata in pubblico così che direzione prodotto e implementazione restino verificabili.',
-                            'Lo sviluppo aperto aiuta a tenere le promesse privacy coerenti con ciò che il prodotto fa davvero.'
-                        ]
-                    },
-                    {
-                        title: '5. Contatti',
-                        body: [
-                            'Per domande sulla privacy, usa la pagina contatti o i canali di supporto pubblicati dal progetto.',
-                            'Se usi un’email dedicata, aggiorna la route contatti in modo coerente.'
-                        ]
+                        icon: 'TR',
+                        title: 'Progressi chiari nel tempo',
+                        text: 'Segui la direzione, non il rumore, con una routine facile da mantenere.'
                     }
                 ]
             },
-            terms: {
-                hero: {
-                    eyebrow: 'Termini',
-                    title: 'Termini per usare Balance.',
-                    copy: 'Questi termini descrivono le condizioni generali di accesso, abbonamento e uso del prodotto e del sito.'
+            showcase: {
+                title: 'Vedi le tue finanze con chiarezza.',
+                intro: 'Un prodotto pensato per leggere, non per affollare.',
+                cards: {
+                    dashboard: {
+                        title: 'Dashboard più chiara',
+                        text: 'Una vista più calma di saldi, composizione e movimento.'
+                    },
+                    trends: {
+                        title: 'Andamento nel tempo',
+                        text: 'Gli snapshot trasformano gli aggiornamenti in uno storico leggibile.'
+                    },
+                    wallets: {
+                        title: 'Wallet ordinati',
+                        text: 'Separa conti e asset senza perdere la vista d’insieme.'
+                    },
+                    snapshots: {
+                        title: 'Snapshot mensili',
+                        text: 'Ogni salvataggio diventa un riferimento che puoi davvero rileggere.'
+                    }
+                }
+            },
+            philosophy: {
+                title: 'Nessuna sincronizzazione. Per scelta.',
+                paragraphs: [
+                    'Balance non si collega alla tua banca.',
+                    'Non è un limite. È una decisione.'
+                ],
+                points: [
+                    'I dati restano sul dispositivo',
+                    'Nessuna dipendenza esterna',
+                    'Nessuna connessione che si rompe',
+                    'Nessuna sorpresa'
+                ],
+                closing: 'Hai sempre il controllo.'
+            },
+            steps: {
+                title: 'Semplice, per design.',
+                closing: 'Richiede pochi secondi. Ti dà chiarezza nel tempo.',
+                items: [
+                    {
+                        title: 'Aggiungi i tuoi wallet',
+                        text: 'Imposta conti e contenitori patrimoniali che vuoi tenere sotto controllo.'
+                    },
+                    {
+                        title: 'Inserisci i saldi',
+                        text: 'Aggiorna i numeri manualmente, solo quando per te conta farlo.'
+                    },
+                    {
+                        title: 'Salva snapshot mensili',
+                        text: 'Blocca un punto nel tempo senza setup inutili.'
+                    },
+                    {
+                        title: 'Segui la crescita nel tempo',
+                        text: 'Rileggi l’evoluzione con contesto, senza inseguire automazioni continue.'
+                    }
+                ]
+            },
+            openProject: {
+                title: 'Costruito in pubblico.',
+                copy: 'Balance evolve passo dopo passo. Segui la roadmap, proponi funzionalità e contribuisci al progetto.',
+                cards: [
+                    {
+                        kicker: 'Roadmap',
+                        title: 'Segui cosa arriva dopo',
+                        text: 'Vedi cosa è già in rilascio, cosa si sta affinando e cosa ha ancora bisogno di feedback.'
+                    },
+                    {
+                        kicker: 'Feedback',
+                        title: 'Proponi feature in modo chiaro',
+                        text: 'La direzione del prodotto nasce da casi d’uso reali, non da liste vaghe.'
+                    },
+                    {
+                        kicker: 'Open source',
+                        title: 'Contribuisci in pubblico',
+                        text: 'Codice, copy, issue e ragionamento di prodotto aiutano tutti a far crescere Balance.'
+                    }
+                ],
+                ctaPrimary: 'Vedi roadmap',
+                ctaSecondary: 'Contribuisci su GitHub'
+            },
+            plans: {
+                title: 'Inizia semplice. Fai upgrade quando vuoi.',
+                intro: 'La versione free copre l’essenziale. Pro aggiunge più profondità quando ti serve.',
+                annual: 'Annuale',
+                monthly: 'Mensile',
+                free: {
+                    badge: 'Gratis',
+                    title: 'Balance',
+                    description: 'Tutto quello che ti serve per iniziare.',
+                    priceHtml: '0 €',
+                    list: [
+                        'Fino a 3 wallet',
+                        'Snapshot essenziali',
+                        'Storico completo'
+                    ],
+                    cta: 'Scarica gratis'
                 },
-                sections: [
+                pro: {
+                    badgeAnnual: 'Offerta lancio',
+                    badgeMonthly: 'Annulla quando vuoi',
+                    pillAnnual: 'Miglior valore',
+                    pillMonthly: 'Piano mensile',
+                    title: 'Balance Pro',
+                    description: 'Funzionalità avanzate per un controllo più profondo.',
+                    billing: {
+                        annual: {
+                            caption: 'Prezzo annuale di lancio',
+                            priceHtml: '19,99 €<span class="price-suffix">l’anno</span>',
+                            chip: 'Risparmi 15,89 €',
+                            alt: 'Equivale a 1,67 € al mese invece di 35,88 € l’anno',
+                            note: 'Primo mese gratuito.'
+                        },
+                        monthly: {
+                            caption: 'Prezzo mensile',
+                            priceHtml: '2,99 €<span class="price-suffix">al mese</span>',
+                            chip: 'Flessibile',
+                            alt: 'Rinnovo mensile a 2,99 €',
+                            note: 'Primo mese gratuito.'
+                        }
+                    },
+                    list: [
+                        'Wallet illimitati',
+                        'Snapshot avanzati per analisi più precise',
+                        'Un archivio più flessibile per il tracking nel tempo'
+                    ],
+                    cta: 'Scarica e attiva Pro',
+                    microcopy: 'Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.'
+                }
+            },
+            faq: {
+                title: 'Domande utili.',
+                items: [
                     {
-                        title: '1. Ambito del prodotto',
-                        body: [
-                            'Balance è un prodotto finance per il tracciamento manuale di wallet, saldi e snapshot.',
-                            'Non è consulenza finanziaria, software di brokeraggio o un servizio di automazione bancaria.'
-                        ]
+                        q: 'Balance è privato?',
+                        a: 'Sì. Balance è pensato perché i tuoi dati finanziari restino sul dispositivo invece di essere inviati a un servizio centrale.'
                     },
                     {
-                        title: '2. Responsabilità dell’utente',
-                        body: [
-                            'Sei responsabile dei dati inseriti e della loro accuratezza.',
-                            'Gli aggiornamenti manuali fanno parte del modello prodotto e restano sotto il tuo controllo.'
-                        ]
+                        q: 'Si collega a banche o broker?',
+                        a: 'No. Balance è manuale per scelta. Non c’è bank sync e non c’è un livello di connessione ai broker.'
                     },
                     {
-                        title: '3. Accesso Free e Pro',
-                        body: [
-                            'Balance può offrire una versione gratuita e funzionalità Pro a pagamento.',
-                            'Se sottoscrivi Pro, fatturazione e rinnovo seguono quanto mostrato nel flusso di acquisto rilevante.'
-                        ]
+                        q: 'Cosa posso tracciare?',
+                        a: 'Liquidità, conti, broker, crypto e altri asset che fanno parte della tua vista patrimoniale.'
                     },
                     {
-                        title: '4. Disponibilità',
-                        body: [
-                            'Prodotto e sito possono evolvere nel tempo e alcune funzionalità possono cambiare.',
-                            'Nulla in questa pagina garantisce disponibilità continua su ogni dispositivo o piattaforma.'
-                        ]
+                        q: 'Che differenza c’è tra Free e Pro?',
+                        a: 'La versione gratuita basta per partire con fino a 3 wallet e snapshot essenziali. Pro toglie i limiti e aggiunge più profondità nel tempo.'
                     },
                     {
-                        title: '5. Progetto aperto',
-                        body: [
-                            'L’open source non elimina la necessità di usare il prodotto in modo responsabile.',
-                            'Contributi e feedback sulla roadmap non creano automaticamente obblighi di supporto o consegna.'
-                        ]
+                        q: 'Android è disponibile?',
+                        a: 'Sì. Balance è disponibile sia su iOS sia su Android.'
+                    }
+                ]
+            },
+            finalCta: {
+                title: 'Prendi il controllo oggi.',
+                copy: 'Le tue finanze. Le tue decisioni.',
+                primary: 'Scarica su App Store',
+                secondary: 'Vedi roadmap'
+            }
+        },
+        roadmap: {
+            meta: {
+                title: 'Roadmap di Balance',
+                description: 'Segui la roadmap di Balance e scopri come evolve il prodotto tra privacy, semplicità e sviluppo aperto.'
+            },
+            hero: {
+                eyebrow: 'Prodotto · Roadmap · Sviluppo aperto',
+                title: 'Roadmap',
+                subtitle: 'Balance evolve passo dopo passo.',
+                support: 'La roadmap segue gli stessi principi del prodotto: privacy, semplicità e chiarezza nel tempo.',
+                primary: 'Apri GitHub',
+                secondary: 'Proponi una feature'
+            },
+            status: {
+                title: 'Focus attuale',
+                copy: 'Balance è già live con l’esperienza core: wallet, snapshot, storico e un approccio completamente locale.'
+            },
+            cards: [
+                {
+                    kicker: 'Ora',
+                    title: 'Release attuale',
+                    text: 'Il prodotto di base punta su chiarezza e controllo, non sull’automazione.',
+                    list: [
+                        'Wallet per liquidità, investimenti e altri asset',
+                        'Snapshot manuali con storico',
+                        'Gestione dati privata e locale',
+                        'Base open source del progetto'
+                    ]
+                },
+                {
+                    kicker: 'Prossimo',
+                    title: 'Miglioramenti vicini',
+                    text: 'Il prossimo livello lavora su leggibilità, routine ed export.',
+                    list: [
+                        'Widget per aggiornamenti rapidi',
+                        'Grafici e lettura trend migliori',
+                        'Export in CSV o JSON',
+                        'Promemoria snapshot e onboarding più fluido'
+                    ]
+                },
+                {
+                    kicker: 'Dopo',
+                    title: 'Direzione più lunga',
+                    text: 'Il futuro deve estendere il controllo senza rompere la filosofia del prodotto.',
+                    list: [
+                        'Backup cifrato opzionale',
+                        'Supporto multi-valuta',
+                        'Più personalizzazione per i wallet',
+                        'Superfici di integrazione per utenti avanzati'
+                    ]
+                }
+            ],
+            principles: {
+                title: 'Come nasce la roadmap.',
+                items: [
+                    {
+                        kicker: 'Privata',
+                        title: 'La privacy resta prima',
+                        text: 'Le nuove feature non devono forzare dipendenze remote dentro un prodotto nato per il controllo locale.'
                     },
                     {
-                        title: '6. Contatti',
-                        body: [
-                            'Per domande su questi termini, usa la pagina contatti o i canali di supporto del progetto.',
-                            'Aggiorna i dettagli di contatto del sito se utilizzi un’email legale o support dedicata.'
-                        ]
+                        kicker: 'Semplice',
+                        title: 'La complessità deve avere un motivo',
+                        text: 'Balance deve restare leggibile e mantenibile anche mentre cresce.'
+                    },
+                    {
+                        kicker: 'Aperta',
+                        title: 'La direzione resta visibile',
+                        text: 'Feedback, issue e contributi fanno parte del modo in cui la roadmap migliora.'
+                    }
+                ]
+            },
+            cta: {
+                title: 'Vuoi influenzare cosa arriva dopo?',
+                copy: 'Issue, feedback e contributi modellano direttamente la roadmap.',
+                primary: 'Contribuisci su GitHub',
+                secondary: 'Torna al download'
+            }
+        },
+        contribute: {
+            meta: {
+                title: 'Contribuisci a Balance',
+                description: 'Contribuisci a Balance con codice, issue, copy e feedback di prodotto.'
+            },
+            hero: {
+                eyebrow: 'Open source · Community · Prodotto',
+                title: 'Contribuisci',
+                subtitle: 'Balance è costruito in pubblico.',
+                support: 'Feedback sulla roadmap, issue, copy e codice aiutano tutti a far avanzare il prodotto.',
+                primary: 'Apri il repository',
+                secondary: 'Vedi roadmap'
+            },
+            cards: [
+                {
+                    kicker: 'Bug',
+                    title: 'Segnala un problema',
+                    text: 'Se qualcosa non funziona, il contributo più utile è un report preciso e riproducibile.',
+                    cta: 'Segnala bug',
+                    href: GITHUB_BUG_URL
+                },
+                {
+                    kicker: 'Feature',
+                    title: 'Proponi un miglioramento',
+                    text: 'Balance dovrebbe evolvere da casi d’uso reali, non da liste di feature vaghe.',
+                    cta: 'Proponi feature',
+                    href: GITHUB_FEATURE_URL
+                },
+                {
+                    kicker: 'Docs',
+                    title: 'Migliora il linguaggio del progetto',
+                    text: 'Copy, spiegazione e framing di prodotto contano quanto l’implementazione.',
+                    cta: 'Guida ai contributi',
+                    href: GITHUB_CONTRIBUTING_URL
+                },
+                {
+                    kicker: 'Codice',
+                    title: 'Contribuisci al codebase',
+                    text: 'Se vuoi costruire, rifinire o ripulire qualcosa, il repository pubblico è il punto di partenza.',
+                    cta: 'Vai su GitHub',
+                    href: GITHUB_URL
+                }
+            ],
+            principles: {
+                title: 'Come si riconosce un buon contributo.',
+                items: [
+                    {
+                        kicker: 'Chiaro',
+                        title: 'Lo specifico batte il generico',
+                        text: 'Issue e proposte dovrebbero spiegare il problema reale dell’utente, non solo un’idea astratta.'
+                    },
+                    {
+                        kicker: 'Minimo',
+                        title: 'Il prodotto deve restare calmo',
+                        text: 'Balance deve guadagnare chiarezza mentre cresce, non rumore.'
+                    },
+                    {
+                        kicker: 'Allineato',
+                        title: 'Rispetta la filosofia',
+                        text: 'Privacy, controllo offline e semplicità sono vincoli di prodotto, non slogan.'
+                    }
+                ]
+            },
+            cta: {
+                title: 'Lo sviluppo aperto fa parte del prodotto.',
+                copy: 'Se Balance ti è utile, aiutalo a diventare più chiaro, più semplice e migliore.',
+                primary: 'Contribuisci su GitHub',
+                secondary: 'Vedi roadmap'
+            }
+        },
+        contact: {
+            meta: {
+                title: 'Contatta Balance',
+                description: 'Trova il canale pubblico giusto per contattare il progetto Balance.'
+            },
+            hero: {
+                eyebrow: 'Progetto pubblico · Contatto · Supporto',
+                title: 'Contatti',
+                subtitle: 'La comunicazione del progetto parte da qui.',
+                support: 'Per ora, il modo più chiaro per raggiungere Balance passa dai canali pubblici del progetto.',
+                primary: 'Apri le issue',
+                secondary: 'Vedi roadmap'
+            },
+            cards: [
+                {
+                    kicker: 'Feedback',
+                    title: 'Domande o feedback di prodotto',
+                    text: 'Usa il tracker pubblico del progetto per domande generali, note di prodotto o feedback di usabilità.',
+                    cta: 'Apri issue',
+                    href: GITHUB_ISSUES_URL
+                },
+                {
+                    kicker: 'Bug',
+                    title: 'Segnala un bug',
+                    text: 'Se qualcosa non va, invia un report preciso con passaggi, contesto e screenshot se servono.',
+                    cta: 'Template bug report',
+                    href: GITHUB_BUG_URL
+                },
+                {
+                    kicker: 'Feature',
+                    title: 'Richiedi una funzionalità',
+                    text: 'Se vuoi che Balance faccia qualcosa di nuovo, parti dal problema che stai cercando di risolvere.',
+                    cta: 'Template feature request',
+                    href: GITHUB_FEATURE_URL
+                },
+                {
+                    kicker: 'Open source',
+                    title: 'Contribuisci direttamente',
+                    text: 'Se vuoi aiutare con copy, documentazione o codice, il repository è il punto di ingresso corretto.',
+                    cta: 'Guida contributi',
+                    href: GITHUB_CONTRIBUTING_URL
+                }
+            ],
+            principles: {
+                title: 'Perché il contatto è public-first.',
+                items: [
+                    {
+                        kicker: 'Trasparente',
+                        title: 'Le conversazioni utili restano visibili',
+                        text: 'Thread pubblici rendono il contesto del prodotto più leggibile nel tempo.'
+                    },
+                    {
+                        kicker: 'Azionabile',
+                        title: 'I report buoni si gestiscono meglio',
+                        text: 'Template strutturati riducono il ping-pong e tengono chiari i segnali.'
+                    },
+                    {
+                        kicker: 'Allineato',
+                        title: 'Il progetto resta aperto',
+                        text: 'Roadmap, feedback e contributi devono rafforzarsi a vicenda.'
                     }
                 ]
             }
         },
-        pt: {
+        privacy: {
             meta: {
-                home: {
-                    title: 'Balance — Assuma o controlo das suas finanças',
-                    description: 'Balance é o site oficial, privado e offline-first, para acompanhar dinheiro, investimentos e património com clareza.'
-                },
-                roadmap: {
-                    title: 'Roadmap do Balance',
-                    description: 'Acompanhe o roadmap do Balance e veja o que está planeado para as próximas iterações.'
-                },
-                contribute: {
-                    title: 'Contribuir para o Balance',
-                    description: 'Participe na evolução do Balance com feedback, issues, documentação, traduções e código.'
-                },
-                contact: {
-                    title: 'Contacto Balance',
-                    description: 'Canais de contacto do Balance para perguntas, feedback, ideias de roadmap e bugs.'
-                },
-                privacy: {
-                    title: 'Privacidade · Balance',
-                    description: 'Leia os princípios de privacidade do Balance: dados locais, sem bank sync e sem dependências desnecessárias.'
-                },
-                terms: {
-                    title: 'Termos · Balance',
-                    description: 'Consulte os termos de utilização do Balance, incluindo subscrições, disponibilidade e responsabilidades.'
-                }
+                title: 'Privacy di Balance',
+                description: 'Sintesi privacy di Balance: dati finanziari locali, nessun bank sync e gestione minima del sito.'
             },
-            common: {
-                brand: 'Balance',
-                nav: {
-                    overview: 'Visão geral',
-                    features: 'Funcionalidades',
-                    roadmap: 'Roadmap',
-                    contribute: 'Contribuir',
-                    download: 'Download'
-                },
-                footer: {
-                    privacy: 'Política de Privacidade',
-                    terms: 'Termos',
-                    contact: 'Contacto',
-                    github: 'GitHub',
-                    language: 'Idioma',
-                    copyright: '© Balance. Todos os direitos reservados.'
-                },
-                cta: {
-                    appStoreHtml: '<i class="fa-brands fa-apple"></i> Descarregar na App Store',
-                    roadmap: 'Ver roadmap',
-                    github: 'Contribuir no GitHub'
-                }
+            hero: {
+                eyebrow: 'Privacy · Locale · Open source',
+                title: 'Privacy',
+                subtitle: 'Privata, per design.',
+                support: 'Balance è costruito perché i tuoi dati finanziari restino sul tuo dispositivo.'
             },
-            home: {
-                hero: {
-                    eyebrow: 'Private · Offline · Open source',
-                    brand: 'Balance',
-                    title: 'Assuma o controlo das suas finanças.',
-                    subtitle: 'Privado. Offline. Totalmente seu.',
-                    support: 'Acompanhe dinheiro, investimentos e património com clareza. Sem ligações bancárias. Sem sync. Sem ruído.'
-                },
-                trust: [
-                    { title: 'Privacidade by design', text: 'Local, manual e pensado para se manter legível.' },
-                    { title: 'Funciona offline', text: 'O seu fluxo não depende de serviços externos.' },
-                    { title: 'Sem bank sync', text: 'Decide o que entra e quando deve ser atualizado.' },
-                    { title: 'Os dados ficam no seu dispositivo', text: 'Sem qualquer camada escondida entre si e as suas finanças.' }
-                ],
-                core: {
-                    title: 'O controlo muda tudo.',
-                    p1: 'A maioria das apps financeiras tenta automatizar o seu dinheiro. O Balance devolve-lhe o controlo.',
-                    p2: 'Decide o que acompanhar. Decide quando atualizar. Percebe tudo com clareza.',
-                    p3: 'Sem caixas negras. Sem lógica escondida.'
-                },
-                value: {
-                    title: 'Tudo o que precisa. Nada do que não precisa.',
-                    support: 'Inputs simples. Outputs claros.',
-                    items: [
-                        { title: 'Todos os wallets num só lugar', text: 'Liquidez, investimentos, poupanças e tudo o que quer manter visível.' },
-                        { title: 'Uma vista única do património', text: 'Vê o quadro geral sem perder os detalhes.' },
-                        { title: 'Snapshots mensais', text: 'Guarda o estado do momento e constrói um histórico claro ao longo do tempo.' },
-                        { title: 'Progresso realmente legível', text: 'Menos ruído, mais contexto e uma rotina mais calma.' }
+            sections: [
+                {
+                    title: '1. Cosa è progettato per fare Balance',
+                    paragraphs: [
+                        'Balance è un prodotto finance manuale costruito attorno a controllo, semplicità e proprietà locale dei dati.',
+                        'L’app non si basa su collegamenti bancari o su un sistema account per custodire la tua cronologia finanziaria.'
                     ]
                 },
-                screenshots: {
-                    title: 'Veja as suas finanças com clareza.',
-                    cards: [
-                        { title: 'Uma visão calma', text: 'Uma interface pensada para tornar saldos, categorias e prioridades imediatos.' },
-                        { title: 'Tendências ao longo do tempo', text: 'Os snapshots servem para ver direção, não apenas o último número.' },
-                        { title: 'Wallets organizadas', text: 'Contas e ativos separados sem perder a visão do todo.' },
-                        { title: 'Snapshots que importam', text: 'Um ritmo manual que continua útil porque continua simples.' }
-                    ]
-                },
-                philosophy: {
-                    title: 'Sem sync. Por escolha.',
-                    p1: 'O Balance não se liga ao seu banco.',
-                    p2: 'Isso não é uma limitação. É uma decisão.',
-                    bullets: [
-                        'Os dados ficam no seu dispositivo',
-                        'Sem dependências externas',
-                        'Sem ligações quebradas',
-                        'Sem surpresas'
+                {
+                    title: '2. Dati finanziari nell’app',
+                    paragraphs: [
+                        'Le informazioni finanziarie che inserisci in Balance sono pensate per restare sul tuo dispositivo.',
+                        'Questo include saldi, wallet, snapshot, valori degli investimenti e la vista storica che costruisci nel tempo.'
                     ],
-                    closing: 'Tem sempre o controlo.'
-                },
-                how: {
-                    title: 'Simples by design.',
-                    closing: 'Demora segundos. Dá-lhe clareza ao longo do tempo.',
-                    steps: [
-                        { title: 'Adicione os seus wallets', text: 'Crie uma estrutura que reflita a forma como organiza realmente o seu dinheiro.' },
-                        { title: 'Introduza os saldos', text: 'Atualiza manualmente, rapidamente e apenas quando faz sentido.' },
-                        { title: 'Guarde snapshots mensais', text: 'Mantém um registo limpo de onde tudo está.' },
-                        { title: 'Acompanhe o crescimento no tempo', text: 'Veja o que mudou, o que melhorou e onde vale a pena focar.' }
+                    list: [
+                        'Nessun livello di bank sync',
+                        'Nessun server centrale usato per archiviare i tuoi dati finanziari personali',
+                        'Nessuna necessità di consegnare credenziali a provider terzi'
                     ]
                 },
-                open: {
-                    title: 'Construído em aberto.',
-                    copy: 'O Balance evolui passo a passo. Siga o roadmap. Sugira funcionalidades. Contribua para o projeto.',
-                    cards: [
-                        { kicker: 'Roadmap', title: 'Prioridades transparentes', text: 'Veja o que está a ser afinado agora, o que vem a seguir e o que fica claramente mais à frente.' },
-                        { kicker: 'Feedback', title: 'As ideias moldam o produto', text: 'Feature requests e feedback fazem parte da forma como o Balance cresce.' },
-                        { kicker: 'Código', title: 'Open source por defeito', text: 'Pode rever o código, propor alterações ou ajudar o produto a melhorar com o tempo.' }
+                {
+                    title: '3. Sito e canali pubblici',
+                    paragraphs: [
+                        'Se usi canali pubblici del progetto come GitHub, quei servizi trattano i dati secondo le proprie policy.',
+                        'Se acquisti Balance Pro, pagamenti e gestione dell’abbonamento sono gestiti da Apple tramite App Store.'
                     ]
                 },
-                plans: {
-                    title: 'Comece simples. Faça upgrade quando quiser.',
-                    intro: 'A versão grátis mantém-se focada. Pro adiciona profundidade quando precisa.',
-                    toggle: {
-                        aria: 'Escolha a faturação do Balance Pro',
-                        annual: 'Anual',
-                        monthly: 'Mensal'
+                {
+                    title: '4. Controllo e sicurezza',
+                    paragraphs: [
+                        'Lo storage locale mantiene il controllo più vicino a te, e le protezioni di sistema del tuo dispositivo restano importanti.',
+                        'Rimani responsabile dell’accuratezza delle informazioni inserite e della sicurezza di accesso al tuo dispositivo.'
+                    ],
+                    list: [
+                        'La sicurezza del dispositivo conta ancora',
+                        'Eliminare l’app rimuove i dati locali dell’app dal dispositivo',
+                        'Il codice open source rende il modello privacy ispezionabile'
+                    ]
+                },
+                {
+                    title: '5. Open source e trasparenza',
+                    paragraphsHtml: [
+                        `Balance viene sviluppato in pubblico. Puoi ispezionare il repository su <a href="${GITHUB_URL}" target="_blank" rel="noreferrer">GitHub</a> e seguire come evolve il prodotto.`,
+                        'La trasparenza fa parte dell’approccio del prodotto, non è un livello marketing aggiuntivo.'
+                    ]
+                }
+            ]
+        },
+        terms: {
+            meta: {
+                title: 'Termini di Balance',
+                description: 'Sintesi dei termini di Balance per uso del prodotto, abbonamenti e perimetro del progetto.'
+            },
+            hero: {
+                eyebrow: 'Termini · Uso prodotto · App Store',
+                title: 'Termini',
+                subtitle: 'Termini chiari per un prodotto chiaro.',
+                support: 'Balance è uno strumento di tracking finanziario, non un servizio di consulenza finanziaria.'
+            },
+            sections: [
+                {
+                    title: '1. Ambito',
+                    paragraphs: [
+                        'Questi termini descrivono l’uso generale del sito, dell’app e delle superfici pubbliche del progetto Balance.',
+                        'Usando il prodotto, accetti di usarlo in modo responsabile e nei limiti descritti qui.'
+                    ]
+                },
+                {
+                    title: '2. Natura del prodotto',
+                    paragraphs: [
+                        'Balance ti aiuta a tracciare manualmente wallet, saldi, snapshot e patrimonio nel tempo.',
+                        'Non fornisce consulenza finanziaria, raccomandazioni di investimento o gestione automatica del portafoglio.'
+                    ]
+                },
+                {
+                    title: '3. I tuoi dati e la tua responsabilità',
+                    paragraphs: [
+                        'Sei responsabile delle informazioni che inserisci nell’app e delle decisioni che prendi basandoti su di esse.',
+                        'Se un valore è non aggiornato o errato, Balance riflette ciò che è stato inserito manualmente.'
+                    ]
+                },
+                {
+                    title: '4. Piani Free e Pro',
+                    paragraphs: [
+                        'Balance include un piano gratuito e un abbonamento Pro opzionale.',
+                        'Se ti abboni tramite App Store, fatturazione, rinnovo e cancellazione sono gestiti da Apple secondo le regole del tuo account Apple.'
+                    ]
+                },
+                {
+                    title: '5. Disponibilità e modifiche',
+                    paragraphs: [
+                        'Balance è un prodotto in evoluzione. Funzionalità, priorità di roadmap e materiali pubblici possono cambiare nel tempo.',
+                        'Gli elementi presenti in roadmap sono indicativi e non rappresentano un impegno vincolante di consegna.'
+                    ]
+                },
+                {
+                    title: '6. Open source e servizi esterni',
+                    paragraphsHtml: [
+                        `Parte del progetto viene sviluppata in pubblico su <a href="${GITHUB_URL}" target="_blank" rel="noreferrer">GitHub</a>. L’uso del repository può essere soggetto anche ai termini e alle policy di GitHub.`,
+                        'Quando intervengono piattaforme terze, i loro termini si applicano ai servizi che forniscono.'
+                    ]
+                }
+            ]
+        }
+    },
+    pt: {
+        common: {
+            brand: 'Balance',
+            nav: {
+                overview: 'Visão geral',
+                features: 'Funcionalidades',
+                roadmap: 'Roadmap',
+                contribute: 'Contribuir',
+                download: 'Download',
+                menu: 'Menu'
+            },
+            footer: {
+                privacy: 'Política de Privacidade',
+                terms: 'Termos',
+                contact: 'Contacto',
+                github: 'GitHub',
+                language: 'Idioma',
+                copyright: '© Balance. Todos os direitos reservados.'
+            }
+        },
+        home: {
+            meta: {
+                title: 'Balance — Toma controlo das tuas finanças.',
+                description: 'Tracking financeiro privado, offline e open source. Acompanha carteiras, investimentos e património sem ligação bancária e sem ruído.'
+            },
+            hero: {
+                eyebrow: 'Privado · Offline · Open source',
+                title: 'Toma controlo das tuas finanças.',
+                subtitle: 'Privado. Offline. Totalmente teu.',
+                supportHtml: 'Acompanha o teu dinheiro, investimentos e património com clareza.<br>Sem ligações bancárias. Sem sincronização. Sem ruído.',
+                ctaPrimary: 'Descarregar na App Store',
+                ctaSecondary: 'Ver roadmap',
+                chipA: 'Snapshots mensais',
+                chipB: 'Sem sync bancária',
+                cardA: {
+                    label: 'Clareza',
+                    value: 'Atualizações manuais. Histórico legível.'
+                },
+                cardB: {
+                    label: 'Controlo',
+                    value: 'Tudo fica no teu dispositivo.'
+                }
+            },
+            trust: [
+                {
+                    title: 'Privacidade por design',
+                    text: 'Sem fluxos escondidos. Sem entrega de dados. Sem conta obrigatória.'
+                },
+                {
+                    title: 'Funciona offline',
+                    text: 'Os teus números continuam acessíveis mesmo sem ligação.'
+                },
+                {
+                    title: 'Sem ligação bancária',
+                    text: 'Tu decides o que entra na app e quando muda.'
+                },
+                {
+                    title: 'Os dados ficam no teu dispositivo',
+                    text: 'Balance foi pensado para controlo local, não para armazenamento remoto.'
+                }
+            ],
+            coreIdea: {
+                title: 'O controlo muda tudo.',
+                paragraphs: [
+                    'A maioria das apps financeiras tenta automatizar o teu dinheiro. Balance dá-te controlo em vez disso.',
+                    'Tu decides o que acompanhar. Tu decides quando atualizar. Tu percebes tudo.',
+                    'Sem caixas negras. Sem lógica escondida.'
+                ],
+                sideLines: [
+                    'Manual por escolha.',
+                    'Calma por design.',
+                    'Feito para clareza a longo prazo.'
+                ],
+                ending: 'Balance continua útil porque cada número mantém contexto.'
+            },
+            value: {
+                title: 'Tudo o que precisas. Nada do que não precisas.',
+                intro: 'Inputs simples. Outputs claros.',
+                items: [
+                    {
+                        icon: 'WL',
+                        title: 'Todas as carteiras num só lugar',
+                        text: 'Organiza liquidez, corretoras, crypto e outros ativos numa vista limpa.'
                     },
-                    free: {
-                        badge: 'Para começar',
-                        title: 'Balance grátis',
-                        description: 'Tudo o que precisa para começar.',
-                        priceLabel: 'Grátis',
-                        list: ['Até 3 wallets', 'Snapshots essenciais', 'Histórico completo'],
-                        cta: 'Download grátis'
+                    {
+                        icon: 'NW',
+                        title: 'Investimentos e património total',
+                        text: 'Vê o quadro geral sem transformar as finanças numa folha de cálculo.'
                     },
-                    pro: {
-                        badgeAnnual: 'Oferta de lançamento',
-                        badgeMonthly: 'Cancela quando quiser',
-                        pillAnnual: 'Melhor valor',
-                        pillMonthly: 'Plano mensal',
-                        title: 'Balance Pro',
-                        description: 'Funcionalidades avançadas para um controlo mais profundo.',
-                        annualCaption: 'Oferta anual de lançamento',
-                        annualPriceHtml: '19,99 €<span class="price-suffix">por ano</span>',
-                        annualChip: 'Poupa 15,89 €',
-                        annualAlt: 'Equivale a 1,67 € por mês em vez de 35,88 € por ano',
-                        annualNote: 'Primeiro mês de teste gratuito.',
-                        monthlyCaption: 'Plano mensal',
-                        monthlyPriceHtml: '2,99 €<span class="price-suffix">por mês</span>',
-                        monthlyChip: 'Mensal',
-                        monthlyAlt: 'Renovação mensal a 2,99 €',
-                        monthlyNote: 'Primeiro mês de teste gratuito.',
-                        list: ['Wallets ilimitadas', 'Snapshots avançados', 'Histórico completo para comparações mais profundas'],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Descarregar e ativar Pro',
-                        microcopy: 'No fim do teste gratuito, salvo cancelamento, a renovação segue o plano selecionado.'
+                    {
+                        icon: 'SN',
+                        title: 'Snapshots mensais',
+                        text: 'Guarda um ponto claro no tempo sempre que quiseres fechar um mês.'
+                    },
+                    {
+                        icon: 'TR',
+                        title: 'Progressão clara ao longo do tempo',
+                        text: 'Segue a direção, não o ruído, com uma rotina fácil de manter.'
                     }
-                },
-                faq: {
-                    title: 'Perguntas frequentes',
-                    items: [
-                        {
-                            q: 'O Balance é privado?',
-                            a: 'Sim. O Balance foi desenhado com dados locais, atualizações manuais e nenhum fluxo escondido.'
-                        },
-                        {
-                            q: 'Liga-se a bancos ou brokers?',
-                            a: 'Não. O Balance não sincroniza com bancos nem brokers. Decide sempre o que acompanhar.'
-                        },
-                        {
-                            q: 'O que posso acompanhar?',
-                            a: 'Wallets, liquidez, investimentos e património total ao longo do tempo.'
-                        },
-                        {
-                            q: 'Qual é a diferença entre Grátis e Pro?',
-                            a: 'Grátis cobre o essencial. Pro remove limites e adiciona mais profundidade para tracking no longo prazo.'
-                        },
-                        {
-                            q: 'Android está disponível?',
-                            a: 'iOS já está disponível. Android está no roadmap.'
-                        }
-                    ]
-                },
-                final: {
-                    title: 'Assuma o controlo hoje.',
-                    copy: 'As suas finanças. As suas decisões.'
-                }
+                ]
             },
-            roadmap: {
-                hero: {
-                    eyebrow: 'Roadmap',
-                    title: 'Para onde o Balance está a ir.',
-                    copy: 'O Balance evolui em aberto, com prioridades deliberadas e uma direção de produto construída em torno do controlo.'
-                },
-                columns: {
-                    now: {
-                        kicker: 'Agora',
-                        title: 'O que estamos a afinar',
-                        text: 'O foco continua na clareza do produto, fiabilidade e uso diário mais rápido.',
-                        items: [
-                            'Polir dashboard e fluxo de wallets',
-                            'Rotinas de snapshots mensais mais claras',
-                            'Experiência mobile mais precisa e legível',
-                            'Core product calmo e previsível'
-                        ]
+            showcase: {
+                title: 'Vê as tuas finanças com clareza.',
+                intro: 'Uma experiência pensada para leitura, não para confusão.',
+                cards: {
+                    dashboard: {
+                        title: 'Dashboard mais clara',
+                        text: 'Uma visão mais calma de saldos, composição e movimento.'
                     },
-                    next: {
-                        kicker: 'A seguir',
-                        title: 'O que vem depois',
-                        text: 'A próxima camada acrescenta profundidade sem transformar o produto numa ferramenta ruidosa.',
-                        items: [
-                            'Gráficos e comparações mais ricas',
-                            'Estrutura de wallets mais flexível',
-                            'Export para os seus próprios registos',
-                            'Revisões melhores da evolução no tempo'
-                        ]
+                    trends: {
+                        title: 'Tendência ao longo do tempo',
+                        text: 'Os snapshots transformam atualizações num histórico legível.'
                     },
-                    later: {
-                        kicker: 'Mais tarde',
-                        title: 'O que fica intencional',
-                        text: 'O trabalho futuro será sempre avaliado pelos mesmos princípios de produto.',
-                        items: [
-                            'Backup cloud opcional sem perder o controlo local',
-                            'Mais personalização de vistas e categorias',
-                            'Cobertura de plataforma mais ampla',
-                            'Melhorias guiadas pela comunidade'
-                        ]
+                    wallets: {
+                        title: 'Carteiras organizadas',
+                        text: 'Separa contas e ativos sem perder a visão do todo.'
+                    },
+                    snapshots: {
+                        title: 'Snapshots mensais',
+                        text: 'Cada registo guardado torna-se uma referência em que podes confiar.'
                     }
-                },
-                principles: {
-                    title: 'Como decidimos prioridades',
-                    items: [
-                        {
-                            title: 'Controlo primeiro',
-                            text: 'Uma funcionalidade só avança se mantiver o produto compreensível e sob controlo do utilizador.'
-                        },
-                        {
-                            title: 'Privacidade por defeito',
-                            text: 'O modelo offline continua central. Conveniência não pode reduzir clareza.'
-                        },
-                        {
-                            title: 'Passos pequenos mas sólidos',
-                            text: 'O Balance cresce por iterações focadas, não por acumulação de funcionalidades.'
-                        }
-                    ]
-                },
-                cta: {
-                    title: 'Quer influenciar o que vem a seguir?',
-                    copy: 'Siga o roadmap, proponha melhorias ou contribua diretamente no GitHub.'
                 }
             },
-            contribute: {
-                hero: {
-                    eyebrow: 'Contribuir',
-                    title: 'Ajude a moldar o Balance.',
-                    copy: 'O Balance é construído em aberto. Ideias, issues, documentação, traduções e código movem realmente o produto.'
-                },
-                ways: {
-                    title: 'Onde contribuir',
-                    items: [
-                        {
-                            title: 'Sugira melhorias de produto',
-                            text: 'Abra issues para ideias de workflow, detalhes em falta ou feedback sobre a direção do produto.',
-                            bullets: ['Novas funcionalidades', 'Feedback de copy', 'Observações de UX']
-                        },
-                        {
-                            title: 'Reporte bugs com clareza',
-                            text: 'Issues bem descritas ajudam a proteger a experiência calma e fiável que o Balance procura oferecer.',
-                            bullets: ['Passos para reproduzir', 'Comportamento esperado', 'Screenshots quando úteis']
-                        },
-                        {
-                            title: 'Melhore docs e traduções',
-                            text: 'O projeto deve continuar compreensível entre produto, roadmap e páginas informativas.',
-                            bullets: ['Copy do site', 'Traduções', 'Documentação mais clara']
-                        },
-                        {
-                            title: 'Contribua com código',
-                            text: 'Contribuições open source são bem-vindas quando respeitam os princípios do produto e a roadmap atual.',
-                            bullets: ['Comece pela roadmap', 'Mantenha as PRs focadas', 'Preserve a simplicidade']
-                        }
-                    ]
-                },
-                principles: {
-                    title: 'O que o Balance protege',
-                    items: [
-                        {
-                            title: 'Manual por decisão',
-                            text: 'A introdução manual faz parte da filosofia do produto, não é uma ausência.'
-                        },
-                        {
-                            title: 'Clareza acima da automação',
-                            text: 'Cada adição deve tornar o produto mais compreensível, nunca mais opaco.'
-                        },
-                        {
-                            title: 'A privacidade continua central',
-                            text: 'Cada contribuição deve respeitar o modelo local-first e sem bank sync.'
-                        }
-                    ]
-                },
-                cta: {
-                    title: 'Comece pela roadmap. Depois abra o repositório.',
-                    copy: 'Assim as contribuições mantêm-se alinhadas com a direção do produto.'
-                }
+            philosophy: {
+                title: 'Sem sync. Por escolha.',
+                paragraphs: [
+                    'Balance não se liga ao teu banco.',
+                    'Isso não é uma limitação. É uma decisão.'
+                ],
+                points: [
+                    'Os teus dados ficam no teu dispositivo',
+                    'Sem dependências externas',
+                    'Sem ligações partidas',
+                    'Sem surpresas'
+                ],
+                closing: 'Tens sempre o controlo.'
             },
-            contact: {
-                hero: {
-                    eyebrow: 'Contacto',
-                    title: 'Entre em contacto.',
-                    copy: 'Perguntas, feedback e ideias de produto começam aqui. Para roadmap e bugs, o GitHub continua a ser o canal mais rápido.'
-                },
+            steps: {
+                title: 'Simples por design.',
+                closing: 'Leva segundos. Dá-te clareza ao longo do tempo.',
+                items: [
+                    {
+                        title: 'Adiciona as tuas carteiras',
+                        text: 'Configura as contas e grupos de ativos que queres acompanhar.'
+                    },
+                    {
+                        title: 'Insere os saldos',
+                        text: 'Atualiza os números manualmente, só quando faz sentido para ti.'
+                    },
+                    {
+                        title: 'Guarda snapshots mensais',
+                        text: 'Cria um ponto no tempo sem configuração extra.'
+                    },
+                    {
+                        title: 'Acompanha o crescimento',
+                        text: 'Revê a evolução com contexto, sem depender de automação constante.'
+                    }
+                ]
+            },
+            openProject: {
+                title: 'Construído em público.',
+                copy: 'Balance está a evoluir passo a passo. Segue o roadmap, sugere funcionalidades e contribui para o projeto.',
                 cards: [
                     {
-                        kicker: 'Feedback de roadmap',
-                        title: 'Sugira o que deve melhorar a seguir',
-                        text: 'Use GitHub issues para partilhar ideias, funcionalidades em falta ou feedback sobre a direção do produto.',
-                        cta: 'Abrir GitHub issues'
+                        kicker: 'Roadmap',
+                        title: 'Segue o que vem a seguir',
+                        text: 'Vê o que já está a chegar, o que está a ser afinado e o que ainda precisa de feedback.'
                     },
                     {
-                        kicker: 'Bug reports',
-                        title: 'Reporte o que não está a funcionar',
-                        text: 'Os melhores reports incluem contexto, passos para reproduzir e comportamento esperado.',
-                        cta: 'Reportar um bug'
+                        kicker: 'Feedback',
+                        title: 'Sugere funcionalidades com clareza',
+                        text: 'Uma boa direção de produto nasce de casos de uso reais, não de listas vagas.'
                     },
                     {
-                        kicker: 'Contacto direto',
-                        title: 'Escreva ao projeto',
-                        text: 'Para perguntas mais amplas ou contacto geral, pode usar o email do projeto.',
-                        cta: 'Escrever ao Balance'
+                        kicker: 'Open source',
+                        title: 'Contribui em público',
+                        text: 'Código, copy, issues e pensamento de produto ajudam a moldar Balance.'
                     }
                 ],
-                note: 'Se está a reportar um problema de produto, o GitHub continua normalmente a ser o canal mais claro e rápido.'
+                ctaPrimary: 'Ver roadmap',
+                ctaSecondary: 'Contribuir no GitHub'
             },
-            privacy: {
-                hero: {
-                    eyebrow: 'Política de Privacidade',
-                    title: 'Privado by design.',
-                    copy: 'O Balance foi construído em torno do controlo local. Esta página explica os princípios por trás dessa escolha.'
+            plans: {
+                title: 'Começa simples. Faz upgrade quando quiseres.',
+                intro: 'A versão free cobre o essencial. Pro adiciona mais profundidade quando precisares.',
+                annual: 'Anual',
+                monthly: 'Mensal',
+                free: {
+                    badge: 'Grátis',
+                    title: 'Balance',
+                    description: 'Tudo o que precisas para começar.',
+                    priceHtml: '0 €',
+                    list: [
+                        'Até 3 carteiras',
+                        'Snapshots essenciais',
+                        'Histórico completo'
+                    ],
+                    cta: 'Descarregar grátis'
                 },
-                sections: [
-                    {
-                        title: '1. Armazenamento local',
-                        body: [
-                            'O Balance foi desenhado para que os dados financeiros permaneçam no dispositivo.',
-                            'O produto não depende de um servidor central para guardar wallets, saldos ou snapshots.'
-                        ]
+                pro: {
+                    badgeAnnual: 'Oferta de lançamento',
+                    badgeMonthly: 'Cancela quando quiseres',
+                    pillAnnual: 'Melhor valor',
+                    pillMonthly: 'Plano mensal',
+                    title: 'Balance Pro',
+                    description: 'Funcionalidades avançadas para um controlo mais profundo.',
+                    billing: {
+                        annual: {
+                            caption: 'Preço anual de lançamento',
+                            priceHtml: '19,99 €<span class="price-suffix">por ano</span>',
+                            chip: 'Poupa 15,89 €',
+                            alt: 'Equivale a 1,67 € por mês em vez de 35,88 € por ano',
+                            note: 'Primeiro mês grátis.'
+                        },
+                        monthly: {
+                            caption: 'Preço mensal',
+                            priceHtml: '2,99 €<span class="price-suffix">por mês</span>',
+                            chip: 'Flexível',
+                            alt: 'Renova mensalmente a 2,99 €',
+                            note: 'Primeiro mês grátis.'
+                        }
                     },
-                    {
-                        title: '2. Sem bank sync',
-                        body: [
-                            'O Balance não se liga a bancos nem brokers.',
-                            'Isso significa que as suas credenciais não passam por fornecedores externos de sincronização.'
-                        ]
-                    },
-                    {
-                        title: '3. Sem pipeline de dados escondido',
-                        body: [
-                            'O site pode usar infraestrutura normal de hosting, mas a filosofia do produto mantém-se: sem fluxo escondido de dados financeiros.',
-                            'Se no futuro usar serviços terceiros para formulários ou distribuição da app, esses serviços continuam separados do modelo de wallets e snapshots.'
-                        ]
-                    },
-                    {
-                        title: '4. Open source e verificabilidade',
-                        body: [
-                            'O Balance é desenvolvido em aberto para que direção de produto e implementação possam ser verificadas.',
-                            'O desenvolvimento aberto ajuda a manter as promessas de privacidade alinhadas com o que o produto faz realmente.'
-                        ]
-                    },
-                    {
-                        title: '5. Contacto',
-                        body: [
-                            'Para questões de privacidade, use a página de contacto ou os canais de suporte publicados pelo projeto.',
-                            'Se utilizar um email dedicado, atualize a rota de contacto de forma coerente.'
-                        ]
-                    }
-                ]
-            },
-            terms: {
-                hero: {
-                    eyebrow: 'Termos',
-                    title: 'Termos para usar o Balance.',
-                    copy: 'Estes termos descrevem as condições gerais de acesso, subscrição e utilização do produto e do site.'
-                },
-                sections: [
-                    {
-                        title: '1. Âmbito do produto',
-                        body: [
-                            'O Balance é um produto financeiro para tracking manual de wallets, saldos e snapshots.',
-                            'Não é aconselhamento financeiro, software de corretagem nem um serviço de automação bancária.'
-                        ]
-                    },
-                    {
-                        title: '2. Responsabilidade do utilizador',
-                        body: [
-                            'É responsável pelos dados que introduz e pela respetiva precisão.',
-                            'As atualizações manuais fazem parte do modelo do produto e continuam sob o seu controlo.'
-                        ]
-                    },
-                    {
-                        title: '3. Acesso Grátis e Pro',
-                        body: [
-                            'O Balance pode oferecer uma versão gratuita e funcionalidades Pro pagas.',
-                            'Se subscrever Pro, faturação e renovação seguem o que for apresentado no fluxo de compra relevante.'
-                        ]
-                    },
-                    {
-                        title: '4. Disponibilidade',
-                        body: [
-                            'Produto e site podem evoluir ao longo do tempo e algumas funcionalidades podem mudar.',
-                            'Nada nesta página garante disponibilidade contínua em todos os dispositivos ou plataformas.'
-                        ]
-                    },
-                    {
-                        title: '5. Projeto aberto',
-                        body: [
-                            'O open source não elimina a necessidade de usar o produto de forma responsável.',
-                            'Contribuições e feedback de roadmap não criam automaticamente obrigações de suporte ou entrega.'
-                        ]
-                    },
-                    {
-                        title: '6. Contacto',
-                        body: [
-                            'Para dúvidas sobre estes termos, use a página de contacto ou os canais de suporte do projeto.',
-                            'Atualize os detalhes de contacto do site se usar um email legal ou de suporte dedicado.'
-                        ]
-                    }
-                ]
-            }
-        }
-    };
-
-    const supported = ['en', 'it', 'pt'];
-
-    function getNestedValue(obj, path) {
-        return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-    }
-
-    function setText(selector, value, root = document) {
-        const node = root.querySelector(selector);
-        if (node && typeof value === 'string') node.textContent = value;
-    }
-
-    function applyMeta(langCopy) {
-        const page = document.body.dataset.page;
-        const meta = langCopy.meta[page];
-        if (!meta) return;
-
-        document.title = meta.title;
-        document.documentElement.lang = document.documentElement.dataset.langCode || document.documentElement.lang || 'en';
-        const description = document.querySelector('meta[name="description"]');
-        if (description) description.setAttribute('content', meta.description);
-    }
-
-    function applyGenericTranslations(langCopy) {
-        document.querySelectorAll('[data-i18n]').forEach((node) => {
-            const value = getNestedValue(langCopy, node.dataset.i18n);
-            if (typeof value === 'string') {
-                node.textContent = value;
-            }
-        });
-
-        document.querySelectorAll('[data-i18n-html]').forEach((node) => {
-            const value = getNestedValue(langCopy, node.dataset.i18nHtml);
-            if (typeof value === 'string') {
-                node.innerHTML = value;
-            }
-        });
-
-        document.querySelectorAll('[data-i18n-attr]').forEach((node) => {
-            node.dataset.i18nAttr.split(';').forEach((pair) => {
-                const [attr, path] = pair.split(':');
-                if (!attr || !path) return;
-                const value = getNestedValue(langCopy, path);
-                if (typeof value === 'string') {
-                    node.setAttribute(attr.trim(), value);
+                    list: [
+                        'Carteiras ilimitadas',
+                        'Snapshots avançados para análise mais profunda',
+                        'Um arquivo mais flexível para acompanhamento contínuo'
+                    ],
+                    cta: 'Descarregar e ativar Pro',
+                    microcopy: 'No fim do período gratuito, salvo cancelamento, a renovação segue o plano selecionado.'
                 }
-            });
-        });
-    }
-
-    function applyTrustItems(langCopy) {
-        const items = document.querySelectorAll('.trust-card');
-        if (!items.length || !langCopy.home?.trust) return;
-        items.forEach((item, index) => {
-            const copy = langCopy.home.trust[index];
-            if (!copy) return;
-            setText('h3', copy.title, item);
-            setText('p', copy.text, item);
-        });
-    }
-
-    function applyFAQ(langCopy) {
-        const items = document.querySelectorAll('.faq-item');
-        const copyItems = langCopy.home?.faq?.items || [];
-        items.forEach((item, index) => {
-            const copy = copyItems[index];
-            if (!copy) return;
-            setText('summary', copy.q, item);
-            setText('p', copy.a, item);
-        });
-    }
-
-    function applyRoadmapCards(langCopy) {
-        const cards = document.querySelectorAll('.roadmap-card[data-roadmap-key]');
-        cards.forEach((card) => {
-            const key = card.dataset.roadmapKey;
-            const copy = langCopy.roadmap?.columns?.[key];
-            if (!copy) return;
-            setText('.mini-kicker', copy.kicker, card);
-            setText('h3', copy.title, card);
-            setText('p', copy.text, card);
-            const list = card.querySelectorAll('li span');
-            list.forEach((node, index) => {
-                node.textContent = copy.items[index] || '';
-            });
-        });
-    }
-
-    function applyPlanCopy(langCopy) {
-        const section = document.querySelector('#plans[data-billing-root]');
-        if (!section) return;
-        const planCopy = langCopy.home?.plans;
-        if (!planCopy) return;
-
-        setText('.plans-toggle button[data-billing-option="annual"]', planCopy.toggle.annual, section);
-        setText('.plans-toggle button[data-billing-option="monthly"]', planCopy.toggle.monthly, section);
-        const toggle = section.querySelector('.plans-toggle');
-        if (toggle) toggle.setAttribute('aria-label', planCopy.toggle.aria);
-
-        const freeCard = section.querySelector('.plan-card--free');
-        if (freeCard) {
-            setText('.plan-badge', planCopy.free.badge, freeCard);
-            setText('h3', planCopy.free.title, freeCard);
-            setText('.plan-description', planCopy.free.description, freeCard);
-            setText('.plan-free-label', planCopy.free.priceLabel, freeCard);
-            freeCard.querySelectorAll('.plan-list li span').forEach((node, index) => {
-                node.textContent = planCopy.free.list[index] || '';
-            });
-            setText('.btn', planCopy.free.cta, freeCard);
+            },
+            faq: {
+                title: 'Perguntas úteis.',
+                items: [
+                    {
+                        q: 'Balance é privado?',
+                        a: 'Sim. Balance foi pensado para que os teus dados financeiros fiquem no teu dispositivo em vez de serem enviados para um serviço central.'
+                    },
+                    {
+                        q: 'Liga-se a bancos ou corretoras?',
+                        a: 'Não. Balance é manual por escolha. Não existe camada de sync bancária nem ligação a corretoras.'
+                    },
+                    {
+                        q: 'O que posso acompanhar?',
+                        a: 'Liquidez, contas, corretoras, crypto e outros ativos que façam parte da tua visão patrimonial.'
+                    },
+                    {
+                        q: 'Qual é a diferença entre Free e Pro?',
+                        a: 'A versão gratuita chega para começar com até 3 carteiras e snapshots essenciais. Pro remove limites e acrescenta mais profundidade ao longo do tempo.'
+                    },
+                    {
+                        q: 'Android está disponível?',
+                        a: 'Sim. Balance está disponível em iOS e Android.'
+                    }
+                ]
+            },
+            finalCta: {
+                title: 'Toma controlo hoje.',
+                copy: 'As tuas finanças. As tuas decisões.',
+                primary: 'Descarregar na App Store',
+                secondary: 'Ver roadmap'
+            }
+        },
+        roadmap: {
+            meta: {
+                title: 'Roadmap do Balance',
+                description: 'Segue o roadmap do Balance e vê como o produto evolui entre privacidade, simplicidade e desenvolvimento aberto.'
+            },
+            hero: {
+                eyebrow: 'Produto · Roadmap · Desenvolvimento aberto',
+                title: 'Roadmap',
+                subtitle: 'Balance está a evoluir passo a passo.',
+                support: 'O roadmap segue os mesmos princípios do produto: privacidade, simplicidade e clareza ao longo do tempo.',
+                primary: 'Abrir GitHub',
+                secondary: 'Sugerir funcionalidade'
+            },
+            status: {
+                title: 'Foco atual',
+                copy: 'Balance já está live com a experiência principal: carteiras, snapshots, histórico e uma abordagem totalmente local.'
+            },
+            cards: [
+                {
+                    kicker: 'Agora',
+                    title: 'Release atual',
+                    text: 'O produto base aposta em clareza e controlo, não em automação.',
+                    list: [
+                        'Carteiras para liquidez, investimentos e outros ativos',
+                        'Snapshots manuais com histórico',
+                        'Gestão de dados privada e local',
+                        'Base open source do projeto'
+                    ]
+                },
+                {
+                    kicker: 'Depois',
+                    title: 'Melhorias próximas',
+                    text: 'A próxima camada trabalha leitura, rotina e exportação.',
+                    list: [
+                        'Widgets para atualizações rápidas',
+                        'Melhores gráficos e leitura de tendência',
+                        'Exportação CSV ou JSON',
+                        'Lembretes de snapshots e onboarding mais fluido'
+                    ]
+                },
+                {
+                    kicker: 'Mais tarde',
+                    title: 'Direção futura',
+                    text: 'O futuro deve aumentar o controlo sem quebrar a filosofia do produto.',
+                    list: [
+                        'Backup encriptado opcional',
+                        'Suporte multi-moeda',
+                        'Mais personalização para carteiras',
+                        'Superfícies de integração para utilizadores avançados'
+                    ]
+                }
+            ],
+            principles: {
+                title: 'Como o roadmap é decidido.',
+                items: [
+                    {
+                        kicker: 'Privado',
+                        title: 'Privacidade continua primeiro',
+                        text: 'As novas funcionalidades não devem forçar dependências remotas num produto criado para controlo local.'
+                    },
+                    {
+                        kicker: 'Simples',
+                        title: 'A complexidade precisa de motivo',
+                        text: 'Balance deve continuar legível e sustentável mesmo enquanto cresce.'
+                    },
+                    {
+                        kicker: 'Aberto',
+                        title: 'A direção continua visível',
+                        text: 'Feedback, issues e contributos fazem parte da forma como o roadmap melhora.'
+                    }
+                ]
+            },
+            cta: {
+                title: 'Queres influenciar o que vem a seguir?',
+                copy: 'Issues, feedback e contributos moldam diretamente o roadmap.',
+                primary: 'Contribuir no GitHub',
+                secondary: 'Voltar ao download'
+            }
+        },
+        contribute: {
+            meta: {
+                title: 'Contribuir para o Balance',
+                description: 'Contribui para o Balance com código, issues, copy e feedback de produto.'
+            },
+            hero: {
+                eyebrow: 'Open source · Comunidade · Produto',
+                title: 'Contribuir',
+                subtitle: 'Balance é construído em público.',
+                support: 'Feedback sobre o roadmap, issues, copy e código ajudam a fazer o produto avançar.',
+                primary: 'Abrir repositório',
+                secondary: 'Ver roadmap'
+            },
+            cards: [
+                {
+                    kicker: 'Bug',
+                    title: 'Reportar um problema',
+                    text: 'Se algo não funciona, o contributo mais útil é um relatório preciso e reproduzível.',
+                    cta: 'Reportar bug',
+                    href: GITHUB_BUG_URL
+                },
+                {
+                    kicker: 'Feature',
+                    title: 'Sugerir uma melhoria',
+                    text: 'Balance deve evoluir a partir de casos de uso reais, não de listas vagas de funcionalidades.',
+                    cta: 'Sugerir feature',
+                    href: GITHUB_FEATURE_URL
+                },
+                {
+                    kicker: 'Docs',
+                    title: 'Melhorar a linguagem do projeto',
+                    text: 'Copy, explicação e enquadramento do produto importam tanto quanto a implementação.',
+                    cta: 'Guia de contribuição',
+                    href: GITHUB_CONTRIBUTING_URL
+                },
+                {
+                    kicker: 'Código',
+                    title: 'Contribuir para o codebase',
+                    text: 'Se quiseres construir, refinar ou limpar algo, o repositório público é o ponto de partida.',
+                    cta: 'Ir para GitHub',
+                    href: GITHUB_URL
+                }
+            ],
+            principles: {
+                title: 'O que define um bom contributo.',
+                items: [
+                    {
+                        kicker: 'Claro',
+                        title: 'O específico vence o genérico',
+                        text: 'Issues e propostas devem explicar o problema real do utilizador, não apenas uma ideia abstrata.'
+                    },
+                    {
+                        kicker: 'Mínimo',
+                        title: 'O produto deve manter a calma',
+                        text: 'Balance deve ganhar clareza à medida que cresce, não ruído.'
+                    },
+                    {
+                        kicker: 'Alinhado',
+                        title: 'Respeita a filosofia',
+                        text: 'Privacidade, controlo offline e simplicidade são restrições do produto, não slogans.'
+                    }
+                ]
+            },
+            cta: {
+                title: 'Desenvolvimento aberto faz parte do produto.',
+                copy: 'Se Balance te é útil, ajuda-o a ficar mais claro, mais simples e melhor.',
+                primary: 'Contribuir no GitHub',
+                secondary: 'Ver roadmap'
+            }
+        },
+        contact: {
+            meta: {
+                title: 'Contacto Balance',
+                description: 'Encontra o canal público certo para contactar o projeto Balance.'
+            },
+            hero: {
+                eyebrow: 'Projeto público · Contacto · Suporte',
+                title: 'Contacto',
+                subtitle: 'A comunicação do projeto começa aqui.',
+                support: 'Por agora, a forma mais clara de chegar ao Balance passa pelos canais públicos do projeto.',
+                primary: 'Abrir issues',
+                secondary: 'Ver roadmap'
+            },
+            cards: [
+                {
+                    kicker: 'Feedback',
+                    title: 'Perguntas ou feedback de produto',
+                    text: 'Usa o issue tracker público para perguntas gerais, notas de produto ou feedback de usabilidade.',
+                    cta: 'Abrir issues',
+                    href: GITHUB_ISSUES_URL
+                },
+                {
+                    kicker: 'Bug',
+                    title: 'Reportar um bug',
+                    text: 'Se algo não funciona, envia um relatório preciso com passos, contexto e screenshots se ajudarem.',
+                    cta: 'Template de bug report',
+                    href: GITHUB_BUG_URL
+                },
+                {
+                    kicker: 'Feature',
+                    title: 'Pedir uma funcionalidade',
+                    text: 'Se queres que Balance faça algo novo, começa pelo problema que estás a tentar resolver.',
+                    cta: 'Template de feature request',
+                    href: GITHUB_FEATURE_URL
+                },
+                {
+                    kicker: 'Open source',
+                    title: 'Contribuir diretamente',
+                    text: 'Se quiseres ajudar com copy, documentação ou código, o repositório é o ponto de entrada certo.',
+                    cta: 'Guia de contribuição',
+                    href: GITHUB_CONTRIBUTING_URL
+                }
+            ],
+            principles: {
+                title: 'Porque o contacto é public-first.',
+                items: [
+                    {
+                        kicker: 'Transparente',
+                        title: 'As conversas úteis continuam visíveis',
+                        text: 'Threads públicas tornam o contexto do produto mais fácil de seguir ao longo do tempo.'
+                    },
+                    {
+                        kicker: 'Acionável',
+                        title: 'Bons relatórios são mais fáceis de tratar',
+                        text: 'Templates estruturados reduzem o vai-e-vem e mantêm os sinais claros.'
+                    },
+                    {
+                        kicker: 'Alinhado',
+                        title: 'O projeto mantém-se aberto',
+                        text: 'Roadmap, feedback e contributos devem reforçar-se mutuamente.'
+                    }
+                ]
+            }
+        },
+        privacy: {
+            meta: {
+                title: 'Privacidade do Balance',
+                description: 'Resumo de privacidade do Balance: dados financeiros locais, sem sync bancária e gestão mínima do site.'
+            },
+            hero: {
+                eyebrow: 'Privacidade · Local-first · Open source',
+                title: 'Privacidade',
+                subtitle: 'Privado por design.',
+                support: 'Balance foi construído para que os teus dados financeiros fiquem no teu dispositivo.'
+            },
+            sections: [
+                {
+                    title: '1. O que o Balance foi concebido para fazer',
+                    paragraphs: [
+                        'Balance é um produto financeiro manual construído em torno de controlo, simplicidade e posse local dos dados.',
+                        'A app não depende de ligações bancárias nem de um sistema de contas para guardar o teu histórico financeiro.'
+                    ]
+                },
+                {
+                    title: '2. Dados financeiros na app',
+                    paragraphs: [
+                        'A informação financeira que introduzes no Balance foi concebida para ficar no teu dispositivo.',
+                        'Isto inclui saldos, carteiras, snapshots, valores de investimentos e a vista histórica que constróis ao longo do tempo.'
+                    ],
+                    list: [
+                        'Sem camada de sync bancária',
+                        'Sem servidor central para armazenar os teus dados financeiros pessoais',
+                        'Sem necessidade de entregar credenciais a fornecedores terceiros'
+                    ]
+                },
+                {
+                    title: '3. Site e canais públicos',
+                    paragraphs: [
+                        'Se usares canais públicos do projeto como o GitHub, esses serviços tratam os dados de acordo com as suas próprias políticas.',
+                        'Se comprares Balance Pro, pagamentos e gestão da subscrição são tratados pela Apple através da App Store.'
+                    ]
+                },
+                {
+                    title: '4. Controlo e segurança',
+                    paragraphs: [
+                        'O armazenamento local mantém o controlo mais perto de ti, e as proteções do sistema do teu dispositivo continuam importantes.',
+                        'Continuas responsável pela exatidão da informação introduzida e pela segurança de acesso ao teu dispositivo.'
+                    ],
+                    list: [
+                        'A segurança do dispositivo continua importante',
+                        'Apagar a app remove os dados locais da app do dispositivo',
+                        'O código open source torna o modelo de privacidade inspecionável'
+                    ]
+                },
+                {
+                    title: '5. Open source e transparência',
+                    paragraphsHtml: [
+                        `Balance é desenvolvido em público. Podes inspecionar o repositório no <a href="${GITHUB_URL}" target="_blank" rel="noreferrer">GitHub</a> e acompanhar a evolução do produto.`,
+                        'A transparência faz parte da abordagem do produto, não é uma camada extra de marketing.'
+                    ]
+                }
+            ]
+        },
+        terms: {
+            meta: {
+                title: 'Termos do Balance',
+                description: 'Resumo dos termos do Balance para uso do produto, subscrições e âmbito do projeto.'
+            },
+            hero: {
+                eyebrow: 'Termos · Uso do produto · App Store',
+                title: 'Termos',
+                subtitle: 'Termos claros para um produto claro.',
+                support: 'Balance é uma ferramenta de acompanhamento financeiro, não um serviço de aconselhamento financeiro.'
+            },
+            sections: [
+                {
+                    title: '1. Âmbito',
+                    paragraphs: [
+                        'Estes termos descrevem o uso geral do site, da app e das superfícies públicas do projeto Balance.',
+                        'Ao usar o produto, concordas em utilizá-lo de forma responsável e dentro dos limites aqui descritos.'
+                    ]
+                },
+                {
+                    title: '2. Natureza do produto',
+                    paragraphs: [
+                        'Balance ajuda-te a acompanhar manualmente carteiras, saldos, snapshots e património ao longo do tempo.',
+                        'Não fornece aconselhamento financeiro, recomendações de investimento nem gestão automática de portefólio.'
+                    ]
+                },
+                {
+                    title: '3. Os teus dados e a tua responsabilidade',
+                    paragraphs: [
+                        'És responsável pela informação que introduzes na app e pelas decisões que tomas com base nela.',
+                        'Se um valor estiver desatualizado ou incorreto, Balance reflete o que foi introduzido manualmente.'
+                    ]
+                },
+                {
+                    title: '4. Planos Free e Pro',
+                    paragraphs: [
+                        'Balance inclui um plano gratuito e uma subscrição Pro opcional.',
+                        'Se subscreveres através da App Store, faturação, renovação e cancelamento são tratados pela Apple segundo as regras da tua conta Apple.'
+                    ]
+                },
+                {
+                    title: '5. Disponibilidade e alterações',
+                    paragraphs: [
+                        'Balance é um produto em evolução. Funcionalidades, prioridades do roadmap e materiais públicos podem mudar ao longo do tempo.',
+                        'Os itens do roadmap são indicativos e não devem ser interpretados como um compromisso vinculativo de entrega.'
+                    ]
+                },
+                {
+                    title: '6. Open source e serviços externos',
+                    paragraphsHtml: [
+                        `Parte do projeto é desenvolvida em público no <a href="${GITHUB_URL}" target="_blank" rel="noreferrer">GitHub</a>. O uso do repositório também pode estar sujeito aos termos e políticas do GitHub.`,
+                        'Quando plataformas de terceiros estão envolvidas, os respetivos termos aplicam-se aos serviços que prestam.'
+                    ]
+                }
+            ]
         }
-
-        const proCard = section.querySelector('.plan-card--pro');
-        if (proCard) {
-            setText('h3', planCopy.pro.title, proCard);
-            setText('.plan-description', planCopy.pro.description, proCard);
-            proCard.querySelectorAll('.plan-list li span').forEach((node, index) => {
-                node.textContent = planCopy.pro.list[index] || '';
-            });
-            const cta = proCard.querySelector('.btn');
-            if (cta) cta.innerHTML = planCopy.pro.ctaHtml;
-            setText('.plan-microcopy', planCopy.pro.microcopy, proCard);
-
-            const badge = proCard.querySelector('.plan-badge');
-            const pill = proCard.querySelector('.plan-pill');
-            const caption = proCard.querySelector('.plan-caption');
-            const price = proCard.querySelector('.plan-price');
-            const chip = proCard.querySelector('.plan-chip');
-            const alt = proCard.querySelector('.plan-alt');
-            const note = proCard.querySelector('.plan-note');
-
-            if (badge) {
-                badge.dataset.annual = planCopy.pro.badgeAnnual;
-                badge.dataset.monthly = planCopy.pro.badgeMonthly;
-                badge.dataset.billingTarget = 'true';
-            }
-            if (pill) {
-                pill.dataset.annual = planCopy.pro.pillAnnual;
-                pill.dataset.monthly = planCopy.pro.pillMonthly;
-                pill.dataset.billingTarget = 'true';
-            }
-            if (caption) {
-                caption.dataset.annual = planCopy.pro.annualCaption;
-                caption.dataset.monthly = planCopy.pro.monthlyCaption;
-                caption.dataset.billingTarget = 'true';
-            }
-            if (price) {
-                price.dataset.annual = planCopy.pro.annualPriceHtml;
-                price.dataset.monthly = planCopy.pro.monthlyPriceHtml;
-                price.dataset.billingTarget = 'true';
-                price.dataset.copyMode = 'html';
-            }
-            if (chip) {
-                chip.dataset.annual = planCopy.pro.annualChip;
-                chip.dataset.monthly = planCopy.pro.monthlyChip;
-                chip.dataset.billingTarget = 'true';
-            }
-            if (alt) {
-                alt.dataset.annual = planCopy.pro.annualAlt;
-                alt.dataset.monthly = planCopy.pro.monthlyAlt;
-                alt.dataset.billingTarget = 'true';
-            }
-            if (note) {
-                note.dataset.annual = planCopy.pro.annualNote;
-                note.dataset.monthly = planCopy.pro.monthlyNote;
-                note.dataset.billingTarget = 'true';
-            }
-        }
-
-        if (window.BalanceV2 && typeof window.BalanceV2.refreshPricing === 'function') {
-            window.BalanceV2.refreshPricing();
-        }
     }
-
-    function applyPolicySections(langCopy, pageKey) {
-        const sections = document.querySelectorAll('.legal-section');
-        const copy = langCopy[pageKey]?.sections || [];
-        sections.forEach((section, index) => {
-            const data = copy[index];
-            if (!data) return;
-            setText('h2', data.title, section);
-            const paragraphs = section.querySelectorAll('p');
-            paragraphs.forEach((node, paragraphIndex) => {
-                node.textContent = data.body[paragraphIndex] || '';
-            });
-        });
-    }
-
-    function syncLanguageSelects(lang) {
-        document.querySelectorAll('.language-select').forEach((select) => {
-            select.value = lang;
-        });
-    }
-
-    function detectLanguage() {
-        const saved = localStorage.getItem('balance-v2-lang');
-        if (saved && supported.includes(saved)) return saved;
-
-        const browser = navigator.language.toLowerCase();
-        if (browser.startsWith('it')) return 'it';
-        if (browser.startsWith('pt')) return 'pt';
-        return 'en';
-    }
-
-    function applyLanguage(lang) {
-        const currentLang = supported.includes(lang) ? lang : 'en';
-        const langCopy = translations[currentLang];
-        document.documentElement.dataset.langCode = currentLang;
-        applyMeta(langCopy);
-        applyGenericTranslations(langCopy);
-        applyTrustItems(langCopy);
-        applyFAQ(langCopy);
-        applyRoadmapCards(langCopy);
-        applyPlanCopy(langCopy);
-
-        const page = document.body.dataset.page;
-        if (page === 'privacy' || page === 'terms') {
-            applyPolicySections(langCopy, page);
-        }
-
-        syncLanguageSelects(currentLang);
-        localStorage.setItem('balance-v2-lang', currentLang);
-    }
-
-    function initLanguageSwitchers() {
-        document.querySelectorAll('.language-select').forEach((select) => {
-            select.addEventListener('change', () => {
-                applyLanguage(select.value);
-            });
-        });
-    }
-
-    function init() {
-        initLanguageSwitchers();
-        applyLanguage(detectLanguage());
-    }
-
-    return { init, applyLanguage };
-})();
+};
 
 document.addEventListener('DOMContentLoaded', () => {
-    BalanceV2I18n.init();
+    const select = document.querySelector('#language-select');
+    const initialLanguage = resolveInitialLanguage();
+
+    if (select) {
+        select.value = initialLanguage;
+        select.addEventListener('change', (event) => {
+            applyLanguage(event.target.value);
+        });
+    }
+
+    applyLanguage(initialLanguage);
 });
+
+function resolveInitialLanguage() {
+    const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (stored && CONTENT[stored]) return stored;
+
+    const browserLanguage = navigator.language.toLowerCase();
+    if (browserLanguage.startsWith('it')) return 'it';
+    if (browserLanguage.startsWith('pt')) return 'pt';
+    return 'en';
+}
+
+function applyLanguage(language) {
+    const lang = CONTENT[language] ? language : 'en';
+    const pageKey = document.body.dataset.page;
+    const pageCopy = CONTENT[lang][pageKey];
+    const commonCopy = CONTENT[lang].common;
+
+    if (!pageCopy) return;
+
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+    document.documentElement.lang = LANGUAGE_META[lang].htmlLang;
+
+    const select = document.querySelector('#language-select');
+    if (select && select.value !== lang) {
+        select.value = lang;
+    }
+
+    applyMeta(lang, pageCopy.meta);
+    bindTextNodes(commonCopy, pageCopy);
+    renderPage(pageKey, pageCopy);
+}
+
+function applyMeta(lang, meta) {
+    if (!meta) return;
+
+    document.title = meta.title;
+    setAttr('meta[name="description"]', 'content', meta.description);
+    setAttr('meta[property="og:title"]', 'content', meta.title);
+    setAttr('meta[property="og:description"]', 'content', meta.description);
+    setAttr('meta[name="twitter:title"]', 'content', meta.title);
+    setAttr('meta[name="twitter:description"]', 'content', meta.description);
+    setAttr('meta[property="og:locale"]', 'content', LANGUAGE_META[lang].ogLocale);
+}
+
+function bindTextNodes(commonCopy, pageCopy) {
+    document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const value = resolveScopedKey(node.dataset.i18n, commonCopy, pageCopy);
+        if (typeof value === 'string') {
+            node.textContent = value;
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach((node) => {
+        const value = resolveScopedKey(node.dataset.i18nHtml, commonCopy, pageCopy);
+        if (typeof value === 'string') {
+            node.innerHTML = value;
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-attr]').forEach((node) => {
+        node.dataset.i18nAttr.split('|').forEach((mapping) => {
+            const [attr, key] = mapping.split(':');
+            const value = resolveScopedKey(key, commonCopy, pageCopy);
+            if (attr && typeof value === 'string') {
+                node.setAttribute(attr, value);
+            }
+        });
+    });
+}
+
+function resolveScopedKey(key, commonCopy, pageCopy) {
+    if (!key) return null;
+    if (key.startsWith('common.')) {
+        return getValue(commonCopy, key.replace(/^common\./, ''));
+    }
+    if (key.startsWith('page.')) {
+        return getValue(pageCopy, key.replace(/^page\./, ''));
+    }
+    return getValue(pageCopy, key) ?? getValue(commonCopy, key);
+}
+
+function getValue(root, path) {
+    return path.split('.').reduce((value, part) => (value && value[part] !== undefined ? value[part] : null), root);
+}
+
+function renderPage(pageKey, pageCopy) {
+    if (pageKey === 'home') {
+        renderTrustCards(pageCopy.trust);
+        renderValueCards(pageCopy.value.items);
+        renderChecklist('#philosophy-list', pageCopy.philosophy.points);
+        renderSteps(pageCopy.steps.items);
+        renderOpenCards(pageCopy.openProject.cards);
+        renderPlans(pageCopy.plans);
+        renderFaq(pageCopy.faq.items);
+        return;
+    }
+
+    if (pageKey === 'roadmap') {
+        renderRoadmapCards(pageCopy.cards);
+        renderPrinciples(pageCopy.principles.items);
+        return;
+    }
+
+    if (pageKey === 'contribute') {
+        renderContributeCards(pageCopy.cards);
+        renderPrinciples(pageCopy.principles.items);
+        return;
+    }
+
+    if (pageKey === 'contact') {
+        renderContactCards(pageCopy.cards);
+        renderPrinciples(pageCopy.principles.items);
+        return;
+    }
+
+    if (pageKey === 'privacy' || pageKey === 'terms') {
+        renderLegalSections(pageCopy.sections);
+    }
+}
+
+function renderTrustCards(items) {
+    const root = document.querySelector('#home-trust');
+    if (!root) return;
+
+    root.innerHTML = items.map((item) => `
+        <article class="surface trust-card">
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+        </article>
+    `).join('');
+}
+
+function renderValueCards(items) {
+    const root = document.querySelector('#home-value');
+    if (!root) return;
+
+    root.innerHTML = items.map((item) => `
+        <article class="surface feature-card">
+            <span class="icon-wrap">${item.icon}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+        </article>
+    `).join('');
+}
+
+function renderChecklist(selector, items) {
+    const root = document.querySelector(selector);
+    if (!root) return;
+
+    root.innerHTML = items.map((item) => `
+        <li><i>•</i><span>${item}</span></li>
+    `).join('');
+}
+
+function renderSteps(items) {
+    const root = document.querySelector('#home-steps');
+    if (!root) return;
+
+    root.innerHTML = items.map((item, index) => `
+        <article class="surface step-card">
+            <span class="step-index">${index + 1}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+        </article>
+    `).join('');
+}
+
+function renderOpenCards(items) {
+    const root = document.querySelector('#home-open-cards');
+    if (!root) return;
+
+    root.innerHTML = items.map((item) => `
+        <article class="surface roadmap-card">
+            <span class="mini-kicker">${item.kicker}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+        </article>
+    `).join('');
+}
+
+function renderPlans(plans) {
+    setText('#plans-title', plans.title);
+    setText('#plans-intro', plans.intro);
+    setText('#plans-annual', plans.annual);
+    setText('#plans-monthly', plans.monthly);
+
+    setText('#plan-free-badge', plans.free.badge);
+    setText('#plan-free-title', plans.free.title);
+    setText('#plan-free-description', plans.free.description);
+    setHtml('#plan-free-price', plans.free.priceHtml);
+    setText('#plan-free-cta', plans.free.cta);
+    renderSimpleList('#plan-free-list', plans.free.list);
+
+    setText('#plan-pro-title', plans.pro.title);
+    setText('#plan-pro-description', plans.pro.description);
+    setText('#plan-pro-cta', plans.pro.cta);
+    setText('#plan-pro-microcopy', plans.pro.microcopy);
+    renderSimpleList('#plan-pro-list', plans.pro.list);
+
+    const proBadge = document.querySelector('#plan-pro-badge');
+    const proPill = document.querySelector('#plan-pro-pill');
+    const proCaption = document.querySelector('#plan-pro-caption');
+    const proPrice = document.querySelector('#plan-pro-price');
+    const proChip = document.querySelector('#plan-pro-chip');
+    const proAlt = document.querySelector('#plan-pro-alt');
+    const proNote = document.querySelector('#plan-pro-note');
+
+    if (proBadge) {
+        proBadge.dataset.annual = plans.pro.badgeAnnual;
+        proBadge.dataset.monthly = plans.pro.badgeMonthly;
+    }
+    if (proPill) {
+        proPill.dataset.annual = plans.pro.pillAnnual;
+        proPill.dataset.monthly = plans.pro.pillMonthly;
+    }
+    if (proCaption) {
+        proCaption.dataset.annual = plans.pro.billing.annual.caption;
+        proCaption.dataset.monthly = plans.pro.billing.monthly.caption;
+    }
+    if (proPrice) {
+        proPrice.dataset.annual = plans.pro.billing.annual.priceHtml;
+        proPrice.dataset.monthly = plans.pro.billing.monthly.priceHtml;
+    }
+    if (proChip) {
+        proChip.dataset.annual = plans.pro.billing.annual.chip;
+        proChip.dataset.monthly = plans.pro.billing.monthly.chip;
+    }
+    if (proAlt) {
+        proAlt.dataset.annual = plans.pro.billing.annual.alt;
+        proAlt.dataset.monthly = plans.pro.billing.monthly.alt;
+    }
+    if (proNote) {
+        proNote.dataset.annual = plans.pro.billing.annual.note;
+        proNote.dataset.monthly = plans.pro.billing.monthly.note;
+    }
+
+    if (window.BalanceV2 && typeof window.BalanceV2.refreshPricing === 'function') {
+        window.BalanceV2.refreshPricing();
+    }
+}
+
+function renderSimpleList(selector, items) {
+    const root = document.querySelector(selector);
+    if (!root) return;
+
+    root.innerHTML = items.map((item) => `
+        <li><i>•</i><span>${item}</span></li>
+    `).join('');
+}
+
+function renderFaq(items) {
+    const root = document.querySelector('#faq-list');
+    if (!root) return;
+
+    root.innerHTML = items.map((item, index) => `
+        <details class="surface faq-item"${index === 0 ? ' open' : ''}>
+            <summary>${item.q}</summary>
+            <p>${item.a}</p>
+        </details>
+    `).join('');
+}
+
+function renderRoadmapCards(items) {
+    const root = document.querySelector('#roadmap-grid');
+    if (!root) return;
+
+    root.innerHTML = items.map((item) => `
+        <article class="surface roadmap-card">
+            <span class="mini-kicker">${item.kicker}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+            <ul>
+                ${item.list.map((entry) => `<li><i>•</i><span>${entry}</span></li>`).join('')}
+            </ul>
+        </article>
+    `).join('');
+}
+
+function renderPrinciples(items) {
+    const root = document.querySelector('#principles-grid');
+    if (!root) return;
+
+    root.innerHTML = items.map((item) => `
+        <article class="surface principle-card">
+            <span class="mini-kicker">${item.kicker}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+        </article>
+    `).join('');
+}
+
+function renderContributeCards(items) {
+    const root = document.querySelector('#contribute-grid');
+    if (!root) return;
+
+    root.innerHTML = items.map((item) => `
+        <article class="surface contribute-card">
+            <span class="mini-kicker">${item.kicker}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+            <a class="btn btn-tertiary" href="${item.href}" target="_blank" rel="noreferrer">${item.cta}</a>
+        </article>
+    `).join('');
+}
+
+function renderContactCards(items) {
+    const root = document.querySelector('#contact-grid');
+    if (!root) return;
+
+    root.innerHTML = items.map((item) => `
+        <article class="surface contact-card">
+            <span class="mini-kicker">${item.kicker}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+            <a class="btn btn-tertiary" href="${item.href}" target="_blank" rel="noreferrer">${item.cta}</a>
+        </article>
+    `).join('');
+}
+
+function renderLegalSections(items) {
+    const root = document.querySelector('#legal-root');
+    if (!root) return;
+
+    root.innerHTML = items.map((section) => {
+        const paragraphs = (section.paragraphs || []).map((paragraph) => `<p>${paragraph}</p>`).join('');
+        const htmlParagraphs = (section.paragraphsHtml || []).map((paragraph) => `<p>${paragraph}</p>`).join('');
+        const list = Array.isArray(section.list) && section.list.length > 0
+            ? `<ul class="legal-list">${section.list.map((entry) => `<li><i>•</i><span>${entry}</span></li>`).join('')}</ul>`
+            : '';
+
+        return `
+            <section class="legal-section">
+                <h2>${section.title}</h2>
+                ${paragraphs}
+                ${htmlParagraphs}
+                ${list}
+            </section>
+        `;
+    }).join('');
+}
+
+function setText(selector, value) {
+    const node = document.querySelector(selector);
+    if (node) node.textContent = value;
+}
+
+function setHtml(selector, value) {
+    const node = document.querySelector(selector);
+    if (node) node.innerHTML = value;
+}
+
+function setAttr(selector, attr, value) {
+    const node = document.querySelector(selector);
+    if (node) node.setAttribute(attr, value);
+}
+
+window.BalanceV2Copy = {
+    APP_STORE_URL,
+    GITHUB_URL
+};
