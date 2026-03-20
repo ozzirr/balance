@@ -3308,6 +3308,40 @@ textarea.form-control {
     color: var(--text-secondary);
 }
 
+.form-feedback,
+.success-message {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-soft);
+}
+
+.form-feedback[hidden],
+.success-message[hidden] {
+    display: none !important;
+}
+
+.form-feedback {
+    background: rgba(255, 126, 126, 0.12);
+    border-color: rgba(255, 126, 126, 0.28);
+    color: #FFD4D4;
+}
+
+.success-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(89, 243, 162, 0.12);
+    border-color: rgba(89, 243, 162, 0.28);
+    color: #C8FFE5;
+}
+
+.success-message i {
+    margin-top: 2px;
+    color: var(--success-color);
+}
+
 select.form-control {
     cursor: pointer;
     appearance: none;
@@ -3324,7 +3358,13 @@ select.form-control option {
 }
 
 .hidden-field {
-    display: none;
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .social-links {

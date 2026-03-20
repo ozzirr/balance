@@ -502,36 +502,138 @@ function initFeatureDetail() {
 function initContactForm() {
     const form = document.getElementById('contact-form');
     const successMsg = document.getElementById('success-message');
+    const feedbackMsg = document.getElementById('form-feedback');
 
     if (!form) return;
 
-    const contactCopy = window.BalanceI18n?.getContactFormCopy?.() || {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const honeypotInput = form.querySelector('#honeypot');
+    const startInput = form.querySelector('#form-start');
+    const formAction = form.getAttribute('action')?.trim() || '';
+    const formMethod = (form.getAttribute('method') || 'POST').toUpperCase();
+    const minSubmitDelay = Number(form.dataset.minSubmitMs || 4000);
+    const fallbackCopy = {
         submit: 'Invia messaggio',
-        sending: 'Invio in corso...'
+        sending: 'Invio in corso...',
+        tooFast: 'Invio troppo veloce. Attendi qualche secondo e riprova.',
+        error: 'Impossibile inviare il messaggio in questo momento. Riprova tra poco.',
+        configError: 'Configura l’integrazione contatti prima di usare questa pagina.',
+        localDevError: 'In locale usa `vercel dev` per l’API, oppure punta il form a un endpoint deployato.'
     };
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    function getContactCopy() {
+        return {
+            ...fallbackCopy,
+            ...(window.BalanceI18n?.getContactFormCopy?.() || {})
+        };
+    }
 
-        // Anti-bot check (Honeypot)
-        const honeypot = form.querySelector('#honeypot').value;
-        if (honeypot) {
-            console.warn('Bot detected!');
+    function setFeedback(message = '') {
+        if (!feedbackMsg) return;
+
+        feedbackMsg.textContent = message;
+        feedbackMsg.hidden = !message;
+    }
+
+    function setSubmitting(isSubmitting) {
+        if (!submitBtn) return;
+
+        const copy = getContactCopy();
+        submitBtn.disabled = isSubmitting;
+        submitBtn.innerText = isSubmitting ? copy.sending : copy.submit;
+    }
+
+    function resetFormState() {
+        form.hidden = false;
+        if (successMsg) successMsg.hidden = true;
+        setFeedback('');
+        setSubmitting(false);
+        if (startInput) startInput.value = String(Date.now());
+    }
+
+    resetFormState();
+    window.addEventListener('pageshow', resetFormState);
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        setFeedback('');
+        if (successMsg) successMsg.hidden = true;
+
+        if (honeypotInput?.value.trim()) {
+            console.warn('Bot detected via honeypot.');
             return;
         }
 
-        // Simulate submission
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerText;
-        submitBtn.disabled = true;
-        submitBtn.innerText = contactCopy.sending;
+        const startedAt = Number(startInput?.value || Date.now());
+        if (Date.now() - startedAt < minSubmitDelay) {
+            setFeedback(getContactCopy().tooFast);
+            return;
+        }
 
-        setTimeout(() => {
-            form.style.display = 'none';
-            successMsg.style.display = 'block';
-            console.log('Message sent:', new FormData(form));
-            submitBtn.innerText = originalText || contactCopy.submit;
-        }, 1500);
+        setSubmitting(true);
+
+        try {
+            const payload = {
+                reason: form.querySelector('#reason')?.value || '',
+                name: form.querySelector('#name')?.value || '',
+                email: form.querySelector('#email')?.value || '',
+                message: form.querySelector('#message')?.value || '',
+                honeypot: honeypotInput?.value || '',
+                formStart: startInput?.value || ''
+            };
+
+            const response = await fetch(formAction, {
+                method: formMethod,
+                body: JSON.stringify(payload),
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                let errorMessage = getContactCopy().error;
+
+                try {
+                    const payload = await response.json();
+                    const apiErrors = [];
+
+                    if (typeof payload?.error === 'string' && payload.error.trim()) {
+                        apiErrors.push(payload.error.trim());
+                    }
+
+                    if (Array.isArray(payload?.errors)) {
+                        apiErrors.push(...payload.errors.map(item => item?.message).filter(Boolean));
+                    }
+
+                    if (apiErrors.length > 0) {
+                        errorMessage = apiErrors.join(' ');
+                    }
+                } catch (parseError) {
+                    console.warn('Unable to parse contact form error payload.', parseError);
+                }
+
+                if (
+                    response.status === 404 &&
+                    window.location.hostname === 'localhost' &&
+                    formAction.startsWith('/api/')
+                ) {
+                    errorMessage = getContactCopy().localDevError;
+                }
+
+                throw new Error(errorMessage);
+            }
+
+            form.reset();
+            if (startInput) startInput.value = String(Date.now());
+            form.hidden = true;
+            if (successMsg) successMsg.hidden = false;
+        } catch (error) {
+            console.error('Contact form submission failed.', error);
+            setFeedback(error instanceof Error ? error.message : getContactCopy().error);
+        } finally {
+            setSubmitting(false);
+        }
     });
 }
 

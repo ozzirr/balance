@@ -544,6 +544,10 @@
                     messagePlaceholder: 'Descrivi qui la tua richiesta o segnalazione...',
                     submit: 'Invia messaggio',
                     sending: 'Invio in corso...',
+                    tooFast: 'Invio troppo veloce. Attendi qualche secondo e riprova.',
+                    error: 'Impossibile inviare il messaggio in questo momento. Riprova tra poco.',
+                    configError: 'Configura l’integrazione contatti prima di usare questa pagina.',
+                    localDevError: 'In locale usa `vercel dev` per l’API, oppure punta il form a un endpoint deployato.',
                     disclaimer: 'Il messaggio viene consegnato tramite un servizio di terze parti solo per l’invio. Nessun tracciamento o utilizzo marketing.',
                     success: 'Grazie! Il tuo messaggio è stato inviato correttamente.'
                 }
@@ -1081,6 +1085,10 @@
                     messagePlaceholder: 'Describe your request or report here...',
                     submit: 'Send message',
                     sending: 'Sending...',
+                    tooFast: 'Submission was too fast. Wait a few seconds and try again.',
+                    error: 'Unable to send your message right now. Please try again shortly.',
+                    configError: 'Configure the contact integration before using this page.',
+                    localDevError: 'For local testing, use `vercel dev` for the API or point the form to a deployed endpoint.',
                     disclaimer: 'Your message is delivered through a third-party service used only for delivery. No tracking or marketing usage.',
                     success: 'Thank you! Your message has been sent successfully.'
                 }
@@ -1618,6 +1626,10 @@
                     messagePlaceholder: 'Descreva aqui o seu pedido ou reporte...',
                     submit: 'Enviar mensagem',
                     sending: 'A enviar...',
+                    tooFast: 'O envio foi demasiado rápido. Aguarde alguns segundos e tente novamente.',
+                    error: 'Não foi possível enviar a sua mensagem agora. Tente novamente daqui a pouco.',
+                    configError: 'Configure a integração de contactos antes de usar esta página.',
+                    localDevError: 'Em local, use `vercel dev` para a API ou aponte o formulário para um endpoint publicado.',
                     disclaimer: 'A sua mensagem é entregue através de um serviço externo usado apenas para envio. Sem rastreamento nem uso para marketing.',
                     success: 'Obrigado! A sua mensagem foi enviada com sucesso.'
                 }
