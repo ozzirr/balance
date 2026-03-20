@@ -5,6 +5,8 @@ const MAX_NAME_LENGTH = 120;
 const MAX_EMAIL_LENGTH = 160;
 const MAX_MESSAGE_LENGTH = 3000;
 const MAX_REASON_LENGTH = 80;
+const DEFAULT_N8N_CONTACT_WEBHOOK_URL_PRODUCTION = 'https://n8n.2erre.online/webhook/balance-support-v1';
+const DEFAULT_N8N_CONTACT_WEBHOOK_URL_TEST = 'https://n8n.2erre.online/webhook-test/balance-support-v1';
 
 function json(res, statusCode, payload) {
     res.statusCode = statusCode;
@@ -46,10 +48,14 @@ function isLocalRequest(req) {
 
 function getWebhookUrl(req) {
     if (isLocalRequest(req)) {
-        return process.env.N8N_CONTACT_WEBHOOK_URL_TEST || process.env.N8N_CONTACT_WEBHOOK_URL || '';
+        return process.env.N8N_CONTACT_WEBHOOK_URL_TEST ||
+            process.env.N8N_CONTACT_WEBHOOK_URL ||
+            DEFAULT_N8N_CONTACT_WEBHOOK_URL_TEST;
     }
 
-    return process.env.N8N_CONTACT_WEBHOOK_URL_PRODUCTION || process.env.N8N_CONTACT_WEBHOOK_URL || '';
+    return process.env.N8N_CONTACT_WEBHOOK_URL_PRODUCTION ||
+        process.env.N8N_CONTACT_WEBHOOK_URL ||
+        DEFAULT_N8N_CONTACT_WEBHOOK_URL_PRODUCTION;
 }
 
 function setCorsHeaders(res, origin, allowedOrigins) {
@@ -224,6 +230,20 @@ module.exports = async (req, res) => {
         if (message.includes('N8N contact webhook URL')) {
             json(res, 500, {
                 error: 'Configura il webhook n8n del form contatti prima di usare questa pagina.'
+            });
+            return;
+        }
+
+        if (message.includes('status 401')) {
+            json(res, 502, {
+                error: 'n8n ha rifiutato la richiesta. Verifica che `N8N_CONTACT_WEBHOOK_SECRET` su Vercel coincida con il secret del workflow.'
+            });
+            return;
+        }
+
+        if (message.includes('status 404')) {
+            json(res, 502, {
+                error: 'Webhook n8n non trovato. Verifica URL, workflow attivo e differenza tra endpoint test e production.'
             });
             return;
         }
