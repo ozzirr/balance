@@ -1914,6 +1914,7 @@
         }
 
         setText('#features .section-title', page.features.title);
+        setText('.feature-detail-eyebrow', page.features.detailEyebrow);
         const featureOrder = ['snapshot', 'wallet', 'dashboard', 'privacy', 'speed'];
         featureOrder.forEach((key) => {
             const card = document.querySelector(`.feature-card[data-feature="${key}"]`);

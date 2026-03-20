@@ -184,8 +184,16 @@ function initPricingToggle() {
 }
 
 function initFeatureDetail() {
+    const detail = document.getElementById('feature-detail');
     const cards = Array.from(document.querySelectorAll('.feature-card[data-feature]'));
     if (cards.length === 0) return;
+
+    const detailTitle = detail?.querySelector('.feature-detail-title');
+    const detailText = detail?.querySelector('.feature-detail-text');
+    const detailList = detail?.querySelector('.feature-detail-list');
+    const detailStep = detail?.querySelector('.feature-detail-step');
+    const detailRail = detail?.querySelector('.feature-detail-rail');
+    const desktopQuery = window.matchMedia('(min-width: 901px)');
 
     const defaultDetailMap = {
         snapshot: {
@@ -241,6 +249,30 @@ function initFeatureDetail() {
     };
     const getDetailMap = () => window.BalanceI18n?.getFeatureDetailMap?.() || defaultDetailMap;
     const mobileQuery = window.matchMedia('(max-width: 900px)');
+    let activeKey = null;
+    let observer = null;
+    let animTimer = null;
+    const SWAP_DELAY = 140;
+    const HYSTERESIS_PX = 28;
+    const ACTIVATION_RATIO = 0.45;
+    const steps = cards.map((card, index) => ({
+        key: card.dataset.feature,
+        index
+    }));
+    const stepMap = new Map(steps.map(step => [step.key, step.index]));
+    const totalSteps = steps.length;
+    const railDots = [];
+
+    if (detailRail) {
+        detailRail.innerHTML = '';
+        steps.forEach((step, index) => {
+            const dot = document.createElement('span');
+            dot.className = 'feature-detail-dot';
+            dot.dataset.index = index;
+            detailRail.appendChild(dot);
+            railDots.push(dot);
+        });
+    }
 
     const syncCardDetails = () => {
         const detailMap = getDetailMap();
@@ -268,7 +300,71 @@ function initFeatureDetail() {
         });
     };
 
-    const setActiveCard = (nextCard, { scroll = false } = {}) => {
+    const setDesktopActiveCard = (card, animate = true) => {
+        if (!desktopQuery.matches || !detail || !card) return;
+
+        const detailMap = getDetailMap();
+        const key = card.dataset.feature;
+        const info = detailMap[key];
+        if (!info) return;
+        if (key === activeKey && card.classList.contains('is-active')) return;
+        activeKey = key;
+
+        cards.forEach(item => {
+            const isActive = item === card;
+            const expand = item.querySelector('.feature-expand');
+
+            item.classList.toggle('is-active', isActive);
+            item.setAttribute('aria-current', isActive ? 'true' : 'false');
+            item.setAttribute('aria-expanded', 'false');
+            if (expand) {
+                expand.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        const updateContent = () => {
+            detail.dataset.feature = key;
+            if (detailTitle) detailTitle.textContent = info.title;
+            if (detailText) detailText.textContent = info.text;
+
+            if (detailList) {
+                detailList.innerHTML = '';
+                info.bullets.forEach((bullet, index) => {
+                    const item = document.createElement('li');
+                    item.textContent = bullet;
+                    item.style.setProperty('--i', index);
+                    detailList.appendChild(item);
+                });
+            }
+
+            const stepIndex = (stepMap.get(key) ?? 0) + 1;
+            if (detailStep) {
+                const current = String(stepIndex).padStart(2, '0');
+                const total = String(totalSteps).padStart(2, '0');
+                detailStep.textContent = `${current} / ${total}`;
+            }
+
+            railDots.forEach((dot, index) => {
+                dot.classList.toggle('is-active', index === stepIndex - 1);
+            });
+        };
+
+        if (!animate) {
+            updateContent();
+            detail.classList.remove('is-animating');
+            return;
+        }
+
+        detail.classList.add('is-animating');
+        if (animTimer) window.clearTimeout(animTimer);
+
+        animTimer = window.setTimeout(() => {
+            updateContent();
+            detail.classList.remove('is-animating');
+        }, SWAP_DELAY);
+    };
+
+    const setMobileActiveCard = (nextCard, { scroll = false } = {}) => {
         cards.forEach(card => {
             const isActive = nextCard ? card === nextCard : false;
             const expand = card.querySelector('.feature-expand');
@@ -289,14 +385,103 @@ function initFeatureDetail() {
                 behavior: prefersReducedMotion ? 'auto' : 'smooth'
             });
         }
+
+        if (nextCard) {
+            activeKey = nextCard.dataset.feature;
+        }
+    };
+
+    const scrollCardToActivation = (card) => {
+        const activationY = window.innerHeight * ACTIVATION_RATIO;
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.top + (rect.height / 2);
+        const targetScroll = window.scrollY + (cardCenter - activationY);
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
     };
 
     const activateCard = (card) => {
-        if (card.classList.contains('is-active')) {
-            setActiveCard(null);
+        if (desktopQuery.matches) {
+            setDesktopActiveCard(card);
+            scrollCardToActivation(card);
             return;
         }
-        setActiveCard(card, { scroll: mobileQuery.matches });
+
+        if (card.classList.contains('is-active')) {
+            setMobileActiveCard(null);
+            return;
+        }
+
+        setMobileActiveCard(card, { scroll: mobileQuery.matches });
+    };
+
+    const setupScrollSync = () => {
+        if (!desktopQuery.matches || !detail) return;
+        if (observer) observer.disconnect();
+
+        observer = new IntersectionObserver((entries) => {
+            const intersecting = entries.filter(entry => entry.isIntersecting);
+            if (intersecting.length === 0) return;
+
+            const activationY = window.innerHeight * ACTIVATION_RATIO;
+            const getCenterY = (card) => {
+                const rect = card.getBoundingClientRect();
+                return rect.top + (rect.height / 2);
+            };
+            const getDistance = (card) => Math.abs(getCenterY(card) - activationY);
+
+            const candidate = intersecting
+                .map(entry => entry.target)
+                .sort((a, b) => getDistance(a) - getDistance(b))[0];
+
+            const currentCard = cards.find(card => card.dataset.feature === activeKey);
+            if (!currentCard) {
+                setDesktopActiveCard(candidate);
+                return;
+            }
+
+            if (candidate === currentCard) return;
+
+            const candidateDist = getDistance(candidate);
+            const currentDist = getDistance(currentCard);
+            const currentRect = currentCard.getBoundingClientRect();
+            const currentVisible = currentRect.bottom > 0 && currentRect.top < window.innerHeight;
+
+            if (!currentVisible || candidateDist + HYSTERESIS_PX < currentDist) {
+                setDesktopActiveCard(candidate);
+            }
+        }, {
+            root: null,
+            rootMargin: '-35% 0px -55% 0px',
+            threshold: 0
+        });
+
+        cards.forEach(card => observer.observe(card));
+    };
+
+    const teardownScrollSync = () => {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+    };
+
+    const syncMode = () => {
+        const preferredCard =
+            cards.find(card => card.dataset.feature === activeKey) ||
+            cards.find(card => card.classList.contains('is-active')) ||
+            cards[0];
+
+        if (!preferredCard) return;
+
+        if (desktopQuery.matches) {
+            teardownScrollSync();
+            setDesktopActiveCard(preferredCard, false);
+            setupScrollSync();
+            return;
+        }
+
+        teardownScrollSync();
+        setMobileActiveCard(preferredCard);
     };
 
     syncCardDetails();
@@ -310,10 +495,8 @@ function initFeatureDetail() {
         });
     });
 
-    const initialCard = cards.find(card => card.classList.contains('is-active')) || cards[0];
-    if (initialCard) {
-        setActiveCard(initialCard);
-    }
+    syncMode();
+    desktopQuery.addEventListener('change', syncMode);
 }
 
 function initContactForm() {
