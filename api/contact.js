@@ -24,6 +24,34 @@ function getRequestOrigin(req) {
     return typeof origin === 'string' ? origin : '';
 }
 
+function getRequestHost(req) {
+    const forwardedHost = req.headers['x-forwarded-host'];
+    if (typeof forwardedHost === 'string' && forwardedHost.length > 0) {
+        return forwardedHost.split(',')[0].trim().toLowerCase();
+    }
+
+    const host = req.headers.host;
+    return typeof host === 'string' ? host.toLowerCase() : '';
+}
+
+function isLocalRequest(req) {
+    const origin = getRequestOrigin(req).toLowerCase();
+    const host = getRequestHost(req);
+
+    return origin.includes('localhost') ||
+        origin.includes('127.0.0.1') ||
+        host.includes('localhost') ||
+        host.includes('127.0.0.1');
+}
+
+function getWebhookUrl(req) {
+    if (isLocalRequest(req)) {
+        return process.env.N8N_CONTACT_WEBHOOK_URL_TEST || process.env.N8N_CONTACT_WEBHOOK_URL || '';
+    }
+
+    return process.env.N8N_CONTACT_WEBHOOK_URL_PRODUCTION || process.env.N8N_CONTACT_WEBHOOK_URL || '';
+}
+
 function setCorsHeaders(res, origin, allowedOrigins) {
     if (!origin) return;
     if (allowedOrigins.length > 0 && !allowedOrigins.includes(origin)) return;
@@ -117,10 +145,10 @@ function validatePayload(payload) {
 }
 
 async function forwardToN8N(payload, req) {
-    const webhookUrl = process.env.N8N_CONTACT_WEBHOOK_URL;
+    const webhookUrl = getWebhookUrl(req);
 
     if (!webhookUrl) {
-        throw new Error('N8N_CONTACT_WEBHOOK_URL is not configured.');
+        throw new Error('N8N contact webhook URL is not configured.');
     }
 
     const headers = {
@@ -193,7 +221,7 @@ module.exports = async (req, res) => {
         const message = error instanceof Error ? error.message : 'Unknown error';
         console.error('Contact API error:', message);
 
-        if (message.includes('N8N_CONTACT_WEBHOOK_URL')) {
+        if (message.includes('N8N contact webhook URL')) {
             json(res, 500, {
                 error: 'Configura il webhook n8n del form contatti prima di usare questa pagina.'
             });
