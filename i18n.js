@@ -49,7 +49,7 @@
                     title: 'Controlla le tue finanze in un unico posto',
                     subtitle: 'Monitora patrimonio, investimenti e liquidità con un’app di finanza personale privata e offline-first.',
                     description: 'Balance ti aiuta a tracciare conti, investimenti, crypto e asset in una dashboard semplice. Tutto resta sul tuo dispositivo, senza collegamenti bancari e senza condivisione dei dati.',
-                    cta: 'Scarica Balance'
+                    cta: 'Scarica su App Store'
                 },
                 trust: [
                     { labelHtml: '100%<br>offline', sub: 'Funziona senza internet' },
@@ -68,29 +68,53 @@
                     highlight: 'Gli snapshot ti aiutano a seguire patrimonio, investimenti e asset nel tempo, così la tua app finance offline resta utile senza diventare un foglio di calcolo.'
                 },
                 pricing: {
+                    kicker: 'Balance Pro',
                     title: 'Piani disponibili',
+                    intro: 'Balance è gratis per iniziare: fino a 3 wallet, dashboard completa e snapshot essenziali. Quando vuoi sbloccare tutto, passi a Balance Pro.',
+                    toggle: {
+                        ariaLabel: 'Seleziona la fatturazione di Balance Pro',
+                        annual: 'Annuale',
+                        monthly: 'Mensile'
+                    },
                     free: {
                         badge: 'Per iniziare',
                         description: "La versione gratuita per tenere d'occhio i wallet essenziali.",
+                        priceLabel: 'Gratis',
                         list: [
                             'Fino a 3 wallet per partire subito',
                             'Dashboard completa del patrimonio',
                             "Snapshot essenziali per seguire l'andamento"
                         ],
-                        cta: 'Download'
+                        cta: 'Scarica gratis'
                     },
                     pro: {
-                        badge: 'Offerta lancio',
+                        badge: 'Annulla quando vuoi',
+                        emphasis: 'Miglior valore',
+                        emphasisMonthly: 'Piano mensile',
                         description: 'Per chi vuole usare Balance come archivio finanziario personale, senza limiti.',
-                        priceHtml: '2,99 €<span class="price-suffix">al mese</span>',
-                        altPrice: "19,99 € l'anno invece di 35,88 €",
-                        note: 'Primo mese gratuito attivando un abbonamento mensile o annuale.',
+                        billing: {
+                            annual: {
+                                caption: 'Offerta annuale di lancio',
+                                priceHtml: '19,99 €<span class="price-suffix">l\'anno</span>',
+                                chip: 'Risparmi 15,89 €',
+                                alt: "Equivale a 1,67 € al mese invece di 35,88 € l'anno",
+                                note: 'Primo mese di prova gratuito.'
+                            },
+                            monthly: {
+                                caption: 'Piano mensile',
+                                priceHtml: '2,99 €<span class="price-suffix">al mese</span>',
+                                chip: 'Mensile',
+                                alt: 'Rinnovo mensile a 2,99 €',
+                                note: 'Primo mese di prova gratuito.'
+                            }
+                        },
                         list: [
                             'Wallet illimitati',
                             'Snapshot avanzati per analisi più precise',
                             "Storico completo per confrontare l'evoluzione nel tempo"
                         ],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Scarica e attiva Pro'
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Scarica e attiva Pro',
+                        microcopy: 'Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.'
                     }
                 },
                 features: {
@@ -99,69 +123,69 @@
                     cards: {
                         snapshot: {
                             title: 'Snapshot patrimoniali',
-                            text: 'Salva snapshot del patrimonio e confronta facilmente lo storico nel tempo.'
+                            text: 'Salva il valore totale del patrimonio e confrontalo nel tempo in pochi tocchi.'
                         },
                         wallet: {
-                            title: 'Wallet per tipologia',
-                            text: 'Organizza conti, liquidità, investimenti, crypto e altri asset in wallet separati.'
+                            title: 'Wallet separati',
+                            text: 'Separa conti, broker, liquidità, crypto e altri asset in wallet ordinati.'
                         },
                         dashboard: {
-                            title: 'Dashboard sintetica',
-                            text: 'Vedi patrimonio netto, liquidità, investimenti e allocazione in una dashboard semplice.'
+                            title: 'Dashboard patrimoniale',
+                            text: 'Controlla patrimonio, liquidità e investimenti in una vista semplice e immediata.'
                         },
                         privacy: {
-                            title: 'Privacy e controllo',
-                            text: 'Una privacy finance app senza collegamenti bancari, server esterni o condivisione dei dati.'
+                            title: 'Privacy reale',
+                            text: 'Dati locali, nessun server e nessun accesso ai conti: il controllo resta tuo.'
                         },
                         speed: {
-                            title: 'Esperienza veloce',
-                            text: 'Aggiorna i saldi in pochi tocchi e tieni allineata la tua app finance offline.'
+                            title: 'Aggiornamenti rapidi',
+                            text: 'Aggiorna saldi e asset velocemente, senza flussi lenti o passaggi inutili.'
                         }
                     },
                     detailMap: {
                         snapshot: {
                             title: 'Snapshot patrimoniali',
-                            text: 'Salva snapshot del patrimonio in pochi secondi e rivedi lo storico in una vista pulita.',
+                            text: 'Registra snapshot quando vuoi e rivedi l’evoluzione del patrimonio senza esportare dati o aprire fogli di calcolo.',
                             bullets: [
-                                'Snapshot manuali senza collegamenti bancari.',
-                                'Storico chiaro per seguire il patrimonio nel tempo.',
-                                'Asset e investimenti senza rumore da foglio di calcolo.'
+                                'Salvi il valore aggiornato in pochi secondi.',
+                                'Confronti date diverse e capisci subito cosa è cambiato.',
+                                'Segui patrimonio, investimenti e liquidità con una cronologia chiara.'
                             ]
                         },
                         wallet: {
-                            title: 'Wallet per tipologia',
-                            text: 'Organizza conti, liquidità, investimenti, crypto e asset con wallet chiari e separati.',
+                            title: 'Wallet separati',
+                            text: 'Ogni parte del patrimonio ha il suo spazio: conti bancari, broker, crypto, liquidità e altri asset.',
                             bullets: [
-                                'Categorie flessibili per ogni conto o asset.',
-                                'Totali aggregati tra liquidità e portafogli.',
-                                'Una struttura che replica la tua realtà.'
+                                'Organizzi tutto in wallet separati e facili da leggere.',
+                                'Mantieni ordine anche se usi più banche o piattaforme.',
+                                'La struttura replica il modo in cui gestisci davvero i tuoi soldi.'
                             ]
                         },
                         dashboard: {
-                            title: 'Dashboard sintetica',
-                            text: 'Controlla patrimonio, liquidità, investimenti e allocazione in una sola dashboard.',
+                            title: 'Dashboard patrimoniale',
+                            text: 'La dashboard ti mostra quanto possiedi e dove si trova, con un colpo d’occhio davvero utile.',
                             bullets: [
-                                'Una vista unica per il tuo patrimonio complessivo.',
-                                'Trend chiari senza sovraccarico visivo.',
-                                'Indicatori chiave sempre accessibili.'
+                                'Patrimonio totale sempre in evidenza.',
+                                'Liquidità, investimenti e asset leggibili senza rumore.',
+                                'Pensata per controllare tutto in pochi secondi.'
                             ]
                         },
                         privacy: {
-                            title: 'Privacy e controllo',
-                            text: 'Dati locali, nessun collegamento bancario e zero tracking. Sempre.',
+                            title: 'Privacy reale',
+                            text: 'Balance nasce offline-first: niente login, niente server proprietari, niente sincronizzazioni bancarie.',
                             bullets: [
-                                'Un’app di finanza personale privata per definizione.',
-                                'Nessun login, server esterno o sync automatico.',
-                                'Controllo totale dei tuoi dati sul dispositivo.'
+                                'I dati restano sul tuo dispositivo.',
+                                'Nessuna credenziale passa da servizi esterni.',
+                                'Codice open source e approccio verificabile.'
                             ]
                         },
                         speed: {
-                            title: 'Esperienza veloce',
-                            text: 'Aggiorna i dati in pochi tocchi e mantieni tutto attuale senza attrito.',
+                            title: 'Aggiornamenti rapidi',
+                            text: 'L’app è costruita per aggiornamenti manuali rapidi, così resta utile anche nell’uso quotidiano.',
                             bullets: [
-                                'Flow essenziale senza passaggi inutili.',
-                                'Interazioni rapide pensate per il mobile.',
-                                'UI pulita per aggiornamenti frequenti.'
+                                'Aggiorni saldi e asset senza passaggi superflui.',
+                                'Interfaccia essenziale, pensata per il mobile.',
+                                'Perfetta per tenere il patrimonio allineato spesso.'
                             ]
                         }
                     }
@@ -187,7 +211,7 @@
                         },
                         {
                             q: 'Come funziona la prova gratuita?',
-                            a: 'La promo di lancio include il primo mese gratuito di Balance Pro con attivazione di un abbonamento mensile o annuale. Alla fine della prova, salvo annullamento, il rinnovo segue il piano scelto.'
+                            a: 'Il primo mese di Balance Pro è gratuito. Al termine della prova, salvo annullamento, il rinnovo segue il piano mensile o annuale selezionato.'
                         },
                         {
                             q: 'È disponibile su Android?',
@@ -197,7 +221,7 @@
                 },
                 download: {
                     badge: 'Offerta lancio',
-                    title: 'Download',
+                    title: 'Download Balance',
                     copy: 'Scarica e attiva Balance Pro con abbonamento mensile o annuale: il primo mese è gratuito.',
                     points: ['Privacy-first', 'Offline', 'Open source'],
                     note: 'Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.'
@@ -214,7 +238,7 @@
                     badge: 'Offerta lancio',
                     priceHtml: '2,99 €<span class="price-suffix">al mese</span>',
                     altPrice: "19,99 € l'anno invece di 35,88 €",
-                    note: 'Primo mese gratuito attivando un abbonamento mensile o annuale.',
+                    note: 'Primo mese di prova gratuito.',
                     list: ['Wallet illimitati', 'Snapshot avanzati', 'Storico completo senza limiti'],
                     microcopy: 'Alla fine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato direttamente in app.',
                     primaryCtaHtml: '<i class="fa-brands fa-apple"></i> App Store',
@@ -562,7 +586,7 @@
                     title: 'Control your finances in one place',
                     subtitle: 'Track your net worth, investments, and cash with a private, offline-first personal finance app.',
                     description: 'Balance helps you track bank accounts, investments, crypto and assets in one simple dashboard. Everything stays on your device, with no bank connections and no data sharing.',
-                    cta: 'Download Balance'
+                    cta: 'Download on the App Store'
                 },
                 trust: [
                     { labelHtml: '100%<br>offline', sub: 'Works without internet' },
@@ -581,29 +605,53 @@
                     highlight: 'Snapshots help you track changes in cash, investments, and assets over time, so your offline finance app stays useful without turning into a spreadsheet.'
                 },
                 pricing: {
+                    kicker: 'Balance Pro',
                     title: 'Available plans',
+                    intro: 'Balance is free to start with: up to 3 wallets, the full dashboard, and essential snapshots. When you want everything unlocked, you can upgrade to Balance Pro.',
+                    toggle: {
+                        ariaLabel: 'Choose Balance Pro billing',
+                        annual: 'Yearly',
+                        monthly: 'Monthly'
+                    },
                     free: {
                         badge: 'To get started',
                         description: 'The free version to keep an eye on your essential wallets.',
+                        priceLabel: 'Free',
                         list: [
                             'Up to 3 wallets to get started quickly',
                             'Complete net worth dashboard',
                             'Essential snapshots to track performance'
                         ],
-                        cta: 'Download'
+                        cta: 'Download free'
                     },
                     pro: {
-                        badge: 'Launch offer',
+                        badge: 'Cancel anytime',
+                        emphasis: 'Best value',
+                        emphasisMonthly: 'Monthly plan',
                         description: 'For anyone who wants to use Balance as a personal financial archive, without limits.',
-                        priceHtml: '2.99 €<span class="price-suffix">/ month</span>',
-                        altPrice: '19.99 € / year instead of 35.88 €',
-                        note: 'First month free when you start a monthly or yearly subscription.',
+                        billing: {
+                            annual: {
+                                caption: 'Launch yearly offer',
+                                priceHtml: '19.99 €<span class="price-suffix">/ year</span>',
+                                chip: 'Save 15.89 €',
+                                alt: 'Equivalent to 1.67 € / month instead of 35.88 € / year',
+                                note: 'Free trial month.'
+                            },
+                            monthly: {
+                                caption: 'Monthly plan',
+                                priceHtml: '2.99 €<span class="price-suffix">/ month</span>',
+                                chip: 'Monthly',
+                                alt: 'Monthly renewal at 2.99 €',
+                                note: 'Free trial month.'
+                            }
+                        },
                         list: [
                             'Unlimited wallets',
                             'Advanced snapshots for deeper analysis',
                             'Complete history to compare your evolution over time'
                         ],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download and unlock Pro'
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download and unlock Pro',
+                        microcopy: 'At the end of the free trial, unless cancelled, renewal follows the selected plan.'
                     }
                 },
                 features: {
@@ -612,69 +660,69 @@
                     cards: {
                         snapshot: {
                             title: 'Net worth snapshots',
-                            text: 'Save net worth snapshots and compare your financial history over time.'
+                            text: 'Save your total net worth and compare it over time in a few taps.'
                         },
                         wallet: {
-                            title: 'Wallet categories',
-                            text: 'Organize bank accounts, cash, investments, crypto, and other assets in separate wallets.'
+                            title: 'Separate wallets',
+                            text: 'Separate bank accounts, brokers, cash, crypto, and other assets into clean wallets.'
                         },
                         dashboard: {
-                            title: 'Clear dashboard',
-                            text: 'See net worth, cash, investments, and asset allocation in one simple dashboard.'
+                            title: 'Net worth dashboard',
+                            text: 'Check net worth, cash, and investments in one simple overview.'
                         },
                         privacy: {
-                            title: 'Privacy and control',
-                            text: 'A privacy finance app with no bank connections, no servers, and no data sharing.'
+                            title: 'Real privacy',
+                            text: 'Local data, no servers, and no account access. You stay in control.'
                         },
                         speed: {
                             title: 'Fast updates',
-                            text: 'Update balances in a few taps and keep your offline finance app current in seconds.'
+                            text: 'Update balances and assets fast, with no slow flows or unnecessary steps.'
                         }
                     },
                     detailMap: {
                         snapshot: {
                             title: 'Net worth snapshots',
-                            text: 'Save net worth snapshots in seconds and review your financial history over time in one clean view.',
+                            text: 'Save snapshots whenever you want and review how your net worth evolves over time without exporting data or opening spreadsheets.',
                             bullets: [
-                                'Manual snapshots with no bank sync or external connections.',
-                                'A clearer net worth tracker for long-term progress.',
-                                'Track assets and investments without spreadsheet noise.'
+                                'Save an updated total in a few seconds.',
+                                'Compare different dates and quickly see what changed.',
+                                'Track net worth, investments, and cash with a clear timeline.'
                             ]
                         },
                         wallet: {
-                            title: 'Wallet categories',
-                            text: 'Organize bank accounts, cash, investments, crypto, and assets in clear, separate wallets.',
+                            title: 'Separate wallets',
+                            text: 'Each part of your wealth has its own place: bank accounts, brokers, crypto, cash, and other assets.',
                             bullets: [
-                                'Flexible categories for each account or asset.',
-                                'Aggregated totals across cash and portfolios.',
-                                'A portfolio tracker structure that matches real life.'
+                                'Keep everything organized in separate, readable wallets.',
+                                'Stay clear even if you use multiple banks or platforms.',
+                                'Use a structure that matches how you really manage money.'
                             ]
                         },
                         dashboard: {
-                            title: 'Clear dashboard',
-                            text: 'See net worth, cash, investments, and asset allocation in one clean dashboard.',
+                            title: 'Net worth dashboard',
+                            text: 'The dashboard shows what you own and where it sits in one clear glance.',
                             bullets: [
-                                'One personal finance app for your full financial picture.',
-                                'Essential trends without visual overload.',
-                                'Key indicators always accessible.'
+                                'Total net worth is always visible.',
+                                'Cash, investments, and assets stay readable without clutter.',
+                                'Built to help you check everything in a few seconds.'
                             ]
                         },
                         privacy: {
-                            title: 'Privacy and control',
-                            text: 'Local data, no bank connections, and zero tracking. Always.',
+                            title: 'Real privacy',
+                            text: 'Balance is offline-first by design: no login, no proprietary servers, and no bank sync.',
                             bullets: [
-                                'Built as a privacy finance app by design.',
-                                'No login, external servers, or automatic sync.',
-                                'Full control over your data on your device.'
+                                'Your data stay on your device.',
+                                'No credentials pass through third-party services.',
+                                'Open source code makes the approach verifiable.'
                             ]
                         },
                         speed: {
                             title: 'Fast updates',
-                            text: 'Update your data in just a few taps and keep everything current without friction.',
+                            text: 'The app is built for quick manual updates, so it stays useful in everyday use.',
                             bullets: [
-                                'Lean flows with no wasted steps.',
-                                'Fast interactions designed for mobile.',
-                                'A clean UI for frequent balance updates.'
+                                'Update balances and assets without unnecessary steps.',
+                                'Use a focused interface designed for mobile.',
+                                'Keep your net worth aligned with very little effort.'
                             ]
                         }
                     }
@@ -700,7 +748,7 @@
                         },
                         {
                             q: 'How does the free trial work?',
-                            a: 'The launch offer includes the first month of Balance Pro for free when you start a monthly or yearly subscription. After the trial, unless cancelled, renewal follows the selected plan.'
+                            a: 'The first month of Balance Pro is free. After the trial, unless cancelled, renewal follows the monthly or yearly plan you selected.'
                         },
                         {
                             q: 'Is it available on Android?',
@@ -710,7 +758,7 @@
                 },
                 download: {
                     badge: 'Launch offer',
-                    title: 'Download',
+                    title: 'Download Balance',
                     copy: 'Download Balance and unlock Pro with a monthly or yearly subscription: the first month is free.',
                     points: ['Privacy-first', 'Offline', 'Open source'],
                     note: 'At the end of the free trial, unless cancelled, renewal follows the selected plan.'
@@ -727,7 +775,7 @@
                     badge: 'Launch offer',
                     priceHtml: '2.99 €<span class="price-suffix">/ month</span>',
                     altPrice: '19.99 € / year instead of 35.88 €',
-                    note: 'First month free when you start a monthly or yearly subscription.',
+                    note: 'Free trial month.',
                     list: ['Unlimited wallets', 'Advanced snapshots', 'Full history with no limits'],
                     microcopy: 'At the end of the free trial, unless cancelled, renewal follows the selected plan directly in the app.',
                     primaryCtaHtml: '<i class="fa-brands fa-apple"></i> App Store',
@@ -1073,7 +1121,7 @@
                     title: 'Controle as suas finanças num só lugar',
                     subtitle: 'Acompanhe património, investimentos e liquidez com uma app de finanças pessoais privada e offline-first.',
                     description: 'Balance ajuda-o a acompanhar contas, investimentos, cripto e ativos num dashboard simples. Tudo fica no seu dispositivo, sem ligações bancárias e sem partilha de dados.',
-                    cta: 'Descarregar Balance'
+                    cta: 'Descarregar na App Store'
                 },
                 trust: [
                     { labelHtml: '100%<br>offline', sub: 'Funciona sem internet' },
@@ -1092,29 +1140,53 @@
                     highlight: 'Os snapshots ajudam-no a acompanhar património, investimentos e ativos ao longo do tempo, para que a sua app financeira offline continue útil sem virar uma folha de cálculo.'
                 },
                 pricing: {
+                    kicker: 'Balance Pro',
                     title: 'Planos disponíveis',
+                    intro: 'O Balance é grátis para começar: até 3 wallets, dashboard completo e snapshots essenciais. Quando quiser desbloquear tudo, pode ativar o Balance Pro.',
+                    toggle: {
+                        ariaLabel: 'Escolha a faturação do Balance Pro',
+                        annual: 'Anual',
+                        monthly: 'Mensal'
+                    },
                     free: {
                         badge: 'Para começar',
                         description: 'A versão gratuita para acompanhar as wallets essenciais.',
+                        priceLabel: 'Grátis',
                         list: [
                             'Até 3 wallets para começar rapidamente',
                             'Dashboard completo do património',
                             'Snapshots essenciais para acompanhar a evolução'
                         ],
-                        cta: 'Download'
+                        cta: 'Download grátis'
                     },
                     pro: {
-                        badge: 'Oferta de lançamento',
+                        badge: 'Cancela quando quiser',
+                        emphasis: 'Melhor valor',
+                        emphasisMonthly: 'Plano mensal',
                         description: 'Para quem quer usar o Balance como arquivo financeiro pessoal, sem limites.',
-                        priceHtml: '2,99 €<span class="price-suffix">por mês</span>',
-                        altPrice: '19,99 € por ano em vez de 35,88 €',
-                        note: 'Primeiro mês grátis ao ativar uma subscrição mensal ou anual.',
+                        billing: {
+                            annual: {
+                                caption: 'Oferta anual de lançamento',
+                                priceHtml: '19,99 €<span class="price-suffix">por ano</span>',
+                                chip: 'Poupa 15,89 €',
+                                alt: 'Equivale a 1,67 € por mês em vez de 35,88 € por ano',
+                                note: 'Primeiro mês de teste gratuito.'
+                            },
+                            monthly: {
+                                caption: 'Plano mensal',
+                                priceHtml: '2,99 €<span class="price-suffix">por mês</span>',
+                                chip: 'Mensal',
+                                alt: 'Renovação mensal a 2,99 €',
+                                note: 'Primeiro mês de teste gratuito.'
+                            }
+                        },
                         list: [
                             'Wallets ilimitadas',
                             'Snapshots avançados para análises mais precisas',
                             'Histórico completo para comparar a evolução ao longo do tempo'
                         ],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download e ativar Pro'
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download e ativar Pro',
+                        microcopy: 'No final da prova gratuita, salvo cancelamento, a renovação segue o plano selecionado.'
                     }
                 },
                 features: {
@@ -1123,69 +1195,69 @@
                     cards: {
                         snapshot: {
                             title: 'Snapshots patrimoniais',
-                            text: 'Guarde snapshots do património e compare o histórico ao longo do tempo.'
+                            text: 'Guarde o valor total do património e compare-o ao longo do tempo em poucos toques.'
                         },
                         wallet: {
-                            title: 'Wallets por tipologia',
-                            text: 'Organize contas, liquidez, investimentos, cripto e outros ativos em wallets separadas.'
+                            title: 'Wallets separadas',
+                            text: 'Separe contas, brokers, liquidez, cripto e outros ativos em wallets organizadas.'
                         },
                         dashboard: {
-                            title: 'Dashboard sintético',
-                            text: 'Veja património líquido, liquidez, investimentos e alocação num dashboard simples.'
+                            title: 'Dashboard patrimonial',
+                            text: 'Veja património, liquidez e investimentos numa visão simples e imediata.'
                         },
                         privacy: {
-                            title: 'Privacidade e controlo',
-                            text: 'Uma privacy finance app sem ligações bancárias, servidores externos ou partilha de dados.'
+                            title: 'Privacidade real',
+                            text: 'Dados locais, sem servidores e sem acesso às contas: o controlo continua seu.'
                         },
                         speed: {
-                            title: 'Experiência rápida',
-                            text: 'Atualize saldos em poucos toques e mantenha a sua app financeira offline sempre atualizada.'
+                            title: 'Atualizações rápidas',
+                            text: 'Atualize saldos e ativos rapidamente, sem fluxos lentos nem passos desnecessários.'
                         }
                     },
                     detailMap: {
                         snapshot: {
                             title: 'Snapshots patrimoniais',
-                            text: 'Guarde snapshots do património em segundos e reveja o histórico numa vista limpa.',
+                            text: 'Registe snapshots quando quiser e reveja a evolução do património sem exportar dados nem abrir folhas de cálculo.',
                             bullets: [
-                                'Snapshots manuais sem ligações bancárias.',
-                                'Histórico claro para acompanhar a evolução.',
-                                'Ativos e investimentos sem ruído.'
+                                'Guarda o valor atualizado em poucos segundos.',
+                                'Compara datas diferentes e percebe logo o que mudou.',
+                                'Acompanha património, investimentos e liquidez com um histórico claro.'
                             ]
                         },
                         wallet: {
-                            title: 'Wallets por tipologia',
-                            text: 'Organize contas, liquidez, investimentos, cripto e ativos em wallets claras e separadas.',
+                            title: 'Wallets separadas',
+                            text: 'Cada parte do património tem o seu espaço: contas bancárias, brokers, cripto, liquidez e outros ativos.',
                             bullets: [
-                                'Categorias flexíveis para cada conta ou ativo.',
-                                'Totais agregados entre liquidez e portfólios.',
-                                'Estrutura coerente com a sua realidade.'
+                                'Organiza tudo em wallets separadas e fáceis de ler.',
+                                'Mantém ordem mesmo usando vários bancos ou plataformas.',
+                                'A estrutura replica a forma como gere realmente o seu dinheiro.'
                             ]
                         },
                         dashboard: {
-                            title: 'Dashboard sintético',
-                            text: 'Veja património, liquidez, investimentos e alocação num dashboard limpo.',
+                            title: 'Dashboard patrimonial',
+                            text: 'O dashboard mostra quanto tem e onde está, com um olhar rápido realmente útil.',
                             bullets: [
-                                'Uma app de finanças pessoais para a visão completa.',
-                                'Tendências essenciais sem sobrecarga visual.',
-                                'Indicadores-chave sempre acessíveis.'
+                                'Património total sempre em destaque.',
+                                'Liquidez, investimentos e ativos legíveis sem ruído.',
+                                'Pensado para controlar tudo em poucos segundos.'
                             ]
                         },
                         privacy: {
-                            title: 'Privacidade e controlo',
-                            text: 'Dados locais, sem ligações bancárias e zero rastreamento. Sempre.',
+                            title: 'Privacidade real',
+                            text: 'O Balance nasce offline-first: sem login, sem servidores proprietários e sem sincronizações bancárias.',
                             bullets: [
-                                'Criada como privacy finance app por definição.',
-                                'Sem login, servidores externos ou sync automática.',
-                                'Controlo total sobre os seus dados no dispositivo.'
+                                'Os dados ficam no seu dispositivo.',
+                                'Nenhuma credencial passa por serviços externos.',
+                                'Código open source e abordagem verificável.'
                             ]
                         },
                         speed: {
-                            title: 'Experiência rápida',
-                            text: 'Atualize os seus dados em poucos toques e mantenha tudo atual sem fricção.',
+                            title: 'Atualizações rápidas',
+                            text: 'A app foi construída para atualizações manuais rápidas, por isso continua útil no uso do dia a dia.',
                             bullets: [
-                                'Fluxos essenciais sem passos desnecessários.',
-                                'Interações rápidas pensadas para mobile.',
-                                'Interface limpa para atualizações frequentes.'
+                                'Atualiza saldos e ativos sem passos supérfluos.',
+                                'Interface essencial, pensada para mobile.',
+                                'Perfeita para manter o património alinhado com frequência.'
                             ]
                         }
                     }
@@ -1211,7 +1283,7 @@
                         },
                         {
                             q: 'Como funciona o período gratuito?',
-                            a: 'A oferta de lançamento inclui o primeiro mês de Balance Pro grátis ao ativar uma subscrição mensal ou anual. No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado.'
+                            a: 'O primeiro mês do Balance Pro é grátis. Depois da prova, salvo cancelamento, a renovação segue o plano mensal ou anual selecionado.'
                         },
                         {
                             q: 'Está disponível para Android?',
@@ -1221,7 +1293,7 @@
                 },
                 download: {
                     badge: 'Oferta de lançamento',
-                    title: 'Download',
+                    title: 'Download Balance',
                     copy: 'Faça download do Balance e ative o Pro com uma subscrição mensal ou anual: o primeiro mês é grátis.',
                     points: ['Privacy-first', 'Offline', 'Open source'],
                     note: 'No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado.'
@@ -1238,7 +1310,7 @@
                     badge: 'Oferta de lançamento',
                     priceHtml: '2,99 €<span class="price-suffix">por mês</span>',
                     altPrice: '19,99 € por ano em vez de 35,88 €',
-                    note: 'Primeiro mês grátis ao ativar uma subscrição mensal ou anual.',
+                    note: 'Primeiro mês de teste gratuito.',
                     list: ['Wallets ilimitadas', 'Snapshots avançados', 'Histórico completo sem limites'],
                     microcopy: 'No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado diretamente na app.',
                     primaryCtaHtml: '<i class="fa-brands fa-apple"></i> App Store',
@@ -1749,26 +1821,67 @@
             if (texts[1]) texts[1].textContent = page.clarity.highlight;
         }
 
+        setText('#pricing .pricing-kicker', page.pricing.kicker || '');
         setText('#pricing .section-title', page.pricing.title);
-        const pricingCards = document.querySelectorAll('.pricing-card');
-        if (pricingCards[0]) {
-            pricingCards[0].querySelector('.badge').textContent = page.pricing.free.badge;
-            pricingCards[0].querySelector('.pricing-description').textContent = page.pricing.free.description;
-            pricingCards[0].querySelectorAll('.pricing-list li').forEach((li, index) => {
-                li.textContent = page.pricing.free.list[index];
+        setText('#pricing .pricing-intro', page.pricing.intro || '');
+        setAttr('#pricing .pricing-switch', 'aria-label', page.pricing.toggle?.ariaLabel || '');
+        const pricingToggleButtons = document.querySelectorAll('#pricing .pricing-switch-btn');
+        if (pricingToggleButtons[0]) pricingToggleButtons[0].textContent = page.pricing.toggle?.annual || 'Annual';
+        if (pricingToggleButtons[1]) pricingToggleButtons[1].textContent = page.pricing.toggle?.monthly || 'Monthly';
+
+        const proCard = document.querySelector('#pricing .pricing-card.pro');
+        if (proCard) {
+            const annual = page.pricing.pro.billing?.annual || {};
+            const monthly = page.pricing.pro.billing?.monthly || {};
+            const savePill = proCard.querySelector('.pricing-save-pill');
+            const billingCaption = proCard.querySelector('.pricing-billing-caption');
+            const pricingValue = proCard.querySelector('.pricing-price');
+            const valueChip = proCard.querySelector('.pricing-value-chip');
+            const altPrice = proCard.querySelector('.pricing-alt-price');
+            const note = proCard.querySelector('.pricing-note');
+
+            const launchBadge = proCard.querySelector('.pricing-launch-badge');
+            if (launchBadge) launchBadge.textContent = page.pricing.pro.badge;
+            proCard.querySelector('.pricing-description').textContent = page.pricing.pro.description;
+            proCard.querySelectorAll('.pricing-list li').forEach((li, index) => {
+                const textTarget = li.querySelector('span') || li;
+                textTarget.textContent = page.pricing.pro.list[index] || '';
             });
-            pricingCards[0].querySelector('.btn').textContent = page.pricing.free.cta;
-        }
-        if (pricingCards[1]) {
-            pricingCards[1].querySelector('.badge').textContent = page.pricing.pro.badge;
-            pricingCards[1].querySelector('.pricing-description').textContent = page.pricing.pro.description;
-            pricingCards[1].querySelector('.pricing-price').innerHTML = page.pricing.pro.priceHtml;
-            pricingCards[1].querySelector('.pricing-alt-price').textContent = page.pricing.pro.altPrice;
-            pricingCards[1].querySelector('.pricing-note').textContent = page.pricing.pro.note;
-            pricingCards[1].querySelectorAll('.pricing-list li').forEach((li, index) => {
-                li.textContent = page.pricing.pro.list[index];
-            });
-            pricingCards[1].querySelector('.btn').innerHTML = page.pricing.pro.ctaHtml;
+            proCard.querySelector('.btn').innerHTML = page.pricing.pro.ctaHtml;
+            if (proCard.querySelector('.pricing-microcopy')) {
+                proCard.querySelector('.pricing-microcopy').textContent = page.pricing.pro.microcopy || '';
+            }
+
+            if (savePill) {
+                savePill.dataset.annual = page.pricing.pro.emphasis || '';
+                savePill.dataset.monthly = page.pricing.pro.emphasisMonthly || monthly.chip || '';
+                savePill.textContent = savePill.dataset.annual || '';
+            }
+            if (billingCaption) {
+                billingCaption.dataset.annual = annual.caption || '';
+                billingCaption.dataset.monthly = monthly.caption || '';
+                billingCaption.textContent = annual.caption || '';
+            }
+            if (pricingValue) {
+                pricingValue.dataset.annual = annual.priceHtml || '';
+                pricingValue.dataset.monthly = monthly.priceHtml || '';
+                pricingValue.innerHTML = annual.priceHtml || '';
+            }
+            if (valueChip) {
+                valueChip.dataset.annual = annual.chip || '';
+                valueChip.dataset.monthly = monthly.chip || '';
+                valueChip.textContent = annual.chip || '';
+            }
+            if (altPrice) {
+                altPrice.dataset.annual = annual.alt || '';
+                altPrice.dataset.monthly = monthly.alt || '';
+                altPrice.textContent = annual.alt || '';
+            }
+            if (note) {
+                note.dataset.annual = annual.note || '';
+                note.dataset.monthly = monthly.note || '';
+                note.textContent = annual.note || '';
+            }
         }
 
         setText('#features .section-title', page.features.title);

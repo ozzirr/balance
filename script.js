@@ -67,6 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize 3D iPhone interaction
     initIPhone3D();
+
+    // Sync sticky offsets for composed nav/trust bar layout
+    initLandingLayout();
+
+    // Pricing toggle
+    initPricingToggle();
 });
 
 function initCarousel(containerId, options = {}) {
@@ -124,6 +130,84 @@ function initCarousel(containerId, options = {}) {
     startInterval();
 }
 
+function initLandingLayout() {
+    const trustBar = document.querySelector('.trust-bar');
+    if (!trustBar) return;
+
+    const root = document.documentElement;
+    let frameId = null;
+
+    const syncTrustOffset = () => {
+        if (frameId) cancelAnimationFrame(frameId);
+        frameId = requestAnimationFrame(() => {
+            const height = Math.ceil(trustBar.getBoundingClientRect().height);
+            root.style.setProperty('--trust-bar-height', `${height}px`);
+        });
+    };
+
+    syncTrustOffset();
+    window.addEventListener('resize', syncTrustOffset);
+
+    if (typeof ResizeObserver !== 'undefined') {
+        const resizeObserver = new ResizeObserver(syncTrustOffset);
+        resizeObserver.observe(trustBar);
+    }
+}
+
+function initPricingToggle() {
+    const pricingSection = document.querySelector('.section-pricing');
+    const proCard = pricingSection?.querySelector('.pricing-card.pro');
+    const buttons = Array.from(pricingSection?.querySelectorAll('.pricing-switch-btn') || []);
+
+    if (!pricingSection || !proCard || buttons.length === 0) return;
+
+    const swapTargets = [
+        { element: proCard.querySelector('.pricing-save-pill'), type: 'text' },
+        { element: proCard.querySelector('.pricing-billing-caption'), type: 'text' },
+        { element: proCard.querySelector('.pricing-price'), type: 'html' },
+        { element: proCard.querySelector('.pricing-value-chip'), type: 'text' },
+        { element: proCard.querySelector('.pricing-alt-price'), type: 'text' },
+        { element: proCard.querySelector('.pricing-note'), type: 'text' }
+    ];
+    const launchBadge = proCard.querySelector('.pricing-launch-badge');
+
+    let currentBilling = pricingSection.dataset.billing || buttons.find(button => button.classList.contains('is-active'))?.dataset.billing || 'annual';
+
+    const applyBilling = (billing) => {
+        currentBilling = billing;
+        pricingSection.dataset.billing = billing;
+
+        buttons.forEach(button => {
+            const isActive = button.dataset.billing === billing;
+            button.classList.toggle('is-active', isActive);
+            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        swapTargets.forEach(({ element, type }) => {
+            const value = element?.dataset?.[billing];
+            if (!element || !value) return;
+            if (type === 'html') {
+                element.innerHTML = value;
+            } else {
+                element.textContent = value;
+            }
+        });
+
+        if (launchBadge) {
+            launchBadge.classList.toggle('is-hidden', billing !== 'annual');
+        }
+    };
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (button.dataset.billing === currentBilling) return;
+            applyBilling(button.dataset.billing);
+        });
+    });
+
+    applyBilling(currentBilling);
+}
+
 function initFeatureDetail() {
     const detail = document.getElementById('feature-detail');
     const cards = Array.from(document.querySelectorAll('.feature-card[data-feature]'));
@@ -146,51 +230,51 @@ function initFeatureDetail() {
         snapshot: {
             icon: 'fa-camera',
             title: 'Net worth snapshots',
-            text: 'Save net worth snapshots in seconds and review your financial history over time in one clean view.',
+            text: 'Save snapshots whenever you want and review how your net worth evolves over time without exporting data or opening spreadsheets.',
             bullets: [
-                'Manual snapshots with no bank sync or external connections.',
-                'A clearer net worth tracker for long-term progress.',
-                'Track assets and investments without spreadsheet noise.'
+                'Save an updated total in a few seconds.',
+                'Compare different dates and quickly see what changed.',
+                'Track net worth, investments, and cash with a clear timeline.'
             ]
         },
         wallet: {
             icon: 'fa-wallet',
-            title: 'Wallet categories',
-            text: 'Organize bank accounts, cash, investments, crypto, and assets in clear, separate wallets.',
+            title: 'Separate wallets',
+            text: 'Each part of your wealth has its own place: bank accounts, brokers, crypto, cash, and other assets.',
             bullets: [
-                'Flexible categories for each account or asset.',
-                'Aggregated totals across cash and portfolios.',
-                'A portfolio tracker structure that matches real life.'
+                'Keep everything organized in separate, readable wallets.',
+                'Stay clear even if you use multiple banks or platforms.',
+                'Use a structure that matches how you really manage money.'
             ]
         },
         dashboard: {
             icon: 'fa-chart-line',
-            title: 'Clear dashboard',
-            text: 'See net worth, cash, investments, and asset allocation in one clean dashboard.',
+            title: 'Net worth dashboard',
+            text: 'The dashboard shows what you own and where it sits in one clear glance.',
             bullets: [
-                'One personal finance app for your full financial picture.',
-                'Essential trends without visual overload.',
-                'Key indicators always accessible.'
+                'Total net worth is always visible.',
+                'Cash, investments, and assets stay readable without clutter.',
+                'Built to help you check everything in a few seconds.'
             ]
         },
         privacy: {
             icon: 'fa-shield-halved',
-            title: 'Privacy and control',
-            text: 'Local data, no bank connections, and zero tracking. Always.',
+            title: 'Real privacy',
+            text: 'Balance is offline-first by design: no login, no proprietary servers, and no bank sync.',
             bullets: [
-                'Built as a privacy finance app by design.',
-                'No login, external servers, or automatic sync.',
-                'Full control over your data on your device.'
+                'Your data stay on your device.',
+                'No credentials pass through third-party services.',
+                'Open source code makes the approach verifiable.'
             ]
         },
         speed: {
             icon: 'fa-bolt',
             title: 'Fast updates',
-            text: 'Update your data in just a few taps and keep everything current without friction.',
+            text: 'The app is built for quick manual updates, so it stays useful in everyday use.',
             bullets: [
-                'Lean flows with no wasted steps.',
-                'Fast interactions designed for mobile.',
-                'A clean UI for frequent balance updates.'
+                'Update balances and assets without unnecessary steps.',
+                'Use a focused interface designed for mobile.',
+                'Keep your net worth aligned with very little effort.'
             ]
         }
     };
@@ -281,7 +365,9 @@ function initFeatureDetail() {
             if (!back || !info) return;
 
             back.innerHTML = `
+                <h3 class="feature-detail-title">${info.title}</h3>
                 <p class="feature-detail-text">${info.text}</p>
+                <div class="feature-detail-divider"></div>
                 <ul class="feature-detail-list">
                     ${info.bullets.map((bullet, index) => `<li style="--i:${index}">${bullet}</li>`).join('')}
                 </ul>
