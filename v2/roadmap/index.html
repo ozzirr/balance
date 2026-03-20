@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Roadmap</title>
+    <meta name="description" content="Follow the Balance roadmap and see how the product evolves around privacy, simplicity and open development.">
+    <meta property="og:title" content="Balance Roadmap">
+    <meta property="og:description" content="Follow the Balance roadmap and see how the product evolves around privacy, simplicity and open development.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="../../assets/og/og-balance.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Balance Roadmap">
+    <meta name="twitter:description" content="Follow the Balance roadmap and see how the product evolves around privacy, simplicity and open development.">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/icon-180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../assets/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body data-page="roadmap">
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="../index.html#overview" class="brand-link">
+                <img src="../../assets/icon.png" alt="Balance logo">
+                <span data-i18n="common.brand">Balance</span>
+            </a>
+
+            <button class="menu-toggle" type="button" aria-expanded="false" data-i18n="common.nav.menu" data-i18n-attr="aria-label:common.nav.menu">Menu</button>
+
+            <nav class="nav-links" aria-label="Primary">
+                <a href="../index.html#overview" data-i18n="common.nav.overview">Overview</a>
+                <a href="../index.html#features" data-i18n="common.nav.features">Features</a>
+                <a href="./" class="is-active" data-i18n="common.nav.roadmap">Roadmap</a>
+                <a href="../contribute/" data-i18n="common.nav.contribute">Contribute</a>
+                <a href="../index.html#download" data-i18n="common.nav.download">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-shell centered reveal">
+                    <div class="eyebrow" data-i18n="page.hero.eyebrow">Product · Roadmap · Open development</div>
+                    <h1 class="section-title" data-i18n="page.hero.title">Roadmap</h1>
+                    <p class="hero-subtitle" data-i18n="page.hero.subtitle">Balance is evolving step by step.</p>
+                    <p class="section-copy" data-i18n="page.hero.support">The roadmap follows the same principles as the product: private, simple and clear over time.</p>
+                    <div class="btn-row">
+                        <a href="https://github.com/ozzirr/balance-app-v1" class="btn btn-primary" target="_blank" rel="noreferrer" data-i18n="page.hero.primary">View GitHub</a>
+                        <a href="https://github.com/ozzirr/balance-app-v1/issues/new?template=feature_request.md" class="btn btn-secondary" target="_blank" rel="noreferrer" data-i18n="page.hero.secondary">Suggest a feature</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section compact">
+            <div class="container">
+                <div class="surface copy-panel reveal">
+                    <div class="section-header align-left">
+                        <h2 class="section-title" data-i18n="page.status.title">Current focus</h2>
+                    </div>
+                    <p class="section-copy" data-i18n="page.status.copy">Balance is already live with the core experience: wallets, snapshots, history and a fully local approach.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section compact">
+            <div class="container">
+                <div class="roadmap-grid reveal" id="roadmap-grid"></div>
+            </div>
+        </section>
+
+        <section class="section compact">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title" data-i18n="page.principles.title">How the roadmap is shaped.</h2>
+                </div>
+                <div class="principles-grid reveal" id="principles-grid"></div>
+            </div>
+        </section>
+
+        <section class="section compact">
+            <div class="container">
+                <div class="surface cta-band reveal">
+                    <h2 class="section-title" data-i18n="page.cta.title">Want to influence what comes next?</h2>
+                    <p class="section-copy" data-i18n="page.cta.copy">Issues, feedback and contributions directly shape the roadmap.</p>
+                    <div class="btn-row">
+                        <a href="https://github.com/ozzirr/balance-app-v1" class="btn btn-primary" target="_blank" rel="noreferrer" data-i18n="page.cta.primary">Contribute on GitHub</a>
+                        <a href="../index.html#download" class="btn btn-secondary" data-i18n="page.cta.secondary">Back to download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="language-switch">
+                <label for="language-select" data-i18n="common.footer.language">Language</label>
+                <select id="language-select" class="language-select" aria-label="Language">
+                    <option value="it">Italiano</option>
+                    <option value="en">English</option>
+                    <option value="pt">Português</option>
+                </select>
+            </div>
+            <div class="footer-links">
+                <a href="../privacy/" data-i18n="common.footer.privacy">Privacy Policy</a>
+                <a href="../terms/" data-i18n="common.footer.terms">Terms</a>
+                <a href="../contact/" data-i18n="common.footer.contact">Contact</a>
+                <a href="https://github.com/ozzirr/balance-app-v1" target="_blank" rel="noreferrer" data-i18n="common.footer.github">GitHub</a>
+            </div>
+            <p class="copyright" data-i18n="common.footer.copyright">© Balance. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../i18n.js"></script>
+</body>
+</html>

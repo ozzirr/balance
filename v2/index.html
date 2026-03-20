@@ -159,7 +159,7 @@
                     </div>
                 </div>
 
-                <div class="showcase-grid reveal is-visible" style="margin-top: 20px;">
+                <div class="showcase-grid reveal is-visible">
                     <article class="surface showcase-card">
                         <div class="showcase-copy">
                             <h3 data-i18n="page.showcase.cards.snapshots.title">Monthly snapshots</h3>
@@ -207,7 +207,7 @@
                         <p class="section-copy" data-i18n="page.openProject.copy">Balance is evolving step by step. Follow the roadmap, suggest features and contribute to the project.</p>
                     </div>
                     <div class="open-grid" id="home-open-cards"></div>
-                    <div class="btn-row" style="margin-top: 28px;">
+                    <div class="btn-row">
                         <a href="./roadmap/" class="btn btn-secondary" data-i18n="page.openProject.ctaPrimary">View roadmap</a>
                         <a href="https://github.com/ozzirr/balance-app-v1" class="btn btn-tertiary" target="_blank" rel="noreferrer" data-i18n="page.openProject.ctaSecondary">Contribute on GitHub</a>
                     </div>
@@ -216,11 +216,11 @@
         </section>
 
         <section class="section compact">
-            <div class="container plans-shell">
+            <div class="container plans-shell" data-billing-root data-billing="annual">
                 <div class="plans-header reveal">
                     <h2 class="section-title" id="plans-title">Start simple. Upgrade anytime.</h2>
                     <p class="section-copy" id="plans-intro">Free gives you the essentials. Pro adds deeper control when you need it.</p>
-                    <div class="plans-toggle" role="group" aria-label="Billing cycle" data-billing-root data-billing="annual">
+                    <div class="plans-toggle" role="group" aria-label="Billing cycle">
                         <button type="button" class="is-active" data-billing-option="annual" aria-pressed="true" id="plans-annual">Annual</button>
                         <button type="button" data-billing-option="monthly" aria-pressed="false" id="plans-monthly">Monthly</button>
                     </div>
@@ -238,7 +238,7 @@
                         <a href="https://apps.apple.com/it/app/balance-finanza-personale/id6758206139" class="btn btn-secondary" target="_blank" rel="noreferrer" id="plan-free-cta">Download free</a>
                     </article>
 
-                    <article class="surface plan-card plan-card--pro" data-billing-root data-billing="annual">
+                    <article class="surface plan-card plan-card--pro">
                         <div class="plan-top">
                             <span class="plan-badge" id="plan-pro-badge" data-billing-target>Launch offer</span>
                             <span class="plan-pill" id="plan-pro-pill" data-billing-target>Best value</span>

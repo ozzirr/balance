@@ -48,7 +48,7 @@
                     badge: 'Privacy-first · Offline · Open source',
                     title: 'Controlla le tue finanze in un unico posto',
                     subtitle: 'Monitora patrimonio, investimenti e liquidità con Balance.',
-                    description: 'I dati restano sul tuo dispositivo. Senza collegamenti bancari, disponibile anche offline.',
+                    description: 'Nessun collegamento bancario richiesto.',
                     cta: 'Scarica su App Store'
                 },
                 trust: [
