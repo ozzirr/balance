@@ -88,7 +88,8 @@
                         cta: 'Scarica gratis'
                     },
                     pro: {
-                        badge: 'Annulla quando vuoi',
+                        badgeAnnual: 'Offerta lancio',
+                        badgeMonthly: 'Annulla quando vuoi',
                         emphasis: 'Miglior valore',
                         emphasisMonthly: 'Piano mensile',
                         description: 'Per chi vuole usare Balance come archivio finanziario personale, senza limiti.',
@@ -235,7 +236,7 @@
                 heroTitle: 'Balance Pro',
                 heroText: "Sblocca tutte le funzionalità avanzate direttamente nell'app con abbonamento mensile o annuale.",
                 card: {
-                    badge: 'Offerta lancio',
+                    badge: 'Annulla quando vuoi',
                     priceHtml: '2,99 €<span class="price-suffix">al mese</span>',
                     altPrice: "19,99 € l'anno invece di 35,88 €",
                     note: 'Primo mese di prova gratuito.',
@@ -625,7 +626,8 @@
                         cta: 'Download free'
                     },
                     pro: {
-                        badge: 'Cancel anytime',
+                        badgeAnnual: 'Launch offer',
+                        badgeMonthly: 'Cancel anytime',
                         emphasis: 'Best value',
                         emphasisMonthly: 'Monthly plan',
                         description: 'For anyone who wants to use Balance as a personal financial archive, without limits.',
@@ -772,7 +774,7 @@
                 heroTitle: 'Balance Pro',
                 heroText: 'Unlock all advanced features directly in the app with a monthly or yearly subscription.',
                 card: {
-                    badge: 'Launch offer',
+                    badge: 'Cancel anytime',
                     priceHtml: '2.99 €<span class="price-suffix">/ month</span>',
                     altPrice: '19.99 € / year instead of 35.88 €',
                     note: 'Free trial month.',
@@ -1160,7 +1162,8 @@
                         cta: 'Download grátis'
                     },
                     pro: {
-                        badge: 'Cancela quando quiser',
+                        badgeAnnual: 'Oferta de lançamento',
+                        badgeMonthly: 'Cancela quando quiser',
                         emphasis: 'Melhor valor',
                         emphasisMonthly: 'Plano mensal',
                         description: 'Para quem quer usar o Balance como arquivo financeiro pessoal, sem limites.',
@@ -1307,7 +1310,7 @@
                 heroTitle: 'Balance Pro',
                 heroText: 'Desbloqueie todas as funcionalidades avançadas diretamente na app com subscrição mensal ou anual.',
                 card: {
-                    badge: 'Oferta de lançamento',
+                    badge: 'Cancela quando quiser',
                     priceHtml: '2,99 €<span class="price-suffix">por mês</span>',
                     altPrice: '19,99 € por ano em vez de 35,88 €',
                     note: 'Primeiro mês de teste gratuito.',
@@ -1841,7 +1844,12 @@
             const note = proCard.querySelector('.pricing-note');
 
             const launchBadge = proCard.querySelector('.pricing-launch-badge');
-            if (launchBadge) launchBadge.textContent = page.pricing.pro.badge;
+            if (launchBadge) {
+                launchBadge.dataset.annual = page.pricing.pro.badgeAnnual || '';
+                launchBadge.dataset.monthly = page.pricing.pro.badgeMonthly || '';
+                const activeBilling = document.querySelector('.section-pricing')?.dataset?.billing || 'annual';
+                launchBadge.textContent = launchBadge.dataset[activeBilling] || launchBadge.dataset.annual || '';
+            }
             proCard.querySelector('.pricing-description').textContent = page.pricing.pro.description;
             proCard.querySelectorAll('.pricing-list li').forEach((li, index) => {
                 const textTarget = li.querySelector('span') || li;

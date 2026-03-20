@@ -194,7 +194,9 @@ function initPricingToggle() {
         });
 
         if (launchBadge) {
-            launchBadge.classList.toggle('is-hidden', billing !== 'annual');
+            const badgeText = launchBadge.dataset?.[billing] || '';
+            launchBadge.textContent = badgeText;
+            launchBadge.classList.toggle('is-hidden', !badgeText);
         }
     };
 
