@@ -48,11 +48,11 @@
                     badge: 'Privacy-first · Offline · Open source',
                     title: 'Controlla le tue finanze in un unico posto',
                     subtitle: 'Monitora patrimonio, investimenti e liquidità con un’app di finanza personale privata e offline-first.',
-                    description: 'Balance ti aiuta a tracciare conti, investimenti, crypto e asset in una dashboard semplice. Tutto resta sul tuo dispositivo, senza collegamenti bancari e senza condivisione dei dati.',
+                    description: 'Tutto resta sul tuo dispositivo, senza collegamenti bancari e senza condivisione dei dati.',
                     cta: 'Scarica su App Store'
                 },
                 trust: [
-                    { labelHtml: '100%<br>offline', sub: 'Funziona senza internet' },
+                    { label: '100% offline', sub: 'Funziona senza internet' },
                     { label: 'Nessun server', sub: 'Dati sul tuo dispositivo' },
                     { label: 'Open source', sub: 'Codice verificabile' },
                     { label: 'iOS & Android', sub: 'Disponibile ovunque' }
@@ -70,7 +70,7 @@
                 pricing: {
                     kicker: 'Balance Pro',
                     title: 'Piani disponibili',
-                    intro: 'Balance è gratis per iniziare: fino a 3 wallet, dashboard completa e snapshot essenziali. Quando vuoi sbloccare tutto, passi a Balance Pro.',
+                    intro: 'Balance è gratis per iniziare: fino a 3 wallet, snapshot essenziali e storico completo. Quando vuoi sbloccare tutto, passi a Balance Pro.',
                     toggle: {
                         ariaLabel: 'Seleziona la fatturazione di Balance Pro',
                         annual: 'Annuale',
@@ -78,12 +78,13 @@
                     },
                     free: {
                         badge: 'Per iniziare',
+                        title: 'Balance',
                         description: "La versione gratuita per tenere d'occhio i wallet essenziali.",
-                        priceLabel: 'Gratis',
+                        priceHtml: '0 €',
                         list: [
-                            'Fino a 3 wallet per partire subito',
-                            'Dashboard completa del patrimonio',
-                            "Snapshot essenziali per seguire l'andamento"
+                            'Fino a 3 wallet',
+                            'Snapshot essenziali',
+                            'Storico completo'
                         ],
                         cta: 'Scarica gratis'
                     },
@@ -123,7 +124,7 @@
                     detailEyebrow: 'Dettaglio',
                     cards: {
                         snapshot: {
-                            title: 'Snapshot patrimoniali',
+                            title: 'Snapshot mensili',
                             text: 'Salva il valore totale del patrimonio e confrontalo nel tempo in pochi tocchi.'
                         },
                         wallet: {
@@ -131,7 +132,7 @@
                             text: 'Separa conti, broker, liquidità, crypto e altri asset in wallet ordinati.'
                         },
                         dashboard: {
-                            title: 'Dashboard patrimoniale',
+                            title: 'Dashboard personalizzata',
                             text: 'Controlla patrimonio, liquidità e investimenti in una vista semplice e immediata.'
                         },
                         privacy: {
@@ -145,7 +146,7 @@
                     },
                     detailMap: {
                         snapshot: {
-                            title: 'Snapshot patrimoniali',
+                            title: 'Snapshot mensili',
                             text: 'Registra snapshot quando vuoi e rivedi l’evoluzione del patrimonio senza esportare dati o aprire fogli di calcolo.',
                             bullets: [
                                 'Salvi il valore aggiornato in pochi secondi.',
@@ -163,7 +164,7 @@
                             ]
                         },
                         dashboard: {
-                            title: 'Dashboard patrimoniale',
+                            title: 'Dashboard personalizzata',
                             text: 'La dashboard ti mostra quanto possiedi e dove si trova, con un colpo d’occhio davvero utile.',
                             bullets: [
                                 'Patrimonio totale sempre in evidenza.',
@@ -186,7 +187,7 @@
                             bullets: [
                                 'Aggiorni saldi e asset senza passaggi superflui.',
                                 'Interfaccia essenziale, pensata per il mobile.',
-                                'Perfetta per tenere il patrimonio allineato spesso.'
+                                'Perfetta per tenere il patrimonio allineato costantemente.'
                             ]
                         }
                     }
@@ -586,11 +587,11 @@
                     badge: 'Privacy-first · Offline · Open source',
                     title: 'Control your finances in one place',
                     subtitle: 'Track your net worth, investments, and cash with a private, offline-first personal finance app.',
-                    description: 'Balance helps you track bank accounts, investments, crypto and assets in one simple dashboard. Everything stays on your device, with no bank connections and no data sharing.',
+                    description: 'Everything stays on your device, with no bank connections and no data sharing.',
                     cta: 'Download on the App Store'
                 },
                 trust: [
-                    { labelHtml: '100%<br>offline', sub: 'Works without internet' },
+                    { label: '100% offline', sub: 'Works without internet' },
                     { label: 'No servers', sub: 'Data stays on your device' },
                     { label: 'Open source', sub: 'Code you can verify' },
                     { label: 'iOS & Android', sub: 'Available everywhere' }
@@ -608,7 +609,7 @@
                 pricing: {
                     kicker: 'Balance Pro',
                     title: 'Available plans',
-                    intro: 'Balance is free to start with: up to 3 wallets, the full dashboard, and essential snapshots. When you want everything unlocked, you can upgrade to Balance Pro.',
+                    intro: 'Balance is free to start with: up to 3 wallets, essential snapshots, and full history. When you want everything unlocked, you can upgrade to Balance Pro.',
                     toggle: {
                         ariaLabel: 'Choose Balance Pro billing',
                         annual: 'Yearly',
@@ -616,12 +617,13 @@
                     },
                     free: {
                         badge: 'To get started',
+                        title: 'Balance',
                         description: 'The free version to keep an eye on your essential wallets.',
-                        priceLabel: 'Free',
+                        priceHtml: '0 €',
                         list: [
-                            'Up to 3 wallets to get started quickly',
-                            'Complete net worth dashboard',
-                            'Essential snapshots to track performance'
+                            'Up to 3 wallets',
+                            'Essential snapshots',
+                            'Full history'
                         ],
                         cta: 'Download free'
                     },
@@ -661,7 +663,7 @@
                     detailEyebrow: 'Detail',
                     cards: {
                         snapshot: {
-                            title: 'Net worth snapshots',
+                            title: 'Monthly snapshots',
                             text: 'Save your total net worth and compare it over time in a few taps.'
                         },
                         wallet: {
@@ -669,7 +671,7 @@
                             text: 'Separate bank accounts, brokers, cash, crypto, and other assets into clean wallets.'
                         },
                         dashboard: {
-                            title: 'Net worth dashboard',
+                            title: 'Custom dashboard',
                             text: 'Check net worth, cash, and investments in one simple overview.'
                         },
                         privacy: {
@@ -683,7 +685,7 @@
                     },
                     detailMap: {
                         snapshot: {
-                            title: 'Net worth snapshots',
+                            title: 'Monthly snapshots',
                             text: 'Save snapshots whenever you want and review how your net worth evolves over time without exporting data or opening spreadsheets.',
                             bullets: [
                                 'Save an updated total in a few seconds.',
@@ -701,7 +703,7 @@
                             ]
                         },
                         dashboard: {
-                            title: 'Net worth dashboard',
+                            title: 'Custom dashboard',
                             text: 'The dashboard shows what you own and where it sits in one clear glance.',
                             bullets: [
                                 'Total net worth is always visible.',
@@ -1126,7 +1128,7 @@
                     cta: 'Descarregar na App Store'
                 },
                 trust: [
-                    { labelHtml: '100%<br>offline', sub: 'Funciona sem internet' },
+                    { label: '100% offline', sub: 'Funciona sem internet' },
                     { label: 'Sem servidores', sub: 'Os dados ficam no seu dispositivo' },
                     { label: 'Open source', sub: 'Código verificável' },
                     { label: 'iOS & Android', sub: 'Disponível em qualquer lugar' }
@@ -1144,7 +1146,7 @@
                 pricing: {
                     kicker: 'Balance Pro',
                     title: 'Planos disponíveis',
-                    intro: 'O Balance é grátis para começar: até 3 wallets, dashboard completo e snapshots essenciais. Quando quiser desbloquear tudo, pode ativar o Balance Pro.',
+                    intro: 'O Balance é grátis para começar: até 3 wallets, snapshots essenciais e histórico completo. Quando quiser desbloquear tudo, pode ativar o Balance Pro.',
                     toggle: {
                         ariaLabel: 'Escolha a faturação do Balance Pro',
                         annual: 'Anual',
@@ -1152,12 +1154,13 @@
                     },
                     free: {
                         badge: 'Para começar',
+                        title: 'Balance',
                         description: 'A versão gratuita para acompanhar as wallets essenciais.',
-                        priceLabel: 'Grátis',
+                        priceHtml: '0 €',
                         list: [
-                            'Até 3 wallets para começar rapidamente',
-                            'Dashboard completo do património',
-                            'Snapshots essenciais para acompanhar a evolução'
+                            'Até 3 wallets',
+                            'Snapshots essenciais',
+                            'Histórico completo'
                         ],
                         cta: 'Download grátis'
                     },
@@ -1197,7 +1200,7 @@
                     detailEyebrow: 'Detalhe',
                     cards: {
                         snapshot: {
-                            title: 'Snapshots patrimoniais',
+                            title: 'Snapshots mensais',
                             text: 'Guarde o valor total do património e compare-o ao longo do tempo em poucos toques.'
                         },
                         wallet: {
@@ -1205,7 +1208,7 @@
                             text: 'Separe contas, brokers, liquidez, cripto e outros ativos em wallets organizadas.'
                         },
                         dashboard: {
-                            title: 'Dashboard patrimonial',
+                            title: 'Dashboard personalizada',
                             text: 'Veja património, liquidez e investimentos numa visão simples e imediata.'
                         },
                         privacy: {
@@ -1219,7 +1222,7 @@
                     },
                     detailMap: {
                         snapshot: {
-                            title: 'Snapshots patrimoniais',
+                            title: 'Snapshots mensais',
                             text: 'Registe snapshots quando quiser e reveja a evolução do património sem exportar dados nem abrir folhas de cálculo.',
                             bullets: [
                                 'Guarda o valor atualizado em poucos segundos.',
@@ -1237,7 +1240,7 @@
                             ]
                         },
                         dashboard: {
-                            title: 'Dashboard patrimonial',
+                            title: 'Dashboard personalizada',
                             text: 'O dashboard mostra quanto tem e onde está, com um olhar rápido realmente útil.',
                             bullets: [
                                 'Património total sempre em destaque.',
@@ -1794,7 +1797,7 @@
 
         const trustItems = document.querySelectorAll('.trust-item');
         if (trustItems[0]) {
-            trustItems[0].querySelector('.trust-label').innerHTML = page.trust[0].labelHtml;
+            trustItems[0].querySelector('.trust-label').textContent = page.trust[0].label;
             trustItems[0].querySelector('.trust-sub').textContent = page.trust[0].sub;
         }
         if (trustItems[1]) {
@@ -1831,6 +1834,24 @@
         const pricingToggleButtons = document.querySelectorAll('#pricing .pricing-switch-btn');
         if (pricingToggleButtons[0]) pricingToggleButtons[0].textContent = page.pricing.toggle?.annual || 'Annual';
         if (pricingToggleButtons[1]) pricingToggleButtons[1].textContent = page.pricing.toggle?.monthly || 'Monthly';
+
+        const freeCard = document.querySelector('#pricing .pricing-card.free');
+        if (freeCard) {
+            freeCard.querySelector('.pricing-free-badge').textContent = page.pricing.free.badge || '';
+            freeCard.querySelector('h3').textContent = page.pricing.free.title || '';
+            freeCard.querySelector('.pricing-description').textContent = page.pricing.free.description || '';
+            const freePrice = freeCard.querySelector('.pricing-free-price');
+            if (freePrice) {
+                freePrice.innerHTML = page.pricing.free.priceHtml || page.pricing.free.priceLabel || '';
+            }
+            freeCard.querySelectorAll('.pricing-list li').forEach((li, index) => {
+                const textTarget = li.querySelector('span') || li;
+                textTarget.textContent = page.pricing.free.list[index] || '';
+            });
+            if (freeCard.querySelector('.btn')) {
+                freeCard.querySelector('.btn').textContent = page.pricing.free.cta || '';
+            }
+        }
 
         const proCard = document.querySelector('#pricing .pricing-card.pro');
         if (proCard) {
@@ -1893,7 +1914,6 @@
         }
 
         setText('#features .section-title', page.features.title);
-        setText('.feature-detail-eyebrow', page.features.detailEyebrow);
         const featureOrder = ['snapshot', 'wallet', 'dashboard', 'privacy', 'speed'];
         featureOrder.forEach((key) => {
             const card = document.querySelector(`.feature-card[data-feature="${key}"]`);

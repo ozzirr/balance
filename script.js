@@ -68,9 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize 3D iPhone interaction
     initIPhone3D();
 
-    // Sync sticky offsets for composed nav/trust bar layout
-    initLandingLayout();
-
     // Pricing toggle
     initPricingToggle();
 });
@@ -130,30 +127,6 @@ function initCarousel(containerId, options = {}) {
     startInterval();
 }
 
-function initLandingLayout() {
-    const trustBar = document.querySelector('.trust-bar');
-    if (!trustBar) return;
-
-    const root = document.documentElement;
-    let frameId = null;
-
-    const syncTrustOffset = () => {
-        if (frameId) cancelAnimationFrame(frameId);
-        frameId = requestAnimationFrame(() => {
-            const height = Math.ceil(trustBar.getBoundingClientRect().height);
-            root.style.setProperty('--trust-bar-height', `${height}px`);
-        });
-    };
-
-    syncTrustOffset();
-    window.addEventListener('resize', syncTrustOffset);
-
-    if (typeof ResizeObserver !== 'undefined') {
-        const resizeObserver = new ResizeObserver(syncTrustOffset);
-        resizeObserver.observe(trustBar);
-    }
-}
-
 function initPricingToggle() {
     const pricingSection = document.querySelector('.section-pricing');
     const proCard = pricingSection?.querySelector('.pricing-card.pro');
@@ -211,27 +184,13 @@ function initPricingToggle() {
 }
 
 function initFeatureDetail() {
-    const detail = document.getElementById('feature-detail');
     const cards = Array.from(document.querySelectorAll('.feature-card[data-feature]'));
-    if (!detail || cards.length === 0) return;
-
-    const detailTitle = detail.querySelector('.feature-detail-title');
-    const detailText = detail.querySelector('.feature-detail-text');
-    const detailList = detail.querySelector('.feature-detail-list');
-    const detailStep = detail.querySelector('.feature-detail-step');
-    const detailRail = detail.querySelector('.feature-detail-rail');
-    const desktopQuery = window.matchMedia('(min-width: 901px)');
-    let activeKey = null;
-    let observer = null;
-    let animTimer = null;
-    const SWAP_DELAY = 140;
-    const HYSTERESIS_PX = 28;
-    const ACTIVATION_RATIO = 0.45;
+    if (cards.length === 0) return;
 
     const defaultDetailMap = {
         snapshot: {
             icon: 'fa-camera',
-            title: 'Net worth snapshots',
+            title: 'Monthly snapshots',
             text: 'Save snapshots whenever you want and review how your net worth evolves over time without exporting data or opening spreadsheets.',
             bullets: [
                 'Save an updated total in a few seconds.',
@@ -251,7 +210,7 @@ function initFeatureDetail() {
         },
         dashboard: {
             icon: 'fa-chart-line',
-            title: 'Net worth dashboard',
+            title: 'Custom dashboard',
             text: 'The dashboard shows what you own and where it sits in one clear glance.',
             bullets: [
                 'Total net worth is always visible.',
@@ -280,188 +239,81 @@ function initFeatureDetail() {
             ]
         }
     };
-    const detailMap = window.BalanceI18n?.getFeatureDetailMap?.() || defaultDetailMap;
+    const getDetailMap = () => window.BalanceI18n?.getFeatureDetailMap?.() || defaultDetailMap;
+    const mobileQuery = window.matchMedia('(max-width: 900px)');
 
-    const steps = cards.map((card, index) => ({
-        key: card.dataset.feature,
-        index
-    }));
-    const stepMap = new Map(steps.map(step => [step.key, step.index]));
-    const totalSteps = steps.length;
-    const railDots = [];
+    const syncCardDetails = () => {
+        const detailMap = getDetailMap();
 
-    if (detailRail) {
-        detailRail.innerHTML = '';
-        steps.forEach((step, index) => {
-            const dot = document.createElement('span');
-            dot.className = 'feature-detail-dot';
-            dot.dataset.index = index;
-            detailRail.appendChild(dot);
-            railDots.push(dot);
-        });
-    }
+        cards.forEach((card, index) => {
+            const expand = card.querySelector('.feature-expand');
+            const text = card.querySelector('.feature-expand-text');
+            const list = card.querySelector('.feature-expand-list');
+            const info = detailMap[card.dataset.feature];
+            if (!expand || !text || !list || !info) return;
 
-    const setActiveCard = (card, animate = true) => {
-        if (!desktopQuery.matches) return;
-        const key = card.dataset.feature;
-        const info = detailMap[key];
-        if (!info) return;
-        if (key === activeKey) return;
-        activeKey = key;
+            const expandId = expand.id || `feature-expand-${index + 1}`;
+            expand.id = expandId;
+            card.setAttribute('aria-controls', expandId);
 
-        cards.forEach(item => {
-            const isActive = item === card;
-            item.classList.toggle('is-active', isActive);
-            item.setAttribute('aria-current', isActive ? 'true' : 'false');
-        });
+            text.textContent = info.text;
+            list.innerHTML = '';
 
-        const updateContent = () => {
-            detail.dataset.feature = key;
-            if (detailTitle) detailTitle.textContent = info.title;
-            if (detailText) detailText.textContent = info.text;
-
-            if (detailList) {
-                detailList.innerHTML = '';
-                info.bullets.forEach((bullet, index) => {
-                    const li = document.createElement('li');
-                    li.textContent = bullet;
-                    li.style.setProperty('--i', index);
-                    detailList.appendChild(li);
-                });
-            }
-
-            const stepIndex = (stepMap.get(key) ?? 0) + 1;
-            if (detailStep) {
-                const current = String(stepIndex).padStart(2, '0');
-                const total = String(totalSteps).padStart(2, '0');
-                detailStep.textContent = `${current} / ${total}`;
-            }
-
-            if (railDots.length > 0) {
-                railDots.forEach((dot, index) => {
-                    dot.classList.toggle('is-active', index === stepIndex - 1);
-                });
-            }
-        };
-
-        if (!animate) {
-            updateContent();
-            detail.classList.remove('is-animating');
-            return;
-        }
-
-        detail.classList.add('is-animating');
-        if (animTimer) window.clearTimeout(animTimer);
-
-        animTimer = window.setTimeout(() => {
-            updateContent();
-            detail.classList.remove('is-animating');
-        }, SWAP_DELAY);
-    };
-
-    const buildCardBacks = () => {
-        cards.forEach(card => {
-            const back = card.querySelector('.feature-back');
-            const key = card.dataset.feature;
-            const info = detailMap[key];
-            if (!back || !info) return;
-
-            back.innerHTML = `
-                <h3 class="feature-detail-title">${info.title}</h3>
-                <p class="feature-detail-text">${info.text}</p>
-                <div class="feature-detail-divider"></div>
-                <ul class="feature-detail-list">
-                    ${info.bullets.map((bullet, index) => `<li style="--i:${index}">${bullet}</li>`).join('')}
-                </ul>
-            `;
-        });
-    };
-
-    const scrollCardToActivation = (card) => {
-        const activationY = window.innerHeight * ACTIVATION_RATIO;
-        const rect = card.getBoundingClientRect();
-        const cardCenter = rect.top + (rect.height / 2);
-        const targetScroll = window.scrollY + (cardCenter - activationY);
-        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-    };
-
-    const setupCardInteraction = () => {
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                if (desktopQuery.matches) {
-                    setActiveCard(card);
-                    scrollCardToActivation(card);
-                    return;
-                }
-                card.classList.toggle('is-flipped');
+            info.bullets.forEach((bullet, bulletIndex) => {
+                const item = document.createElement('li');
+                item.textContent = bullet;
+                item.style.setProperty('--i', bulletIndex);
+                list.appendChild(item);
             });
         });
     };
 
-    const setupScrollSync = () => {
-        if (!desktopQuery.matches) return;
-        if (observer) observer.disconnect();
+    const setActiveCard = (nextCard, { scroll = false } = {}) => {
+        cards.forEach(card => {
+            const isActive = nextCard ? card === nextCard : false;
+            const expand = card.querySelector('.feature-expand');
 
-        observer = new IntersectionObserver((entries) => {
-            const intersecting = entries.filter(entry => entry.isIntersecting);
-            if (intersecting.length === 0) return;
+            card.classList.toggle('is-active', isActive);
+            card.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            card.setAttribute('aria-current', isActive ? 'true' : 'false');
 
-            const activationY = window.innerHeight * ACTIVATION_RATIO;
-            const getCenterY = (card) => {
-                const rect = card.getBoundingClientRect();
-                return rect.top + (rect.height / 2);
-            };
-            const getDistance = (card) => Math.abs(getCenterY(card) - activationY);
-
-            const candidate = intersecting
-                .map(entry => entry.target)
-                .sort((a, b) => getDistance(a) - getDistance(b))[0];
-
-            const currentCard = cards.find(card => card.dataset.feature === activeKey);
-            if (!currentCard) {
-                setActiveCard(candidate);
-                return;
+            if (expand) {
+                expand.setAttribute('aria-hidden', isActive ? 'false' : 'true');
             }
-
-            if (candidate === currentCard) return;
-
-            const candidateDist = getDistance(candidate);
-            const currentDist = getDistance(currentCard);
-            const currentRect = currentCard.getBoundingClientRect();
-            const currentVisible = currentRect.bottom > 0 && currentRect.top < window.innerHeight;
-
-            if (!currentVisible || candidateDist + HYSTERESIS_PX < currentDist) {
-                setActiveCard(candidate);
-            }
-        }, {
-            root: null,
-            rootMargin: '-35% 0px -55% 0px',
-            threshold: 0
         });
 
-        cards.forEach(card => observer.observe(card));
-    };
-
-    const teardownScrollSync = () => {
-        if (observer) {
-            observer.disconnect();
-            observer = null;
+        if (scroll) {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            nextCard.scrollIntoView({
+                block: 'nearest',
+                behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
         }
     };
+
+    const activateCard = (card) => {
+        if (card.classList.contains('is-active')) {
+            setActiveCard(null);
+            return;
+        }
+        setActiveCard(card, { scroll: mobileQuery.matches });
+    };
+
+    syncCardDetails();
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => activateCard(card));
+        card.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            activateCard(card);
+        });
+    });
 
     const initialCard = cards.find(card => card.classList.contains('is-active')) || cards[0];
-    if (initialCard) setActiveCard(initialCard, false);
-
-    buildCardBacks();
-    setupCardInteraction();
-    setupScrollSync();
-    desktopQuery.addEventListener('change', () => {
-        if (desktopQuery.matches) {
-            setupScrollSync();
-        } else {
-            teardownScrollSync();
-        }
-    });
+    if (initialCard) {
+        setActiveCard(initialCard);
+    }
 }
 
 function initContactForm() {

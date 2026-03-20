@@ -72,7 +72,7 @@
                 Balance
             </a>
             <div class="nav-links">
-                <a href="#overview">Panoramica</a>
+                <a href="#hero">Panoramica</a>
                 <a href="#pricing">Piani</a>
                 <a href="#features">Funzionalità</a>
                 <a href="roadmap.html">Roadmap</a>
@@ -95,7 +95,7 @@
                 </div>
                 <h1 class="hero-title" id="hero-title">Control your finances in one place</h1>
                 <p class="hero-subtitle">Track your net worth, investments, and cash with a private, offline-first personal finance app.</p>
-                <p class="hero-value-prop">Balance helps you track bank accounts, investments, crypto and assets in one simple dashboard. Everything stays on your device, with no bank connections and no data sharing.</p>
+                <p class="hero-value-prop">Everything stays on your device, with no bank connections and no data sharing.</p>
 
                 <div class="hero-buttons">
                     <a href="https://apps.apple.com/it/app/balance-finanza-personale/id6758206139" class="btn btn-primary" target="_blank" rel="noreferrer"><i class="fa-brands fa-apple"></i> Scarica su App Store</a>
@@ -153,7 +153,7 @@
 
     <div class="sticky-overview">
         <!-- Trust Bar -->
-        <section id="overview" class="trust-bar scene">
+        <section class="trust-bar scene">
             <div class="container">
                 <div class="trust-grid reveal">
                     <div class="trust-item">
@@ -163,7 +163,7 @@
                                 <i class="fa-solid fa-ban fa-stack-2x trust-ban-icon"></i>
                             </span>
                         </span>
-                        <span class="trust-label trust-label-stacked">100%<br>offline</span>
+                        <span class="trust-label">100% offline</span>
                         <span class="trust-sub">Funziona senza internet</span>
                     </div>
                     <div class="trust-divider"></div>
@@ -189,7 +189,7 @@
         </section>
 
         <!-- Context / Problem -->
-        <section class="section-split scene" aria-labelledby="context-title">
+        <section id="overview" class="section-split scene" aria-labelledby="context-title">
             <div class="container split-container split-reverse">
                 <div class="split-content">
 
@@ -288,104 +288,33 @@
         </section>
     </div>
 
-    <!-- Features Section -->
-    <section id="features" class="section-grid scene" aria-labelledby="features-title">
-        <div class="container">
-            <h2 class="section-title center-text reveal" id="features-title">Features</h2>
-            <div class="features-layout">
-                <div class="features-grid">
-                <div class="glass-card feature-card reveal is-active" data-feature="snapshot">
-                    <div class="feature-card-inner">
-                        <div class="feature-face feature-front">
-                            <div class="icon-box"><i class="fa-solid fa-camera"></i></div>
-                            <h3>Net worth snapshots</h3>
-                            <p>Save your total net worth and compare it over time in a few taps.</p>
-                        </div>
-                        <div class="feature-face feature-back"></div>
-                    </div>
-                </div>
-
-                <div class="glass-card feature-card reveal delayed-1" data-feature="wallet">
-                    <div class="feature-card-inner">
-                        <div class="feature-face feature-front">
-                            <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
-                            <h3>Separate wallets</h3>
-                            <p>Separate bank accounts, brokers, cash, crypto, and other assets into clean wallets.</p>
-                        </div>
-                        <div class="feature-face feature-back"></div>
-                    </div>
-                </div>
-
-                <div class="glass-card feature-card reveal delayed-2" data-feature="dashboard">
-                    <div class="feature-card-inner">
-                        <div class="feature-face feature-front">
-                            <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
-                            <h3>Net worth dashboard</h3>
-                            <p>Check net worth, cash, and investments in one simple overview.</p>
-                        </div>
-                        <div class="feature-face feature-back"></div>
-                    </div>
-                </div>
-
-                <div class="glass-card feature-card reveal" data-feature="privacy">
-                    <div class="feature-card-inner">
-                        <div class="feature-face feature-front">
-                            <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-                            <h3>Real privacy</h3>
-                            <p>Local data, no servers, and no account access. You stay in control.</p>
-                        </div>
-                        <div class="feature-face feature-back"></div>
-                    </div>
-                </div>
-
-                <div class="glass-card feature-card reveal delayed-1" data-feature="speed">
-                    <div class="feature-card-inner">
-                        <div class="feature-face feature-front">
-                            <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
-                            <h3>Fast updates</h3>
-                            <p>Update balances and assets fast, with no slow flows or unnecessary steps.</p>
-                        </div>
-                        <div class="feature-face feature-back"></div>
-                    </div>
-                </div>
-                </div>
-
-                <aside class="glass-card feature-detail" id="feature-detail" data-feature="snapshot" aria-live="polite">
-                    <div class="feature-detail-inner">
-                        <p class="feature-detail-eyebrow">Detail</p>
-                        <div class="feature-detail-content">
-                            <h3 class="feature-detail-title">Net worth snapshots</h3>
-                            <div class="feature-detail-meta">
-                                <span class="feature-detail-step">01 / 05</span>
-                                <div class="feature-detail-rail" aria-hidden="true"></div>
-                            </div>
-                            <div class="feature-detail-divider"></div>
-                            <p class="feature-detail-text">Save snapshots whenever you want and review how your net worth evolves over time without exporting data or opening spreadsheets.</p>
-                            <ul class="feature-detail-list">
-                                <li style="--i: 0;">Save an updated total in a few seconds.</li>
-                                <li style="--i: 1;">Compare different dates and quickly see what changed.</li>
-                                <li style="--i: 2;">Track net worth, investments, and cash with a clear timeline.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </section>
-
     <!-- Free vs Pro -->
     <section id="pricing" class="section-pricing scene" data-billing="annual">
         <div class="container reveal">
             <div class="pricing-header center-text">
                 <p class="pricing-kicker">Balance Pro</p>
                 <h2 class="section-title center-text">Piani disponibili</h2>
-                <p class="pricing-intro">Balance è gratis per iniziare: fino a 3 wallet, dashboard completa e snapshot essenziali. Quando vuoi sbloccare tutto, passi a Balance Pro.</p>
+                <p class="pricing-intro">Balance è gratis per iniziare: fino a 3 wallet, snapshot essenziali e storico completo. Quando vuoi sbloccare tutto, passi a Balance Pro.</p>
                 <div class="pricing-switch" role="group" aria-label="Seleziona la fatturazione di Balance Pro">
                     <button type="button" class="pricing-switch-btn is-active" data-billing="annual" aria-pressed="true">Annuale</button>
                     <button type="button" class="pricing-switch-btn" data-billing="monthly" aria-pressed="false">Mensile</button>
                 </div>
             </div>
-            <div class="pricing-grid pricing-grid-single">
+            <div class="pricing-grid pricing-grid-upgraded">
+                <div class="glass-card pricing-card free">
+                    <div class="pricing-plan-meta">
+                        <div class="badge pricing-free-badge">Per iniziare</div>
+                    </div>
+                    <h3>Balance</h3>
+                    <p class="pricing-description">La versione gratuita per tenere d'occhio i wallet essenziali.</p>
+                    <div class="pricing-price pricing-free-price">0 €</div>
+                    <ul class="pricing-list">
+                        <li><i class="fa-solid fa-wallet"></i><span>Fino a 3 wallet</span></li>
+                        <li><i class="fa-solid fa-camera"></i><span>Snapshot essenziali</span></li>
+                        <li><i class="fa-solid fa-clock-rotate-left"></i><span>Storico completo</span></li>
+                    </ul>
+                    <a href="#download" class="btn btn-secondary full-width">Scarica gratis</a>
+                </div>
                 <div class="glass-card pricing-card pro">
                     <div class="pricing-plan-meta">
                         <div class="badge pricing-launch-badge" data-annual="Offerta lancio" data-monthly="Annulla quando vuoi">Offerta lancio</div>
@@ -409,6 +338,101 @@
                     </ul>
                     <a href="#download" class="btn btn-primary full-width"><i class="fa-brands fa-apple"></i> Scarica e attiva Pro</a>
                     <p class="pricing-microcopy">Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section-grid scene" aria-labelledby="features-title">
+        <div class="container">
+            <h2 class="section-title center-text reveal" id="features-title">Features</h2>
+            <div class="features-layout">
+                <div class="features-grid">
+                <div class="glass-card feature-card reveal is-active" data-feature="snapshot" role="button" tabindex="0" aria-expanded="true">
+                    <div class="feature-card-inner">
+                        <div class="feature-face feature-front">
+                            <div class="icon-box"><i class="fa-solid fa-camera"></i></div>
+                            <h3>Monthly snapshots</h3>
+                            <p>Save your total net worth and compare it over time in a few taps.</p>
+                        </div>
+                        <div class="feature-expand" aria-hidden="false">
+                            <div class="feature-expand-inner">
+                                <div class="feature-expand-divider"></div>
+                                <p class="feature-expand-text"></p>
+                                <ul class="feature-expand-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card feature-card reveal delayed-1" data-feature="wallet" role="button" tabindex="0" aria-expanded="false">
+                    <div class="feature-card-inner">
+                        <div class="feature-face feature-front">
+                            <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
+                            <h3>Separate wallets</h3>
+                            <p>Separate bank accounts, brokers, cash, crypto, and other assets into clean wallets.</p>
+                        </div>
+                        <div class="feature-expand" aria-hidden="true">
+                            <div class="feature-expand-inner">
+                                <div class="feature-expand-divider"></div>
+                                <p class="feature-expand-text"></p>
+                                <ul class="feature-expand-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card feature-card reveal delayed-2" data-feature="dashboard" role="button" tabindex="0" aria-expanded="false">
+                    <div class="feature-card-inner">
+                        <div class="feature-face feature-front">
+                            <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                            <h3>Custom dashboard</h3>
+                            <p>Check net worth, cash, and investments in one simple overview.</p>
+                        </div>
+                        <div class="feature-expand" aria-hidden="true">
+                            <div class="feature-expand-inner">
+                                <div class="feature-expand-divider"></div>
+                                <p class="feature-expand-text"></p>
+                                <ul class="feature-expand-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card feature-card reveal" data-feature="privacy" role="button" tabindex="0" aria-expanded="false">
+                    <div class="feature-card-inner">
+                        <div class="feature-face feature-front">
+                            <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                            <h3>Real privacy</h3>
+                            <p>Local data, no servers, and no account access. You stay in control.</p>
+                        </div>
+                        <div class="feature-expand" aria-hidden="true">
+                            <div class="feature-expand-inner">
+                                <div class="feature-expand-divider"></div>
+                                <p class="feature-expand-text"></p>
+                                <ul class="feature-expand-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card feature-card reveal delayed-1" data-feature="speed" role="button" tabindex="0" aria-expanded="false">
+                    <div class="feature-card-inner">
+                        <div class="feature-face feature-front">
+                            <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                            <h3>Fast updates</h3>
+                            <p>Update balances and assets fast, with no slow flows or unnecessary steps.</p>
+                        </div>
+                        <div class="feature-expand" aria-hidden="true">
+                            <div class="feature-expand-inner">
+                                <div class="feature-expand-divider"></div>
+                                <p class="feature-expand-text"></p>
+                                <ul class="feature-expand-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -483,7 +507,6 @@
     <!-- Footer -->
     <footer class="scene footer-scene">
         <div class="container footer-container">
-            <p class="copyright">© Balance App. Tutti i diritti riservati.</p>
             <div class="footer-language">
                 <label for="footer-language" class="footer-language-label">Lingua</label>
                 <select id="footer-language" class="footer-language-select" aria-label="Lingua">
@@ -492,6 +515,7 @@
                     <option value="pt">Português</option>
                 </select>
             </div>
+            <p class="copyright">© Balance Up. Tutti i diritti riservati.</p>
             <div class="footer-links">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Termini e Condizioni</a>
