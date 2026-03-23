@@ -2819,15 +2819,15 @@ footer::before {
 
     .feature-card {
         transform: none;
-        flex: 0 0 calc((100% - 32px) / 2.2);
-        max-width: calc((100% - 32px) / 2.2);
+        flex: 0 0 calc(100% - 56px);
+        max-width: calc(100% - 56px);
         min-width: 0;
-        min-height: clamp(280px, 42vh, 340px);
+        min-height: auto;
         scroll-snap-align: center;
         scroll-snap-stop: always;
         cursor: grab;
-        perspective: 1400px;
-        transition: flex-basis 320ms ease-out, max-width 320ms ease-out, min-height 320ms ease-out, transform 260ms ease-out, box-shadow 260ms ease-out, border-color 220ms ease-out;
+        perspective: none;
+        transition: transform 260ms ease-out, box-shadow 260ms ease-out, border-color 220ms ease-out;
     }
 
     .feature-card.is-active {
@@ -2839,75 +2839,45 @@ footer::before {
         box-shadow: var(--shadow-strong), 0 0 70px rgba(68, 210, 255, 0.2);
     }
 
-    .feature-card.is-flipped {
-        flex-basis: calc(100% - 24px);
-        max-width: calc(100% - 24px);
-        min-height: clamp(460px, 70vh, 620px);
-        z-index: 3;
-    }
-
     .feature-card-inner {
-        position: relative;
-        min-height: inherit;
-        height: 100%;
-        transform-style: preserve-3d;
-        transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .feature-card.is-flipped .feature-card-inner {
-        transform: rotateY(180deg);
+        min-height: 100%;
     }
 
     .feature-front {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 14px;
-        padding: 24px 18px;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
+        position: static;
+        padding: 22px 20px 0;
+        align-content: start;
     }
 
     .feature-front .icon-box {
-        width: 60px;
-        height: 60px;
-        font-size: 1.2rem;
+        width: 56px;
+        height: 56px;
+        font-size: 1.15rem;
     }
 
     .feature-front h3 {
-        width: 100%;
-        font-size: 1.32rem;
-        line-height: 1.1;
-        text-wrap: balance;
+        font-size: 1.25rem;
+        line-height: 1.2;
     }
 
     .feature-front p {
-        width: 100%;
         font-size: 1rem;
-        line-height: 1.45;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        line-height: 1.4;
     }
 
     .feature-expand {
-        position: absolute;
-        inset: 0;
+        position: static;
         display: block;
-        transform: rotateY(180deg);
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
+        transform: none;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
     }
 
     .feature-expand-inner,
     .feature-card.is-active .feature-expand-inner {
-        height: 100%;
-        overflow-y: auto;
-        padding: 22px 20px;
+        height: auto;
+        overflow: visible;
+        padding: 0 20px 22px;
         opacity: 1;
         transform: translateY(0);
     }
@@ -2922,10 +2892,6 @@ footer::before {
         opacity: 1;
         transform: translateY(0);
         font-size: 0.96rem;
-    }
-
-    .feature-card:not(.is-flipped) .feature-expand {
-        pointer-events: none;
     }
 
     .feature-carousel-shell.is-dragging .feature-card {
@@ -3118,15 +3084,8 @@ footer::before {
     }
 
     .feature-card {
-        flex-basis: calc((100% - 28px) / 2.2);
-        max-width: calc((100% - 28px) / 2.2);
-        min-height: clamp(252px, 40vh, 320px);
-    }
-
-    .feature-card.is-flipped {
-        flex-basis: calc(100% - 20px);
-        max-width: calc(100% - 20px);
-        min-height: clamp(420px, 68vh, 560px);
+        flex-basis: calc(100% - 40px);
+        max-width: calc(100% - 40px);
     }
 
     .feature-carousel-step {
@@ -3135,8 +3094,7 @@ footer::before {
     }
 
     .feature-front {
-        gap: 12px;
-        padding: 20px 15px;
+        padding: 20px 16px 0;
     }
 
     .feature-front .icon-box {
@@ -3156,7 +3114,7 @@ footer::before {
 
     .feature-expand-inner,
     .feature-card.is-active .feature-expand-inner {
-        padding: 18px 16px;
+        padding: 0 16px 20px;
     }
 
     .trust-bar {

@@ -223,7 +223,7 @@
                 },
                 download: {
                     badge: 'Offerta lancio',
-                    title: 'Download Balance',
+                    title: 'Download',
                     copy: 'Scarica e attiva Balance Pro con abbonamento mensile o annuale: il primo mese è gratuito.',
                     points: ['Privacy-first', 'Offline', 'Open source'],
                     note: 'Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.'
@@ -808,7 +808,7 @@
                 },
                 download: {
                     badge: 'Launch offer',
-                    title: 'Download Balance',
+                    title: 'Download',
                     copy: 'Download Balance and unlock Pro with a monthly or yearly subscription: the first month is free.',
                     points: ['Privacy-first', 'Offline', 'Open source'],
                     note: 'At the end of the free trial, unless cancelled, renewal follows the selected plan.'
@@ -1390,7 +1390,7 @@
                 },
                 download: {
                     badge: 'Oferta de lançamento',
-                    title: 'Download Balance',
+                    title: 'Download',
                     copy: 'Faça download do Balance e ative o Pro com uma subscrição mensal ou anual: o primeiro mês é grátis.',
                     points: ['Privacy-first', 'Offline', 'Open source'],
                     note: 'No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado.'

@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Navbar Glass Effect on Scroll (Enhancement)
     const header = document.querySelector('header');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 20) {
             header.style.background = 'rgba(10, 12, 17, 0.9)';
@@ -35,6 +36,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
 
     if (menuBtn && navLinks) {
+        const scrollToMenuTarget = (hash) => {
+            const section = document.querySelector(hash);
+            if (!section) return;
+
+            const isMobile = window.matchMedia('(max-width: 900px)').matches;
+            const mobileTargetMap = {
+                '#hero': '.hero-content',
+                '#overview': '.split-content',
+                '#pricing': '.pricing-header',
+                '#features': '.section-title',
+                '#download': '.footer-cta-main'
+            };
+
+            const contentTarget = isMobile
+                ? section.querySelector(mobileTargetMap[hash] || '.section-title, .split-content')
+                : section;
+            const target = contentTarget || section;
+            const offset = (header?.offsetHeight || 0) + (isMobile ? 10 : 24);
+            const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset);
+
+            window.scrollTo({
+                top,
+                behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
+            });
+
+            if (window.history?.replaceState) {
+                window.history.replaceState(null, '', hash);
+            } else {
+                window.location.hash = hash;
+            }
+        };
+
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             const icon = menuBtn.querySelector('i');
@@ -47,9 +80,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Close menu on link click
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (event) => {
+                const href = link.getAttribute('href') || '';
                 navLinks.classList.remove('active');
                 menuBtn.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+
+                if (!href.startsWith('#')) return;
+
+                event.preventDefault();
+                window.requestAnimationFrame(() => {
+                    scrollToMenuTarget(href);
+                });
             });
         });
     }
@@ -261,7 +302,6 @@ function initFeatureDetail() {
     let mobileResumeTimer = null;
     let mobileScrollTimer = null;
     let mobileRaf = null;
-    let mobilePendingFlipIndex = null;
     let mobileActiveIndex = 0;
     let mobileFlippedIndex = null;
     const SWAP_DELAY = 140;
@@ -356,14 +396,21 @@ function initFeatureDetail() {
     };
 
     const setMobileFlippedIndex = (nextIndex = null) => {
-        mobileFlippedIndex = nextIndex;
+        const isMobile = !desktopQuery.matches;
+        mobileFlippedIndex = isMobile ? nextIndex : null;
 
         cards.forEach((card, index) => {
-            const isFlipped = index === nextIndex;
+            const isFlipped = isMobile && index === nextIndex;
             const expand = card.querySelector('.feature-expand');
             card.classList.toggle('is-flipped', isFlipped);
-            card.setAttribute('aria-expanded', isFlipped ? 'true' : 'false');
-            if (expand) {
+            if (isMobile) {
+                card.removeAttribute('aria-expanded');
+            } else {
+                card.setAttribute('aria-expanded', isFlipped ? 'true' : 'false');
+            }
+            if (expand && isMobile) {
+                expand.setAttribute('aria-hidden', 'false');
+            } else if (expand) {
                 expand.setAttribute('aria-hidden', isFlipped ? 'false' : 'true');
             }
         });
@@ -459,10 +506,10 @@ function initFeatureDetail() {
             card.tabIndex = 0;
             card.removeAttribute('aria-roledescription');
             card.setAttribute('aria-current', isActive ? 'true' : 'false');
-            card.setAttribute('aria-expanded', mobileFlippedIndex === index ? 'true' : 'false');
+            card.removeAttribute('aria-expanded');
 
             if (expand) {
-                expand.setAttribute('aria-hidden', mobileFlippedIndex === index ? 'false' : 'true');
+                expand.setAttribute('aria-hidden', 'false');
             }
         });
     };
@@ -556,26 +603,13 @@ function initFeatureDetail() {
 
         const index = stepMap.get(card.dataset.feature) ?? 0;
         stopMobileAutoplay();
-        mobilePendingFlipIndex = null;
+        setMobileFlippedIndex(null);
 
         if (index !== mobileActiveIndex) {
-            mobilePendingFlipIndex = index;
-            setMobileFlippedIndex(null);
             scrollToMobileIndex(index, prefersReducedMotion.matches ? 'auto' : 'smooth');
-            if (prefersReducedMotion.matches) {
-                setMobileFlippedIndex(index);
-                mobilePendingFlipIndex = null;
-            }
-            return;
-        }
-
-        if (mobileFlippedIndex === index) {
-            setMobileFlippedIndex(null);
+        } else {
             scheduleMobileAutoplay();
-            return;
         }
-
-        setMobileFlippedIndex(index);
     };
 
     const setupScrollSync = () => {
@@ -648,7 +682,6 @@ function initFeatureDetail() {
 
         teardownScrollSync();
         const preferredIndex = stepMap.get(preferredCard.dataset.feature) ?? 0;
-        mobilePendingFlipIndex = null;
         setMobileFlippedIndex(null);
         setMobileActiveIndex(preferredIndex);
         window.requestAnimationFrame(() => {
@@ -671,13 +704,6 @@ function initFeatureDetail() {
     if (carouselShell) {
         carouselShell.addEventListener('scroll', () => {
             if (desktopQuery.matches) return;
-            const shouldCloseForScroll =
-                carouselShell.classList.contains('is-dragging') ||
-                mobilePendingFlipIndex !== null;
-
-            if (mobileFlippedIndex !== null && shouldCloseForScroll) {
-                setMobileFlippedIndex(null);
-            }
 
             if (mobileAutoTimer) {
                 window.clearTimeout(mobileAutoTimer);
@@ -699,16 +725,7 @@ function initFeatureDetail() {
             mobileScrollTimer = window.setTimeout(() => {
                 const nearestIndex = getNearestMobileIndex();
                 setMobileActiveIndex(nearestIndex);
-
-                if (mobilePendingFlipIndex !== null && mobilePendingFlipIndex === nearestIndex) {
-                    setMobileFlippedIndex(nearestIndex);
-                    mobilePendingFlipIndex = null;
-                    return;
-                }
-
-                if (mobileFlippedIndex === null && mobilePendingFlipIndex === null) {
-                    scheduleMobileAutoplay();
-                }
+                scheduleMobileAutoplay();
             }, 140);
         }, { passive: true });
 
@@ -717,14 +734,13 @@ function initFeatureDetail() {
                 if (desktopQuery.matches) return;
                 carouselShell.classList.add('is-dragging');
                 stopMobileAutoplay();
-                mobilePendingFlipIndex = null;
             }, { passive: true });
         });
 
         ['pointerup', 'pointercancel', 'touchend'].forEach((eventName) => {
             carouselShell.addEventListener(eventName, () => {
                 carouselShell.classList.remove('is-dragging');
-                if (!desktopQuery.matches && mobileFlippedIndex === null && mobilePendingFlipIndex === null) {
+                if (!desktopQuery.matches) {
                     scheduleMobileAutoplay();
                 }
             }, { passive: true });
@@ -744,7 +760,6 @@ function initFeatureDetail() {
                     return;
                 }
 
-                mobilePendingFlipIndex = null;
                 setMobileFlippedIndex(null);
                 scrollToMobileIndex(preferredIndex, 'auto');
             }, 0);
