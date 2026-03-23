@@ -1634,10 +1634,27 @@ section {
     line-height: 1.7;
 }
 
+.feature-expand-text.is-typing::after {
+    content: "";
+    display: inline-block;
+    width: 0.08em;
+    height: 1.05em;
+    margin-left: 0.14rem;
+    vertical-align: -0.12em;
+    background: rgba(214, 236, 255, 0.9);
+    box-shadow: 0 0 10px rgba(68, 210, 255, 0.28);
+    animation: feature-type-caret 0.9s steps(1) infinite;
+}
+
 .feature-expand-list {
     list-style: none;
     display: grid;
     gap: 10px;
+}
+
+.feature-card.is-active .feature-expand-list.is-awaiting-reveal li {
+    opacity: 0;
+    transform: translateY(8px);
 }
 
 .feature-expand-list li {
@@ -1943,6 +1960,17 @@ section {
     }
 }
 
+@keyframes feature-type-caret {
+    0%,
+    49% {
+        opacity: 1;
+    }
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
 @keyframes feature-pop-desktop {
     0% {
         transform: scale(0.98);
@@ -2124,6 +2152,10 @@ section {
     box-shadow: 0 16px 28px rgba(4, 8, 18, 0.35);
 }
 
+.pricing-card.pro .pricing-switch {
+    margin: 4px 0 20px;
+}
+
 .pricing-switch-btn {
     border: 0;
     background: transparent;
@@ -2146,33 +2178,21 @@ section {
     box-shadow: 0 14px 24px rgba(139, 92, 255, 0.24);
 }
 
-.pricing-plan-meta {
+.pricing-card-header {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 12px;
     margin-bottom: 12px;
     flex-wrap: wrap;
 }
 
-.pricing-save-pill,
-.pricing-free-pill,
-.pricing-value-chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    font-weight: 700;
-    letter-spacing: 0.01em;
+.pricing-card-header h3 {
+    margin: 0;
 }
 
-.pricing-save-pill {
-    padding: 7px 12px;
-    margin-left: auto;
-    background: rgba(89, 243, 162, 0.12);
-    border: 1px solid rgba(89, 243, 162, 0.24);
-    color: var(--success-color);
-    box-shadow: 0 0 18px rgba(89, 243, 162, 0.1);
+.pricing-card-header .badge {
+    flex-shrink: 0;
 }
 
 .pricing-launch-badge.is-hidden {
@@ -2184,15 +2204,6 @@ section {
     border: 1px solid rgba(120, 200, 255, 0.2);
     color: rgba(235, 244, 255, 0.9);
     box-shadow: 0 0 18px rgba(68, 210, 255, 0.12);
-}
-
-.pricing-free-pill {
-    margin: 6px 0 24px;
-    align-self: flex-start;
-    padding: 11px 16px;
-    background: rgba(89, 243, 162, 0.14);
-    border: 1px solid rgba(89, 243, 162, 0.26);
-    color: #C8FFE5;
 }
 
 .pricing-highlight-panel {
@@ -2283,12 +2294,12 @@ section {
     font-size: 0.9rem;
     color: var(--text-secondary);
     font-weight: 400;
-    display: block;
-    margin-top: -8px;
+    display: inline;
+    margin-left: 0.35rem;
 }
 
 .section-pricing .price-suffix {
-    margin-top: 10px;
+    margin-left: 0.4rem;
     font-size: 1rem;
     color: rgba(215, 226, 246, 0.72);
 }
@@ -2322,13 +2333,6 @@ section {
 
 .section-pricing .pricing-list li span {
     flex: 1;
-}
-
-.pricing-value-chip {
-    padding: 10px 14px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    color: rgba(245, 248, 255, 0.92);
 }
 
 .section-pricing .pricing-card.pro .btn {
@@ -2677,10 +2681,6 @@ footer::before {
         align-items: flex-start;
     }
 
-    .pricing-value-chip {
-        width: 100%;
-    }
-
     .features-layout {
         grid-template-columns: 1fr;
     }
@@ -3011,6 +3011,10 @@ footer::before {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.faq-item:hover {
+    transform: none;
+}
+
 .faq-item[open] {
     border-color: rgba(139, 92, 255, 0.4);
     box-shadow: var(--shadow-soft), 0 0 50px rgba(139, 92, 255, 0.2);
@@ -3059,6 +3063,18 @@ footer::before {
     color: var(--text-secondary);
     line-height: 1.7;
     padding-top: 20px;
+}
+
+.faq-answer p.is-typing::after {
+    content: "";
+    display: inline-block;
+    width: 0.08em;
+    height: 1.05em;
+    margin-left: 0.14rem;
+    vertical-align: -0.12em;
+    background: rgba(214, 236, 255, 0.9);
+    box-shadow: 0 0 10px rgba(68, 210, 255, 0.28);
+    animation: feature-type-caret 0.9s steps(1) infinite;
 }
 
 /* Legal Pages */

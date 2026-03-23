@@ -46,9 +46,9 @@
                 },
                 hero: {
                     badge: 'Privacy-first · Offline · Open source',
-                    title: 'Controlla le tue finanze in un unico posto',
-                    subtitle: 'Monitora patrimonio, investimenti e liquidità con Balance.',
-                    description: 'Nessun collegamento bancario richiesto.',
+                    title: 'Prendi il controllo delle tue finanze',
+                    subtitle: 'Monitora patrimonio, investimenti e liquidità con un’app di finanza personale privata e offline-first.',
+                    description: 'Tutto resta sul tuo dispositivo, senza collegamenti bancari né condivisione dei dati.',
                     cta: 'Scarica su App Store'
                 },
                 trust: [
@@ -58,19 +58,19 @@
                     { label: 'iOS & Android', sub: 'Disponibile ovunque' }
                 ],
                 context: {
-                    title: 'Un’app di finanza personale per tutto il tuo patrimonio',
-                    text: 'Conti bancari, broker, crypto, liquidità e altri asset raramente stanno nello stesso posto. Balance ti aiuta a vedere tutto insieme senza sincronizzazioni bancarie né accessi di terze parti.',
-                    highlight: 'Usa Balance come tracker patrimonio, tracker investimenti e portfolio tracker privato, costruito sul modo in cui gestisci davvero il denaro.'
+                    title: 'Tutto il tuo patrimonio, in un solo posto',
+                    text: 'Conti bancari, broker, crypto, liquidità e altri asset raramente stanno nello stesso posto. Balance ti permette di vedere tutto insieme senza sincronizzazioni bancarie né accessi di terze parti.',
+                    highlight: 'Una vista semplice, privata e completa, costruita sul modo in cui gestisci davvero il denaro.'
                 },
                 clarity: {
-                    title: 'Vedi le tue finanze con chiarezza nel tempo',
-                    text: 'Balance è un’app di finanza personale offline-first pensata per aggiornamenti manuali rapidi, grafici semplici e una dashboard chiara.',
-                    highlight: 'Gli snapshot ti aiutano a seguire patrimonio, investimenti e asset nel tempo, così la tua app finance offline resta utile senza diventare un foglio di calcolo.'
+                    title: 'Una visione chiara delle tue finanze nel tempo',
+                    text: 'Balance è pensata per aggiornamenti manuali rapidi, grafici essenziali e una dashboard chiara che resta utile ogni giorno.',
+                    highlight: 'Gli snapshot ti aiutano a seguire l’evoluzione di patrimonio, investimenti e liquidità nel tempo, senza trasformare tutto in un foglio di calcolo.'
                 },
                 pricing: {
-                    kicker: 'Balance Pro',
+                    kicker: 'Balance è gratis',
                     title: 'Piani disponibili',
-                    intro: 'Balance è gratis per iniziare: fino a 3 wallet, snapshot essenziali e storico completo. Quando vuoi sbloccare tutto, passi a Balance Pro.',
+                    intro: 'Inizia gratis con 3 wallet per monitorare quelli essenziali. Passa a Pro per sbloccare wallet illimitati e funzionalità avanzate. Confronta i piani disponibili.',
                     toggle: {
                         ariaLabel: 'Seleziona la fatturazione di Balance Pro',
                         annual: 'Annuale',
@@ -80,7 +80,7 @@
                         badge: 'Per iniziare',
                         title: 'Balance',
                         description: "La versione gratuita per tenere d'occhio i wallet essenziali.",
-                        priceHtml: '0 €',
+                        priceHtml: 'Gratis',
                         list: [
                             'Fino a 3 wallet',
                             'Snapshot essenziali',
@@ -90,7 +90,7 @@
                     },
                     pro: {
                         badgeAnnual: 'Offerta lancio',
-                        badgeMonthly: 'Annulla quando vuoi',
+                        badgeMonthly: 'Offerta lancio',
                         emphasis: 'Miglior valore',
                         emphasisMonthly: 'Piano mensile',
                         description: 'Per chi vuole usare Balance come archivio finanziario personale, senza limiti.',
@@ -99,7 +99,7 @@
                                 caption: 'Offerta annuale di lancio',
                                 priceHtml: '19,99 €<span class="price-suffix">l\'anno</span>',
                                 chip: 'Risparmi 15,89 €',
-                                alt: "Equivale a 1,67 € al mese invece di 35,88 € l'anno",
+                                alt: "1,67 € al mese invece di 35,88 € l'anno",
                                 note: 'Primo mese di prova gratuito.'
                             },
                             monthly: {
@@ -245,6 +245,48 @@
                     microcopy: 'Alla fine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato direttamente in app.',
                     primaryCtaHtml: '<i class="fa-brands fa-apple"></i> App Store',
                     secondaryCta: 'Vedi i piani'
+                }
+            },
+
+            proWaitlist: {
+                meta: {
+                    title: 'Balance Pro Waitlist',
+                    description: 'Balance Pro sta arrivando. Scopri le nuove funzionalita che stanno per arrivare.'
+                },
+                hero: {
+                    title: 'Balance Pro sta arrivando',
+                    subtitle: 'La versione potenziata di Balance sara disponibile venerdi 20 marzo.'
+                },
+                countdown: {
+                    label: 'Cosa sblocchi con Balance Pro'
+                },
+                features: [
+                    {
+                        icon: 'fa-wallet',
+                        title: 'Wallet illimitati',
+                        text: 'Organizza tutte le tue risorse: conti bancari, investimenti, crypto, cash e altro.'
+                    },
+                    {
+                        icon: 'fa-chart-line',
+                        title: 'Snapshot avanzati',
+                        text: "Salva snapshot illimitati e analizza l'evoluzione del tuo patrimonio nel tempo."
+                    },
+                    {
+                        icon: 'fa-history',
+                        title: 'Storico completo',
+                        text: 'Accedi a tutto il tuo storico finanziario per confrontare e analizzare tendenze.'
+                    },
+                    {
+                        icon: 'fa-shield-halved',
+                        title: 'Privacy assoluta',
+                        text: 'Tutto rimane sul tuo dispositivo. Nessun server, nessuna condivisione dati.'
+                    }
+                ],
+                countdownLabels: {
+                    days: 'Giorni',
+                    hours: 'Ore',
+                    minutes: 'Minuti',
+                    seconds: 'Secondi'
                 }
             },
             roadmap: {
@@ -530,7 +572,7 @@
                     description: "Contatti Balance: scrivici per supporto o feedback sull’app privacy-first, offline e open source.",
                     ogTitle: 'Contatti. Balance'
                 },
-                title: 'Contattaci',
+                title: 'Contatti',
                 subtitle: 'Hai domande, feedback o una segnalazione da farci? Scrivici direttamente.',
                 form: {
                     honeypot: 'Non compilare se sei umano',
@@ -589,7 +631,7 @@
                 },
                 hero: {
                     badge: 'Privacy-first · Offline · Open source',
-                    title: 'Control your finances in one place',
+                    title: 'Take control of your finances',
                     subtitle: 'Track your net worth, investments, and cash with a private, offline-first personal finance app.',
                     description: 'Everything stays on your device, with no bank connections and no data sharing.',
                     cta: 'Download on the App Store'
@@ -611,9 +653,9 @@
                     highlight: 'Snapshots help you track changes in cash, investments, and assets over time, so your offline finance app stays useful without turning into a spreadsheet.'
                 },
                 pricing: {
-                    kicker: 'Balance Pro',
+                    kicker: 'Balance is free',
                     title: 'Available plans',
-                    intro: 'Balance is free to start with: up to 3 wallets, essential snapshots, and full history. When you want everything unlocked, you can upgrade to Balance Pro.',
+                    intro: 'Start free with 3 wallets to track your essentials. Upgrade to Pro to unlock unlimited wallets and advanced features. Compare available plans.',
                     toggle: {
                         ariaLabel: 'Choose Balance Pro billing',
                         annual: 'Yearly',
@@ -623,7 +665,7 @@
                         badge: 'To get started',
                         title: 'Balance',
                         description: 'The free version to keep an eye on your essential wallets.',
-                        priceHtml: '0 €',
+                        priceHtml: 'Free',
                         list: [
                             'Up to 3 wallets',
                             'Essential snapshots',
@@ -633,7 +675,7 @@
                     },
                     pro: {
                         badgeAnnual: 'Launch offer',
-                        badgeMonthly: 'Cancel anytime',
+                        badgeMonthly: 'Launch offer',
                         emphasis: 'Best value',
                         emphasisMonthly: 'Monthly plan',
                         description: 'For anyone who wants to use Balance as a personal financial archive, without limits.',
@@ -642,7 +684,7 @@
                                 caption: 'Launch yearly offer',
                                 priceHtml: '19.99 €<span class="price-suffix">/ year</span>',
                                 chip: 'Save 15.89 €',
-                                alt: 'Equivalent to 1.67 € / month instead of 35.88 € / year',
+                                alt: '1.67 € / month instead of 35.88 € / year',
                                 note: 'Free trial month.'
                             },
                             monthly: {
@@ -788,6 +830,47 @@
                     microcopy: 'At the end of the free trial, unless cancelled, renewal follows the selected plan directly in the app.',
                     primaryCtaHtml: '<i class="fa-brands fa-apple"></i> App Store',
                     secondaryCta: 'See plans'
+                }
+            },
+            proWaitlist: {
+                meta: {
+                    title: 'Balance Pro Waitlist',
+                    description: 'Balance Pro is coming. Discover the new features that are on the way.'
+                },
+                hero: {
+                    title: 'Balance Pro is coming',
+                    subtitle: 'The upgraded version of Balance will be available on Friday, March 20.'
+                },
+                countdown: {
+                    label: 'What you unlock with Balance Pro'
+                },
+                features: [
+                    {
+                        icon: 'fa-wallet',
+                        title: 'Unlimited wallets',
+                        text: 'Organize all your assets: bank accounts, investments, crypto, cash, and more.'
+                    },
+                    {
+                        icon: 'fa-chart-line',
+                        title: 'Advanced snapshots',
+                        text: 'Save unlimited snapshots and analyze how your net worth evolves over time.'
+                    },
+                    {
+                        icon: 'fa-history',
+                        title: 'Full history',
+                        text: 'Access your complete financial history to compare and analyze trends.'
+                    },
+                    {
+                        icon: 'fa-shield-halved',
+                        title: 'Absolute privacy',
+                        text: 'Everything stays on your device. No servers and no data sharing.'
+                    }
+                ],
+                countdownLabels: {
+                    days: 'Days',
+                    hours: 'Hours',
+                    minutes: 'Minutes',
+                    seconds: 'Seconds'
                 }
             },
             roadmap: {
@@ -1071,7 +1154,7 @@
                     description: 'Contact Balance: write to us for support or feedback about the privacy-first, offline and open source app.',
                     ogTitle: 'Contact. Balance'
                 },
-                title: 'Contact us',
+                title: 'Contact',
                 subtitle: 'Questions, feedback or something to report? Write to us directly.',
                 form: {
                     honeypot: 'Do not fill this field if you are human',
@@ -1130,7 +1213,7 @@
                 },
                 hero: {
                     badge: 'Privacy-first · Offline · Open source',
-                    title: 'Controle as suas finanças num só lugar',
+                    title: 'Assuma o controlo das suas finanças',
                     subtitle: 'Acompanhe património, investimentos e liquidez com uma app de finanças pessoais privada e offline-first.',
                     description: 'Balance ajuda-o a acompanhar contas, investimentos, cripto e ativos num dashboard simples. Tudo fica no seu dispositivo, sem ligações bancárias e sem partilha de dados.',
                     cta: 'Descarregar na App Store'
@@ -1152,9 +1235,9 @@
                     highlight: 'Os snapshots ajudam-no a acompanhar património, investimentos e ativos ao longo do tempo, para que a sua app financeira offline continue útil sem virar uma folha de cálculo.'
                 },
                 pricing: {
-                    kicker: 'Balance Pro',
+                    kicker: 'Balance é grátis',
                     title: 'Planos disponíveis',
-                    intro: 'O Balance é grátis para começar: até 3 wallets, snapshots essenciais e histórico completo. Quando quiser desbloquear tudo, pode ativar o Balance Pro.',
+                    intro: 'Comece grátis com 3 wallets para acompanhar as essenciais. Passe para o Pro para desbloquear wallets ilimitadas e funcionalidades avançadas. Compare os planos disponíveis.',
                     toggle: {
                         ariaLabel: 'Escolha a faturação do Balance Pro',
                         annual: 'Anual',
@@ -1164,7 +1247,7 @@
                         badge: 'Para começar',
                         title: 'Balance',
                         description: 'A versão gratuita para acompanhar as wallets essenciais.',
-                        priceHtml: '0 €',
+                        priceHtml: 'Grátis',
                         list: [
                             'Até 3 wallets',
                             'Snapshots essenciais',
@@ -1174,7 +1257,7 @@
                     },
                     pro: {
                         badgeAnnual: 'Oferta de lançamento',
-                        badgeMonthly: 'Cancela quando quiser',
+                        badgeMonthly: 'Oferta de lançamento',
                         emphasis: 'Melhor valor',
                         emphasisMonthly: 'Plano mensal',
                         description: 'Para quem quer usar o Balance como arquivo financeiro pessoal, sem limites.',
@@ -1183,7 +1266,7 @@
                                 caption: 'Oferta anual de lançamento',
                                 priceHtml: '19,99 €<span class="price-suffix">por ano</span>',
                                 chip: 'Poupa 15,89 €',
-                                alt: 'Equivale a 1,67 € por mês em vez de 35,88 € por ano',
+                                alt: '1,67 € por mês em vez de 35,88 € por ano',
                                 note: 'Primeiro mês de teste gratuito.'
                             },
                             monthly: {
@@ -1329,6 +1412,47 @@
                     microcopy: 'No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado diretamente na app.',
                     primaryCtaHtml: '<i class="fa-brands fa-apple"></i> App Store',
                     secondaryCta: 'Ver planos'
+                }
+            },
+            proWaitlist: {
+                meta: {
+                    title: 'Balance Pro Waitlist',
+                    description: 'Balance Pro esta chegando. Descubra as novas funcionalidades que estao prestes a chegar.'
+                },
+                hero: {
+                    title: 'Balance Pro esta chegando',
+                    subtitle: 'A versao melhorada do Balance estara disponivel sexta-feira, 20 de marco.'
+                },
+                countdown: {
+                    label: 'O que desbloqueia com Balance Pro'
+                },
+                features: [
+                    {
+                        icon: 'fa-wallet',
+                        title: 'Wallets ilimitadas',
+                        text: 'Organize todos os seus ativos: contas bancarias, investimentos, cripto, cash e mais.'
+                    },
+                    {
+                        icon: 'fa-chart-line',
+                        title: 'Snapshots avancados',
+                        text: 'Guarde snapshots ilimitados e analise a evolucao do seu patrimonio ao longo do tempo.'
+                    },
+                    {
+                        icon: 'fa-history',
+                        title: 'Historico completo',
+                        text: 'Aceda ao seu historico financeiro completo para comparar e analisar tendencias.'
+                    },
+                    {
+                        icon: 'fa-shield-halved',
+                        title: 'Privacidade absoluta',
+                        text: 'Tudo fica no seu dispositivo. Sem servidores e sem partilha de dados.'
+                    }
+                ],
+                countdownLabels: {
+                    days: 'Dias',
+                    hours: 'Horas',
+                    minutes: 'Minutos',
+                    seconds: 'Segundos'
                 }
             },
             roadmap: {
@@ -1612,7 +1736,7 @@
                     description: 'Contacte a Balance: escreva-nos para suporte ou feedback sobre a app privacy-first, offline e open source.',
                     ogTitle: 'Contactos. Balance'
                 },
-                title: 'Contacte-nos',
+                title: 'Contactos',
                 subtitle: 'Tem perguntas, feedback ou algo para reportar? Escreva-nos diretamente.',
                 form: {
                     honeypot: 'Não preencha este campo se for humano',
@@ -1647,6 +1771,7 @@
         const path = window.location.pathname.split('/').pop() || 'index.html';
         if (path === '' || path === 'index.html') return 'home';
         if (path === 'balancepro.html') return 'balancepro';
+        if (path === 'pro-waitlist.html') return 'pro-waitlist';
         if (path === 'roadmap.html') return 'roadmap';
         if (path === 'privacy.html') return 'privacy';
         if (path === 'terms.html') return 'terms';
@@ -1744,7 +1869,7 @@
     }
 
     function applyGlobal(langCopy, lang) {
-        setText('.nav-links a[href*="#overview"]', langCopy.global.nav.overview);
+        setText('.nav-links a[href*="#overview"], .nav-links a[href*="#hero"]', langCopy.global.nav.overview);
         setText('.nav-links a[href*="#pricing"]', langCopy.global.nav.pricing);
         setText('.nav-links a[href*="#features"]', langCopy.global.nav.features);
         setText('.nav-links a[href*="roadmap.html"]', langCopy.global.nav.roadmap);
@@ -1869,10 +1994,8 @@
         if (proCard) {
             const annual = page.pricing.pro.billing?.annual || {};
             const monthly = page.pricing.pro.billing?.monthly || {};
-            const savePill = proCard.querySelector('.pricing-save-pill');
             const billingCaption = proCard.querySelector('.pricing-billing-caption');
             const pricingValue = proCard.querySelector('.pricing-price');
-            const valueChip = proCard.querySelector('.pricing-value-chip');
             const altPrice = proCard.querySelector('.pricing-alt-price');
             const note = proCard.querySelector('.pricing-note');
 
@@ -1893,11 +2016,6 @@
                 proCard.querySelector('.pricing-microcopy').textContent = page.pricing.pro.microcopy || '';
             }
 
-            if (savePill) {
-                savePill.dataset.annual = page.pricing.pro.emphasis || '';
-                savePill.dataset.monthly = page.pricing.pro.emphasisMonthly || monthly.chip || '';
-                savePill.textContent = savePill.dataset.annual || '';
-            }
             if (billingCaption) {
                 billingCaption.dataset.annual = annual.caption || '';
                 billingCaption.dataset.monthly = monthly.caption || '';
@@ -1907,11 +2025,6 @@
                 pricingValue.dataset.annual = annual.priceHtml || '';
                 pricingValue.dataset.monthly = monthly.priceHtml || '';
                 pricingValue.innerHTML = annual.priceHtml || '';
-            }
-            if (valueChip) {
-                valueChip.dataset.annual = annual.chip || '';
-                valueChip.dataset.monthly = monthly.chip || '';
-                valueChip.textContent = annual.chip || '';
             }
             if (altPrice) {
                 altPrice.dataset.annual = annual.alt || '';
@@ -2072,6 +2185,22 @@
         });
     }
 
+
+    function applyDataI18nAttributes(langCopy) {
+        const elementsWithI18n = document.querySelectorAll('[data-i18n]');
+        elementsWithI18n.forEach((el) => {
+            const key = el.getAttribute('data-i18n');
+            const value = getNestedProperty(langCopy, key);
+            if (value !== undefined) {
+                el.textContent = value;
+            }
+        });
+    }
+
+    function getNestedProperty(obj, path) {
+        return path.split('.').reduce((current, prop) => current?.[prop], obj);
+    }
+
     let currentLang = DEFAULT_LANG;
 
     function applyTranslations() {
@@ -2083,11 +2212,13 @@
 
         if (pageKey === 'home') applyHome(langCopy);
         if (pageKey === 'balancepro') applyBalancePro(langCopy);
+        if (pageKey === 'pro-waitlist') applyMeta(langCopy.proWaitlist, currentLang);
         if (pageKey === 'roadmap') applyRoadmap(langCopy);
         if (pageKey === 'privacy') applyLegalPage(langCopy.privacy);
         if (pageKey === 'terms') applyLegalPage(langCopy.terms);
         if (pageKey === 'contacts') applyContacts(langCopy);
 
+        applyDataI18nAttributes(langCopy);
         initLanguageSwitcher(currentLang);
 
         window.BalanceI18n = {

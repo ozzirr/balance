@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Feature Detail Switcher
     initFeatureDetail();
 
+    // FAQ typewriter reveal
+    initFaqTypewriter();
+
     // Initialize Contact Form
     initContactForm();
 
@@ -135,10 +138,8 @@ function initPricingToggle() {
     if (!pricingSection || !proCard || buttons.length === 0) return;
 
     const swapTargets = [
-        { element: proCard.querySelector('.pricing-save-pill'), type: 'text' },
         { element: proCard.querySelector('.pricing-billing-caption'), type: 'text' },
         { element: proCard.querySelector('.pricing-price'), type: 'html' },
-        { element: proCard.querySelector('.pricing-value-chip'), type: 'text' },
         { element: proCard.querySelector('.pricing-alt-price'), type: 'text' },
         { element: proCard.querySelector('.pricing-note'), type: 'text' }
     ];
@@ -252,9 +253,13 @@ function initFeatureDetail() {
     let activeKey = null;
     let observer = null;
     let animTimer = null;
+    let mobileTypeTimer = null;
+    let mobileRevealTimer = null;
+    let mobileTypeSession = 0;
     const SWAP_DELAY = 140;
     const HYSTERESIS_PX = 28;
     const ACTIVATION_RATIO = 0.45;
+    const TYPE_INTERVAL_MS = 24;
     const steps = cards.map((card, index) => ({
         key: card.dataset.feature,
         index
@@ -288,11 +293,13 @@ function initFeatureDetail() {
             expand.id = expandId;
             card.setAttribute('aria-controls', expandId);
 
+            text.dataset.fullText = info.text;
             text.textContent = info.text;
             list.innerHTML = '';
 
             info.bullets.forEach((bullet, bulletIndex) => {
                 const item = document.createElement('li');
+                item.dataset.fullText = bullet;
                 item.textContent = bullet;
                 item.style.setProperty('--i', bulletIndex);
                 list.appendChild(item);
@@ -300,8 +307,82 @@ function initFeatureDetail() {
         });
     };
 
+    const stopMobileTypewriter = () => {
+        mobileTypeSession += 1;
+
+        if (mobileTypeTimer) {
+            window.clearTimeout(mobileTypeTimer);
+            mobileTypeTimer = null;
+        }
+
+        if (mobileRevealTimer) {
+            window.clearTimeout(mobileRevealTimer);
+            mobileRevealTimer = null;
+        }
+    };
+
+    const restoreMobileDetailContent = (card) => {
+        const text = card?.querySelector('.feature-expand-text');
+        const list = card?.querySelector('.feature-expand-list');
+        if (!text || !list) return;
+
+        text.classList.remove('is-typing');
+        text.style.minHeight = '';
+        text.textContent = text.dataset.fullText || '';
+        list.classList.remove('is-awaiting-reveal');
+        list.querySelectorAll('li').forEach((item) => {
+            item.textContent = item.dataset.fullText || '';
+        });
+    };
+
+    const startMobileTypewriter = (card) => {
+        const text = card?.querySelector('.feature-expand-text');
+        const list = card?.querySelector('.feature-expand-list');
+        const fullText = text?.dataset.fullText || '';
+        if (!text || !list || !fullText) return;
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        restoreMobileDetailContent(card);
+
+        if (prefersReducedMotion) return;
+
+        stopMobileTypewriter();
+        const session = mobileTypeSession;
+        const characters = Array.from(fullText);
+        let index = 0;
+
+        text.style.minHeight = `${text.getBoundingClientRect().height}px`;
+        text.textContent = '';
+        text.classList.add('is-typing');
+        list.classList.add('is-awaiting-reveal');
+
+        const tick = () => {
+            if (session !== mobileTypeSession) return;
+
+            index = Math.min(characters.length, index + 1);
+            text.textContent = characters.slice(0, index).join('');
+
+            if (index < characters.length) {
+                mobileTypeTimer = window.setTimeout(tick, TYPE_INTERVAL_MS);
+                return;
+            }
+
+            text.classList.remove('is-typing');
+            mobileTypeTimer = null;
+            mobileRevealTimer = window.setTimeout(() => {
+                if (session !== mobileTypeSession) return;
+                text.style.minHeight = '';
+                list.classList.remove('is-awaiting-reveal');
+                mobileRevealTimer = null;
+            }, 80);
+        };
+
+        tick();
+    };
+
     const setDesktopActiveCard = (card, animate = true) => {
         if (!desktopQuery.matches || !detail || !card) return;
+        stopMobileTypewriter();
 
         const detailMap = getDetailMap();
         const key = card.dataset.feature;
@@ -364,10 +445,13 @@ function initFeatureDetail() {
         }, SWAP_DELAY);
     };
 
-    const setMobileActiveCard = (nextCard, { scroll = false } = {}) => {
+    const setMobileActiveCard = (nextCard, { scroll = false, animate = false } = {}) => {
+        stopMobileTypewriter();
+
         cards.forEach(card => {
             const isActive = nextCard ? card === nextCard : false;
             const expand = card.querySelector('.feature-expand');
+            restoreMobileDetailContent(card);
 
             card.classList.toggle('is-active', isActive);
             card.setAttribute('aria-expanded', isActive ? 'true' : 'false');
@@ -388,6 +472,7 @@ function initFeatureDetail() {
 
         if (nextCard) {
             activeKey = nextCard.dataset.feature;
+            if (animate) startMobileTypewriter(nextCard);
         }
     };
 
@@ -411,7 +496,7 @@ function initFeatureDetail() {
             return;
         }
 
-        setMobileActiveCard(card, { scroll: mobileQuery.matches });
+        setMobileActiveCard(card, { scroll: mobileQuery.matches, animate: true });
     };
 
     const setupScrollSync = () => {
@@ -497,6 +582,83 @@ function initFeatureDetail() {
 
     syncMode();
     desktopQuery.addEventListener('change', syncMode);
+}
+
+function initFaqTypewriter() {
+    const faqItems = Array.from(document.querySelectorAll('.faq-item'));
+    if (faqItems.length === 0) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const TYPE_INTERVAL_MS = 24;
+
+    faqItems.forEach((item) => {
+        const answer = item.querySelector('.faq-answer p');
+        if (!answer) return;
+
+        let typeTimer = null;
+        let sessionId = 0;
+
+        const stopTyping = () => {
+            sessionId += 1;
+            if (typeTimer) {
+                window.clearTimeout(typeTimer);
+                typeTimer = null;
+            }
+        };
+
+        const restoreAnswer = () => {
+            stopTyping();
+            answer.classList.remove('is-typing');
+            answer.style.minHeight = '';
+            answer.textContent = answer.dataset.fullText || answer.textContent;
+        };
+
+        const startTyping = () => {
+            answer.dataset.fullText = answer.textContent;
+            const fullText = answer.dataset.fullText || '';
+            if (!fullText) return;
+
+            restoreAnswer();
+            if (prefersReducedMotion.matches) return;
+
+            const session = sessionId;
+            const characters = Array.from(fullText);
+            let index = 0;
+
+            answer.style.minHeight = `${answer.getBoundingClientRect().height}px`;
+            answer.textContent = '';
+            answer.classList.add('is-typing');
+
+            const tick = () => {
+                if (session !== sessionId) return;
+
+                index = Math.min(characters.length, index + 1);
+                answer.textContent = characters.slice(0, index).join('');
+
+                if (index < characters.length) {
+                    typeTimer = window.setTimeout(tick, TYPE_INTERVAL_MS);
+                    return;
+                }
+
+                answer.classList.remove('is-typing');
+                answer.style.minHeight = '';
+                typeTimer = null;
+            };
+
+            tick();
+        };
+
+        answer.dataset.fullText = answer.textContent;
+
+        item.addEventListener('toggle', () => {
+            if (item.open) {
+                startTyping();
+                return;
+            }
+
+            restoreAnswer();
+        });
+    });
 }
 
 function initContactForm() {
