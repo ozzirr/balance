@@ -395,8 +395,11 @@ body.contact-page::after {
 }
 
 .logo-icon {
-    height: 28px;
-    width: auto;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border-radius: 11px;
+    box-shadow: 0 0 24px rgba(139, 92, 255, 0.16);
 }
 
 .nav-links {
@@ -2485,6 +2488,15 @@ footer::before {
     margin: 0 auto 24px;
 }
 
+.footer-cta-icon {
+    width: 72px;
+    height: 72px;
+    display: block;
+    margin: 0 auto 22px;
+    border-radius: 22px;
+    box-shadow: 0 24px 44px rgba(6, 12, 28, 0.28), 0 0 34px rgba(139, 92, 255, 0.18);
+}
+
 .footer-cta-copy {
     max-width: 620px;
     margin: 0 0 22px;
@@ -2636,6 +2648,43 @@ footer::before {
         padding: 0 24px;
     }
 
+    .sticky-overview {
+        margin-top: -96px;
+        padding-top: 96px;
+    }
+
+    .sticky-overview::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -140px;
+        height: 220px;
+        background:
+            linear-gradient(180deg, rgba(6, 6, 15, 0) 0%, rgba(8, 11, 22, 0.64) 42%, rgba(9, 13, 25, 0.92) 100%),
+            radial-gradient(65% 120px at 50% 100%, rgba(143, 91, 255, 0.22), transparent 72%),
+            radial-gradient(55% 140px at 70% 100%, rgba(72, 230, 176, 0.16), transparent 74%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .sticky-overview .container,
+    #features .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .sticky-overview .split-content,
+    #features .section-title,
+    #features .feature-carousel-meta {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .sticky-overview > .section-split:first-child {
+        padding-top: 8px;
+    }
+
     .hero-container,
     .split-container {
         grid-template-columns: 1fr;
@@ -2770,12 +2819,15 @@ footer::before {
 
     .feature-card {
         transform: none;
-        flex: 0 0 calc(100% - 28px);
-        max-width: calc(100% - 28px);
+        flex: 0 0 calc((100% - 32px) / 2.2);
+        max-width: calc((100% - 32px) / 2.2);
         min-width: 0;
+        min-height: clamp(280px, 42vh, 340px);
         scroll-snap-align: center;
         scroll-snap-stop: always;
         cursor: grab;
+        perspective: 1400px;
+        transition: flex-basis 320ms ease-out, max-width 320ms ease-out, min-height 320ms ease-out, transform 260ms ease-out, box-shadow 260ms ease-out, border-color 220ms ease-out;
     }
 
     .feature-card.is-active {
@@ -2787,38 +2839,81 @@ footer::before {
         box-shadow: var(--shadow-strong), 0 0 70px rgba(68, 210, 255, 0.2);
     }
 
+    .feature-card.is-flipped {
+        flex-basis: calc(100% - 24px);
+        max-width: calc(100% - 24px);
+        min-height: clamp(460px, 70vh, 620px);
+        z-index: 3;
+    }
+
+    .feature-card-inner {
+        position: relative;
+        min-height: inherit;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .feature-card.is-flipped .feature-card-inner {
+        transform: rotateY(180deg);
+    }
+
     .feature-front {
-        padding: 22px 20px;
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 24px 18px;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
 
     .feature-front .icon-box {
-        width: 56px;
-        height: 56px;
-        font-size: 1.15rem;
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
     }
 
     .feature-front h3 {
-        font-size: 1.25rem;
-        line-height: 1.2;
+        width: 100%;
+        font-size: 1.32rem;
+        line-height: 1.1;
+        text-wrap: balance;
     }
 
     .feature-front p {
+        width: 100%;
         font-size: 1rem;
-        line-height: 1.4;
+        line-height: 1.45;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     .feature-expand {
-        grid-template-rows: 1fr;
+        position: absolute;
+        inset: 0;
+        display: block;
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
 
     .feature-expand-inner,
     .feature-card.is-active .feature-expand-inner {
-        padding: 0 20px 22px;
+        height: 100%;
+        overflow-y: auto;
+        padding: 22px 20px;
         opacity: 1;
         transform: translateY(0);
     }
 
     .feature-expand-text {
+        font-size: 0.96rem;
         margin-bottom: 16px;
     }
 
@@ -2826,6 +2921,11 @@ footer::before {
     .feature-card.is-active .feature-expand-list li {
         opacity: 1;
         transform: translateY(0);
+        font-size: 0.96rem;
+    }
+
+    .feature-card:not(.is-flipped) .feature-expand {
+        pointer-events: none;
     }
 
     .feature-carousel-shell.is-dragging .feature-card {
@@ -2834,7 +2934,7 @@ footer::before {
 
     .hero {
         padding-top: calc(var(--header-height) + 12px);
-        padding-bottom: 32px;
+        padding-bottom: 0;
     }
 
     .hero-title {
@@ -2891,6 +2991,13 @@ footer::before {
 
     .footer-cta-badge {
         margin-bottom: 28px;
+    }
+
+    .footer-cta-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 18px;
+        border-radius: 18px;
     }
 
     .footer-cta-actions {
@@ -3011,8 +3118,15 @@ footer::before {
     }
 
     .feature-card {
-        flex-basis: calc(100% - 36px);
-        max-width: calc(100% - 36px);
+        flex-basis: calc((100% - 28px) / 2.2);
+        max-width: calc((100% - 28px) / 2.2);
+        min-height: clamp(252px, 40vh, 320px);
+    }
+
+    .feature-card.is-flipped {
+        flex-basis: calc(100% - 20px);
+        max-width: calc(100% - 20px);
+        min-height: clamp(420px, 68vh, 560px);
     }
 
     .feature-carousel-step {
@@ -3021,9 +3135,8 @@ footer::before {
     }
 
     .feature-front {
-        grid-template-columns: 52px minmax(0, 1fr);
-        column-gap: 14px;
-        padding: 18px 16px;
+        gap: 12px;
+        padding: 20px 15px;
     }
 
     .feature-front .icon-box {
@@ -3032,9 +3145,18 @@ footer::before {
         font-size: 1.05rem;
     }
 
+    .feature-front h3 {
+        font-size: 1.18rem;
+    }
+
+    .feature-front p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
     .feature-expand-inner,
     .feature-card.is-active .feature-expand-inner {
-        padding: 0 16px 18px;
+        padding: 18px 16px;
     }
 
     .trust-bar {

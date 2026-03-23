@@ -261,7 +261,9 @@ function initFeatureDetail() {
     let mobileResumeTimer = null;
     let mobileScrollTimer = null;
     let mobileRaf = null;
+    let mobilePendingFlipIndex = null;
     let mobileActiveIndex = 0;
+    let mobileFlippedIndex = null;
     const SWAP_DELAY = 140;
     const HYSTERESIS_PX = 28;
     const ACTIVATION_RATIO = 0.45;
@@ -353,8 +355,23 @@ function initFeatureDetail() {
         });
     };
 
+    const setMobileFlippedIndex = (nextIndex = null) => {
+        mobileFlippedIndex = nextIndex;
+
+        cards.forEach((card, index) => {
+            const isFlipped = index === nextIndex;
+            const expand = card.querySelector('.feature-expand');
+            card.classList.toggle('is-flipped', isFlipped);
+            card.setAttribute('aria-expanded', isFlipped ? 'true' : 'false');
+            if (expand) {
+                expand.setAttribute('aria-hidden', isFlipped ? 'false' : 'true');
+            }
+        });
+    };
+
     const setDesktopActiveCard = (card, animate = true) => {
         if (!desktopQuery.matches || !detail || !card) return;
+        setMobileFlippedIndex(null);
 
         const detailMap = getDetailMap();
         const key = card.dataset.feature;
@@ -428,20 +445,24 @@ function initFeatureDetail() {
         activeKey = cards[nextIndex].dataset.feature;
         updateMobileIndicators(nextIndex);
 
+        if (mobileFlippedIndex !== null && mobileFlippedIndex !== nextIndex) {
+            setMobileFlippedIndex(null);
+        }
+
         cards.forEach((card, index) => {
             const isActive = index === nextIndex;
             const expand = card.querySelector('.feature-expand');
 
             restoreCardDetailContent(card);
             card.classList.toggle('is-active', isActive);
-            card.setAttribute('role', 'group');
-            card.tabIndex = -1;
-            card.setAttribute('aria-roledescription', 'slide');
+            card.setAttribute('role', 'button');
+            card.tabIndex = 0;
+            card.removeAttribute('aria-roledescription');
             card.setAttribute('aria-current', isActive ? 'true' : 'false');
-            card.setAttribute('aria-expanded', 'true');
+            card.setAttribute('aria-expanded', mobileFlippedIndex === index ? 'true' : 'false');
 
             if (expand) {
-                expand.setAttribute('aria-hidden', 'false');
+                expand.setAttribute('aria-hidden', mobileFlippedIndex === index ? 'false' : 'true');
             }
         });
     };
@@ -527,9 +548,34 @@ function initFeatureDetail() {
     };
 
     const activateCard = (card) => {
-        if (!desktopQuery.matches) return;
-        setDesktopActiveCard(card);
-        scrollCardToActivation(card);
+        if (desktopQuery.matches) {
+            setDesktopActiveCard(card);
+            scrollCardToActivation(card);
+            return;
+        }
+
+        const index = stepMap.get(card.dataset.feature) ?? 0;
+        stopMobileAutoplay();
+        mobilePendingFlipIndex = null;
+
+        if (index !== mobileActiveIndex) {
+            mobilePendingFlipIndex = index;
+            setMobileFlippedIndex(null);
+            scrollToMobileIndex(index, prefersReducedMotion.matches ? 'auto' : 'smooth');
+            if (prefersReducedMotion.matches) {
+                setMobileFlippedIndex(index);
+                mobilePendingFlipIndex = null;
+            }
+            return;
+        }
+
+        if (mobileFlippedIndex === index) {
+            setMobileFlippedIndex(null);
+            scheduleMobileAutoplay();
+            return;
+        }
+
+        setMobileFlippedIndex(index);
     };
 
     const setupScrollSync = () => {
@@ -602,6 +648,8 @@ function initFeatureDetail() {
 
         teardownScrollSync();
         const preferredIndex = stepMap.get(preferredCard.dataset.feature) ?? 0;
+        mobilePendingFlipIndex = null;
+        setMobileFlippedIndex(null);
         setMobileActiveIndex(preferredIndex);
         window.requestAnimationFrame(() => {
             scrollToMobileIndex(preferredIndex, 'auto');
@@ -623,6 +671,13 @@ function initFeatureDetail() {
     if (carouselShell) {
         carouselShell.addEventListener('scroll', () => {
             if (desktopQuery.matches) return;
+            const shouldCloseForScroll =
+                carouselShell.classList.contains('is-dragging') ||
+                mobilePendingFlipIndex !== null;
+
+            if (mobileFlippedIndex !== null && shouldCloseForScroll) {
+                setMobileFlippedIndex(null);
+            }
 
             if (mobileAutoTimer) {
                 window.clearTimeout(mobileAutoTimer);
@@ -642,8 +697,18 @@ function initFeatureDetail() {
 
             if (mobileScrollTimer) window.clearTimeout(mobileScrollTimer);
             mobileScrollTimer = window.setTimeout(() => {
-                setMobileActiveIndex(getNearestMobileIndex());
-                scheduleMobileAutoplay();
+                const nearestIndex = getNearestMobileIndex();
+                setMobileActiveIndex(nearestIndex);
+
+                if (mobilePendingFlipIndex !== null && mobilePendingFlipIndex === nearestIndex) {
+                    setMobileFlippedIndex(nearestIndex);
+                    mobilePendingFlipIndex = null;
+                    return;
+                }
+
+                if (mobileFlippedIndex === null && mobilePendingFlipIndex === null) {
+                    scheduleMobileAutoplay();
+                }
             }, 140);
         }, { passive: true });
 
@@ -652,13 +717,16 @@ function initFeatureDetail() {
                 if (desktopQuery.matches) return;
                 carouselShell.classList.add('is-dragging');
                 stopMobileAutoplay();
+                mobilePendingFlipIndex = null;
             }, { passive: true });
         });
 
         ['pointerup', 'pointercancel', 'touchend'].forEach((eventName) => {
             carouselShell.addEventListener(eventName, () => {
                 carouselShell.classList.remove('is-dragging');
-                if (!desktopQuery.matches) scheduleMobileAutoplay();
+                if (!desktopQuery.matches && mobileFlippedIndex === null && mobilePendingFlipIndex === null) {
+                    scheduleMobileAutoplay();
+                }
             }, { passive: true });
         });
     }
@@ -676,6 +744,8 @@ function initFeatureDetail() {
                     return;
                 }
 
+                mobilePendingFlipIndex = null;
+                setMobileFlippedIndex(null);
                 scrollToMobileIndex(preferredIndex, 'auto');
             }, 0);
         });
