@@ -103,9 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Feature Detail Switcher
     initFeatureDetail();
 
-    // FAQ typewriter reveal
-    initFaqTypewriter();
-
     // Initialize Contact Form
     initContactForm();
 
@@ -778,83 +775,6 @@ function initFeatureDetail() {
     } else {
         prefersReducedMotion.addListener(syncMode);
     }
-}
-
-function initFaqTypewriter() {
-    const faqItems = Array.from(document.querySelectorAll('.faq-item'));
-    if (faqItems.length === 0) return;
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const TYPE_INTERVAL_MS = 24;
-
-    faqItems.forEach((item) => {
-        const answer = item.querySelector('.faq-answer p');
-        if (!answer) return;
-
-        let typeTimer = null;
-        let sessionId = 0;
-
-        const stopTyping = () => {
-            sessionId += 1;
-            if (typeTimer) {
-                window.clearTimeout(typeTimer);
-                typeTimer = null;
-            }
-        };
-
-        const restoreAnswer = () => {
-            stopTyping();
-            answer.classList.remove('is-typing');
-            answer.style.minHeight = '';
-            answer.textContent = answer.dataset.fullText || answer.textContent;
-        };
-
-        const startTyping = () => {
-            answer.dataset.fullText = answer.textContent;
-            const fullText = answer.dataset.fullText || '';
-            if (!fullText) return;
-
-            restoreAnswer();
-            if (prefersReducedMotion.matches) return;
-
-            const session = sessionId;
-            const characters = Array.from(fullText);
-            let index = 0;
-
-            answer.style.minHeight = `${answer.getBoundingClientRect().height}px`;
-            answer.textContent = '';
-            answer.classList.add('is-typing');
-
-            const tick = () => {
-                if (session !== sessionId) return;
-
-                index = Math.min(characters.length, index + 1);
-                answer.textContent = characters.slice(0, index).join('');
-
-                if (index < characters.length) {
-                    typeTimer = window.setTimeout(tick, TYPE_INTERVAL_MS);
-                    return;
-                }
-
-                answer.classList.remove('is-typing');
-                answer.style.minHeight = '';
-                typeTimer = null;
-            };
-
-            tick();
-        };
-
-        answer.dataset.fullText = answer.textContent;
-
-        item.addEventListener('toggle', () => {
-            if (item.open) {
-                startTyping();
-                return;
-            }
-
-            restoreAnswer();
-        });
-    });
 }
 
 function initContactForm() {
