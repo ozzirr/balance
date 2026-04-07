@@ -52,6 +52,18 @@
     --transition-fast: 0.25s ease;
 }
 
+html.has-custom-cursor,
+html.has-custom-cursor body,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor summary,
+html.has-custom-cursor [role="button"],
+html.has-custom-cursor .btn,
+html.has-custom-cursor .feature-card,
+html.has-custom-cursor .mobile-menu-btn {
+    cursor: none !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -124,6 +136,91 @@ body.contact-page::after {
         radial-gradient(600px 420px at 65% 78%, rgba(80, 150, 255, 0.22), transparent 62%);
     opacity: 0.55;
     filter: blur(2px);
+}
+
+.custom-cursor,
+.custom-cursor-core {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 2000;
+    transition:
+        opacity 0.2s ease,
+        width 0.22s ease,
+        height 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.custom-cursor {
+    width: 34px;
+    height: 34px;
+    margin-left: -17px;
+    margin-top: -17px;
+    border-radius: 999px;
+    border: 1px solid rgba(180, 226, 255, 0.68);
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.14), transparent 58%),
+        rgba(14, 18, 32, 0.22);
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 0 22px rgba(68, 210, 255, 0.2),
+        0 0 42px rgba(139, 92, 255, 0.18);
+}
+
+.custom-cursor-core {
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    margin-top: -4px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(139, 92, 255, 1), rgba(68, 210, 255, 1));
+    box-shadow:
+        0 0 18px rgba(139, 92, 255, 0.5),
+        0 0 24px rgba(68, 210, 255, 0.45);
+}
+
+.custom-cursor.is-visible,
+.custom-cursor-core.is-visible {
+    opacity: 1;
+}
+
+.custom-cursor.is-hover {
+    width: 56px;
+    height: 56px;
+    margin-left: -28px;
+    margin-top: -28px;
+    border-color: rgba(89, 243, 162, 0.82);
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.16), transparent 58%),
+        rgba(10, 16, 28, 0.18);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 0 28px rgba(89, 243, 162, 0.25),
+        0 0 52px rgba(68, 210, 255, 0.22);
+}
+
+.custom-cursor-core.is-hover {
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    margin-top: -5px;
+    background: linear-gradient(135deg, rgba(89, 243, 162, 1), rgba(68, 210, 255, 1));
+}
+
+.custom-cursor.is-down {
+    width: 26px;
+    height: 26px;
+    margin-left: -13px;
+    margin-top: -13px;
+}
+
+.custom-cursor-core.is-down {
+    transform: scale(0.75);
 }
 
 /* Utilities */
@@ -2114,12 +2211,17 @@ section {
 /* Pricing */
 .pricing-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px;
     width: 100%;
     max-width: 100%;
     margin: 50px auto 0;
     align-items: stretch;
+}
+
+.pricing-grid-dual {
+    max-width: 1040px;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
 }
 
 .pricing-grid-upgraded {
@@ -2161,12 +2263,65 @@ section {
 }
 
 .section-pricing .pricing-card.pro {
+    background:
+        radial-gradient(circle at 82% 18%, rgba(72, 230, 176, 0.1), transparent 28%),
+        radial-gradient(circle at 18% 10%, rgba(139, 92, 255, 0.14), transparent 36%),
+        linear-gradient(145deg, rgba(26, 33, 58, 0.92), rgba(8, 10, 20, 0.72));
+    border-color: rgba(120, 200, 255, 0.18);
+    box-shadow: var(--shadow-soft), 0 0 24px rgba(68, 210, 255, 0.08);
     position: relative;
     overflow: hidden;
+}
+
+.section-pricing .pricing-card-monthly {
+    transform: scale(0.96);
+    opacity: 0.88;
+    border-color: rgba(120, 200, 255, 0.12);
+    box-shadow: var(--shadow-soft), 0 0 14px rgba(68, 210, 255, 0.06);
+}
+
+.section-pricing .pricing-card-monthly .pricing-highlight-panel {
+    border-color: rgba(120, 200, 255, 0.1);
     background:
-        radial-gradient(circle at 82% 18%, rgba(72, 230, 176, 0.16), transparent 28%),
-        radial-gradient(circle at 18% 10%, rgba(139, 92, 255, 0.22), transparent 36%),
-        linear-gradient(145deg, rgba(139, 92, 255, 0.25), rgba(8, 10, 20, 0.55));
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 68%),
+        rgba(8, 12, 22, 0.72);
+}
+
+.section-pricing .pricing-card-featured {
+    transform: translateY(-18px) scale(1.05);
+    border-color: rgba(160, 124, 255, 0.76);
+    background:
+        radial-gradient(circle at 82% 18%, rgba(72, 230, 176, 0.2), transparent 28%),
+        radial-gradient(circle at 18% 10%, rgba(139, 92, 255, 0.32), transparent 36%),
+        linear-gradient(145deg, rgba(139, 92, 255, 0.34), rgba(8, 10, 20, 0.54));
+    box-shadow:
+        0 30px 80px rgba(6, 10, 20, 0.55),
+        0 0 72px rgba(139, 92, 255, 0.42),
+        0 0 42px rgba(68, 210, 255, 0.18);
+}
+
+.section-pricing .pricing-card-featured::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(139, 92, 255, 0.82), rgba(68, 210, 255, 0.65));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.95;
+    pointer-events: none;
+}
+
+.section-pricing .pricing-card-featured::after {
+    content: "";
+    position: absolute;
+    inset: -18% -10% auto;
+    height: 180px;
+    background: radial-gradient(circle, rgba(139, 92, 255, 0.34) 0%, rgba(68, 210, 255, 0.12) 42%, transparent 72%);
+    filter: blur(24px);
+    pointer-events: none;
 }
 
 .pricing-header {
@@ -2192,48 +2347,10 @@ section {
 
 .pricing-intro {
     max-width: 700px;
-    margin: 0 auto 28px;
+    margin: 0 auto;
     color: rgba(236, 242, 255, 0.76);
     font-size: 1.08rem;
     line-height: 1.7;
-}
-
-.pricing-switch {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px;
-    margin: 0 auto;
-    border-radius: 999px;
-    background: rgba(10, 14, 24, 0.82);
-    border: 1px solid rgba(120, 200, 255, 0.16);
-    box-shadow: 0 16px 28px rgba(4, 8, 18, 0.35);
-}
-
-.pricing-card.pro .pricing-switch {
-    margin: 4px 0 20px;
-}
-
-.pricing-switch-btn {
-    border: 0;
-    background: transparent;
-    color: rgba(228, 236, 250, 0.72);
-    font: inherit;
-    font-weight: 700;
-    padding: 11px 18px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.pricing-switch-btn:hover {
-    color: var(--text-primary);
-}
-
-.pricing-switch-btn.is-active {
-    color: #FFFFFF;
-    background: linear-gradient(135deg, rgba(139, 92, 255, 0.95), rgba(68, 210, 255, 0.9));
-    box-shadow: 0 14px 24px rgba(139, 92, 255, 0.24);
 }
 
 .pricing-card-header {
@@ -2253,15 +2370,25 @@ section {
     flex-shrink: 0;
 }
 
-.pricing-launch-badge.is-hidden {
-    display: none;
-}
-
 .pricing-free-badge {
     background: rgba(68, 210, 255, 0.12);
     border: 1px solid rgba(120, 200, 255, 0.2);
     color: rgba(235, 244, 255, 0.9);
     box-shadow: 0 0 18px rgba(68, 210, 255, 0.12);
+}
+
+.pricing-emphasis-badge {
+    background: rgba(120, 200, 255, 0.12);
+    border: 1px solid rgba(120, 200, 255, 0.22);
+    color: rgba(235, 244, 255, 0.92);
+    box-shadow: 0 0 18px rgba(68, 210, 255, 0.1);
+}
+
+.section-pricing .pricing-card-featured .pricing-emphasis-badge {
+    background: linear-gradient(135deg, rgba(139, 92, 255, 0.88), rgba(68, 210, 255, 0.84));
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 12px 24px rgba(139, 92, 255, 0.24);
 }
 
 .pricing-highlight-panel {
@@ -2273,6 +2400,16 @@ section {
         linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 68%),
         rgba(9, 13, 25, 0.75);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.section-pricing .pricing-card-featured .pricing-highlight-panel {
+    border-color: rgba(160, 124, 255, 0.34);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 68%),
+        rgba(11, 15, 28, 0.88);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 18px 40px rgba(139, 92, 255, 0.12);
 }
 
 .pricing-billing-caption {
@@ -2395,6 +2532,13 @@ section {
 
 .section-pricing .pricing-card.pro .btn {
     margin-top: 4px;
+}
+
+.section-pricing .pricing-card-featured .btn {
+    box-shadow:
+        0 22px 54px rgba(139, 92, 255, 0.42),
+        0 0 34px rgba(68, 210, 255, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.54);
 }
 
 .section-pricing .pricing-card.free .btn {
@@ -2743,6 +2887,12 @@ footer::before {
         padding: 28px 24px;
     }
 
+    .section-pricing .pricing-card-monthly,
+    .section-pricing .pricing-card-featured {
+        transform: none;
+        opacity: 1;
+    }
+
     .trust-bar {
         padding: 18px 0;
         box-shadow: 0 16px 28px rgba(4, 8, 18, 0.22);
@@ -2759,15 +2909,6 @@ footer::before {
     .trust-item {
         flex: 1 1 40%;
         padding: 12px 18px;
-    }
-
-    .pricing-switch {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .pricing-switch-btn {
-        flex: 1 1 0;
     }
 
     .pricing-price-row {
@@ -3147,18 +3288,14 @@ footer::before {
 }
 
 @media (max-width: 700px) {
+    .custom-cursor,
+    .custom-cursor-core {
+        display: none;
+    }
+
     .pricing-intro {
         font-size: 0.98rem;
-        margin-bottom: 22px;
-    }
-
-    .pricing-switch {
-        padding: 6px;
-    }
-
-    .pricing-switch-btn {
-        padding: 10px 14px;
-        font-size: 0.92rem;
+        margin-bottom: 0;
     }
 
     .section-pricing .pricing-price {

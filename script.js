@@ -109,8 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize 3D iPhone interaction
     initIPhone3D();
 
-    // Pricing toggle
-    initPricingToggle();
 });
 
 function initCarousel(containerId, options = {}) {
@@ -166,60 +164,6 @@ function initCarousel(containerId, options = {}) {
 
     carouselObserver.observe(container);
     startInterval();
-}
-
-function initPricingToggle() {
-    const pricingSection = document.querySelector('.section-pricing');
-    const proCard = pricingSection?.querySelector('.pricing-card.pro');
-    const buttons = Array.from(pricingSection?.querySelectorAll('.pricing-switch-btn') || []);
-
-    if (!pricingSection || !proCard || buttons.length === 0) return;
-
-    const swapTargets = [
-        { element: proCard.querySelector('.pricing-billing-caption'), type: 'text' },
-        { element: proCard.querySelector('.pricing-price'), type: 'html' },
-        { element: proCard.querySelector('.pricing-alt-price'), type: 'text' },
-        { element: proCard.querySelector('.pricing-note'), type: 'text' }
-    ];
-    const launchBadge = proCard.querySelector('.pricing-launch-badge');
-
-    let currentBilling = pricingSection.dataset.billing || buttons.find(button => button.classList.contains('is-active'))?.dataset.billing || 'annual';
-
-    const applyBilling = (billing) => {
-        currentBilling = billing;
-        pricingSection.dataset.billing = billing;
-
-        buttons.forEach(button => {
-            const isActive = button.dataset.billing === billing;
-            button.classList.toggle('is-active', isActive);
-            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-        });
-
-        swapTargets.forEach(({ element, type }) => {
-            const value = element?.dataset?.[billing];
-            if (!element || !value) return;
-            if (type === 'html') {
-                element.innerHTML = value;
-            } else {
-                element.textContent = value;
-            }
-        });
-
-        if (launchBadge) {
-            const badgeText = launchBadge.dataset?.[billing] || '';
-            launchBadge.textContent = badgeText;
-            launchBadge.classList.toggle('is-hidden', !badgeText);
-        }
-    };
-
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (button.dataset.billing === currentBilling) return;
-            applyBilling(button.dataset.billing);
-        });
-    });
-
-    applyBilling(currentBilling);
 }
 
 function initFeatureDetail() {

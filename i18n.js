@@ -1964,13 +1964,8 @@
             if (texts[1]) texts[1].textContent = page.clarity.highlight;
         }
 
-        setText('#pricing .pricing-kicker', page.pricing.kicker || '');
         setText('#pricing .section-title', page.pricing.title);
         setText('#pricing .pricing-intro', page.pricing.intro || '');
-        setAttr('#pricing .pricing-switch', 'aria-label', page.pricing.toggle?.ariaLabel || '');
-        const pricingToggleButtons = document.querySelectorAll('#pricing .pricing-switch-btn');
-        if (pricingToggleButtons[0]) pricingToggleButtons[0].textContent = page.pricing.toggle?.annual || 'Annual';
-        if (pricingToggleButtons[1]) pricingToggleButtons[1].textContent = page.pricing.toggle?.monthly || 'Monthly';
 
         const freeCard = document.querySelector('#pricing .pricing-card.free');
         if (freeCard) {
@@ -1990,53 +1985,38 @@
             }
         }
 
-        const proCard = document.querySelector('#pricing .pricing-card.pro');
-        if (proCard) {
-            const annual = page.pricing.pro.billing?.annual || {};
-            const monthly = page.pricing.pro.billing?.monthly || {};
-            const billingCaption = proCard.querySelector('.pricing-billing-caption');
-            const pricingValue = proCard.querySelector('.pricing-price');
-            const altPrice = proCard.querySelector('.pricing-alt-price');
-            const note = proCard.querySelector('.pricing-note');
+        document.querySelectorAll('#pricing .pricing-card.pro[data-plan]').forEach(card => {
+            const plan = card.dataset.plan === 'monthly' ? 'monthly' : 'annual';
+            const billing = page.pricing.pro.billing?.[plan] || {};
+            const emphasis = plan === 'annual'
+                ? (page.pricing.pro.emphasis || page.pricing.pro.badgeAnnual || '')
+                : (page.pricing.pro.emphasisMonthly || page.pricing.pro.badgeMonthly || '');
 
-            const launchBadge = proCard.querySelector('.pricing-launch-badge');
-            if (launchBadge) {
-                launchBadge.dataset.annual = page.pricing.pro.badgeAnnual || '';
-                launchBadge.dataset.monthly = page.pricing.pro.badgeMonthly || '';
-                const activeBilling = document.querySelector('.section-pricing')?.dataset?.billing || 'annual';
-                launchBadge.textContent = launchBadge.dataset[activeBilling] || launchBadge.dataset.annual || '';
+            const emphasisBadge = card.querySelector('.pricing-emphasis-badge');
+            const billingCaption = card.querySelector('.pricing-billing-caption');
+            const pricingValue = card.querySelector('.pricing-price');
+            const altPrice = card.querySelector('.pricing-alt-price');
+            const note = card.querySelector('.pricing-note');
+
+            if (emphasisBadge) emphasisBadge.textContent = emphasis;
+            if (card.querySelector('.pricing-description')) {
+                card.querySelector('.pricing-description').textContent = page.pricing.pro.description;
             }
-            proCard.querySelector('.pricing-description').textContent = page.pricing.pro.description;
-            proCard.querySelectorAll('.pricing-list li').forEach((li, index) => {
+            card.querySelectorAll('.pricing-list li').forEach((li, index) => {
                 const textTarget = li.querySelector('span') || li;
                 textTarget.textContent = page.pricing.pro.list[index] || '';
             });
-            proCard.querySelector('.btn').innerHTML = page.pricing.pro.ctaHtml;
-            if (proCard.querySelector('.pricing-microcopy')) {
-                proCard.querySelector('.pricing-microcopy').textContent = page.pricing.pro.microcopy || '';
+            if (card.querySelector('.btn')) {
+                card.querySelector('.btn').innerHTML = page.pricing.pro.ctaHtml;
             }
-
-            if (billingCaption) {
-                billingCaption.dataset.annual = annual.caption || '';
-                billingCaption.dataset.monthly = monthly.caption || '';
-                billingCaption.textContent = annual.caption || '';
+            if (card.querySelector('.pricing-microcopy')) {
+                card.querySelector('.pricing-microcopy').textContent = page.pricing.pro.microcopy || '';
             }
-            if (pricingValue) {
-                pricingValue.dataset.annual = annual.priceHtml || '';
-                pricingValue.dataset.monthly = monthly.priceHtml || '';
-                pricingValue.innerHTML = annual.priceHtml || '';
-            }
-            if (altPrice) {
-                altPrice.dataset.annual = annual.alt || '';
-                altPrice.dataset.monthly = monthly.alt || '';
-                altPrice.textContent = annual.alt || '';
-            }
-            if (note) {
-                note.dataset.annual = annual.note || '';
-                note.dataset.monthly = monthly.note || '';
-                note.textContent = annual.note || '';
-            }
-        }
+            if (billingCaption) billingCaption.textContent = billing.caption || '';
+            if (pricingValue) pricingValue.innerHTML = billing.priceHtml || '';
+            if (altPrice) altPrice.textContent = billing.alt || '';
+            if (note) note.textContent = billing.note || '';
+        });
 
         setText('#features .section-title', page.features.title);
         setText('.feature-detail-eyebrow', page.features.detailEyebrow);

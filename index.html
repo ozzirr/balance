@@ -289,31 +289,49 @@
     </div>
 
     <!-- Free vs Pro -->
-    <section id="pricing" class="section-pricing scene" data-billing="annual">
+    <section id="pricing" class="section-pricing scene">
         <div class="container reveal">
             <div class="pricing-header center-text">
                 <h2 class="section-title center-text">Piani disponibili</h2>
                 <p class="pricing-intro">Inizia gratis con 3 wallet per monitorare quelli essenziali. Passa a Pro per sbloccare wallet illimitati e funzionalità avanzate. Confronta i piani disponibili.</p>
-                <div class="pricing-switch" role="group" aria-label="Seleziona la fatturazione di Balance Pro">
-                    <button type="button" class="pricing-switch-btn is-active" data-billing="annual" aria-pressed="true">Annuale</button>
-                    <button type="button" class="pricing-switch-btn" data-billing="monthly" aria-pressed="false">Mensile</button>
-                </div>
             </div>
-            <div class="pricing-grid pricing-grid-single">
-                <div class="glass-card pricing-card pro">
+            <div class="pricing-grid pricing-grid-dual">
+                <div class="glass-card pricing-card pro pricing-card-monthly" data-plan="monthly">
                     <div class="pricing-card-header">
                         <h3>Balance Pro</h3>
-                        <div class="badge pricing-launch-badge" data-annual="Offerta lancio" data-monthly="Offerta lancio">Offerta lancio</div>
+                        <div class="badge pricing-emphasis-badge">Piano mensile</div>
                     </div>
                     <p class="pricing-description">Per chi vuole usare Balance come archivio finanziario personale, senza limiti.</p>
                     <div class="pricing-highlight-panel">
-                        <p class="pricing-billing-caption" data-annual="Offerta annuale di lancio" data-monthly="Piano mensile">Offerta annuale di lancio</p>
+                        <p class="pricing-billing-caption">Piano mensile</p>
                         <div class="pricing-price-row">
-                            <div class="pricing-price" data-annual="19,99 €<span class=&quot;price-suffix&quot;>l'anno</span>" data-monthly="2,99 €<span class=&quot;price-suffix&quot;>al mese</span>">19,99 €<span class="price-suffix">l'anno</span></div>
+                            <div class="pricing-price">2,99 €<span class="price-suffix">al mese</span></div>
                         </div>
-                        <p class="pricing-alt-price" data-annual="1,67 € al mese invece di 35,88 € l'anno" data-monthly="Rinnovo mensile a 2,99 €">1,67 € al mese invece di 35,88 € l'anno</p>
+                        <p class="pricing-alt-price">Rinnovo mensile a 2,99 €</p>
                     </div>
-                    <p class="pricing-note" data-annual="Primo mese di prova gratuito." data-monthly="Primo mese di prova gratuito.">Primo mese di prova gratuito.</p>
+                    <p class="pricing-note">Primo mese di prova gratuito.</p>
+                    <ul class="pricing-list">
+                        <li><i class="fa-solid fa-wallet"></i><span>Wallet illimitati</span></li>
+                        <li><i class="fa-solid fa-chart-line"></i><span>Snapshot avanzati per analisi più precise</span></li>
+                        <li><i class="fa-solid fa-clock-rotate-left"></i><span>Storico completo per confrontare l'evoluzione nel tempo</span></li>
+                    </ul>
+                    <a href="#download" class="btn btn-primary full-width"><i class="fa-brands fa-apple"></i> Scarica e attiva Pro</a>
+                    <p class="pricing-microcopy">Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.</p>
+                </div>
+                <div class="glass-card pricing-card pro pricing-card-featured pricing-card-annual" data-plan="annual">
+                    <div class="pricing-card-header">
+                        <h3>Balance Pro</h3>
+                        <div class="badge pricing-emphasis-badge">Miglior valore</div>
+                    </div>
+                    <p class="pricing-description">Per chi vuole usare Balance come archivio finanziario personale, senza limiti.</p>
+                    <div class="pricing-highlight-panel">
+                        <p class="pricing-billing-caption">Offerta annuale di lancio</p>
+                        <div class="pricing-price-row">
+                            <div class="pricing-price">19,99 €<span class="price-suffix">l'anno</span></div>
+                        </div>
+                        <p class="pricing-alt-price">1,67 € al mese invece di 35,88 € l'anno</p>
+                    </div>
+                    <p class="pricing-note">Primo mese di prova gratuito.</p>
                     <ul class="pricing-list">
                         <li><i class="fa-solid fa-wallet"></i><span>Wallet illimitati</span></li>
                         <li><i class="fa-solid fa-chart-line"></i><span>Snapshot avanzati per analisi più precise</span></li>
