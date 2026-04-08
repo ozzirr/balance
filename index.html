@@ -292,22 +292,26 @@
     <section id="pricing" class="section-pricing scene">
         <div class="container reveal">
             <div class="pricing-header center-text">
-                <h2 class="section-title center-text">Piani disponibili</h2>
-                <p class="pricing-intro">Inizia gratis con 3 wallet per monitorare quelli essenziali. Passa a Pro per sbloccare wallet illimitati e funzionalità avanzate. Confronta i piani disponibili.</p>
+                <h2 class="section-title center-text">Passa a Pro, senza limiti</h2>
+                <p class="pricing-intro">Inizia gratis con 3 wallet. Passa a Pro per sbloccare wallet illimitati, snapshot avanzati e storico completo. Scegli tra mensile o annuale.</p>
+            </div>
+            <div class="pricing-toggle" id="pricing-toggle" role="group" aria-label="Seleziona piano">
+                <button class="pricing-toggle-btn" data-plan="monthly">Mensile</button>
+                <button class="pricing-toggle-btn active" data-plan="annual">Annuale</button>
             </div>
             <div class="pricing-grid pricing-grid-dual">
                 <div class="glass-card pricing-card pro pricing-card-monthly" data-plan="monthly">
                     <div class="pricing-card-header">
-                        <h3>Balance Pro</h3>
-                        <div class="badge pricing-emphasis-badge">Piano mensile</div>
+                        <h3>Pro Mensile</h3>
+                        <div class="badge pricing-emphasis-badge">Flessibile</div>
                     </div>
-                    <p class="pricing-description">Per chi vuole usare Balance come archivio finanziario personale, senza limiti.</p>
+                    <p class="pricing-description">Tutte le funzionalità Pro con la libertà di pagare mese per mese, senza vincoli.</p>
                     <div class="pricing-highlight-panel">
-                        <p class="pricing-billing-caption">Piano mensile</p>
+                        <p class="pricing-billing-caption">Abbonamento mensile</p>
                         <div class="pricing-price-row">
                             <div class="pricing-price">2,99 €<span class="price-suffix">al mese</span></div>
                         </div>
-                        <p class="pricing-alt-price">Rinnovo mensile a 2,99 €</p>
+                        <p class="pricing-alt-price">Rinnovo automatico ogni mese</p>
                     </div>
                     <p class="pricing-note">Primo mese di prova gratuito.</p>
                     <ul class="pricing-list">
@@ -315,21 +319,21 @@
                         <li><i class="fa-solid fa-chart-line"></i><span>Snapshot avanzati per analisi più precise</span></li>
                         <li><i class="fa-solid fa-clock-rotate-left"></i><span>Storico completo per confrontare l'evoluzione nel tempo</span></li>
                     </ul>
-                    <a href="#download" class="btn btn-primary full-width"><i class="fa-brands fa-apple"></i> Scarica e attiva Pro</a>
-                    <p class="pricing-microcopy">Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.</p>
+                    <a href="#download" class="btn btn-primary full-width"><i class="fa-brands fa-apple"></i> Inizia la prova gratuita</a>
+                    <p class="pricing-microcopy">Al termine della prova, salvo annullamento, il rinnovo avviene al prezzo del piano scelto.</p>
                 </div>
-                <div class="glass-card pricing-card pro pricing-card-featured pricing-card-annual" data-plan="annual">
+                <div class="glass-card pricing-card pro pricing-card-featured pricing-card-annual is-active" data-plan="annual">
                     <div class="pricing-card-header">
-                        <h3>Balance Pro</h3>
+                        <h3>Pro Annuale</h3>
                         <div class="badge pricing-emphasis-badge">Miglior valore</div>
                     </div>
-                    <p class="pricing-description">Per chi vuole usare Balance come archivio finanziario personale, senza limiti.</p>
+                    <p class="pricing-description">Il piano più conveniente per chi usa Balance ogni giorno. Risparmi il 44% rispetto al mensile.</p>
                     <div class="pricing-highlight-panel">
                         <p class="pricing-billing-caption">Offerta annuale di lancio</p>
                         <div class="pricing-price-row">
                             <div class="pricing-price">19,99 €<span class="price-suffix">l'anno</span></div>
                         </div>
-                        <p class="pricing-alt-price">1,67 € al mese invece di 35,88 € l'anno</p>
+                        <p class="pricing-alt-price">Equivale a 1,67 € al mese · Risparmi 15,89 €</p>
                     </div>
                     <p class="pricing-note">Primo mese di prova gratuito.</p>
                     <ul class="pricing-list">
@@ -337,8 +341,8 @@
                         <li><i class="fa-solid fa-chart-line"></i><span>Snapshot avanzati per analisi più precise</span></li>
                         <li><i class="fa-solid fa-clock-rotate-left"></i><span>Storico completo per confrontare l'evoluzione nel tempo</span></li>
                     </ul>
-                    <a href="#download" class="btn btn-primary full-width"><i class="fa-brands fa-apple"></i> Scarica e attiva Pro</a>
-                    <p class="pricing-microcopy">Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.</p>
+                    <a href="#download" class="btn btn-primary full-width"><i class="fa-brands fa-apple"></i> Inizia la prova gratuita</a>
+                    <p class="pricing-microcopy">Al termine della prova, salvo annullamento, il rinnovo avviene al prezzo del piano scelto.</p>
                 </div>
             </div>
         </div>
@@ -352,7 +356,7 @@
                 <div class="feature-carousel-column">
                 <div class="feature-carousel-shell" id="feature-carousel-shell">
                 <div class="features-grid">
-                <div class="glass-card feature-card reveal is-active" data-feature="snapshot" role="button" tabindex="0" aria-expanded="true">
+                <div class="glass-card feature-card is-active" data-feature="snapshot" role="button" tabindex="0" aria-expanded="true">
                     <div class="feature-card-inner">
                         <div class="feature-face feature-front">
                             <div class="icon-box"><i class="fa-solid fa-camera"></i></div>
@@ -369,7 +373,7 @@
                     </div>
                 </div>
 
-                <div class="glass-card feature-card reveal delayed-1" data-feature="wallet" role="button" tabindex="0" aria-expanded="false">
+                <div class="glass-card feature-card" data-feature="wallet" role="button" tabindex="0" aria-expanded="false">
                     <div class="feature-card-inner">
                         <div class="feature-face feature-front">
                             <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
@@ -386,7 +390,7 @@
                     </div>
                 </div>
 
-                <div class="glass-card feature-card reveal delayed-2" data-feature="dashboard" role="button" tabindex="0" aria-expanded="false">
+                <div class="glass-card feature-card" data-feature="dashboard" role="button" tabindex="0" aria-expanded="false">
                     <div class="feature-card-inner">
                         <div class="feature-face feature-front">
                             <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
@@ -403,7 +407,7 @@
                     </div>
                 </div>
 
-                <div class="glass-card feature-card reveal" data-feature="privacy" role="button" tabindex="0" aria-expanded="false">
+                <div class="glass-card feature-card" data-feature="privacy" role="button" tabindex="0" aria-expanded="false">
                     <div class="feature-card-inner">
                         <div class="feature-face feature-front">
                             <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
@@ -420,7 +424,7 @@
                     </div>
                 </div>
 
-                <div class="glass-card feature-card reveal delayed-1" data-feature="speed" role="button" tabindex="0" aria-expanded="false">
+                <div class="glass-card feature-card" data-feature="speed" role="button" tabindex="0" aria-expanded="false">
                     <div class="feature-card-inner">
                         <div class="feature-face feature-front">
                             <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>

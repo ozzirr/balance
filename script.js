@@ -109,6 +109,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize 3D iPhone interaction
     initIPhone3D();
 
+    // Mobile pricing plan toggle
+    const pricingToggle = document.getElementById('pricing-toggle');
+    if (pricingToggle) {
+        const toggleBtns = pricingToggle.querySelectorAll('.pricing-toggle-btn');
+        const cards = document.querySelectorAll('.section-pricing [data-plan]');
+
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const plan = btn.dataset.plan;
+                toggleBtns.forEach(b => b.classList.toggle('active', b === btn));
+                cards.forEach(card => card.classList.toggle('is-active', card.dataset.plan === plan));
+            });
+        });
+    }
+
 });
 
 function initCarousel(containerId, options = {}) {
@@ -172,6 +187,7 @@ function initFeatureDetail() {
     if (cards.length === 0) return;
 
     const carouselShell = document.getElementById('feature-carousel-shell');
+    const featuresGrid = carouselShell?.querySelector('.features-grid');
     const carouselStep = document.querySelector('.feature-carousel-step');
     const carouselDotsRail = document.querySelector('.feature-carousel-dots');
     const detailTitle = detail?.querySelector('.feature-detail-title');
@@ -242,14 +258,19 @@ function initFeatureDetail() {
     let mobileAutoTimer = null;
     let mobileResumeTimer = null;
     let mobileScrollTimer = null;
-    let mobileRaf = null;
+    let mobileScrollRaf = null;
+    let mobileAutoFrame = null;
+    let mobileAutoLastTime = 0;
+    let mobileIsAutoScrolling = false;
     let mobileActiveIndex = 0;
     let mobileFlippedIndex = null;
+    let renderedCards = [...cards];
+    let loopAnchorCards = [...cards];
     const SWAP_DELAY = 140;
     const HYSTERESIS_PX = 28;
     const ACTIVATION_RATIO = 0.45;
-    const AUTO_ADVANCE_MS = 4600;
-    const AUTO_RESUME_MS = 3200;
+    const AUTO_RESUME_MS = 1600;
+    const AUTO_SCROLL_PX_PER_SEC = 26;
     const steps = cards.map((card, index) => ({
         key: card.dataset.feature,
         index
@@ -258,6 +279,69 @@ function initFeatureDetail() {
     const totalSteps = steps.length;
     const railDots = [];
     const mobileDots = [];
+
+    const updateRenderedCards = () => {
+        renderedCards = featuresGrid
+            ? Array.from(featuresGrid.querySelectorAll('.feature-card[data-feature]'))
+            : [...cards];
+        loopAnchorCards = renderedCards.filter(card => card.dataset.loopSet === '0');
+    };
+
+    const markLoopCard = (card, loopSet, originalIndex) => {
+        card.dataset.loopSet = String(loopSet);
+        card.dataset.originalIndex = String(originalIndex);
+    };
+
+    cards.forEach((card, index) => {
+        markLoopCard(card, 0, index);
+    });
+
+    const teardownMobileLoop = () => {
+        if (!featuresGrid) return;
+
+        featuresGrid.querySelectorAll('.feature-card--loop-clone').forEach((clone) => clone.remove());
+        cards.forEach((card, index) => {
+            markLoopCard(card, 0, index);
+            card.removeAttribute('aria-hidden');
+            card.tabIndex = 0;
+        });
+        updateRenderedCards();
+    };
+
+    const ensureMobileLoop = () => {
+        if (!featuresGrid || cards.length < 2) {
+            updateRenderedCards();
+            return;
+        }
+
+        if (featuresGrid.querySelector('.feature-card--loop-clone')) {
+            updateRenderedCards();
+            return;
+        }
+
+        const prependFragment = document.createDocumentFragment();
+        const appendFragment = document.createDocumentFragment();
+
+        cards.forEach((card, index) => {
+            const prependClone = card.cloneNode(true);
+            prependClone.classList.add('feature-card--loop-clone');
+            prependClone.setAttribute('aria-hidden', 'true');
+            prependClone.tabIndex = -1;
+            markLoopCard(prependClone, -1, index);
+            prependFragment.appendChild(prependClone);
+
+            const appendClone = card.cloneNode(true);
+            appendClone.classList.add('feature-card--loop-clone');
+            appendClone.setAttribute('aria-hidden', 'true');
+            appendClone.tabIndex = -1;
+            markLoopCard(appendClone, 1, index);
+            appendFragment.appendChild(appendClone);
+        });
+
+        featuresGrid.insertBefore(prependFragment, featuresGrid.firstChild);
+        featuresGrid.appendChild(appendFragment);
+        updateRenderedCards();
+    };
 
     if (detailRail) {
         detailRail.innerHTML = '';
@@ -284,16 +368,26 @@ function initFeatureDetail() {
     const syncCardDetails = () => {
         const detailMap = getDetailMap();
 
-        cards.forEach((card, index) => {
+        updateRenderedCards();
+
+        renderedCards.forEach((card) => {
             const expand = card.querySelector('.feature-expand');
             const text = card.querySelector('.feature-expand-text');
             const list = card.querySelector('.feature-expand-list');
             const info = detailMap[card.dataset.feature];
             if (!expand || !text || !list || !info) return;
 
-            const expandId = expand.id || `feature-expand-${index + 1}`;
+            const originalIndex = Number(card.dataset.originalIndex ?? stepMap.get(card.dataset.feature) ?? 0);
+            const expandId = card.classList.contains('feature-card--loop-clone')
+                ? `feature-expand-clone-${originalIndex + 1}-${card.dataset.loopSet}`
+                : (expand.id || `feature-expand-${originalIndex + 1}`);
             expand.id = expandId;
-            card.setAttribute('aria-controls', expandId);
+
+            if (card.classList.contains('feature-card--loop-clone')) {
+                card.removeAttribute('aria-controls');
+            } else {
+                card.setAttribute('aria-controls', expandId);
+            }
 
             text.dataset.fullText = info.text;
             text.textContent = info.text;
@@ -340,8 +434,9 @@ function initFeatureDetail() {
         const isMobile = !desktopQuery.matches;
         mobileFlippedIndex = isMobile ? nextIndex : null;
 
-        cards.forEach((card, index) => {
-            const isFlipped = isMobile && index === nextIndex;
+        renderedCards.forEach((card) => {
+            const cardIndex = Number(card.dataset.originalIndex ?? stepMap.get(card.dataset.feature) ?? -1);
+            const isFlipped = isMobile && cardIndex === nextIndex;
             const expand = card.querySelector('.feature-expand');
             card.classList.toggle('is-flipped', isFlipped);
             if (isMobile) {
@@ -437,14 +532,16 @@ function initFeatureDetail() {
             setMobileFlippedIndex(null);
         }
 
-        cards.forEach((card, index) => {
-            const isActive = index === nextIndex;
+        renderedCards.forEach((card) => {
+            const cardIndex = Number(card.dataset.originalIndex ?? stepMap.get(card.dataset.feature) ?? -1);
+            const isActive = cardIndex === nextIndex;
             const expand = card.querySelector('.feature-expand');
+            const isClone = card.classList.contains('feature-card--loop-clone');
 
             restoreCardDetailContent(card);
             card.classList.toggle('is-active', isActive);
             card.setAttribute('role', 'button');
-            card.tabIndex = 0;
+            card.tabIndex = isClone ? -1 : 0;
             card.removeAttribute('aria-roledescription');
             card.setAttribute('aria-current', isActive ? 'true' : 'false');
             card.removeAttribute('aria-expanded');
@@ -455,34 +552,81 @@ function initFeatureDetail() {
         });
     };
 
-    const getMobileScrollLeft = (index) => {
-        const card = cards[index];
+    const getCardScrollLeft = (card) => {
         if (!carouselShell || !card) return 0;
         const offset = card.offsetLeft - ((carouselShell.clientWidth - card.offsetWidth) / 2);
-        return Math.max(0, offset);
+        return offset;
+    };
+
+    const getNearestRenderedCard = () => {
+        if (!carouselShell || renderedCards.length === 0) {
+            return cards[mobileActiveIndex] || cards[0] || null;
+        }
+
+        const viewportCenter = carouselShell.scrollLeft + (carouselShell.clientWidth / 2);
+
+        return renderedCards.reduce((nearestCard, card) => {
+            const nearestCenter = nearestCard.offsetLeft + (nearestCard.offsetWidth / 2);
+            const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+            return Math.abs(cardCenter - viewportCenter) < Math.abs(nearestCenter - viewportCenter)
+                ? card
+                : nearestCard;
+        }, renderedCards[0]);
+    };
+
+    const getMobileLoopTarget = (index) => {
+        const candidates = renderedCards.filter((card) => (
+            Number(card.dataset.originalIndex ?? stepMap.get(card.dataset.feature) ?? -1) === index
+        ));
+
+        if (candidates.length === 0) return cards[index] || null;
+        if (!carouselShell) return candidates[0];
+
+        const currentScrollLeft = carouselShell.scrollLeft;
+        return candidates.reduce((nearestCard, card) => (
+            Math.abs(getCardScrollLeft(card) - currentScrollLeft) < Math.abs(getCardScrollLeft(nearestCard) - currentScrollLeft)
+                ? card
+                : nearestCard
+        ), candidates[0]);
+    };
+
+    const normalizeMobileLoopPosition = () => {
+        if (desktopQuery.matches || !carouselShell || cards.length < 2 || loopAnchorCards.length === 0) return;
+
+        const nearestCard = getNearestRenderedCard();
+        if (!nearestCard) return;
+
+        const nearestLoopSet = Number(nearestCard.dataset.loopSet || 0);
+        if (nearestLoopSet === 0) return;
+
+        const originalIndex = Number(nearestCard.dataset.originalIndex ?? stepMap.get(nearestCard.dataset.feature) ?? mobileActiveIndex);
+        const anchorCard = loopAnchorCards[originalIndex];
+        if (!anchorCard) return;
+
+        const currentScrollLeft = getCardScrollLeft(nearestCard);
+        const anchorScrollLeft = getCardScrollLeft(anchorCard);
+        if (Math.abs(anchorScrollLeft - currentScrollLeft) < 1) return;
+
+        carouselShell.scrollTo({
+            left: anchorScrollLeft,
+            behavior: 'auto'
+        });
     };
 
     const scrollToMobileIndex = (index, behavior = 'smooth') => {
         if (!carouselShell || !cards[index]) return;
+        const targetCard = getMobileLoopTarget(index) || cards[index];
         setMobileActiveIndex(index);
         carouselShell.scrollTo({
-            left: getMobileScrollLeft(index),
+            left: getCardScrollLeft(targetCard),
             behavior
         });
     };
 
     const getNearestMobileIndex = () => {
-        if (!carouselShell) return mobileActiveIndex;
-        const viewportCenter = carouselShell.scrollLeft + (carouselShell.clientWidth / 2);
-
-        return cards.reduce((nearestIndex, card, index) => {
-            const nearestCard = cards[nearestIndex];
-            const nearestCenter = nearestCard.offsetLeft + (nearestCard.offsetWidth / 2);
-            const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-            return Math.abs(cardCenter - viewportCenter) < Math.abs(nearestCenter - viewportCenter)
-                ? index
-                : nearestIndex;
-        }, mobileActiveIndex);
+        const nearestCard = getNearestRenderedCard();
+        if (!nearestCard) return mobileActiveIndex;
+        return Number(nearestCard.dataset.originalIndex ?? stepMap.get(nearestCard.dataset.feature) ?? mobileActiveIndex);
     };
 
     const stopMobileAutoplay = () => {
@@ -501,21 +645,48 @@ function initFeatureDetail() {
             mobileScrollTimer = null;
         }
 
-        if (mobileRaf) {
-            window.cancelAnimationFrame(mobileRaf);
-            mobileRaf = null;
+        if (mobileScrollRaf) {
+            window.cancelAnimationFrame(mobileScrollRaf);
+            mobileScrollRaf = null;
         }
+
+        if (mobileAutoFrame) {
+            window.cancelAnimationFrame(mobileAutoFrame);
+            mobileAutoFrame = null;
+        }
+
+        mobileAutoLastTime = 0;
+        mobileIsAutoScrolling = false;
     };
 
     const startMobileAutoplay = () => {
         if (desktopQuery.matches || !carouselShell || cards.length < 2 || prefersReducedMotion.matches) return;
 
         if (mobileAutoTimer) window.clearTimeout(mobileAutoTimer);
-        mobileAutoTimer = window.setTimeout(() => {
-            const nextIndex = (mobileActiveIndex + 1) % cards.length;
-            scrollToMobileIndex(nextIndex, 'smooth');
-            startMobileAutoplay();
-        }, AUTO_ADVANCE_MS);
+        if (mobileAutoFrame) window.cancelAnimationFrame(mobileAutoFrame);
+        mobileAutoLastTime = 0;
+
+        const step = (timestamp) => {
+            if (desktopQuery.matches || !carouselShell || prefersReducedMotion.matches) {
+                stopMobileAutoplay();
+                return;
+            }
+
+            if (!mobileAutoLastTime) {
+                mobileAutoLastTime = timestamp;
+            }
+
+            const delta = timestamp - mobileAutoLastTime;
+            mobileAutoLastTime = timestamp;
+            mobileIsAutoScrolling = true;
+            carouselShell.scrollLeft += (AUTO_SCROLL_PX_PER_SEC * delta) / 1000;
+            normalizeMobileLoopPosition();
+            setMobileActiveIndex(getNearestMobileIndex());
+            mobileIsAutoScrolling = false;
+            mobileAutoFrame = window.requestAnimationFrame(step);
+        };
+
+        mobileAutoFrame = window.requestAnimationFrame(step);
     };
 
     const scheduleMobileAutoplay = () => {
@@ -536,18 +707,21 @@ function initFeatureDetail() {
     };
 
     const activateCard = (card) => {
+        const originalIndex = Number(card?.dataset.originalIndex ?? stepMap.get(card?.dataset.feature) ?? 0);
+        const canonicalCard = cards[originalIndex] || card;
+        if (!canonicalCard) return;
+
         if (desktopQuery.matches) {
-            setDesktopActiveCard(card);
-            scrollCardToActivation(card);
+            setDesktopActiveCard(canonicalCard);
+            scrollCardToActivation(canonicalCard);
             return;
         }
 
-        const index = stepMap.get(card.dataset.feature) ?? 0;
         stopMobileAutoplay();
         setMobileFlippedIndex(null);
 
-        if (index !== mobileActiveIndex) {
-            scrollToMobileIndex(index, prefersReducedMotion.matches ? 'auto' : 'smooth');
+        if (originalIndex !== mobileActiveIndex) {
+            scrollToMobileIndex(originalIndex, prefersReducedMotion.matches ? 'auto' : 'smooth');
         } else {
             scheduleMobileAutoplay();
         }
@@ -613,6 +787,7 @@ function initFeatureDetail() {
         if (!preferredCard) return;
 
         if (desktopQuery.matches) {
+            teardownMobileLoop();
             stopMobileAutoplay();
             if (carouselShell) carouselShell.classList.remove('is-dragging');
             teardownScrollSync();
@@ -622,25 +797,35 @@ function initFeatureDetail() {
         }
 
         teardownScrollSync();
+        ensureMobileLoop();
+        stopMobileAutoplay();
         const preferredIndex = stepMap.get(preferredCard.dataset.feature) ?? 0;
         setMobileFlippedIndex(null);
         setMobileActiveIndex(preferredIndex);
         window.requestAnimationFrame(() => {
             scrollToMobileIndex(preferredIndex, 'auto');
+            normalizeMobileLoopPosition();
             startMobileAutoplay();
         });
     };
 
     syncCardDetails();
 
-    cards.forEach(card => {
-        card.addEventListener('click', () => activateCard(card));
-        card.addEventListener('keydown', (event) => {
+    if (featuresGrid) {
+        featuresGrid.addEventListener('click', (event) => {
+            const card = event.target.closest('.feature-card[data-feature]');
+            if (!card || !featuresGrid.contains(card)) return;
+            activateCard(card);
+        });
+
+        featuresGrid.addEventListener('keydown', (event) => {
             if (event.key !== 'Enter' && event.key !== ' ') return;
+            const card = event.target.closest('.feature-card[data-feature]');
+            if (!card || !featuresGrid.contains(card)) return;
             event.preventDefault();
             activateCard(card);
         });
-    });
+    }
 
     if (carouselShell) {
         carouselShell.addEventListener('scroll', () => {
@@ -656,16 +841,19 @@ function initFeatureDetail() {
                 mobileResumeTimer = null;
             }
 
-            if (mobileRaf) window.cancelAnimationFrame(mobileRaf);
-            mobileRaf = window.requestAnimationFrame(() => {
+            if (mobileIsAutoScrolling) return;
+
+            if (mobileScrollRaf) window.cancelAnimationFrame(mobileScrollRaf);
+            mobileScrollRaf = window.requestAnimationFrame(() => {
                 setMobileActiveIndex(getNearestMobileIndex());
-                mobileRaf = null;
+                mobileScrollRaf = null;
             });
 
             if (mobileScrollTimer) window.clearTimeout(mobileScrollTimer);
             mobileScrollTimer = window.setTimeout(() => {
                 const nearestIndex = getNearestMobileIndex();
                 setMobileActiveIndex(nearestIndex);
+                normalizeMobileLoopPosition();
                 scheduleMobileAutoplay();
             }, 140);
         }, { passive: true });
@@ -703,6 +891,7 @@ function initFeatureDetail() {
 
                 setMobileFlippedIndex(null);
                 scrollToMobileIndex(preferredIndex, 'auto');
+                normalizeMobileLoopPosition();
             }, 0);
         });
     }

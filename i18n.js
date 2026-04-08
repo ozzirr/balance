@@ -69,10 +69,10 @@
                 },
                 pricing: {
                     kicker: 'Balance è gratis',
-                    title: 'Piani disponibili',
-                    intro: 'Inizia gratis con 3 wallet per monitorare quelli essenziali. Passa a Pro per sbloccare wallet illimitati e funzionalità avanzate. Confronta i piani disponibili.',
+                    title: 'Passa a Pro, senza limiti',
+                    intro: 'Inizia gratis con 3 wallet. Passa a Pro per wallet illimitati, snapshot avanzati e storico completo.',
                     toggle: {
-                        ariaLabel: 'Seleziona la fatturazione di Balance Pro',
+                        ariaLabel: 'Seleziona il piano',
                         annual: 'Annuale',
                         monthly: 'Mensile'
                     },
@@ -92,21 +92,25 @@
                         badgeAnnual: 'Offerta lancio',
                         badgeMonthly: 'Offerta lancio',
                         emphasis: 'Miglior valore',
-                        emphasisMonthly: 'Piano mensile',
+                        emphasisMonthly: 'Flessibile',
                         description: 'Per chi vuole usare Balance come archivio finanziario personale, senza limiti.',
                         billing: {
                             annual: {
-                                caption: 'Offerta annuale di lancio',
+                                title: 'Pro Annuale',
+                                description: 'Il piano più conveniente per chi usa Balance ogni giorno. Risparmi il 44% rispetto al piano mensile.',
+                                caption: 'Offerta di lancio',
                                 priceHtml: '19,99 €<span class="price-suffix">l\'anno</span>',
                                 chip: 'Risparmi 15,89 €',
-                                alt: "1,67 € al mese invece di 35,88 € l'anno",
+                                alt: "Equivale a 1,67 € al mese · Risparmi 15,89 €",
                                 note: 'Primo mese di prova gratuito.'
                             },
                             monthly: {
-                                caption: 'Piano mensile',
+                                title: 'Pro Mensile',
+                                description: 'Tutte le funzionalità Pro con la libertà di pagare mese per mese, senza vincoli.',
+                                caption: 'Abbonamento',
                                 priceHtml: '2,99 €<span class="price-suffix">al mese</span>',
-                                chip: 'Mensile',
-                                alt: 'Rinnovo mensile a 2,99 €',
+                                chip: 'Flessibile',
+                                alt: 'Rinnovo automatico ogni mese',
                                 note: 'Primo mese di prova gratuito.'
                             }
                         },
@@ -115,8 +119,8 @@
                             'Snapshot avanzati per analisi più precise',
                             "Storico completo per confrontare l'evoluzione nel tempo"
                         ],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Scarica e attiva Pro',
-                        microcopy: 'Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.'
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Inizia la prova gratuita',
+                        microcopy: 'Al termine della prova, salvo annullamento, il rinnovo avviene al prezzo del piano scelto.'
                     }
                 },
                 features: {
@@ -654,10 +658,10 @@
                 },
                 pricing: {
                     kicker: 'Balance is free',
-                    title: 'Available plans',
-                    intro: 'Start free with 3 wallets to track your essentials. Upgrade to Pro to unlock unlimited wallets and advanced features. Compare available plans.',
+                    title: 'Go Pro, no limits',
+                    intro: 'Start free with 3 wallets. Upgrade to Pro for unlimited wallets, advanced snapshots, and full history.',
                     toggle: {
-                        ariaLabel: 'Choose Balance Pro billing',
+                        ariaLabel: 'Select plan',
                         annual: 'Yearly',
                         monthly: 'Monthly'
                     },
@@ -677,21 +681,25 @@
                         badgeAnnual: 'Launch offer',
                         badgeMonthly: 'Launch offer',
                         emphasis: 'Best value',
-                        emphasisMonthly: 'Monthly plan',
+                        emphasisMonthly: 'Flexible',
                         description: 'For anyone who wants to use Balance as a personal financial archive, without limits.',
                         billing: {
                             annual: {
-                                caption: 'Launch yearly offer',
+                                title: 'Pro Yearly',
+                                description: 'The best value plan for everyday use. Save 44% compared to monthly.',
+                                caption: 'Launch offer',
                                 priceHtml: '19.99 €<span class="price-suffix">/ year</span>',
                                 chip: 'Save 15.89 €',
-                                alt: '1.67 € / month instead of 35.88 € / year',
+                                alt: 'Equals 1.67 € / month · Save 15.89 €',
                                 note: 'Free trial month.'
                             },
                             monthly: {
-                                caption: 'Monthly plan',
+                                title: 'Pro Monthly',
+                                description: 'All Pro features with the freedom to pay month to month.',
+                                caption: 'Subscription',
                                 priceHtml: '2.99 €<span class="price-suffix">/ month</span>',
-                                chip: 'Monthly',
-                                alt: 'Monthly renewal at 2.99 €',
+                                chip: 'Flexible',
+                                alt: 'Renews automatically each month',
                                 note: 'Free trial month.'
                             }
                         },
@@ -700,8 +708,8 @@
                             'Advanced snapshots for deeper analysis',
                             'Complete history to compare your evolution over time'
                         ],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download and unlock Pro',
-                        microcopy: 'At the end of the free trial, unless cancelled, renewal follows the selected plan.'
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Start free trial',
+                        microcopy: 'After the trial, unless cancelled, renewal follows the selected plan price.'
                     }
                 },
                 features: {
@@ -1236,10 +1244,10 @@
                 },
                 pricing: {
                     kicker: 'Balance é grátis',
-                    title: 'Planos disponíveis',
-                    intro: 'Comece grátis com 3 wallets para acompanhar as essenciais. Passe para o Pro para desbloquear wallets ilimitadas e funcionalidades avançadas. Compare os planos disponíveis.',
+                    title: 'Passe para o Pro, sem limites',
+                    intro: 'Comece grátis com 3 wallets. Passe para o Pro para wallets ilimitadas, snapshots avançados e histórico completo.',
                     toggle: {
-                        ariaLabel: 'Escolha a faturação do Balance Pro',
+                        ariaLabel: 'Selecionar plano',
                         annual: 'Anual',
                         monthly: 'Mensal'
                     },
@@ -1259,21 +1267,25 @@
                         badgeAnnual: 'Oferta de lançamento',
                         badgeMonthly: 'Oferta de lançamento',
                         emphasis: 'Melhor valor',
-                        emphasisMonthly: 'Plano mensal',
+                        emphasisMonthly: 'Flexível',
                         description: 'Para quem quer usar o Balance como arquivo financeiro pessoal, sem limites.',
                         billing: {
                             annual: {
-                                caption: 'Oferta anual de lançamento',
+                                title: 'Pro Anual',
+                                description: 'O plano mais vantajoso para uso diário. Poupa 44% face ao plano mensal.',
+                                caption: 'Oferta de lançamento',
                                 priceHtml: '19,99 €<span class="price-suffix">por ano</span>',
                                 chip: 'Poupa 15,89 €',
-                                alt: '1,67 € por mês em vez de 35,88 € por ano',
+                                alt: 'Equivale a 1,67 € por mês · Poupa 15,89 €',
                                 note: 'Primeiro mês de teste gratuito.'
                             },
                             monthly: {
-                                caption: 'Plano mensal',
+                                title: 'Pro Mensal',
+                                description: 'Todas as funcionalidades Pro com a liberdade de pagar mês a mês.',
+                                caption: 'Subscrição',
                                 priceHtml: '2,99 €<span class="price-suffix">por mês</span>',
-                                chip: 'Mensal',
-                                alt: 'Renovação mensal a 2,99 €',
+                                chip: 'Flexível',
+                                alt: 'Renovação automática cada mês',
                                 note: 'Primeiro mês de teste gratuito.'
                             }
                         },
@@ -1282,8 +1294,8 @@
                             'Snapshots avançados para análises mais precisas',
                             'Histórico completo para comparar a evolução ao longo do tempo'
                         ],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download e ativar Pro',
-                        microcopy: 'No final da prova gratuita, salvo cancelamento, a renovação segue o plano selecionado.'
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Começar prova gratuita',
+                        microcopy: 'Após a prova, salvo cancelamento, a renovação segue o preço do plano selecionado.'
                     }
                 },
                 features: {
@@ -1985,6 +1997,11 @@
             }
         }
 
+        const toggleMonthly = document.querySelector('#pricing-toggle [data-plan="monthly"]');
+        const toggleAnnual = document.querySelector('#pricing-toggle [data-plan="annual"]');
+        if (toggleMonthly) toggleMonthly.textContent = page.pricing.toggle.monthly;
+        if (toggleAnnual) toggleAnnual.textContent = page.pricing.toggle.annual;
+
         document.querySelectorAll('#pricing .pricing-card.pro[data-plan]').forEach(card => {
             const plan = card.dataset.plan === 'monthly' ? 'monthly' : 'annual';
             const billing = page.pricing.pro.billing?.[plan] || {};
@@ -1998,9 +2015,11 @@
             const altPrice = card.querySelector('.pricing-alt-price');
             const note = card.querySelector('.pricing-note');
 
+            const cardTitle = card.querySelector('h3');
+            if (cardTitle && billing.title) cardTitle.textContent = billing.title;
             if (emphasisBadge) emphasisBadge.textContent = emphasis;
             if (card.querySelector('.pricing-description')) {
-                card.querySelector('.pricing-description').textContent = page.pricing.pro.description;
+                card.querySelector('.pricing-description').textContent = billing.description || page.pricing.pro.description;
             }
             card.querySelectorAll('.pricing-list li').forEach((li, index) => {
                 const textTarget = li.querySelector('span') || li;

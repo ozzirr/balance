@@ -1680,6 +1680,7 @@ section {
     align-items: center;
     justify-content: space-between;
     gap: 18px;
+    margin-top: 4px;
 }
 
 .feature-carousel-step {
@@ -1771,7 +1772,8 @@ section {
 .feature-expand-divider {
     height: 1px;
     width: 100%;
-    margin-bottom: 18px;
+    margin-top: 14px;
+    margin-bottom: 22px;
     background: rgba(120, 200, 255, 0.16);
 }
 
@@ -2553,6 +2555,38 @@ section {
     letter-spacing: 0.02em;
 }
 
+/* Mobile plan toggle — hidden on desktop */
+.pricing-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 4px;
+    gap: 4px;
+    margin: 24px auto 0;
+    width: fit-content;
+}
+
+.pricing-toggle-btn {
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    color: rgba(236, 242, 255, 0.6);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 8px 22px;
+    transition: background 0.22s, color 0.22s;
+}
+
+.pricing-toggle-btn.active {
+    background: linear-gradient(135deg, rgba(139, 92, 255, 0.9), rgba(68, 210, 255, 0.9));
+    color: #fff;
+}
+
 .pro-page-card {
     max-width: 640px;
     margin: 0 auto;
@@ -2893,6 +2927,21 @@ footer::before {
         opacity: 1;
     }
 
+    /* Mobile toggle visibility */
+    .pricing-toggle {
+        display: flex;
+    }
+
+    .section-pricing .pricing-card-monthly,
+    .section-pricing .pricing-card-annual {
+        display: none;
+    }
+
+    .section-pricing .pricing-card-monthly.is-active,
+    .section-pricing .pricing-card-annual.is-active {
+        display: flex;
+    }
+
     .trust-bar {
         padding: 18px 0;
         box-shadow: 0 16px 28px rgba(4, 8, 18, 0.22);
@@ -2929,7 +2978,7 @@ footer::before {
         overflow-x: auto;
         overflow-y: visible;
         padding-bottom: 4px;
-        scroll-snap-type: x mandatory;
+        scroll-snap-type: none;
         scroll-padding-inline: 0;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
@@ -2941,6 +2990,7 @@ footer::before {
 
     .feature-carousel-meta {
         display: flex;
+        margin-top: 10px;
     }
 
     .feature-detail {
@@ -2953,8 +3003,6 @@ footer::before {
         max-width: calc((100% - 16px) / 1.3);
         min-width: 0;
         min-height: auto;
-        scroll-snap-align: center;
-        scroll-snap-stop: always;
         cursor: grab;
         perspective: none;
         transition: transform 260ms ease-out, box-shadow 260ms ease-out, border-color 220ms ease-out;
@@ -2995,6 +3043,11 @@ footer::before {
         line-height: 1.4;
     }
 
+    .feature-expand-divider {
+        margin-top: 18px;
+        margin-bottom: 24px;
+    }
+
     .feature-expand {
         position: static;
         display: block;
@@ -3007,7 +3060,7 @@ footer::before {
     .feature-card.is-active .feature-expand-inner {
         height: auto;
         overflow: visible;
-        padding: 0 20px 22px;
+        padding: 0 20px 24px;
         opacity: 1;
         transform: translateY(0);
     }
@@ -3242,9 +3295,14 @@ footer::before {
         line-height: 1.4;
     }
 
+    .feature-expand-divider {
+        margin-top: 16px;
+        margin-bottom: 22px;
+    }
+
     .feature-expand-inner,
     .feature-card.is-active .feature-expand-inner {
-        padding: 0 16px 20px;
+        padding: 0 16px 22px;
     }
 
     .trust-bar {
