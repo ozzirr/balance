@@ -1783,7 +1783,6 @@
         const path = window.location.pathname.split('/').pop() || 'index.html';
         if (path === '' || path === 'index.html') return 'home';
         if (path === 'balancepro.html') return 'balancepro';
-        if (path === 'pro-waitlist.html') return 'pro-waitlist';
         if (path === 'roadmap.html') return 'roadmap';
         if (path === 'privacy.html') return 'privacy';
         if (path === 'terms.html') return 'terms';
@@ -2211,7 +2210,6 @@
 
         if (pageKey === 'home') applyHome(langCopy);
         if (pageKey === 'balancepro') applyBalancePro(langCopy);
-        if (pageKey === 'pro-waitlist') applyMeta(langCopy.proWaitlist, currentLang);
         if (pageKey === 'roadmap') applyRoadmap(langCopy);
         if (pageKey === 'privacy') applyLegalPage(langCopy.privacy);
         if (pageKey === 'terms') applyLegalPage(langCopy.terms);
