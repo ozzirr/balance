@@ -113,6 +113,7 @@
                 <p>Il sito può raccogliere alcuni dati personali <strong>solo quando li inserisci volontariamente</strong> in un form.</p>
                 <ul>
                     <li><strong>Modulo contatti:</strong> nome, email e contenuto del messaggio che scegli di inviarci</li>
+                    <li><strong>Analytics del sito:</strong> Vercel Web Analytics per misurare visite e pagine viste in forma aggregata e privacy-friendly, senza cookie di profilazione o advertising</li>
                     <li><strong>Finalità:</strong> rispondere ai messaggi che scegli di inviarci dal sito</li>
                     <li><strong>Nessuna profilazione:</strong> questi dati non vengono usati per advertising, tracking cross-site o analisi comportamentale</li>
                 </ul>
@@ -212,6 +213,12 @@
         </div>
     </footer>
 
+    <script>
+        window.va = window.va || function () {
+            (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>

@@ -453,6 +453,7 @@
                         <p>Il sito può raccogliere alcuni dati personali <strong>solo quando li inserisci volontariamente</strong> in un form.</p>
                         <ul>
                             <li><strong>Modulo contatti:</strong> nome, email e contenuto del messaggio che scegli di inviarci</li>
+                            <li><strong>Analytics del sito:</strong> Vercel Web Analytics per misurare visite e pagine viste in forma aggregata e privacy-friendly, senza cookie di profilazione o advertising</li>
                             <li><strong>Finalità:</strong> rispondere ai messaggi che scegli di inviarci dal sito</li>
                             <li><strong>Nessuna profilazione:</strong> questi dati non vengono usati per advertising, tracking cross-site o analisi comportamentale</li>
                         </ul>
@@ -1039,6 +1040,7 @@
                         <p>The website may collect some personal data <strong>only when you voluntarily enter them</strong> into a form.</p>
                         <ul>
                             <li><strong>Contact form:</strong> name, email and message content that you choose to send</li>
+                            <li><strong>Website analytics:</strong> Vercel Web Analytics to measure visits and page views in an aggregated, privacy-friendly way, without profiling or advertising cookies</li>
                             <li><strong>Purpose:</strong> to reply to messages you choose to send from the website</li>
                             <li><strong>No profiling:</strong> these data are not used for advertising, cross-site tracking or behavioral analysis</li>
                         </ul>
@@ -1625,6 +1627,7 @@
                         <p>O site pode recolher alguns dados pessoais <strong>apenas quando os introduz voluntariamente</strong> num formulário.</p>
                         <ul>
                             <li><strong>Formulário de contacto:</strong> nome, email e conteúdo da mensagem que escolher enviar</li>
+                            <li><strong>Analytics do site:</strong> Vercel Web Analytics para medir visitas e visualizações de página de forma agregada e privacy-friendly, sem cookies de perfilização ou publicidade</li>
                             <li><strong>Finalidade:</strong> responder às mensagens que decidir enviar pelo site</li>
                             <li><strong>Sem perfilização:</strong> estes dados não são usados para publicidade, tracking cross-site ou análise comportamental</li>
                         </ul>
