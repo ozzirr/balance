@@ -38,23 +38,26 @@
                     }
                 }
             },
-                    {
-                        q: 'Balance è davvero offline?',
-                        a: 'Sì, nessun dato lascia il tuo dispositivo.'
-                    },
-                    {
-                        q: 'Serve collegare conti bancari?',
-                        a: 'No, aggiorni manualmente. Massima privacy.'
-                    },
-                    {
-                        q: 'È open source?',
-                        a: 'Sì, il codice è pubblico e verificabile.'
-                    }
-                                    philosophy: {
-                                        title: 'Filosofia Balance',
-                                        text: 'La privacy è un diritto. Balance nasce per proteggere i tuoi dati e offrirti controllo totale sulle tue finanze.',
-                                        highlight: 'Nessun server. Nessuna vendita dati. Solo tu.'
-                                    },
+            home: {
+                meta: {
+                    title: 'Balance – App di finanza personale e tracker patrimonio privato',
+                    description: 'Balance è un’app di finanza personale privacy-first per tracciare patrimonio, investimenti, crypto e asset. Offline, sicura e semplice.',
+                    ogTitle: 'Balance – App di finanza personale e tracker patrimonio privato'
+                },
+                hero: {
+                    badge: 'Privacy-first · Offline · Open source',
+                    title: 'Tieni le tue finanze sotto controllo',
+                    subtitle: 'Traccia patrimonio netto, investimenti e liquidità con un’app di finanza personale privata e offline-first.',
+                    description: 'Balance ti aiuta a tracciare conti, investimenti, crypto e asset in un semplice dashboard. Tutto rimane sul tuo dispositivo, senza collegamenti bancari e senza condivisione dei dati.',
+                    cta: 'Scarica Balance'
+                },
+                trust: [
+                    { labelHtml: '100%<br>offline', sub: 'Funziona senza internet' },
+                    { label: 'Nessun server', sub: 'Dati sul tuo dispositivo' },
+                    { label: 'Open source', sub: 'Codice verificabile' },
+                    { label: 'iOS & Android', sub: 'Disponibile ovunque' }
+                ],
+                context: {
                     title: 'Tutto il tuo patrimonio, davvero',
                     text: 'Conti, investimenti, crypto, liquidità: Balance ti mostra tutto insieme, senza compromessi sulla privacy.',
                     highlight: 'Un tracker patrimonio e investimenti che rispetta il tuo modo di gestire il denaro.'
@@ -65,19 +68,41 @@
                     highlight: 'La tua finanza, sempre chiara. Nessun foglio di calcolo.'
                 },
                 pricing: {
-                    title: 'Piani',
-                    free: {
-                        badge: 'Gratis',
-                        description: '3 wallet, dashboard essenziale',
-                        list: [],
-                        cta: 'Scarica Balance'
+                    title: 'Piani disponibili',
+                    intro: 'Inizia gratis con 3 wallet. Passa a Pro per sbloccare wallet illimitati, snapshot avanzati e storico completo. Scegli tra mensile o annuale.',
+                    toggleMonthly: 'Mensile',
+                    toggleAnnual: 'Annuale',
+                    monthly: {
+                        title: 'Pro Mensile',
+                        badge: 'Flessibile',
+                        description: 'Tutte le funzionalità Pro con la libertà di pagare mese per mese, senza vincoli.',
+                        billingCaption: 'Abbonamento mensile',
+                        priceHtml: '2,99 €<span class="price-suffix">al mese</span>',
+                        altPrice: 'Rinnovo automatico ogni mese',
+                        note: 'Primo mese di prova gratuito.',
+                        list: [
+                            'Wallet illimitati',
+                            'Snapshot avanzati per analisi più precise',
+                            'Storico completo per confrontare l’evoluzione nel tempo'
+                        ],
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Inizia la prova gratuita',
+                        microcopy: 'Al termine della prova, salvo annullamento, il rinnovo avviene al prezzo del piano scelto.'
                     },
-                    pro: {
-                        badge: 'Pro',
-                        description: 'Illimitato, €2.99/mese o €19.99/anno',
-                        list: [],
-                        price: '€2.99/mese o €19.99/anno',
-                        cta: 'Scarica Balance'
+                    annual: {
+                        title: 'Pro Annuale',
+                        badge: 'Miglior valore',
+                        description: 'Il piano più conveniente per chi usa Balance ogni giorno. Risparmi il 44% rispetto al mensile.',
+                        billingCaption: 'Offerta annuale di lancio',
+                        priceHtml: '19,99 €<span class="price-suffix">l’anno</span>',
+                        altPrice: 'Equivale a 1,67 € al mese · Risparmi 15,89 €',
+                        note: 'Primo mese di prova gratuito.',
+                        list: [
+                            'Wallet illimitati',
+                            'Snapshot avanzati per analisi più precise',
+                            'Storico completo per confrontare l’evoluzione nel tempo'
+                        ],
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Inizia la prova gratuita',
+                        microcopy: 'Al termine della prova, salvo annullamento, il rinnovo avviene al prezzo del piano scelto.'
                     }
                 },
                 features: {
@@ -610,35 +635,45 @@
                 },
                 pricing: {
                     title: 'Available plans',
-                    free: {
-                        badge: 'To get started',
-                        description: 'The free version to keep an eye on your essential wallets.',
+                    intro: 'Start free with 3 wallets. Upgrade to Pro to unlock unlimited wallets, advanced snapshots, and full history. Choose monthly or annual.',
+                    toggleMonthly: 'Monthly',
+                    toggleAnnual: 'Annual',
+                    monthly: {
+                        title: 'Pro Monthly',
+                        badge: 'Flexible',
+                        description: 'All Pro features with the freedom to pay month by month, no commitment.',
+                        billingCaption: 'Monthly subscription',
+                        priceHtml: '2.99 €<span class="price-suffix">/ month</span>',
+                        altPrice: 'Auto-renews every month',
+                        note: 'First month free.',
                         list: [
-                            'Up to 3 wallets to get started quickly',
-                            'Complete net worth dashboard',
-                            'Essential snapshots to track performance'
+                            'Unlimited wallets',
+                            'Advanced snapshots for more precise analysis',
+                            'Full history to track your progress over time'
                         ],
-                        cta: 'Download'
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Start free trial',
+                        microcopy: 'After the trial, unless cancelled, renewal follows the selected plan.'
                     },
-                faq: [
-                    {
-                        q: 'Balance è davvero offline?',
-                        a: 'Sì, nessun dato lascia il tuo dispositivo.'
-                    },
-                    {
-                        q: 'Serve collegare conti bancari?',
-                        a: 'No, aggiorni manualmente. Massima privacy.'
-                    },
-                    {
-                        q: 'È open source?',
-                        a: 'Sì, il codice è pubblico e verificabile.'
+                    annual: {
+                        title: 'Pro Annual',
+                        badge: 'Best value',
+                        description: 'The most convenient plan for daily Balance users. Save 44% compared to monthly.',
+                        billingCaption: 'Annual launch offer',
+                        priceHtml: '19.99 €<span class="price-suffix">/ year</span>',
+                        altPrice: 'Equals 1.67 € / month · Save 15.89 €',
+                        note: 'First month free.',
+                        list: [
+                            'Unlimited wallets',
+                            'Advanced snapshots for more precise analysis',
+                            'Full history to track your progress over time'
+                        ],
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Start free trial',
+                        microcopy: 'After the trial, unless cancelled, renewal follows the selected plan.'
                     }
-                ],
-                philosophy: {
-                    title: 'Filosofia Balance',
-                    text: 'La privacy è un diritto. Balance nasce per proteggere i tuoi dati e offrirti controllo totale sulle tue finanze.',
-                    highlight: 'Nessun server. Nessuna vendita dati. Solo tu.'
                 },
+                features: {
+                    title: 'Features',
+                    detailEyebrow: 'Detail',
                     cards: {
                         snapshot: {
                             title: 'Net worth snapshots',
@@ -1164,28 +1199,40 @@
                 },
                 pricing: {
                     title: 'Planos disponíveis',
-                    free: {
-                        badge: 'Para começar',
-                        description: 'A versão gratuita para acompanhar as wallets essenciais.',
-                        list: [
-                            'Até 3 wallets para começar rapidamente',
-                            'Dashboard completo do património',
-                            'Snapshots essenciais para acompanhar a evolução'
-                        ],
-                        cta: 'Download'
-                    },
-                    pro: {
-                        badge: 'Oferta de lançamento',
-                        description: 'Para quem quer usar o Balance como arquivo financeiro pessoal, sem limites.',
+                    intro: 'Comece grátis com 3 wallets. Passe ao Pro para desbloquear wallets ilimitadas, snapshots avançados e histórico completo. Escolha entre mensal ou anual.',
+                    toggleMonthly: 'Mensal',
+                    toggleAnnual: 'Anual',
+                    monthly: {
+                        title: 'Pro Mensal',
+                        badge: 'Flexível',
+                        description: 'Todas as funcionalidades Pro com a liberdade de pagar mês a mês, sem compromissos.',
+                        billingCaption: 'Subscrição mensal',
                         priceHtml: '2,99 €<span class="price-suffix">por mês</span>',
-                        altPrice: '19,99 € por ano em vez de 35,88 €',
-                        note: 'Primeiro mês grátis ao ativar uma subscrição mensal ou anual.',
+                        altPrice: 'Renovação automática todos os meses',
+                        note: 'Primeiro mês grátis.',
                         list: [
                             'Wallets ilimitadas',
                             'Snapshots avançados para análises mais precisas',
                             'Histórico completo para comparar a evolução ao longo do tempo'
                         ],
-                        ctaHtml: '<i class="fa-brands fa-apple"></i> Download e ativar Pro'
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Começar período grátis',
+                        microcopy: 'No final do período grátis, salvo cancelamento, a renovação segue o plano selecionado.'
+                    },
+                    annual: {
+                        title: 'Pro Anual',
+                        badge: 'Melhor valor',
+                        description: 'O plano mais conveniente para quem usa o Balance todos os dias. Poupa 44% face ao mensal.',
+                        billingCaption: 'Oferta anual de lançamento',
+                        priceHtml: '19,99 €<span class="price-suffix">por ano</span>',
+                        altPrice: 'Equivale a 1,67 € por mês · Poupa 15,89 €',
+                        note: 'Primeiro mês grátis.',
+                        list: [
+                            'Wallets ilimitadas',
+                            'Snapshots avançados para análises mais precisas',
+                            'Histórico completo para comparar a evolução ao longo do tempo'
+                        ],
+                        ctaHtml: '<i class="fa-brands fa-apple"></i> Começar período grátis',
+                        microcopy: 'No final do período grátis, salvo cancelamento, a renovação segue o plano selecionado.'
                     }
                 },
                 features: {
@@ -1865,26 +1912,37 @@
         }
 
         setText('#pricing .section-title', page.pricing.title);
-        const pricingCards = document.querySelectorAll('.pricing-card');
-        if (pricingCards[0]) {
-            pricingCards[0].querySelector('.badge').textContent = page.pricing.free.badge;
-            pricingCards[0].querySelector('.pricing-description').textContent = page.pricing.free.description;
-            pricingCards[0].querySelectorAll('.pricing-list li').forEach((li, index) => {
-                li.textContent = page.pricing.free.list[index];
+        setText('.pricing-intro', page.pricing.intro);
+        const toggleMonthly = document.querySelector('.pricing-toggle-btn[data-plan="monthly"]');
+        const toggleAnnual = document.querySelector('.pricing-toggle-btn[data-plan="annual"]');
+        if (toggleMonthly) toggleMonthly.textContent = page.pricing.toggleMonthly;
+        if (toggleAnnual) toggleAnnual.textContent = page.pricing.toggleAnnual;
+        const applyPricingCard = (card, copy) => {
+            if (!card || !copy) return;
+            const h3 = card.querySelector('h3');
+            if (h3) h3.textContent = copy.title;
+            const badge = card.querySelector('.badge');
+            if (badge) badge.textContent = copy.badge;
+            const desc = card.querySelector('.pricing-description');
+            if (desc) desc.textContent = copy.description;
+            const caption = card.querySelector('.pricing-billing-caption');
+            if (caption) caption.textContent = copy.billingCaption;
+            const price = card.querySelector('.pricing-price');
+            if (price) price.innerHTML = copy.priceHtml;
+            const altPrice = card.querySelector('.pricing-alt-price');
+            if (altPrice) altPrice.textContent = copy.altPrice;
+            const note = card.querySelector('.pricing-note');
+            if (note) note.textContent = copy.note;
+            card.querySelectorAll('.pricing-list li span').forEach((span, i) => {
+                if (copy.list[i] !== undefined) span.textContent = copy.list[i];
             });
-            pricingCards[0].querySelector('.btn').textContent = page.pricing.free.cta;
-        }
-        if (pricingCards[1]) {
-            pricingCards[1].querySelector('.badge').textContent = page.pricing.pro.badge;
-            pricingCards[1].querySelector('.pricing-description').textContent = page.pricing.pro.description;
-            pricingCards[1].querySelector('.pricing-price').innerHTML = page.pricing.pro.priceHtml;
-            pricingCards[1].querySelector('.pricing-alt-price').textContent = page.pricing.pro.altPrice;
-            pricingCards[1].querySelector('.pricing-note').textContent = page.pricing.pro.note;
-            pricingCards[1].querySelectorAll('.pricing-list li').forEach((li, index) => {
-                li.textContent = page.pricing.pro.list[index];
-            });
-            pricingCards[1].querySelector('.btn').innerHTML = page.pricing.pro.ctaHtml;
-        }
+            const btn = card.querySelector('.btn');
+            if (btn) btn.innerHTML = copy.ctaHtml;
+            const micro = card.querySelector('.pricing-microcopy');
+            if (micro) micro.textContent = copy.microcopy;
+        };
+        applyPricingCard(document.querySelector('.pricing-card-monthly'), page.pricing.monthly);
+        applyPricingCard(document.querySelector('.pricing-card-annual'), page.pricing.annual);
 
         setText('#features .section-title', page.features.title);
         setText('.feature-detail-eyebrow', page.features.detailEyebrow);

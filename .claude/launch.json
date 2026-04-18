@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "balance-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "8765", "/Users/andrerizzo/Documents/GitHub/balance"],
+      "port": 8765
+    }
+  ]
+}
