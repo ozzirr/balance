@@ -1687,9 +1687,11 @@
         const storedRaw = localStorage.getItem(LANG_STORAGE_KEY);
         if (storedRaw) return normalizeLang(storedRaw);
 
-        const browser = normalizeLang(navigator.language || navigator.userLanguage || DEFAULT_LANG);
-        localStorage.setItem(LANG_STORAGE_KEY, browser);
-        return browser;
+        const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        const short = browserLang.split('-')[0];
+        const detected = SUPPORTED_LANGS.includes(short) ? short : 'en';
+        localStorage.setItem(LANG_STORAGE_KEY, detected);
+        return detected;
     }
 
     function setText(selector, value) {
@@ -1807,8 +1809,9 @@
             } else {
                 url.searchParams.set('lang', nextLang);
             }
+            history.replaceState(null, '', url.toString());
 
-            window.location.href = url.toString();
+            applyTranslations();
         });
         select.value = lang;
     }
