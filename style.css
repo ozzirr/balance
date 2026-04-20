@@ -2659,6 +2659,105 @@ footer::before {
     padding: 26px 18px 22px;
 }
 
+.download-explore {
+    margin-top: 28px;
+    padding: 18px 8px 8px;
+}
+
+.download-explore-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 28px;
+}
+
+.download-explore-kicker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(120, 200, 255, 0.18);
+    background: rgba(15, 20, 34, 0.55);
+    color: rgba(222, 234, 255, 0.72);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 auto 16px;
+}
+
+.download-explore-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    color: var(--ink);
+    margin-bottom: 10px;
+}
+
+.download-explore-subtitle {
+    max-width: 660px;
+    margin: 0 auto;
+    color: rgba(234, 240, 249, 0.72);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.download-explore-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.landing-card {
+    text-decoration: none;
+    color: inherit;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 100%;
+}
+
+.landing-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--ink);
+    background: linear-gradient(135deg, rgba(143, 91, 255, 0.26), rgba(68, 210, 255, 0.18));
+    box-shadow: 0 14px 26px rgba(6, 12, 28, 0.26);
+}
+
+.landing-card-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--ink);
+}
+
+.landing-card-text {
+    color: rgba(234, 240, 249, 0.76);
+    line-height: 1.65;
+    flex: 1;
+}
+
+.landing-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent2);
+    font-weight: 700;
+}
+
+.landing-card-link i {
+    transition: transform var(--transition-fast);
+}
+
+.landing-card:hover .landing-card-link i {
+    transform: translateX(4px);
+}
+
 .footer-cta-badge {
     display: inline-flex;
     align-items: center;
@@ -3136,6 +3235,19 @@ footer::before {
 
     .footer-cta-main {
         padding: 18px 8px 8px;
+    }
+
+    .download-explore {
+        margin-top: 20px;
+        padding: 8px 0 0;
+    }
+
+    .download-explore-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-card {
+        padding: 24px;
     }
 
     .footer-cta-badge {

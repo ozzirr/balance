@@ -13,6 +13,7 @@
         it: {
             global: {
                 nav: {
+                    home: 'Home',
                     overview: 'Panoramica',
                     pricing: 'Piani',
                     features: 'Funzionalità',
@@ -212,7 +213,290 @@
                     title: 'Download',
                     copy: 'Scarica e attiva Balance Pro con abbonamento mensile o annuale: il primo mese è gratuito.',
                     points: ['Privacy-first', 'Offline', 'Open source'],
-                    note: 'Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.'
+                    note: 'Al termine della prova gratuita, salvo annullamento, il rinnovo segue il piano selezionato.',
+                    explore: {
+                        title: 'Esplora le landing per angolo',
+                        subtitle: 'Tre percorsi diversi, stesso prodotto: semplicità, investimenti e privacy.',
+                        cards: {
+                            simple: {
+                                title: 'Simple',
+                                text: 'Per chi vuole capire il proprio patrimonio in pochi secondi, senza complessità inutile.',
+                                cta: 'Apri Simple'
+                            },
+                            investors: {
+                                title: 'Investors',
+                                text: 'Per chi vuole tracciare crypto, azioni, ETF e altri asset senza condividere i dati.',
+                                cta: 'Apri Investors'
+                            },
+                            privacy: {
+                                title: 'Privacy',
+                                text: 'Per chi vuole un tracker finanziario offline, open source e senza raccolta dati.',
+                                cta: 'Apri Privacy'
+                            }
+                        }
+                    }
+                }
+            },
+            lpSimple: {
+                meta: {
+                    title: 'Balance – Conosci il tuo patrimonio in 30 secondi',
+                    description: 'Smetti di complicare le tue finanze. Balance ti offre una vista chiara e privata del tuo patrimonio in meno di un minuto.',
+                    ogTitle: 'Balance – Conosci il tuo patrimonio in 30 secondi'
+                },
+                hero: {
+                    kicker: 'Semplice per davvero',
+                    titleHtml: 'Conosci il tuo patrimonio in 30 secondi.',
+                    subHtml: "Niente collegamenti bancari. Niente setup complicati. Apri l'app, aggiorna i numeri e vedi <strong>subito dove sei</strong> in una schermata pulita.",
+                    ctaPrimary: 'Scarica gratis',
+                    ctaSecondary: 'Guarda come funziona',
+                    proof: ['Piano gratuito disponibile', 'Nessuna registrazione', 'Funziona offline']
+                },
+                steps: {
+                    title: 'Tre passaggi. Fine.',
+                    subtitle: 'Nessun wizard bancario. Nessun onboarding da 15 campi. Nessuna verifica email. Parti in meno di un minuto.',
+                    items: [
+                        { title: 'Crea i wallet', text: 'Aggiungi un wallet per ogni conto: banca, broker, exchange crypto, contanti. Lo chiami come vuoi.' },
+                        { title: 'Inserisci i saldi', text: 'Digita il saldo attuale. Tutto qui. Niente sync, niente import, niente attese. Solo il numero.' },
+                        { title: 'Vedi il patrimonio', text: 'La dashboard si aggiorna subito. Liquidità, investimenti, patrimonio totale: tutto in una vista ordinata.' }
+                    ]
+                },
+                vs: {
+                    title: 'Hai già provato il modo complicato',
+                    old: {
+                        title: "<i class='fa-solid fa-xmark'></i> Il vecchio modo",
+                        items: [
+                            'Collegare ogni conto bancario',
+                            'Sistemare sync rotte ogni settimana',
+                            'Categorizzare centinaia di movimenti',
+                            'Creare formule su fogli di calcolo',
+                            'Condividere credenziali con terzi',
+                            'Chiederti se i dati siano davvero al sicuro'
+                        ]
+                    },
+                    new: {
+                        title: "<i class='fa-solid fa-check'></i> Il modo Balance",
+                        items: [
+                            "Apri l'app",
+                            'Inserisci i tuoi saldi',
+                            'Vedi il patrimonio',
+                            'Salva uno snapshot',
+                            'Hai finito in 30 secondi',
+                            'I dati restano sul tuo telefono'
+                        ]
+                    }
+                },
+                pains: {
+                    title: 'Pensata per chi vuole chiarezza, non complessità',
+                    items: [
+                        { title: 'Stanco dei fogli di calcolo?', text: 'Balance sostituisce il tuo spreadsheet del patrimonio con un’interfaccia più pulita, veloce da aggiornare e migliore da leggere.' },
+                        { title: 'Vuoi un check veloce?', text: "Apri l'app, guardi la dashboard, chiudi l'app. È un caso d'uso validissimo. Balance è progettata anche per questo." },
+                        { title: 'La sync bancaria si rompe sempre?', text: 'L’inserimento manuale elimina connessioni rotte, richieste di nuova autenticazione e movimenti mancanti. Funziona, ogni volta.' },
+                        { title: 'Hai poco tempo?', text: 'Un check mensile richiede meno di un minuto. Salvi uno snapshot e hai la traccia della tua traiettoria finanziaria senza sforzo.' }
+                    ]
+                },
+                testimonials: {
+                    title: 'Perché le persone passano a Balance',
+                    items: [
+                        { quote: 'Prima perdevo 20 minuti al mese a sistemare un foglio Excel. Ora apro Balance, inserisco qualche numero e ho finito.', cite: '— Ex utente di spreadsheet' },
+                        { quote: 'Non mi serve collegare la banca per sapere il mio patrimonio. Mi serve solo il numero giusto. Balance lo capisce.', cite: '— Investitore attento alla privacy' },
+                        { quote: "Finalmente un'app finance che non prova a fare tutto. Tiene traccia del mio patrimonio e lo fa bene. È esattamente quello che volevo.", cite: '— Utente minimalista' }
+                    ]
+                },
+                pricing: {
+                    title: 'Prezzi semplici. Nessuna sorpresa.',
+                    subtitle: 'Inizia gratis. Passa a Pro se vuoi di più.',
+                    free: {
+                        title: 'Free',
+                        badge: 'Inizia da qui',
+                        description: 'L’essenziale. Fino a 3 wallet, dashboard pulita e snapshot base.',
+                        price: '€0',
+                        priceSuffix: 'per sempre',
+                        list: ['Fino a 3 wallet', 'Dashboard completa', 'Snapshot essenziali'],
+                        cta: 'Scarica gratis'
+                    },
+                    pro: {
+                        title: 'Pro Annuale',
+                        badge: 'Miglior valore',
+                        description: 'Wallet illimitati, storico completo e snapshot avanzati. Meno di un caffè al mese.',
+                        caption: 'Offerta lancio',
+                        price: '€19,99',
+                        priceSuffix: '/anno',
+                        alt: '€1,67/mese · Risparmi il 44%',
+                        note: 'Primo mese gratuito.',
+                        list: ['Wallet illimitati', 'Snapshot avanzati', 'Storico completo'],
+                        ctaHtml: "<i class='fa-brands fa-apple'></i> Inizia la prova gratuita",
+                        microcopy: 'Annulla quando vuoi. Dopo la prova, il rinnovo segue il piano selezionato.'
+                    }
+                },
+                finalCta: {
+                    badge: 'Offerta lancio',
+                    title: 'Le tue finanze, semplificate.',
+                    text: 'Scarica Balance e vedi il tuo patrimonio in meno di un minuto. Niente setup, niente sync, niente stress.',
+                    ctaHtml: "<i class='fa-brands fa-apple'></i> Scarica su App Store"
+                }
+            },
+            lpInvestors: {
+                meta: {
+                    title: 'Balance – Traccia crypto, azioni e asset in privato',
+                    description: 'Traccia tutto il tuo portafoglio di investimento in un’unica app privata. Nessuna API key, nessun collegamento bancario, nessuna condivisione dati.',
+                    ogTitle: 'Balance – Traccia crypto, azioni e asset in privato'
+                },
+                hero: {
+                    kicker: 'Per investitori che vogliono controllo',
+                    titleHtml: 'Traccia ogni asset.<br>Non condividere nulla.',
+                    subHtml: 'Crypto, azioni, ETF, liquidità, immobiliare: tutto in <strong>un dashboard privato</strong>. Nessuna API key. Nessun login bancario. Nessun accesso di terzi al tuo portafoglio.',
+                    ctaPrimary: 'Scarica gratis',
+                    ctaSecondary: 'Guarda come funziona',
+                    proof: '100% offline · Open source · Piano gratuito disponibile'
+                },
+                assets: {
+                    crypto: 'Crypto',
+                    stocks: 'Azioni',
+                    etfs: 'ETF',
+                    cash: 'Liquidità',
+                    realEstate: 'Immobiliare'
+                },
+                problem: {
+                    title: 'Il tuo portafoglio è sparso. I tuoi dati non dovrebbero esserlo.',
+                    textHtml: "La maggior parte dei portfolio tracker chiede API key dell'exchange, login del broker o credenziali bancarie. Balance fa il contrario: <strong style='color:var(--ink)'>inserisci i numeri, l'app resta offline e nessun altro vede i tuoi dati.</strong>"
+                },
+                benefits: [
+                    { title: 'Nessuna API key richiesta', text: 'Non dare accesso in lettura a Binance, Coinbase o al tuo broker. Inserisci i saldi manualmente e mantieni il controllo totale.' },
+                    { title: 'Multi-asset in una sola vista', text: 'Vedi crypto, azioni, conti bancari e immobiliare in una sola dashboard. Niente più salto fra cinque app per capire il patrimonio.' },
+                    { title: 'Salva snapshot del portafoglio', text: 'Salva uno snapshot mensile dei tuoi asset e osserva l’evoluzione nel tempo con grafici semplici e chiari.' },
+                    { title: 'Funziona completamente offline', text: 'Niente internet? Nessun problema. Balance funziona ovunque e i dati non lasciano mai il dispositivo.' },
+                    { title: 'Open source e verificabile', text: 'Non fidarti sulla parola: verifica. Il codice è pubblico, senza tracker nascosti né analytics sul tuo portafoglio.' },
+                    { title: 'Aggiorni in pochi secondi', text: 'L’inserimento manuale richiede 30 secondi, non 30 minuti a sistemare sync bancarie rotte.' }
+                ],
+                comparison: {
+                    title: 'Balance vs tracker tradizionali',
+                    subtitle: 'Gli altri promettono comodità. Balance offre controllo.',
+                    headers: ['', 'Balance', 'Altri'],
+                    rows: [
+                        ['Richiede login bancario', 'No', 'Sì'],
+                        ['Richiede API key', 'No', 'Sì'],
+                        ['Dati salvati in locale', 'Sì', 'Cloud'],
+                        ['Funziona offline', 'Sì', 'No'],
+                        ['Open source', 'Sì', 'No'],
+                        ['Tracking multi-asset', 'Sì', 'Parziale']
+                    ]
+                },
+                pricing: {
+                    title: 'Inizia gratis. Passa a Pro quando vuoi.',
+                    subtitle: 'Traccia fino a 3 wallet gratis, per sempre. Vai Pro per wallet illimitati, snapshot avanzati e storico completo.',
+                    free: {
+                        title: 'Free',
+                        badge: 'Nessuna carta',
+                        description: 'Tutto ciò che serve per iniziare a tracciare il portafoglio in privato.',
+                        price: '€0',
+                        priceSuffix: 'per sempre',
+                        list: ['Fino a 3 wallet', 'Dashboard completa', 'Snapshot essenziali'],
+                        cta: 'Scarica gratis'
+                    },
+                    pro: {
+                        title: 'Pro Annuale',
+                        badge: 'Miglior valore',
+                        description: 'Per investitori seri. Tracking illimitato, storico completo e 44% di risparmio.',
+                        caption: 'Offerta lancio',
+                        price: '€19,99',
+                        priceSuffix: '/anno',
+                        alt: '€1,67/mese · Risparmi €15,89 rispetto al mensile',
+                        note: 'Primo mese gratuito.',
+                        list: ['Wallet illimitati', 'Snapshot avanzati', 'Storico completo'],
+                        ctaHtml: "<i class='fa-brands fa-apple'></i> Inizia la prova gratuita",
+                        microcopy: 'Annulla quando vuoi. Dopo la prova, il rinnovo segue il piano selezionato.'
+                    }
+                },
+                finalCta: {
+                    badge: 'Offerta lancio',
+                    title: 'Il tuo portafoglio merita privacy.',
+                    text: 'Scarica Balance e inizia a tracciare ogni asset senza condividere nemmeno un dato.',
+                    ctaHtml: "<i class='fa-brands fa-apple'></i> Scarica su App Store"
+                }
+            },
+            lpPrivacy: {
+                meta: {
+                    title: 'Balance – L’app finance che non sa nulla di te',
+                    description: 'La tua banca traccia ogni movimento. La tua app finance spesso vende i tuoi dati. Balance no: offline, open source e zero raccolta dati.',
+                    ogTitle: 'Balance – L’app finance che non sa nulla di te'
+                },
+                hero: {
+                    kicker: 'Zero raccolta dati',
+                    titleHtml: "La tua app finance <em>traccia te</em>.<br>Questa <span class='lp-safe'>no</span>.",
+                    sub: 'Balance è un’app di finanza personale che funziona al 100% offline, non salva nulla su server e non ti chiede mai credenziali bancarie. I tuoi soldi, i tuoi dati, il tuo dispositivo.',
+                    ctaPrimary: 'Scarica gratis',
+                    ctaSecondary: 'Perché conta',
+                },
+                proof: {
+                    servers: 'Server',
+                    trackers: 'Tracker',
+                    dataShared: 'Dati condivisi',
+                    openSource: 'Open source'
+                },
+                threats: {
+                    title: 'Il problema delle classiche app finance',
+                    subtitle: 'Ogni volta che colleghi un conto o accedi con l’email, stai cedendo la tua identità finanziaria.',
+                    items: [
+                        { title: 'I tuoi dati sui loro server', text: 'Molte app salvano saldi, movimenti e patrimonio su server cloud che non controlli. Una violazione espone tutto.' },
+                        { title: 'Collegamenti bancari = accesso', text: 'Collegare un conto significa dare a un servizio terzo accesso in lettura a movimenti, saldi e dettagli del conto.' },
+                        { title: 'Raccolta dati invisibile', text: 'SDK analytics, reti pubblicitarie e dati “anonimi” spesso includono il tuo comportamento finanziario e il tuo range patrimoniale.' }
+                    ]
+                },
+                shields: {
+                    title: 'Come Balance ti protegge',
+                    subtitle: 'Quattro livelli di privacy, progettati nell’architettura e non aggiunti dopo.',
+                    items: [
+                        { title: '100% offline', text: 'L’app funziona senza internet. Nessun dato lascia il telefono. Non c’è un server da violare perché non c’è proprio.' },
+                        { title: 'Nessun collegamento bancario', text: 'Inserisci i saldi manualmente. Nessun servizio terzo ottiene accesso in lettura a banca, broker o exchange.' },
+                        { title: 'Nessun account, nessun login', text: 'Balance non chiede email, nome o dati personali. La scarichi, la apri e inizi a usarla.' },
+                        { title: 'Codice open source', text: 'Ogni riga di codice è pubblica. Tu, o chi vuoi, potete verificare che Balance faccia davvero ciò che promette.' }
+                    ]
+                },
+                manifesto: {
+                    quote: 'Crediamo che conoscere il proprio patrimonio non debba costare la propria privacy. Balance è nata per dimostrare che un’app finance può essere utile senza sapere nulla di te.',
+                    cite: '— Il team di Balance'
+                },
+                features: {
+                    title: 'Privacy non significa meno funzionalità',
+                    subtitle: 'Balance ti dà un’esperienza completa di finanza personale, ma senza sorveglianza.',
+                    items: [
+                        { label: 'Dashboard patrimonio', sub: 'Tutto in una vista' },
+                        { label: 'Snapshot mensili', sub: 'Segui l’evoluzione nel tempo' },
+                        { label: 'Wallet separati', sub: 'Organizza per tipologia di conto' },
+                        { label: 'Aggiornamenti rapidi', sub: '30 secondi, non 30 minuti' }
+                    ]
+                },
+                pricing: {
+                    title: 'Gratis per iniziare. Nessuna email richiesta.',
+                    subtitle: 'Scarichi, apri, usi. Passi a Pro solo se vuoi wallet illimitati e storico completo.',
+                    free: {
+                        title: 'Free',
+                        badge: 'Nessuna registrazione',
+                        description: 'Privacy totale, funzionalità core, zero costo. Niente email, niente carta, zero attrito.',
+                        price: '€0',
+                        priceSuffix: 'per sempre',
+                        list: ['Fino a 3 wallet', 'Dashboard completa', 'Privacy completa'],
+                        cta: 'Scarica gratis'
+                    },
+                    pro: {
+                        title: 'Pro Annuale',
+                        badge: 'Miglior valore',
+                        description: 'Wallet illimitati, snapshot avanzati e storico completo. Stessa privacy.',
+                        caption: 'Offerta lancio',
+                        price: '€19,99',
+                        priceSuffix: '/anno',
+                        alt: '€1,67/mese · Risparmi il 44%',
+                        note: 'Primo mese gratuito.',
+                        list: ['Wallet illimitati', 'Snapshot avanzati', 'Storico completo'],
+                        ctaHtml: "<i class='fa-brands fa-apple'></i> Inizia la prova gratuita",
+                        microcopy: 'Annulla quando vuoi. Dopo la prova, il rinnovo segue il piano selezionato.'
+                    }
+                },
+                finalCta: {
+                    badge: 'Offerta lancio',
+                    title: 'Riprenditi la tua privacy finanziaria.',
+                    text: 'Scarica Balance. Niente registrazione, niente login bancari, niente tracking. Solo un’app pulita che rispetta i tuoi dati.',
+                    ctaHtml: "<i class='fa-brands fa-apple'></i> Scarica su App Store"
                 }
             },
             balancepro: {
@@ -579,6 +863,7 @@
         en: {
             global: {
                 nav: {
+                    home: 'Home',
                     overview: 'Overview',
                     pricing: 'Plans',
                     features: 'Features',
@@ -778,7 +1063,290 @@
                     title: 'Download',
                     copy: 'Download Balance and unlock Pro with a monthly or yearly subscription: the first month is free.',
                     points: ['Privacy-first', 'Offline', 'Open source'],
-                    note: 'At the end of the free trial, unless cancelled, renewal follows the selected plan.'
+                    note: 'At the end of the free trial, unless cancelled, renewal follows the selected plan.',
+                    explore: {
+                        title: 'Explore the landing angles',
+                        subtitle: 'Three different entry points for the same product: simplicity, investing, and privacy.',
+                        cards: {
+                            simple: {
+                                title: 'Simple',
+                                text: 'For people who want to understand their net worth in seconds, without extra complexity.',
+                                cta: 'Open Simple'
+                            },
+                            investors: {
+                                title: 'Investors',
+                                text: 'For people tracking crypto, stocks, ETFs, and more without sharing portfolio data.',
+                                cta: 'Open Investors'
+                            },
+                            privacy: {
+                                title: 'Privacy',
+                                text: 'For people who want an offline, open source finance tracker with zero data collection.',
+                                cta: 'Open Privacy'
+                            }
+                        }
+                    }
+                }
+            },
+            lpSimple: {
+                meta: {
+                    title: 'Balance – Know Your Net Worth in 30 Seconds',
+                    description: 'Stop overcomplicating your finances. Balance gives you a clear, private view of your net worth in under a minute.',
+                    ogTitle: 'Balance – Know Your Net Worth in 30 Seconds'
+                },
+                hero: {
+                    kicker: 'Simple by design',
+                    titleHtml: 'Know your net worth in 30 seconds.',
+                    subHtml: 'No bank connections. No complicated setup. Just open the app, update your numbers, and see <strong>exactly where you stand</strong> in one clean screen.',
+                    ctaPrimary: 'Download Free',
+                    ctaSecondary: 'See how it works',
+                    proof: ['Free tier available', 'No signup', 'Works offline']
+                },
+                steps: {
+                    title: "Three steps. That's it.",
+                    subtitle: "No bank login wizard. No 15-field onboarding. No email verification. You're up and running in under a minute.",
+                    items: [
+                        { title: 'Create wallets', text: 'Add a wallet for each account: bank, brokerage, crypto exchange, cash. Name it anything you want.' },
+                        { title: 'Enter balances', text: "Type in the current balance. That's it. No sync, no import, no waiting. Just the number." },
+                        { title: 'See your net worth', text: 'Your dashboard updates instantly. Cash, investments, total net worth: everything in one clean view.' }
+                    ]
+                },
+                vs: {
+                    title: "You've tried the complicated way",
+                    old: {
+                        title: "<i class='fa-solid fa-xmark'></i> The old way",
+                        items: [
+                            'Connect every bank account',
+                            'Fix broken syncs every week',
+                            'Categorize hundreds of transactions',
+                            'Create spreadsheet formulas',
+                            'Share credentials with third parties',
+                            'Wonder if your data is safe'
+                        ]
+                    },
+                    new: {
+                        title: "<i class='fa-solid fa-check'></i> The Balance way",
+                        items: [
+                            'Open the app',
+                            'Type your balances',
+                            'See your net worth',
+                            'Save a snapshot',
+                            'Done in 30 seconds',
+                            'Data stays on your phone'
+                        ]
+                    }
+                },
+                pains: {
+                    title: 'Built for people who want clarity, not complexity',
+                    items: [
+                        { title: 'Tired of spreadsheets?', text: 'Balance replaces your net worth spreadsheet with a cleaner interface that is faster to update and easier to read.' },
+                        { title: 'Want a quick check-in?', text: "Open the app, glance at the dashboard, close the app. That's a valid use case. Balance is designed for it." },
+                        { title: 'Bank sync keeps breaking?', text: 'Manual entry means no broken connections, no re-auth loops, and no missing transactions. It just works.' },
+                        { title: 'Not enough time?', text: 'A monthly check-in takes under a minute. Save a snapshot and keep a record of your financial trajectory with almost no effort.' }
+                    ]
+                },
+                testimonials: {
+                    title: 'Why people switch to Balance',
+                    items: [
+                        { quote: "I used to spend 20 minutes updating a spreadsheet every month. Now I open Balance, type a few numbers, and I'm done.", cite: '— Former spreadsheet user' },
+                        { quote: "I don't need my bank connected to know my net worth. I just need the number. Balance gets that.", cite: '— Privacy-focused investor' },
+                        { quote: "Finally a finance app that doesn't try to be everything. It tracks my net worth and does it well.", cite: '— Minimalist user' }
+                    ]
+                },
+                pricing: {
+                    title: 'Simple pricing. No surprises.',
+                    subtitle: 'Start free. Upgrade if you want more.',
+                    free: {
+                        title: 'Free',
+                        badge: 'Start here',
+                        description: 'The essentials. Track up to 3 wallets with a clean dashboard and basic snapshots.',
+                        price: '€0',
+                        priceSuffix: 'forever',
+                        list: ['Up to 3 wallets', 'Full dashboard', 'Essential snapshots'],
+                        cta: 'Download Free'
+                    },
+                    pro: {
+                        title: 'Pro Annual',
+                        badge: 'Best value',
+                        description: 'Unlimited wallets, full history, advanced snapshots. Less than a coffee per month.',
+                        caption: 'Launch offer',
+                        price: '€19.99',
+                        priceSuffix: '/year',
+                        alt: '€1.67/month · Save 44%',
+                        note: 'First month free.',
+                        list: ['Unlimited wallets', 'Advanced snapshots', 'Complete history'],
+                        ctaHtml: "<i class='fa-brands fa-apple'></i> Start Free Trial",
+                        microcopy: 'Cancel anytime. After the trial, renewal follows the selected plan.'
+                    }
+                },
+                finalCta: {
+                    badge: 'Launch offer',
+                    title: 'Your finances, simplified.',
+                    text: 'Download Balance and see your net worth in under a minute. No setup, no sync, no stress.',
+                    ctaHtml: "<i class='fa-brands fa-apple'></i> Download on App Store"
+                }
+            },
+            lpInvestors: {
+                meta: {
+                    title: 'Balance – Track Crypto, Stocks & Assets Privately',
+                    description: 'Track your full investment portfolio in one private app. No API keys, no bank connections, no data sharing.',
+                    ogTitle: 'Balance – Track Crypto, Stocks & Assets Privately'
+                },
+                hero: {
+                    kicker: 'For investors who value control',
+                    titleHtml: 'Track every asset.<br>Share nothing.',
+                    subHtml: 'Crypto, stocks, ETFs, cash, real estate: all in <strong>one private dashboard</strong>. No API keys. No bank logins. No third-party access to your portfolio.',
+                    ctaPrimary: 'Download Free',
+                    ctaSecondary: 'See how it works',
+                    proof: '100% offline · Open source · Free tier available'
+                },
+                assets: {
+                    crypto: 'Crypto',
+                    stocks: 'Stocks',
+                    etfs: 'ETFs',
+                    cash: 'Cash',
+                    realEstate: 'Real Estate'
+                },
+                problem: {
+                    title: "Your portfolio is scattered. Your data shouldn't be.",
+                    textHtml: "Most portfolio trackers ask for your exchange API keys, brokerage logins, or bank credentials. Balance takes a different approach: <strong style='color:var(--ink)'>you enter the numbers, the app stays offline, and nobody else sees your data.</strong>"
+                },
+                benefits: [
+                    { title: 'No API keys required', text: "Don't hand over read access to your exchange or brokerage account. Enter balances manually and keep full control." },
+                    { title: 'Multi-asset in one view', text: 'See crypto, stocks, bank accounts, and real estate in one dashboard instead of jumping between apps.' },
+                    { title: 'Snapshot your portfolio', text: 'Save a monthly snapshot of your holdings and track how your investment picture changes over time.' },
+                    { title: 'Works fully offline', text: 'No internet? No problem. Balance works anywhere, and your data never leave the device.' },
+                    { title: 'Open source & auditable', text: 'The code is public. No hidden trackers, no surprise analytics, no black box.' },
+                    { title: 'Update in seconds', text: 'Quick manual entry means 30 seconds to update, not 30 minutes fixing broken sync.' }
+                ],
+                comparison: {
+                    title: 'Balance vs. traditional trackers',
+                    subtitle: 'Other tools promise convenience. Balance delivers control.',
+                    headers: ['', 'Balance', 'Others'],
+                    rows: [
+                        ['Requires bank login', 'No', 'Yes'],
+                        ['Needs API keys', 'No', 'Yes'],
+                        ['Data stored locally', 'Yes', 'Cloud'],
+                        ['Works offline', 'Yes', 'No'],
+                        ['Open source', 'Yes', 'No'],
+                        ['Multi-asset tracking', 'Yes', 'Partial']
+                    ]
+                },
+                pricing: {
+                    title: "Start free. Upgrade when you're ready.",
+                    subtitle: 'Track up to 3 wallets for free, forever. Go Pro for unlimited wallets, advanced snapshots, and full history.',
+                    free: {
+                        title: 'Free',
+                        badge: 'No card needed',
+                        description: 'Everything you need to start tracking your portfolio privately.',
+                        price: '€0',
+                        priceSuffix: 'forever',
+                        list: ['Up to 3 wallets', 'Full dashboard', 'Essential snapshots'],
+                        cta: 'Download Free'
+                    },
+                    pro: {
+                        title: 'Pro Annual',
+                        badge: 'Best value',
+                        description: 'For serious investors. Unlimited tracking, full history, and 44% savings.',
+                        caption: 'Launch offer',
+                        price: '€19.99',
+                        priceSuffix: '/year',
+                        alt: '€1.67/month · Save €15.89 vs. monthly',
+                        note: 'First month free.',
+                        list: ['Unlimited wallets', 'Advanced snapshots', 'Complete history'],
+                        ctaHtml: "<i class='fa-brands fa-apple'></i> Start Free Trial",
+                        microcopy: 'Cancel anytime. After the trial, renewal follows the selected plan.'
+                    }
+                },
+                finalCta: {
+                    badge: 'Launch offer',
+                    title: 'Your portfolio deserves privacy.',
+                    text: 'Download Balance and start tracking every asset without sharing a single data point.',
+                    ctaHtml: "<i class='fa-brands fa-apple'></i> Download on App Store"
+                }
+            },
+            lpPrivacy: {
+                meta: {
+                    title: 'Balance – The Finance App That Knows Nothing About You',
+                    description: "Your bank tracks every transaction. Your finance app often sells your data. Balance doesn't: offline, open source, zero data collection.",
+                    ogTitle: 'Balance – The Finance App That Knows Nothing About You'
+                },
+                hero: {
+                    kicker: 'Zero data collection',
+                    titleHtml: "Your finance app <em>tracks you</em>.<br>This one <span class='lp-safe'>doesn't</span>.",
+                    sub: 'Balance is a personal finance app that works 100% offline, stores nothing on servers, and never asks for your bank credentials. Your money, your data, your device.',
+                    ctaPrimary: 'Download Free',
+                    ctaSecondary: 'Why it matters'
+                },
+                proof: {
+                    servers: 'Servers',
+                    trackers: 'Trackers',
+                    dataShared: 'Data shared',
+                    openSource: 'Open source'
+                },
+                threats: {
+                    title: 'The problem with most finance apps',
+                    subtitle: "Every time you connect a bank account or sign in with your email, you're handing over your financial identity.",
+                    items: [
+                        { title: 'Your data on their servers', text: "Most finance apps store balances, transactions, and net worth on cloud servers you don't control. One breach exposes everything." },
+                        { title: 'Bank connections mean access', text: 'Connecting a bank account gives a third-party service read access to your balances, transactions, and account details.' },
+                        { title: 'Invisible data harvesting', text: 'Analytics SDKs, ad networks, and so-called anonymous usage data often reveal your financial behavior and net worth range.' }
+                    ]
+                },
+                shields: {
+                    title: 'How Balance protects you',
+                    subtitle: 'Four layers of privacy built into the architecture, not bolted on later.',
+                    items: [
+                        { title: '100% offline', text: "The app works without internet. No data leave your phone. There's no server to hack because there is no server." },
+                        { title: 'No bank connections', text: 'You enter balances manually, so no third-party service ever gets read access to your accounts.' },
+                        { title: 'No account, no login', text: "Balance doesn't ask for your email, name, or personal info. Download it, open it, use it." },
+                        { title: 'Open source code', text: 'Every line of code is public, so anyone can verify that Balance does exactly what it claims.' }
+                    ]
+                },
+                manifesto: {
+                    quote: "We believe knowing your net worth shouldn't cost your privacy. Balance was built to prove that a finance app can be useful without knowing anything about you.",
+                    cite: '— The Balance team'
+                },
+                features: {
+                    title: "Privacy doesn't mean fewer features",
+                    subtitle: 'Balance gives you a full personal finance experience, just without the surveillance.',
+                    items: [
+                        { label: 'Net worth dashboard', sub: 'Everything in one view' },
+                        { label: 'Monthly snapshots', sub: 'Track changes over time' },
+                        { label: 'Separate wallets', sub: 'Organize by account type' },
+                        { label: 'Fast updates', sub: '30 seconds, not 30 minutes' }
+                    ]
+                },
+                pricing: {
+                    title: 'Free to start. No email required.',
+                    subtitle: 'Download, open, use. Upgrade to Pro only if you want unlimited wallets and full history.',
+                    free: {
+                        title: 'Free',
+                        badge: 'No signup',
+                        description: 'Full privacy, core features, zero cost. No email, no card, no friction.',
+                        price: '€0',
+                        priceSuffix: 'forever',
+                        list: ['Up to 3 wallets', 'Full dashboard', 'Full privacy'],
+                        cta: 'Download Free'
+                    },
+                    pro: {
+                        title: 'Pro Annual',
+                        badge: 'Best value',
+                        description: 'Unlimited wallets, advanced snapshots, complete history. Same privacy.',
+                        caption: 'Launch offer',
+                        price: '€19.99',
+                        priceSuffix: '/year',
+                        alt: '€1.67/month · Save 44%',
+                        note: 'First month free.',
+                        list: ['Unlimited wallets', 'Advanced snapshots', 'Complete history'],
+                        ctaHtml: "<i class='fa-brands fa-apple'></i> Start Free Trial",
+                        microcopy: 'Cancel anytime. After the trial, renewal follows the selected plan.'
+                    }
+                },
+                finalCta: {
+                    badge: 'Launch offer',
+                    title: 'Take back your financial privacy.',
+                    text: 'Download Balance. No signup, no bank login, no tracking. Just a clean app that respects your data.',
+                    ctaHtml: "<i class='fa-brands fa-apple'></i> Download on App Store"
                 }
             },
             balancepro: {
@@ -1143,6 +1711,7 @@
         pt: {
             global: {
                 nav: {
+                    home: 'Início',
                     overview: 'Visão geral',
                     pricing: 'Planos',
                     features: 'Funcionalidades',
@@ -1342,7 +1911,290 @@
                     title: 'Download',
                     copy: 'Faça download do Balance e ative o Pro com uma subscrição mensal ou anual: o primeiro mês é grátis.',
                     points: ['Privacy-first', 'Offline', 'Open source'],
-                    note: 'No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado.'
+                    note: 'No final do período gratuito, salvo cancelamento, a renovação segue o plano selecionado.',
+                    explore: {
+                        title: 'Explore as landing pages por ângulo',
+                        subtitle: 'Três portas de entrada para o mesmo produto: simplicidade, investimentos e privacidade.',
+                        cards: {
+                            simple: {
+                                title: 'Simple',
+                                text: 'Para quem quer perceber o próprio património em segundos, sem complexidade desnecessária.',
+                                cta: 'Abrir Simple'
+                            },
+                            investors: {
+                                title: 'Investors',
+                                text: 'Para quem acompanha cripto, ações, ETFs e mais sem partilhar os dados do portfólio.',
+                                cta: 'Abrir Investors'
+                            },
+                            privacy: {
+                                title: 'Privacy',
+                                text: 'Para quem quer um tracker financeiro offline, open source e com zero recolha de dados.',
+                                cta: 'Abrir Privacy'
+                            }
+                        }
+                    }
+                }
+            },
+            lpSimple: {
+                meta: {
+                    title: 'Balance – Conheça o seu património em 30 segundos',
+                    description: 'Pare de complicar as suas finanças. Balance dá-lhe uma visão clara e privada do seu património em menos de um minuto.',
+                    ogTitle: 'Balance – Conheça o seu património em 30 segundos'
+                },
+                hero: {
+                    kicker: 'Simples por definição',
+                    titleHtml: 'Conheça o seu património em 30 segundos.',
+                    subHtml: 'Sem ligações bancárias. Sem setup complicado. Abra a app, atualize os números e veja <strong>exatamente onde está</strong> num ecrã limpo.',
+                    ctaPrimary: 'Descarregar grátis',
+                    ctaSecondary: 'Ver como funciona',
+                    proof: ['Plano gratuito disponível', 'Sem registo', 'Funciona offline']
+                },
+                steps: {
+                    title: 'Três passos. Só isso.',
+                    subtitle: 'Sem wizard bancário. Sem onboarding com 15 campos. Sem verificação por email. Fica pronto em menos de um minuto.',
+                    items: [
+                        { title: 'Crie wallets', text: 'Adicione uma wallet para cada conta: banco, broker, exchange cripto, dinheiro. Dê-lhe o nome que quiser.' },
+                        { title: 'Introduza os saldos', text: 'Escreva o saldo atual. É só isso. Sem sync, sem importações, sem espera. Apenas o número.' },
+                        { title: 'Veja o seu património', text: 'O dashboard atualiza instantaneamente. Liquidez, investimentos, património total: tudo numa vista clara.' }
+                    ]
+                },
+                vs: {
+                    title: 'Já experimentou o caminho complicado',
+                    old: {
+                        title: "<i class='fa-solid fa-xmark'></i> O método antigo",
+                        items: [
+                            'Ligar todas as contas bancárias',
+                            'Corrigir syncs partidas todas as semanas',
+                            'Categorizar centenas de movimentos',
+                            'Criar fórmulas em folhas de cálculo',
+                            'Partilhar credenciais com terceiros',
+                            'Perguntar-se se os dados estão seguros'
+                        ]
+                    },
+                    new: {
+                        title: "<i class='fa-solid fa-check'></i> O método Balance",
+                        items: [
+                            'Abrir a app',
+                            'Introduzir os saldos',
+                            'Ver o património',
+                            'Guardar um snapshot',
+                            'Feito em 30 segundos',
+                            'Os dados ficam no seu telefone'
+                        ]
+                    }
+                },
+                pains: {
+                    title: 'Feita para quem quer clareza, não complexidade',
+                    items: [
+                        { title: 'Cansado de folhas de cálculo?', text: 'Balance substitui a sua spreadsheet do património por uma interface mais limpa, mais rápida de atualizar e mais agradável de consultar.' },
+                        { title: 'Quer um check rápido?', text: 'Abra a app, veja o dashboard, feche a app. Esse também é um caso de uso válido e Balance foi pensada para isso.' },
+                        { title: 'A sync bancária falha sempre?', text: 'A introdução manual elimina ligações partidas, loops de reautenticação e movimentos em falta. Funciona sempre.' },
+                        { title: 'Sem tempo suficiente?', text: 'Um check mensal demora menos de um minuto. Guarde um snapshot e mantenha um registo da sua trajetória financeira sem esforço.' }
+                    ]
+                },
+                testimonials: {
+                    title: 'Porque é que as pessoas mudam para Balance',
+                    items: [
+                        { quote: 'Antes perdia 20 minutos por mês a atualizar uma folha de cálculo. Agora abro o Balance, introduzo alguns números e pronto.', cite: '— Ex utilizador de spreadsheet' },
+                        { quote: 'Não preciso da minha conta bancária ligada para saber o meu património. Preciso apenas do número certo. Balance percebe isso.', cite: '— Investidor focado em privacidade' },
+                        { quote: 'Finalmente uma app financeira que não tenta ser tudo ao mesmo tempo. Acompanha o meu património e faz isso bem.', cite: '— Utilizador minimalista' }
+                    ]
+                },
+                pricing: {
+                    title: 'Preço simples. Sem surpresas.',
+                    subtitle: 'Comece grátis. Faça upgrade se quiser mais.',
+                    free: {
+                        title: 'Free',
+                        badge: 'Comece aqui',
+                        description: 'O essencial. Até 3 wallets com dashboard limpa e snapshots básicos.',
+                        price: '€0',
+                        priceSuffix: 'para sempre',
+                        list: ['Até 3 wallets', 'Dashboard completa', 'Snapshots essenciais'],
+                        cta: 'Descarregar grátis'
+                    },
+                    pro: {
+                        title: 'Pro Anual',
+                        badge: 'Melhor valor',
+                        description: 'Wallets ilimitadas, histórico completo e snapshots avançados. Menos do que um café por mês.',
+                        caption: 'Oferta de lançamento',
+                        price: '€19,99',
+                        priceSuffix: '/ano',
+                        alt: '€1,67/mês · Poupa 44%',
+                        note: 'Primeiro mês grátis.',
+                        list: ['Wallets ilimitadas', 'Snapshots avançados', 'Histórico completo'],
+                        ctaHtml: "<i class='fa-brands fa-apple'></i> Iniciar período grátis",
+                        microcopy: 'Cancele quando quiser. Após o período grátis, a renovação segue o plano escolhido.'
+                    }
+                },
+                finalCta: {
+                    badge: 'Oferta de lançamento',
+                    title: 'As suas finanças, simplificadas.',
+                    text: 'Descarregue o Balance e veja o seu património em menos de um minuto. Sem setup, sem sync, sem stress.',
+                    ctaHtml: "<i class='fa-brands fa-apple'></i> Descarregar na App Store"
+                }
+            },
+            lpInvestors: {
+                meta: {
+                    title: 'Balance – Acompanhe cripto, ações e ativos com privacidade',
+                    description: 'Acompanhe todo o seu portfólio de investimento numa única app privada. Sem API keys, sem ligações bancárias, sem partilha de dados.',
+                    ogTitle: 'Balance – Acompanhe cripto, ações e ativos com privacidade'
+                },
+                hero: {
+                    kicker: 'Para investidores que valorizam controlo',
+                    titleHtml: 'Acompanhe cada ativo.<br>Não partilhe nada.',
+                    subHtml: 'Cripto, ações, ETFs, liquidez, imobiliário: tudo num <strong>dashboard privado</strong>. Sem API keys. Sem logins bancários. Sem acesso de terceiros ao seu portfólio.',
+                    ctaPrimary: 'Descarregar grátis',
+                    ctaSecondary: 'Ver como funciona',
+                    proof: '100% offline · Open source · Plano gratuito disponível'
+                },
+                assets: {
+                    crypto: 'Cripto',
+                    stocks: 'Ações',
+                    etfs: 'ETFs',
+                    cash: 'Liquidez',
+                    realEstate: 'Imobiliário'
+                },
+                problem: {
+                    title: 'O seu portfólio está disperso. Os seus dados não deviam estar.',
+                    textHtml: "A maioria dos portfolio trackers pede API keys, logins de brokers ou credenciais bancárias. O Balance faz o oposto: <strong style='color:var(--ink)'>introduz os números, a app fica offline e mais ninguém vê os seus dados.</strong>"
+                },
+                benefits: [
+                    { title: 'Sem API keys', text: 'Não entregue acesso de leitura às suas contas de exchange ou broker. Introduza os saldos manualmente e mantenha o controlo total.' },
+                    { title: 'Multi-ativo numa só vista', text: 'Veja cripto, ações, contas bancárias e imobiliário num só dashboard em vez de saltar entre apps.' },
+                    { title: 'Guarde snapshots do portfólio', text: 'Guarde um snapshot mensal das suas posições e acompanhe a evolução ao longo do tempo.' },
+                    { title: 'Funciona totalmente offline', text: 'Sem internet? Sem problema. Balance funciona em qualquer lugar e os dados nunca saem do dispositivo.' },
+                    { title: 'Open source e auditável', text: 'O código é público. Sem trackers escondidos, sem analytics surpresa, sem caixa preta.' },
+                    { title: 'Atualiza em segundos', text: 'A introdução manual demora 30 segundos, não 30 minutos a corrigir syncs bancárias partidas.' }
+                ],
+                comparison: {
+                    title: 'Balance vs. trackers tradicionais',
+                    subtitle: 'Outras ferramentas prometem conveniência. Balance entrega controlo.',
+                    headers: ['', 'Balance', 'Outros'],
+                    rows: [
+                        ['Exige login bancário', 'Não', 'Sim'],
+                        ['Precisa de API keys', 'Não', 'Sim'],
+                        ['Dados guardados localmente', 'Sim', 'Cloud'],
+                        ['Funciona offline', 'Sim', 'Não'],
+                        ['Open source', 'Sim', 'Não'],
+                        ['Tracking multi-ativo', 'Sim', 'Parcial']
+                    ]
+                },
+                pricing: {
+                    title: 'Comece grátis. Faça upgrade quando quiser.',
+                    subtitle: 'Acompanhe até 3 wallets grátis para sempre. Vá para Pro para wallets ilimitadas, snapshots avançados e histórico completo.',
+                    free: {
+                        title: 'Free',
+                        badge: 'Sem cartão',
+                        description: 'Tudo o que precisa para começar a acompanhar o seu portfólio com privacidade.',
+                        price: '€0',
+                        priceSuffix: 'para sempre',
+                        list: ['Até 3 wallets', 'Dashboard completa', 'Snapshots essenciais'],
+                        cta: 'Descarregar grátis'
+                    },
+                    pro: {
+                        title: 'Pro Anual',
+                        badge: 'Melhor valor',
+                        description: 'Para investidores sérios. Tracking ilimitado, histórico completo e 44% de poupança.',
+                        caption: 'Oferta de lançamento',
+                        price: '€19,99',
+                        priceSuffix: '/ano',
+                        alt: '€1,67/mês · Poupa €15,89 face ao mensal',
+                        note: 'Primeiro mês grátis.',
+                        list: ['Wallets ilimitadas', 'Snapshots avançados', 'Histórico completo'],
+                        ctaHtml: "<i class='fa-brands fa-apple'></i> Iniciar período grátis",
+                        microcopy: 'Cancele quando quiser. Após o período grátis, a renovação segue o plano escolhido.'
+                    }
+                },
+                finalCta: {
+                    badge: 'Oferta de lançamento',
+                    title: 'O seu portfólio merece privacidade.',
+                    text: 'Descarregue o Balance e comece a acompanhar cada ativo sem partilhar um único dado.',
+                    ctaHtml: "<i class='fa-brands fa-apple'></i> Descarregar na App Store"
+                }
+            },
+            lpPrivacy: {
+                meta: {
+                    title: 'Balance – A app financeira que não sabe nada sobre si',
+                    description: 'O seu banco acompanha cada movimento. A sua app financeira muitas vezes vende os seus dados. Balance não: offline, open source e zero recolha de dados.',
+                    ogTitle: 'Balance – A app financeira que não sabe nada sobre si'
+                },
+                hero: {
+                    kicker: 'Zero recolha de dados',
+                    titleHtml: "A sua app financeira <em>segue-o</em>.<br>Esta <span class='lp-safe'>não</span>.",
+                    sub: 'Balance é uma app de finanças pessoais que funciona 100% offline, não guarda nada em servidores e nunca pede credenciais bancárias. O seu dinheiro, os seus dados, o seu dispositivo.',
+                    ctaPrimary: 'Descarregar grátis',
+                    ctaSecondary: 'Porque importa'
+                },
+                proof: {
+                    servers: 'Servidores',
+                    trackers: 'Trackers',
+                    dataShared: 'Dados partilhados',
+                    openSource: 'Open source'
+                },
+                threats: {
+                    title: 'O problema da maioria das apps financeiras',
+                    subtitle: 'Sempre que liga uma conta bancária ou entra com email, está a entregar a sua identidade financeira.',
+                    items: [
+                        { title: 'Os seus dados nos servidores deles', text: 'Muitas apps guardam saldos, movimentos e património em servidores cloud que não controla. Uma falha expõe tudo.' },
+                        { title: 'Ligações bancárias significam acesso', text: 'Ligar uma conta bancária dá a um serviço terceiro acesso de leitura a saldos, movimentos e detalhes da conta.' },
+                        { title: 'Recolha invisível de dados', text: 'SDKs de analytics, redes publicitárias e dados de utilização supostamente anónimos costumam revelar o seu comportamento financeiro.' }
+                    ]
+                },
+                shields: {
+                    title: 'Como o Balance o protege',
+                    subtitle: 'Quatro camadas de privacidade incorporadas na arquitetura, não adicionadas depois.',
+                    items: [
+                        { title: '100% offline', text: 'A app funciona sem internet. Nenhum dado sai do telefone. Não existe servidor para atacar porque não existe servidor.' },
+                        { title: 'Sem ligações bancárias', text: 'Introduz os saldos manualmente, por isso nenhum serviço terceiro recebe acesso de leitura às suas contas.' },
+                        { title: 'Sem conta, sem login', text: 'Balance não pede email, nome nem informação pessoal. Descarrega, abre e usa.' },
+                        { title: 'Código open source', text: 'Cada linha de código é pública, por isso qualquer pessoa pode verificar que o Balance faz exatamente o que promete.' }
+                    ]
+                },
+                manifesto: {
+                    quote: 'Acreditamos que conhecer o próprio património não deve custar a sua privacidade. Balance foi criada para provar que uma app financeira pode ser útil sem saber nada sobre si.',
+                    cite: '— A equipa Balance'
+                },
+                features: {
+                    title: 'Privacidade não significa menos funcionalidades',
+                    subtitle: 'Balance oferece uma experiência completa de finanças pessoais, só que sem vigilância.',
+                    items: [
+                        { label: 'Dashboard patrimonial', sub: 'Tudo numa só vista' },
+                        { label: 'Snapshots mensais', sub: 'Acompanhe a evolução ao longo do tempo' },
+                        { label: 'Wallets separadas', sub: 'Organize por tipo de conta' },
+                        { label: 'Atualizações rápidas', sub: '30 segundos, não 30 minutos' }
+                    ]
+                },
+                pricing: {
+                    title: 'Grátis para começar. Sem email.',
+                    subtitle: 'Descarrega, abre, usa. Passa a Pro apenas se quiser wallets ilimitadas e histórico completo.',
+                    free: {
+                        title: 'Free',
+                        badge: 'Sem registo',
+                        description: 'Privacidade total, funcionalidades core, custo zero. Sem email, sem cartão, sem fricção.',
+                        price: '€0',
+                        priceSuffix: 'para sempre',
+                        list: ['Até 3 wallets', 'Dashboard completa', 'Privacidade total'],
+                        cta: 'Descarregar grátis'
+                    },
+                    pro: {
+                        title: 'Pro Anual',
+                        badge: 'Melhor valor',
+                        description: 'Wallets ilimitadas, snapshots avançados e histórico completo. A mesma privacidade.',
+                        caption: 'Oferta de lançamento',
+                        price: '€19,99',
+                        priceSuffix: '/ano',
+                        alt: '€1,67/mês · Poupa 44%',
+                        note: 'Primeiro mês grátis.',
+                        list: ['Wallets ilimitadas', 'Snapshots avançados', 'Histórico completo'],
+                        ctaHtml: "<i class='fa-brands fa-apple'></i> Iniciar período grátis",
+                        microcopy: 'Cancele quando quiser. Após o período grátis, a renovação segue o plano escolhido.'
+                    }
+                },
+                finalCta: {
+                    badge: 'Oferta de lançamento',
+                    title: 'Recupere a sua privacidade financeira.',
+                    text: 'Descarregue o Balance. Sem registo, sem login bancário, sem tracking. Apenas uma app limpa que respeita os seus dados.',
+                    ctaHtml: "<i class='fa-brands fa-apple'></i> Descarregar na App Store"
                 }
             },
             balancepro: {
@@ -1716,6 +2568,9 @@
         const path = window.location.pathname.split('/').pop() || 'index.html';
         if (path === '' || path === 'index.html') return 'home';
         if (path === 'balancepro.html') return 'balancepro';
+        if (path === 'lp-simple.html') return 'lpSimple';
+        if (path === 'lp-investors.html') return 'lpInvestors';
+        if (path === 'lp-privacy.html') return 'lpPrivacy';
         if (path === 'roadmap.html') return 'roadmap';
         if (path === 'privacy.html') return 'privacy';
         if (path === 'terms.html') return 'terms';
@@ -1815,19 +2670,33 @@
     }
 
     function applyGlobal(langCopy, lang) {
-        setText('.nav-links a[href*="#overview"]', langCopy.global.nav.overview);
+        document.querySelectorAll('.nav-links a[href="#hero"], .nav-links a[href*="#overview"]').forEach((el) => {
+            el.textContent = langCopy.global.nav.overview;
+        });
+        document.querySelectorAll('.nav-links a[href^="index.html"]').forEach((el) => {
+            el.textContent = langCopy.global.nav.home;
+        });
         setText('.nav-links a[href*="#pricing"]', langCopy.global.nav.pricing);
         setText('.nav-links a[href*="#features"]', langCopy.global.nav.features);
         setText('.nav-links a[href*="roadmap.html"]', langCopy.global.nav.roadmap);
         setText('.nav-links .btn[href*="#download"]', langCopy.global.nav.download);
         setAttr('.mobile-menu-btn', 'aria-label', langCopy.global.ui.menu);
 
-        setText('.footer-links a[href="privacy.html"]', langCopy.global.footer.privacy);
-        setText('.footer-links a[href="terms.html"]', langCopy.global.footer.terms);
-        setText('.footer-links a[href="contacts.html"]', langCopy.global.footer.contacts);
+        document.querySelectorAll('.footer-links a[href^="privacy.html"]').forEach((el) => {
+            el.textContent = langCopy.global.footer.privacy;
+        });
+        document.querySelectorAll('.footer-links a[href^="terms.html"]').forEach((el) => {
+            el.textContent = langCopy.global.footer.terms;
+        });
+        document.querySelectorAll('.footer-links a[href^="contacts.html"]').forEach((el) => {
+            el.textContent = langCopy.global.footer.contacts;
+        });
         setText('.copyright', langCopy.global.footer.copyright);
         setText('.footer-language-label', langCopy.global.footer.language);
         setAttr('.footer-language-select', 'aria-label', langCopy.global.footer.language);
+        document.querySelectorAll('.btn-store-soon').forEach((button) => {
+            button.innerHTML = `<i class="fa-brands fa-google-play"></i> ${langCopy.global.ui.googlePlay}<span class="soon-badge">${langCopy.global.ui.comingSoon}</span>`;
+        });
 
         const langSelect = document.querySelector('.footer-language-select');
         if (langSelect) {
@@ -1973,6 +2842,17 @@
         setHtml('#download .footer-cta-actions .btn-primary', `<i class="fa-brands fa-apple"></i> ${langCopy.global.ui.appStore}`);
         setStoreSoonButton('#download .btn-store-soon', langCopy);
         setText('#download .footer-cta-note', page.download.note);
+        setText('#download .download-explore-title', page.download.explore.title);
+        setText('#download .download-explore-subtitle', page.download.explore.subtitle);
+        setText('[data-landing-card="simple"] .landing-card-title', page.download.explore.cards.simple.title);
+        setText('[data-landing-card="simple"] .landing-card-text', page.download.explore.cards.simple.text);
+        setText('[data-landing-card="simple"] .landing-card-link span', page.download.explore.cards.simple.cta);
+        setText('[data-landing-card="investors"] .landing-card-title', page.download.explore.cards.investors.title);
+        setText('[data-landing-card="investors"] .landing-card-text', page.download.explore.cards.investors.text);
+        setText('[data-landing-card="investors"] .landing-card-link span', page.download.explore.cards.investors.cta);
+        setText('[data-landing-card="privacy"] .landing-card-title', page.download.explore.cards.privacy.title);
+        setText('[data-landing-card="privacy"] .landing-card-text', page.download.explore.cards.privacy.text);
+        setText('[data-landing-card="privacy"] .landing-card-link span', page.download.explore.cards.privacy.cta);
     }
 
     function applyBalancePro(langCopy) {
@@ -2102,6 +2982,17 @@
         });
     }
 
+    function applyDataI18nHtmlAttributes(langCopy) {
+        const elementsWithI18nHtml = document.querySelectorAll('[data-i18n-html]');
+        elementsWithI18nHtml.forEach((el) => {
+            const key = el.getAttribute('data-i18n-html');
+            const value = getNestedProperty(langCopy, key);
+            if (value !== undefined) {
+                el.innerHTML = value;
+            }
+        });
+    }
+
     function getNestedProperty(obj, path) {
         return path.split('.').reduce((current, prop) => current?.[prop], obj);
     }
@@ -2117,6 +3008,9 @@
 
         if (pageKey === 'home') applyHome(langCopy);
         if (pageKey === 'balancepro') applyBalancePro(langCopy);
+        if (pageKey === 'lpSimple') applyMeta(langCopy.lpSimple, currentLang);
+        if (pageKey === 'lpInvestors') applyMeta(langCopy.lpInvestors, currentLang);
+        if (pageKey === 'lpPrivacy') applyMeta(langCopy.lpPrivacy, currentLang);
         if (pageKey === 'pro-waitlist') applyMeta(langCopy.proWaitlist, currentLang);
         if (pageKey === 'roadmap') applyRoadmap(langCopy);
         if (pageKey === 'privacy') applyLegalPage(langCopy.privacy);
@@ -2125,6 +3019,7 @@
         
         // Apply data-i18n attributes for all pages
         applyDataI18nAttributes(langCopy);
+        applyDataI18nHtmlAttributes(langCopy);
 
         initLanguageSwitcher(currentLang);
 
